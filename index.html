@@ -195,6 +195,45 @@
             color: white;
         }
 
+        /* User Welcome Message */
+        .user-welcome {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            background: var(--glass-bg);
+            backdrop-filter: blur(10px);
+            padding: 12px 20px;
+            border-radius: 10px;
+            border: 1px solid var(--glass-border);
+            box-shadow: var(--glass-shadow);
+            z-index: 1002;
+            animation: slideInRight 0.5s ease;
+            max-width: 300px;
+            text-align: center;
+        }
+
+        .user-welcome p {
+            font-size: 0.9rem;
+            margin: 0;
+            color: var(--light);
+        }
+
+        .user-welcome .user-name {
+            color: var(--primary);
+            font-weight: 600;
+        }
+
+        @keyframes slideInRight {
+            from {
+                transform: translateX(100%);
+                opacity: 0;
+            }
+            to {
+                transform: translateX(0);
+                opacity: 1;
+            }
+        }
+
         /* Sections */
         section {
             padding: 80px 0;
@@ -243,6 +282,7 @@
             display: flex;
             justify-content: center;
             margin-bottom: 60px;
+            position: relative;
         }
 
         .radar-container {
@@ -280,6 +320,7 @@
             border-radius: 100% 0 0 0;
             animation: radar-sweep 4s linear infinite;
             transform-origin: 100% 100%;
+            animation-delay: 2s;
         }
 
         .radar-center {
@@ -303,45 +344,78 @@
             transform: translate(-50%, -50%);
             box-shadow: 0 0 8px var(--accent);
             animation: pulse 2s infinite;
+            opacity: 0;
         }
 
         .dot-1 {
             top: 30%;
             left: 60%;
-            animation-delay: 0s;
+            animation-delay: 2.5s;
         }
 
         .dot-2 {
             top: 50%;
             left: 75%;
-            animation-delay: 0.5s;
+            animation-delay: 3s;
         }
 
         .dot-3 {
             top: 70%;
             left: 40%;
-            animation-delay: 1s;
+            animation-delay: 3.5s;
         }
 
         .dot-4 {
             top: 40%;
             left: 30%;
+            animation-delay: 4s;
+        }
+
+        .radar-text {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            text-align: center;
+            width: 100%;
+            z-index: 2;
+        }
+
+        .radar-text h3 {
+            color: var(--light);
+            font-size: 1.2rem;
+            margin-bottom: 10px;
+            opacity: 0;
+            animation: fadeIn 1s ease forwards;
+            animation-delay: 1s;
+        }
+
+        .radar-text p {
+            color: var(--gray);
+            font-size: 0.9rem;
+            opacity: 0;
+            animation: fadeIn 1s ease forwards;
             animation-delay: 1.5s;
         }
 
         @keyframes radar-sweep {
             0% {
                 transform: rotate(0deg);
+                opacity: 0;
+            }
+            10% {
+                opacity: 1;
             }
             100% {
                 transform: rotate(360deg);
+                opacity: 1;
             }
         }
 
         @keyframes pulse {
             0% {
                 transform: translate(-50%, -50%) scale(1);
-                opacity: 1;
+                opacity: 0;
             }
             50% {
                 transform: translate(-50%, -50%) scale(1.5);
@@ -349,6 +423,15 @@
             }
             100% {
                 transform: translate(-50%, -50%) scale(1);
+                opacity: 1;
+            }
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+            }
+            to {
                 opacity: 1;
             }
         }
@@ -955,6 +1038,13 @@
             .service-card, .portfolio-item {
                 height: 220px;
             }
+            
+            .user-welcome {
+                top: 80px;
+                right: 10px;
+                left: 10px;
+                max-width: none;
+            }
         }
     </style>
 </head>
@@ -979,6 +1069,11 @@
             </nav>
         </div>
     </header>
+
+    <!-- User Welcome Message -->
+    <div id="userWelcome" class="user-welcome" style="display: none;">
+        <p>Welcome, <span class="user-name" id="userName">Guest</span>! Thanks for visiting.</p>
+    </div>
 
     <!-- Hero Section -->
     <section class="hero" id="home">
@@ -1011,6 +1106,10 @@
                         <div class="radar-dot dot-2"></div>
                         <div class="radar-dot dot-3"></div>
                         <div class="radar-dot dot-4"></div>
+                    </div>
+                    <div class="radar-text">
+                        <h3>Finding Talent</h3>
+                        <p>Scanning for creative opportunities</p>
                     </div>
                 </div>
             </div>
@@ -1156,18 +1255,18 @@
                     </div>
                 </div>
                 <div class="contact-form">
-                    <form>
+                    <form id="contactForm">
                         <div class="form-group">
-                            <input type="text" class="form-control" placeholder="Your Name" required>
+                            <input type="text" class="form-control" id="name" placeholder="Your Name" required>
                         </div>
                         <div class="form-group">
-                            <input type="email" class="form-control" placeholder="Your Email" required>
+                            <input type="email" class="form-control" id="email" placeholder="Your Email" required>
                         </div>
                         <div class="form-group">
-                            <input type="text" class="form-control" placeholder="Subject" required>
+                            <input type="text" class="form-control" id="subject" placeholder="Subject" required>
                         </div>
                         <div class="form-group">
-                            <textarea class="form-control" placeholder="Your Message" required></textarea>
+                            <textarea class="form-control" id="message" placeholder="Your Message" required></textarea>
                         </div>
                         <button type="submit" class="btn">Send Message</button>
                     </form>
@@ -1273,6 +1372,80 @@
                         behavior: 'smooth'
                     });
                 }
+            });
+        });
+
+        // User Detection and Welcome Message
+        function detectUser() {
+            // Check if user data exists in localStorage
+            const savedUser = localStorage.getItem('portfolioUser');
+            
+            if (savedUser) {
+                // User has visited before
+                const userData = JSON.parse(savedUser);
+                showWelcomeMessage(userData.name);
+            } else {
+                // First time visitor - show prompt after 2 seconds
+                setTimeout(() => {
+                    const userName = prompt("Welcome to my portfolio! What's your name?");
+                    if (userName && userName.trim() !== '') {
+                        const userEmail = prompt("Nice to meet you, " + userName + "! What's your email address?");
+                        
+                        // Save user data
+                        const userData = {
+                            name: userName.trim(),
+                            email: userEmail ? userEmail.trim() : '',
+                            firstVisit: new Date().toISOString()
+                        };
+                        
+                        localStorage.setItem('portfolioUser', JSON.stringify(userData));
+                        showWelcomeMessage(userName);
+                    }
+                }, 2000);
+            }
+        }
+
+        function showWelcomeMessage(userName) {
+            const welcomeElement = document.getElementById('userWelcome');
+            const userNameElement = document.getElementById('userName');
+            
+            userNameElement.textContent = userName;
+            welcomeElement.style.display = 'block';
+            
+            // Hide welcome message after 5 seconds
+            setTimeout(() => {
+                welcomeElement.style.opacity = '0';
+                welcomeElement.style.transition = 'opacity 0.5s ease';
+                setTimeout(() => {
+                    welcomeElement.style.display = 'none';
+                }, 500);
+            }, 5000);
+        }
+
+        // Contact form submission
+        document.getElementById('contactForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            const name = document.getElementById('name').value;
+            const email = document.getElementById('email').value;
+            const subject = document.getElementById('subject').value;
+            const message = document.getElementById('message').value;
+            
+            // In a real application, you would send this data to a server
+            alert(`Thank you ${name}! Your message has been sent. I'll get back to you soon.`);
+            
+            // Reset form
+            this.reset();
+        });
+
+        // Initialize when page loads
+        document.addEventListener('DOMContentLoaded', function() {
+            detectUser();
+            
+            // Add animation delays to radar dots
+            const radarDots = document.querySelectorAll('.radar-dot');
+            radarDots.forEach((dot, index) => {
+                dot.style.animationDelay = `${2.5 + (index * 0.5)}s`;
             });
         });
     </script>
