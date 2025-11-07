@@ -126,18 +126,25 @@
             z-index: 2;
             text-align: center;
         }
-       .hero h1 {
+        .hero h1 {
            font-size: 2.5rem;
            font-weight: 800;
            margin-bottom: 15px;
            line-height: 1.2;
+           color: var(--primary); /* Fallback color */
+}
+
+/* Gradient text for supported browsers */
+         @supports (-webkit-background-clip: text) or (background-clip: text) {
+        .hero h1 {
            background: linear-gradient(135deg, var(--light) 0%, var(--primary) 100%);
           -webkit-background-clip: text;
           -webkit-text-fill-color: transparent;
           background-clip: text;
           color: transparent;
-
-        }
+    }
+}
+        
         .hero p {
             font-size: 1.1rem;
             color: var(--gray);
@@ -1726,4 +1733,5 @@
     </script>
 </body>
 </html>
+
 
