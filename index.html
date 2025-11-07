@@ -271,107 +271,201 @@
             font-size: 0.95rem;
         }
 
-        /* About Section with Radar */
+        /* About Section with Solar System */
         .about {
             background-color: var(--darker);
             position: relative;
             overflow: hidden;
         }
 
-        .about-radar-container {
+        .solar-system-container {
             display: flex;
             justify-content: center;
             margin-bottom: 60px;
             position: relative;
         }
 
-        .radar-container {
-            width: 250px;
-            height: 250px;
+        .solar-system {
+            width: 300px;
+            height: 300px;
             position: relative;
+            display: flex;
+            align-items: center;
+            justify-content: center;
         }
 
-        .radar {
-            width: 100%;
-            height: 100%;
+        .sun {
+            position: absolute;
+            width: 60px;
+            height: 60px;
+            background: radial-gradient(circle, #FFD700, #FF8C00, #FF4500);
             border-radius: 50%;
-            position: relative;
-            background: 
-                radial-gradient(circle at center, rgba(108, 99, 255, 0.1) 0%, transparent 70%),
-                repeating-conic-gradient(
-                    from 0deg,
-                    transparent 0deg,
-                    rgba(108, 99, 255, 0.1) 1deg,
-                    transparent 10deg,
-                    transparent 20deg
-                );
-            overflow: hidden;
-            border: 2px solid rgba(108, 99, 255, 0.2);
+            box-shadow: 0 0 40px #FF4500, 0 0 80px #FF8C00;
+            z-index: 1;
+            animation: sun-pulse 4s ease-in-out infinite;
         }
 
-        .radar::before {
-            content: '';
+        .orbit {
             position: absolute;
-            width: 50%;
-            height: 50%;
-            background: linear-gradient(45deg, transparent, rgba(108, 99, 255, 0.3), transparent);
-            top: 0;
-            left: 0;
-            border-radius: 100% 0 0 0;
-            animation: radar-sweep 4s linear infinite;
-            transform-origin: 100% 100%;
-            animation-delay: 2s;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
         }
 
-        .radar-center {
+        .planet {
             position: absolute;
+            border-radius: 50%;
+            transform-origin: center;
+        }
+
+        .mercury-orbit {
+            width: 120px;
+            height: 120px;
+            animation: orbit-rotate 5s linear infinite;
+        }
+
+        .mercury {
+            width: 12px;
+            height: 12px;
+            background: linear-gradient(45deg, #A9A9A9, #696969);
+            top: -6px;
+            left: 50%;
+            margin-left: -6px;
+        }
+
+        .venus-orbit {
+            width: 160px;
+            height: 160px;
+            animation: orbit-rotate 8s linear infinite;
+        }
+
+        .venus {
+            width: 16px;
+            height: 16px;
+            background: linear-gradient(45deg, #FFA500, #FF6347);
+            top: -8px;
+            left: 50%;
+            margin-left: -8px;
+        }
+
+        .earth-orbit {
+            width: 200px;
+            height: 200px;
+            animation: orbit-rotate 12s linear infinite;
+        }
+
+        .earth {
+            width: 18px;
+            height: 18px;
+            background: linear-gradient(45deg, #1E90FF, #32CD32);
+            top: -9px;
+            left: 50%;
+            margin-left: -9px;
+        }
+
+        .mars-orbit {
+            width: 240px;
+            height: 240px;
+            animation: orbit-rotate 16s linear infinite;
+        }
+
+        .mars {
+            width: 14px;
+            height: 14px;
+            background: linear-gradient(45deg, #FF4500, #8B0000);
+            top: -7px;
+            left: 50%;
+            margin-left: -7px;
+        }
+
+        .jupiter-orbit {
+            width: 280px;
+            height: 280px;
+            animation: orbit-rotate 20s linear infinite;
+        }
+
+        .jupiter {
+            width: 28px;
+            height: 28px;
+            background: linear-gradient(45deg, #DAA520, #CD853F);
+            top: -14px;
+            left: 50%;
+            margin-left: -14px;
+        }
+
+        .saturn-orbit {
+            width: 320px;
+            height: 320px;
+            animation: orbit-rotate 24s linear infinite;
+        }
+
+        .saturn {
+            width: 24px;
+            height: 24px;
+            background: linear-gradient(45deg, #F0E68C, #D2B48C);
+            top: -12px;
+            left: 50%;
+            margin-left: -12px;
+        }
+
+        .saturn-rings {
+            position: absolute;
+            width: 40px;
+            height: 8px;
+            background: transparent;
+            border: 2px solid rgba(210, 180, 140, 0.7);
+            border-radius: 50%;
             top: 50%;
             left: 50%;
             transform: translate(-50%, -50%);
-            width: 15px;
-            height: 15px;
-            background: var(--primary);
-            border-radius: 50%;
-            box-shadow: 0 0 15px var(--primary);
         }
 
-        .radar-dot {
+        .stars {
             position: absolute;
-            width: 10px;
-            height: 10px;
-            background: var(--accent);
+            width: 100%;
+            height: 100%;
             border-radius: 50%;
-            transform: translate(-50%, -50%);
-            box-shadow: 0 0 8px var(--accent);
-            animation: pulse 2s infinite;
-            opacity: 0;
         }
 
-        .dot-1 {
-            top: 30%;
-            left: 60%;
-            animation-delay: 2.5s;
+        .star {
+            position: absolute;
+            background-color: white;
+            border-radius: 50%;
+            animation: twinkle 3s infinite;
         }
 
-        .dot-2 {
-            top: 50%;
-            left: 75%;
-            animation-delay: 3s;
+        @keyframes sun-pulse {
+            0%, 100% {
+                transform: scale(1);
+                box-shadow: 0 0 40px #FF4500, 0 0 80px #FF8C00;
+            }
+            50% {
+                transform: scale(1.05);
+                box-shadow: 0 0 50px #FF4500, 0 0 100px #FF8C00;
+            }
         }
 
-        .dot-3 {
-            top: 70%;
-            left: 40%;
-            animation-delay: 3.5s;
+        @keyframes orbit-rotate {
+            from {
+                transform: rotate(0deg);
+            }
+            to {
+                transform: rotate(360deg);
+            }
         }
 
-        .dot-4 {
-            top: 40%;
-            left: 30%;
-            animation-delay: 4s;
+        @keyframes twinkle {
+            0%, 100% {
+                opacity: 0.3;
+            }
+            50% {
+                opacity: 1;
+            }
         }
 
-        .radar-text {
+        .solar-system-text {
             position: absolute;
             top: 50%;
             left: 50%;
@@ -381,7 +475,7 @@
             z-index: 2;
         }
 
-        .radar-text h3 {
+        .solar-system-text h3 {
             color: var(--light);
             font-size: 1.2rem;
             margin-bottom: 10px;
@@ -390,41 +484,12 @@
             animation-delay: 1s;
         }
 
-        .radar-text p {
+        .solar-system-text p {
             color: var(--gray);
             font-size: 0.9rem;
             opacity: 0;
             animation: fadeIn 1s ease forwards;
             animation-delay: 1.5s;
-        }
-
-        @keyframes radar-sweep {
-            0% {
-                transform: rotate(0deg);
-                opacity: 0;
-            }
-            10% {
-                opacity: 1;
-            }
-            100% {
-                transform: rotate(360deg);
-                opacity: 1;
-            }
-        }
-
-        @keyframes pulse {
-            0% {
-                transform: translate(-50%, -50%) scale(1);
-                opacity: 0;
-            }
-            50% {
-                transform: translate(-50%, -50%) scale(1.5);
-                opacity: 0.7;
-            }
-            100% {
-                transform: translate(-50%, -50%) scale(1);
-                opacity: 1;
-            }
         }
 
         @keyframes fadeIn {
@@ -535,6 +600,8 @@
             cursor: pointer;
             position: relative;
             overflow: hidden;
+            text-decoration: none;
+            color: inherit;
         }
 
         .service-card::before {
@@ -600,13 +667,6 @@
             font-size: 0.8rem;
             margin-top: 10px;
             transition: var(--transition);
-            opacity: 0;
-            transform: translateY(10px);
-        }
-
-        .service-card:hover .service-link {
-            opacity: 1;
-            transform: translateY(0);
         }
 
         .service-link i {
@@ -954,9 +1014,9 @@
                 font-size: 2.2rem;
             }
             
-            .radar-container {
-                width: 300px;
-                height: 300px;
+            .solar-system {
+                width: 400px;
+                height: 400px;
             }
             
             .about-content {
@@ -1021,9 +1081,9 @@
                 justify-content: flex-start;
             }
             
-            .radar-container {
-                width: 350px;
-                height: 350px;
+            .solar-system {
+                width: 500px;
+                height: 500px;
             }
             
             .services-grid {
@@ -1107,9 +1167,44 @@
                 font-size: 1.8rem;
             }
             
-            .radar-container {
+            .solar-system {
+                width: 280px;
+                height: 280px;
+            }
+            
+            .sun {
+                width: 50px;
+                height: 50px;
+            }
+            
+            .mercury-orbit {
+                width: 100px;
+                height: 100px;
+            }
+            
+            .venus-orbit {
+                width: 130px;
+                height: 130px;
+            }
+            
+            .earth-orbit {
+                width: 160px;
+                height: 160px;
+            }
+            
+            .mars-orbit {
+                width: 190px;
+                height: 190px;
+            }
+            
+            .jupiter-orbit {
                 width: 220px;
                 height: 220px;
+            }
+            
+            .saturn-orbit {
+                width: 250px;
+                height: 250px;
             }
             
             .about-image {
@@ -1199,7 +1294,7 @@
         </div>
     </section>
 
-    <!-- About Section with Radar -->
+    <!-- About Section with Solar System -->
     <section class="about" id="about">
         <div class="container">
             <div class="section-title">
@@ -1207,19 +1302,42 @@
                 <p>Get to know more about my background, skills, and passion</p>
             </div>
             
-            <!-- Radar Animation at Top of About Section -->
-            <div class="about-radar-container">
-                <div class="radar-container">
-                    <div class="radar">
-                        <div class="radar-center"></div>
-                        <div class="radar-dot dot-1"></div>
-                        <div class="radar-dot dot-2"></div>
-                        <div class="radar-dot dot-3"></div>
-                        <div class="radar-dot dot-4"></div>
+            <!-- Solar System Animation at Top of About Section -->
+            <div class="solar-system-container">
+                <div class="solar-system">
+                    <div class="sun"></div>
+                    
+                    <div class="orbit mercury-orbit">
+                        <div class="planet mercury"></div>
                     </div>
-                    <div class="radar-text">
-                        <h3>Finding Talent</h3>
-                        <p>Scanning for creative opportunities</p>
+                    
+                    <div class="orbit venus-orbit">
+                        <div class="planet venus"></div>
+                    </div>
+                    
+                    <div class="orbit earth-orbit">
+                        <div class="planet earth"></div>
+                    </div>
+                    
+                    <div class="orbit mars-orbit">
+                        <div class="planet mars"></div>
+                    </div>
+                    
+                    <div class="orbit jupiter-orbit">
+                        <div class="planet jupiter"></div>
+                    </div>
+                    
+                    <div class="orbit saturn-orbit">
+                        <div class="planet saturn">
+                            <div class="saturn-rings"></div>
+                        </div>
+                    </div>
+                    
+                    <div class="stars" id="stars-container"></div>
+                    
+                    <div class="solar-system-text">
+                        <h3>Exploring Creative Galaxies</h3>
+                        <p>Orbiting through design and innovation</p>
                     </div>
                 </div>
             </div>
@@ -1251,86 +1369,86 @@
                 <p>I offer a comprehensive range of services to help your business grow</p>
             </div>
             <div class="services-grid">
-                <div class="service-card" onclick="('ui-ux-design.html')">
+                <a href="ui-ux-design.html" class="service-card">
                     <div class="service-icon">
                         <i class="fas fa-pencil-alt"></i>
                     </div>
                     <h3>UI/UX Design</h3>
                     <p>Creating intuitive and engaging user interfaces that enhance user experience and drive conversions.</p>
-                    <a href="ui-ux-design.html" class="service-link">
+                    <span class="service-link">
                         Learn More <i class="fas fa-arrow-right"></i>
-                    </a>
-                </div>
-                <div class="service-card" onclick="redirectToService('web-development.html')">
+                    </span>
+                </a>
+                <a href="web-development.html" class="service-card">
                     <div class="service-icon">
                         <i class="fas fa-code"></i>
                     </div>
                     <h3>Web Development</h3>
                     <p>Building responsive, fast, and secure websites using the latest technologies and best practices.</p>
-                    <a href="web-development.html" class="service-link">
+                    <span class="service-link">
                         Learn More <i class="fas fa-arrow-right"></i>
-                    </a>
-                </div>
-                <div class="service-card" onclick="redirectToService('brand-identity.html')">
+                    </span>
+                </a>
+                <a href="brand-identity.html" class="service-card">
                     <div class="service-icon">
                         <i class="fas fa-palette"></i>
                     </div>
                     <h3>Brand Identity</h3>
                     <p>Developing unique brand identities that communicate your values and resonate with your target audience.</p>
-                    <a href="brand-identity.html" class="service-link">
+                    <span class="service-link">
                         Learn More <i class="fas fa-arrow-right"></i>
-                    </a>
-                </div>
-                <div class="service-card" onclick="redirectToService('mobile-app-design.html')">
+                    </span>
+                </a>
+                <a href="mobile-app-design.html" class="service-card">
                     <div class="service-icon">
                         <i class="fas fa-mobile-alt"></i>
                     </div>
                     <h3>Mobile App Design</h3>
                     <p>Designing beautiful and functional mobile applications for iOS and Android platforms.</p>
-                    <a href="mobile-app-design.html" class="service-link">
+                    <span class="service-link">
                         Learn More <i class="fas fa-arrow-right"></i>
-                    </a>
-                </div>
-                <div class="service-card" onclick="redirectToService('digital-marketing.html')">
+                    </span>
+                </a>
+                <a href="digital-marketing.html" class="service-card">
                     <div class="service-icon">
                         <i class="fas fa-chart-line"></i>
                     </div>
                     <h3>Digital Marketing</h3>
                     <p>Strategic marketing campaigns to increase brand visibility and drive customer engagement.</p>
-                    <a href="digital-marketing.html" class="service-link">
+                    <span class="service-link">
                         Learn More <i class="fas fa-arrow-right"></i>
-                    </a>
-                </div>
-                <div class="service-card" onclick="redirectToService('motion-graphics.html')">
+                    </span>
+                </a>
+                <a href="motion-graphics.html" class="service-card">
                     <div class="service-icon">
                         <i class="fas fa-video"></i>
                     </div>
                     <h3>Motion Graphics</h3>
                     <p>Creating dynamic animations and visual effects to bring your brand story to life.</p>
-                    <a href="motion-graphics.html" class="service-link">
+                    <span class="service-link">
                         Learn More <i class="fas fa-arrow-right"></i>
-                    </a>
-                </div>
-                <div class="service-card" onclick="redirectToService('photography.html')">
+                    </span>
+                </a>
+                <a href="photography.html" class="service-card">
                     <div class="service-icon">
                         <i class="fas fa-camera"></i>
                     </div>
                     <h3>Photography</h3>
                     <p>Professional product and brand photography to showcase your offerings in the best light.</p>
-                    <a href="photography.html" class="service-link">
+                    <span class="service-link">
                         Learn More <i class="fas fa-arrow-right"></i>
-                    </a>
-                </div>
-                <div class="service-card" onclick="redirectToService('seo-optimization.html')">
+                    </span>
+                </a>
+                <a href="seo-optimization.html" class="service-card">
                     <div class="service-icon">
                         <i class="fas fa-search"></i>
                     </div>
                     <h3>SEO Optimization</h3>
                     <p>Improving your website's visibility in search engines to attract more organic traffic.</p>
-                    <a href="seo-optimization.html" class="service-link">
+                    <span class="service-link">
                         Learn More <i class="fas fa-arrow-right"></i>
-                    </a>
-                </div>
+                    </span>
+                </a>
             </div>
         </div>
     </section>
@@ -1607,38 +1725,41 @@
             this.reset();
         });
 
-        // Service redirect function
-        function redirectToService(page) {
-            // In a real implementation, this would redirect to the actual service page
-            // For demo purposes, we'll show an alert
-            const serviceName = page.replace('.html', '').replace(/-/g, ' ');
-            alert(`Redirecting to ${serviceName} page. In a real implementation, this would navigate to: ${page}`);
+        // Create stars for solar system
+        function createStars() {
+            const starsContainer = document.getElementById('stars-container');
+            const starCount = 50;
             
-            // Uncomment the line below to actually redirect
-            // window.location.href = page;
+            for (let i = 0; i < starCount; i++) {
+                const star = document.createElement('div');
+                star.className = 'star';
+                
+                // Random position
+                const angle = Math.random() * 360;
+                const distance = 120 + Math.random() * 180;
+                const x = Math.cos(angle * Math.PI / 180) * distance;
+                const y = Math.sin(angle * Math.PI / 180) * distance;
+                
+                star.style.left = `calc(50% + ${x}px)`;
+                star.style.top = `calc(50% + ${y}px)`;
+                
+                // Random size
+                const size = 1 + Math.random() * 2;
+                star.style.width = `${size}px`;
+                star.style.height = `${size}px`;
+                
+                // Random animation delay
+                star.style.animationDelay = `${Math.random() * 3}s`;
+                
+                starsContainer.appendChild(star);
+            }
         }
 
         // Initialize when page loads
         document.addEventListener('DOMContentLoaded', function() {
             detectUser();
-            
-            // Add animation delays to radar dots
-            const radarDots = document.querySelectorAll('.radar-dot');
-            radarDots.forEach((dot, index) => {
-                dot.style.animationDelay = `${2.5 + (index * 0.5)}s`;
-            });
-
-            // Add click events to service cards
-            document.querySelectorAll('.service-card').forEach(card => {
-                card.addEventListener('click', function() {
-                    const link = this.querySelector('a');
-                    if (link) {
-                        redirectToService(link.getAttribute('href'));
-                    }
-                });
-            });
+            createStars();
         });
     </script>
 </body>
 </html>
-
