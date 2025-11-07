@@ -21,17 +21,14 @@
             --glass-border: rgba(255, 255, 255, 0.1);
             --glass-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
         }
-
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
         }
-
         html {
             scroll-behavior: smooth;
         }
-
         body {
             font-family: 'Inter', sans-serif;
             background-color: var(--dark);
@@ -39,14 +36,12 @@
             line-height: 1.6;
             overflow-x: hidden;
         }
-
         .container {
             width: 90%;
             max-width: 1200px;
             margin: 0 auto;
             padding: 0 15px;
         }
-
         /* Header & Navigation - Mobile First */
         header {
             position: fixed;
@@ -59,18 +54,15 @@
             background-color: rgba(10, 10, 10, 0.95);
             backdrop-filter: blur(10px);
         }
-
         header.scrolled {
             padding: 12px 0;
             box-shadow: 0 5px 20px rgba(0, 0, 0, 0.3);
         }
-
         .navbar {
             display: flex;
             justify-content: space-between;
             align-items: center;
         }
-
         .logo {
             font-size: 1.5rem;
             font-weight: 800;
@@ -78,20 +70,16 @@
             text-decoration: none;
             z-index: 1001;
         }
-
         .logo span {
             color: var(--primary);
         }
-
         .nav-links {
             display: flex;
             list-style: none;
         }
-
         .nav-links li {
             margin-left: 20px;
         }
-
         .nav-links a {
             color: var(--light);
             text-decoration: none;
@@ -100,11 +88,9 @@
             position: relative;
             font-size: 0.9rem;
         }
-
         .nav-links a:hover {
             color: var(--primary);
         }
-
         .nav-links a::after {
             content: '';
             position: absolute;
@@ -115,11 +101,9 @@
             background-color: var(--primary);
             transition: var(--transition);
         }
-
         .nav-links a:hover::after {
             width: 100%;
         }
-
         .menu-toggle {
             display: none;
             cursor: pointer;
@@ -127,7 +111,6 @@
             color: var(--light);
             z-index: 1001;
         }
-
         /* Hero Section */
         .hero {
             height: 100vh;
@@ -138,13 +121,11 @@
             background: linear-gradient(135deg, var(--darker) 0%, var(--dark) 100%);
             padding-top: 70px;
         }
-
         .hero-content {
             max-width: 100%;
             z-index: 2;
             text-align: center;
         }
-
         .hero h1 {
             font-size: 2.5rem;
             font-weight: 800;
@@ -154,14 +135,12 @@
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
         }
-
         .hero p {
             font-size: 1.1rem;
             color: var(--gray);
             margin-bottom: 30px;
             line-height: 1.6;
         }
-
         .btn {
             display: inline-block;
             padding: 12px 25px;
@@ -177,24 +156,20 @@
             margin: 5px;
             backdrop-filter: blur(10px);
         }
-
         .btn:hover {
             background-color: var(--secondary);
             transform: translateY(-3px);
             box-shadow: 0 10px 20px rgba(108, 99, 255, 0.3);
         }
-
         .btn-outline {
             background-color: transparent;
             border: 2px solid var(--primary);
             color: var(--primary);
         }
-
         .btn-outline:hover {
             background-color: var(--primary);
             color: white;
         }
-
         /* User Welcome Message */
         .user-welcome {
             position: fixed;
@@ -211,18 +186,15 @@
             max-width: 300px;
             text-align: center;
         }
-
         .user-welcome p {
             font-size: 0.9rem;
             margin: 0;
             color: var(--light);
         }
-
         .user-welcome .user-name {
             color: var(--primary);
             font-weight: 600;
         }
-
         @keyframes slideInRight {
             from {
                 transform: translateX(100%);
@@ -233,17 +205,14 @@
                 opacity: 1;
             }
         }
-
         /* Sections */
         section {
             padding: 80px 0;
         }
-
         .section-title {
             text-align: center;
             margin-bottom: 50px;
         }
-
         .section-title h2 {
             font-size: 2rem;
             font-weight: 700;
@@ -251,7 +220,6 @@
             position: relative;
             display: inline-block;
         }
-
         .section-title h2::after {
             content: '';
             position: absolute;
@@ -263,28 +231,24 @@
             background-color: var(--primary);
             border-radius: 2px;
         }
-
         .section-title p {
             color: var(--gray);
             max-width: 600px;
             margin: 0 auto;
             font-size: 0.95rem;
         }
-
         /* About Section with Solar System */
         .about {
             background-color: var(--darker);
             position: relative;
             overflow: hidden;
         }
-
         .solar-system-container {
             display: flex;
             justify-content: center;
             margin-bottom: 60px;
             position: relative;
         }
-
         .solar-system {
             width: 300px;
             height: 300px;
@@ -293,7 +257,6 @@
             align-items: center;
             justify-content: center;
         }
-
         .sun {
             position: absolute;
             width: 60px;
@@ -304,7 +267,6 @@
             z-index: 1;
             animation: sun-pulse 4s ease-in-out infinite;
         }
-
         .orbit {
             position: absolute;
             border: 1px solid rgba(255, 255, 255, 0.1);
@@ -313,19 +275,16 @@
             align-items: center;
             justify-content: center;
         }
-
         .planet {
             position: absolute;
             border-radius: 50%;
             transform-origin: center;
         }
-
         .mercury-orbit {
             width: 120px;
             height: 120px;
             animation: orbit-rotate 5s linear infinite;
         }
-
         .mercury {
             width: 12px;
             height: 12px;
@@ -334,13 +293,11 @@
             left: 50%;
             margin-left: -6px;
         }
-
         .venus-orbit {
             width: 160px;
             height: 160px;
             animation: orbit-rotate 8s linear infinite;
         }
-
         .venus {
             width: 16px;
             height: 16px;
@@ -349,13 +306,11 @@
             left: 50%;
             margin-left: -8px;
         }
-
         .earth-orbit {
             width: 200px;
             height: 200px;
             animation: orbit-rotate 12s linear infinite;
         }
-
         .earth {
             width: 18px;
             height: 18px;
@@ -364,13 +319,11 @@
             left: 50%;
             margin-left: -9px;
         }
-
         .mars-orbit {
             width: 240px;
             height: 240px;
             animation: orbit-rotate 16s linear infinite;
         }
-
         .mars {
             width: 14px;
             height: 14px;
@@ -379,13 +332,11 @@
             left: 50%;
             margin-left: -7px;
         }
-
         .jupiter-orbit {
             width: 280px;
             height: 280px;
             animation: orbit-rotate 20s linear infinite;
         }
-
         .jupiter {
             width: 28px;
             height: 28px;
@@ -394,13 +345,11 @@
             left: 50%;
             margin-left: -14px;
         }
-
         .saturn-orbit {
             width: 320px;
             height: 320px;
             animation: orbit-rotate 24s linear infinite;
         }
-
         .saturn {
             width: 24px;
             height: 24px;
@@ -409,7 +358,6 @@
             left: 50%;
             margin-left: -12px;
         }
-
         .saturn-rings {
             position: absolute;
             width: 40px;
@@ -421,21 +369,18 @@
             left: 50%;
             transform: translate(-50%, -50%);
         }
-
         .stars {
             position: absolute;
             width: 100%;
             height: 100%;
             border-radius: 50%;
         }
-
         .star {
             position: absolute;
             background-color: white;
             border-radius: 50%;
             animation: twinkle 3s infinite;
         }
-
         @keyframes sun-pulse {
             0%, 100% {
                 transform: scale(1);
@@ -446,7 +391,6 @@
                 box-shadow: 0 0 50px #FF4500, 0 0 100px #FF8C00;
             }
         }
-
         @keyframes orbit-rotate {
             from {
                 transform: rotate(0deg);
@@ -455,7 +399,6 @@
                 transform: rotate(360deg);
             }
         }
-
         @keyframes twinkle {
             0%, 100% {
                 opacity: 0.3;
@@ -464,7 +407,6 @@
                 opacity: 1;
             }
         }
-
         .solar-system-text {
             position: absolute;
             top: 50%;
@@ -474,7 +416,6 @@
             width: 100%;
             z-index: 2;
         }
-
         .solar-system-text h3 {
             color: var(--light);
             font-size: 1.2rem;
@@ -483,7 +424,6 @@
             animation: fadeIn 1s ease forwards;
             animation-delay: 1s;
         }
-
         .solar-system-text p {
             color: var(--gray);
             font-size: 0.9rem;
@@ -491,7 +431,6 @@
             animation: fadeIn 1s ease forwards;
             animation-delay: 1.5s;
         }
-
         @keyframes fadeIn {
             from {
                 opacity: 0;
@@ -500,14 +439,12 @@
                 opacity: 1;
             }
         }
-
         .about-content {
             display: flex;
             flex-direction: column;
             gap: 40px;
             align-items: center;
         }
-
         .about-image {
             border-radius: 15px;
             overflow: hidden;
@@ -518,7 +455,6 @@
             background: linear-gradient(135deg, var(--primary), var(--secondary));
             position: relative;
         }
-
         .about-image::before {
             content: '';
             position: absolute;
@@ -529,23 +465,19 @@
             background: linear-gradient(45deg, rgba(108, 99, 255, 0.2), rgba(255, 101, 132, 0.2));
             z-index: 1;
         }
-
         .about-text {
             text-align: center;
         }
-
         .about-text h3 {
             font-size: 1.5rem;
             margin-bottom: 20px;
             color: var(--light);
         }
-
         .about-text p {
             margin-bottom: 20px;
             color: var(--gray);
             text-align: left;
         }
-
         .skills {
             display: flex;
             flex-wrap: wrap;
@@ -553,7 +485,6 @@
             margin-top: 25px;
             justify-content: center;
         }
-
         .skill {
             background-color: var(--dark);
             padding: 8px 16px;
@@ -564,24 +495,20 @@
             border: 1px solid var(--dark-gray);
             font-size: 0.85rem;
         }
-
         .skill:hover {
             transform: translateY(-3px);
             box-shadow: 0 8px 15px rgba(0, 0, 0, 0.3);
             border-color: var(--primary);
         }
-
         /* Services Section - 8 Services */
         .services {
             background-color: var(--dark);
         }
-
         .services-grid {
             display: grid;
             grid-template-columns: repeat(2, 1fr);
             gap: 20px;
         }
-
         .service-card {
             background: var(--glass-bg);
             backdrop-filter: blur(10px);
@@ -603,7 +530,6 @@
             text-decoration: none;
             color: inherit;
         }
-
         .service-card::before {
             content: '';
             position: absolute;
@@ -614,18 +540,15 @@
             background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.1), transparent);
             transition: var(--transition);
         }
-
         .service-card:hover::before {
             left: 100%;
         }
-
         .service-card:hover {
             transform: translateY(-8px);
             box-shadow: 0 15px 30px rgba(0, 0, 0, 0.3);
             border-color: rgba(108, 99, 255, 0.3);
             background: rgba(255, 255, 255, 0.12);
         }
-
         .service-icon {
             width: 60px;
             height: 60px;
@@ -640,24 +563,20 @@
             box-shadow: 0 8px 20px rgba(108, 99, 255, 0.3);
             transition: var(--transition);
         }
-
         .service-card:hover .service-icon {
             transform: scale(1.1);
             box-shadow: 0 12px 25px rgba(108, 99, 255, 0.4);
         }
-
         .service-card h3 {
             font-size: 1.1rem;
             margin-bottom: 10px;
             color: var(--light);
         }
-
         .service-card p {
             color: var(--gray);
             font-size: 0.8rem;
             line-height: 1.4;
         }
-
         .service-link {
             display: inline-flex;
             align-items: center;
@@ -668,23 +587,19 @@
             margin-top: 10px;
             transition: var(--transition);
         }
-
         .service-link i {
             margin-left: 5px;
             transition: var(--transition);
         }
-
         .service-link:hover i {
             transform: translateX(3px);
         }
-
         /* Portfolio Section - Mobile Optimized */
         .portfolio {
             background: linear-gradient(135deg, #0c0c0c 0%, #1a1a2e 50%, #16213e 100%);
             position: relative;
             overflow: hidden;
         }
-
         .portfolio::before {
             content: '';
             position: absolute;
@@ -698,7 +613,6 @@
                 radial-gradient(circle at 40% 40%, rgba(108, 99, 255, 0.05) 0%, transparent 50%);
             z-index: 0;
         }
-
         .portfolio-grid {
             display: grid;
             grid-template-columns: 1fr;
@@ -706,7 +620,6 @@
             position: relative;
             z-index: 1;
         }
-
         .portfolio-item {
             border-radius: 16px;
             overflow: hidden;
@@ -719,7 +632,6 @@
             box-shadow: var(--glass-shadow);
             transition: var(--transition);
         }
-
         .portfolio-item::before {
             content: '';
             position: absolute;
@@ -734,17 +646,14 @@
             opacity: 0;
             transition: var(--transition);
         }
-
         .portfolio-item:hover::before {
             opacity: 1;
         }
-
         .portfolio-item:hover {
             transform: translateY(-8px);
             box-shadow: 0 15px 30px rgba(0, 0, 0, 0.4);
             border-color: rgba(108, 99, 255, 0.3);
         }
-
         .portfolio-content {
             position: relative;
             height: 100%;
@@ -754,14 +663,12 @@
             justify-content: flex-end;
             z-index: 2;
         }
-
         .portfolio-tags {
             display: flex;
             flex-wrap: wrap;
             gap: 6px;
             margin-bottom: 12px;
         }
-
         .portfolio-tag {
             background: rgba(255, 255, 255, 0.15);
             backdrop-filter: blur(10px);
@@ -772,7 +679,6 @@
             color: var(--light);
             border: 1px solid rgba(255, 255, 255, 0.1);
         }
-
         .portfolio-content h3 {
             color: white;
             font-size: 1.3rem;
@@ -780,14 +686,12 @@
             font-weight: 700;
             line-height: 1.3;
         }
-
         .portfolio-content p {
             color: rgba(255, 255, 255, 0.8);
             margin-bottom: 15px;
             font-size: 0.85rem;
             line-height: 1.4;
         }
-
         .portfolio-link {
             display: inline-flex;
             align-items: center;
@@ -801,23 +705,19 @@
             border-radius: 20px;
             border: 1px solid rgba(108, 99, 255, 0.2);
         }
-
         .portfolio-link i {
             margin-left: 6px;
             transition: var(--transition);
             font-size: 0.8rem;
         }
-
         .portfolio-link:hover {
             color: var(--accent);
             background: rgba(255, 101, 132, 0.1);
             border-color: rgba(255, 101, 132, 0.2);
         }
-
         .portfolio-link:hover i {
             transform: translateX(4px);
         }
-
         /* Portfolio Filters */
         .portfolio-filters {
             display: flex;
@@ -826,7 +726,6 @@
             gap: 10px;
             margin-bottom: 30px;
         }
-
         .filter-btn {
             padding: 8px 16px;
             background: var(--glass-bg);
@@ -839,37 +738,31 @@
             transition: var(--transition);
             backdrop-filter: blur(10px);
         }
-
         .filter-btn.active,
         .filter-btn:hover {
             background: var(--primary);
             color: white;
             border-color: var(--primary);
         }
-
         /* Contact Section */
         .contact {
             background-color: var(--dark);
         }
-
         .contact-content {
             display: flex;
             flex-direction: column;
             gap: 40px;
         }
-
         .contact-info {
             display: flex;
             flex-direction: column;
             gap: 20px;
         }
-
         .contact-item {
             display: flex;
             align-items: flex-start;
             gap: 15px;
         }
-
         .contact-icon {
             width: 45px;
             height: 45px;
@@ -882,18 +775,15 @@
             font-size: 1.1rem;
             flex-shrink: 0;
         }
-
         .contact-details h3 {
             font-size: 1.1rem;
             margin-bottom: 5px;
             color: var(--light);
         }
-
         .contact-details p {
             color: var(--gray);
             font-size: 0.9rem;
         }
-
         .contact-form {
             background: var(--glass-bg);
             backdrop-filter: blur(10px);
@@ -903,11 +793,9 @@
             box-shadow: var(--glass-shadow);
             border: 1px solid var(--glass-border);
         }
-
         .form-group {
             margin-bottom: 18px;
         }
-
         .form-control {
             width: 100%;
             padding: 14px;
@@ -919,19 +807,16 @@
             color: var(--light);
             font-size: 0.9rem;
         }
-
         .form-control:focus {
             outline: none;
             border-color: var(--primary);
             box-shadow: 0 0 0 3px rgba(108, 99, 255, 0.1);
             background: rgba(255, 255, 255, 0.08);
         }
-
         textarea.form-control {
             min-height: 120px;
             resize: vertical;
         }
-
         /* Footer */
         footer {
             background-color: var(--darker);
@@ -939,31 +824,26 @@
             padding: 50px 0 20px;
             border-top: 1px solid var(--dark-gray);
         }
-
         .footer-content {
             display: grid;
             grid-template-columns: 1fr;
             gap: 30px;
             margin-bottom: 40px;
         }
-
         .footer-about h3 {
             font-size: 1.4rem;
             margin-bottom: 15px;
             color: var(--primary);
         }
-
         .footer-about p {
             color: #B0B3C1;
             margin-bottom: 20px;
             font-size: 0.9rem;
         }
-
         .social-links {
             display: flex;
             gap: 12px;
         }
-
         .social-link {
             width: 38px;
             height: 38px;
@@ -977,19 +857,16 @@
             transition: var(--transition);
             font-size: 0.9rem;
         }
-
         .social-link:hover {
             background-color: var(--primary);
             transform: translateY(-3px);
         }
-
         .footer-links h4 {
             font-size: 1.1rem;
             margin-bottom: 20px;
             position: relative;
             color: var(--light);
         }
-
         .footer-links h4::after {
             content: '';
             position: absolute;
@@ -999,27 +876,22 @@
             height: 3px;
             background-color: var(--primary);
         }
-
         .footer-links ul {
             list-style: none;
         }
-
         .footer-links li {
             margin-bottom: 10px;
         }
-
         .footer-links a {
             color: #B0B3C1;
             text-decoration: none;
             transition: var(--transition);
             font-size: 0.9rem;
         }
-
         .footer-links a:hover {
             color: var(--primary);
             padding-left: 5px;
         }
-
         .copyright {
             text-align: center;
             padding-top: 25px;
@@ -1027,151 +899,119 @@
             color: #B0B3C1;
             font-size: 0.85rem;
         }
-
         /* Tablet Styles */
         @media (min-width: 768px) {
             .container {
                 padding: 0 20px;
             }
-            
             .hero h1 {
                 font-size: 3rem;
             }
-            
             .hero p {
                 font-size: 1.2rem;
             }
-            
             .btn {
                 padding: 12px 30px;
                 font-size: 1rem;
             }
-            
             .section-title h2 {
                 font-size: 2.2rem;
             }
-            
             .solar-system {
                 width: 400px;
                 height: 400px;
             }
-            
             .about-content {
                 flex-direction: row;
                 text-align: left;
             }
-            
             .about-text {
                 text-align: left;
             }
-            
             .services-grid {
                 grid-template-columns: repeat(3, 1fr);
                 gap: 25px;
             }
-            
             .service-card {
                 padding: 30px 20px;
                 min-height: 220px;
             }
-            
             .service-icon {
                 width: 70px;
                 height: 70px;
                 font-size: 1.8rem;
             }
-            
             .service-card h3 {
                 font-size: 1.3rem;
             }
-            
             .service-card p {
                 font-size: 0.9rem;
             }
-            
             .service-link {
                 font-size: 0.9rem;
             }
-            
             .portfolio-grid {
                 grid-template-columns: repeat(2, 1fr);
                 gap: 25px;
             }
-            
             .portfolio-item {
                 height: 300px;
             }
-            
             .portfolio-content {
                 padding: 30px;
             }
-            
             .portfolio-content h3 {
                 font-size: 1.5rem;
             }
-            
             .portfolio-content p {
                 font-size: 0.9rem;
             }
-            
             .portfolio-link {
                 font-size: 0.9rem;
                 padding: 10px 20px;
             }
-            
             .contact-content {
                 flex-direction: row;
             }
-            
             .footer-content {
                 grid-template-columns: 2fr 1fr 1fr;
             }
         }
-
         /* Desktop Styles */
         @media (min-width: 992px) {
             .hero-content {
                 text-align: left;
                 max-width: 600px;
             }
-            
             .hero-buttons {
                 display: flex;
                 justify-content: flex-start;
             }
-            
             .solar-system {
                 width: 500px;
                 height: 500px;
             }
-            
             .services-grid {
                 grid-template-columns: repeat(4, 1fr);
             }
-            
             .portfolio-grid {
                 grid-template-columns: repeat(3, 1fr);
             }
-            
             .footer-content {
                 grid-template-columns: 2fr 1fr 1fr 1fr;
             }
-            
             .nav-links {
                 display: flex !important;
             }
-            
             .menu-toggle {
                 display: none;
             }
         }
-
         /* Mobile Navigation */
         @media (max-width: 991px) {
             .menu-toggle {
                 display: block;
             }
-            
             .nav-links {
                 position: fixed;
                 top: 0;
@@ -1186,186 +1026,148 @@
                 box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3);
                 z-index: 999;
             }
-            
             .nav-links.active {
                 left: 0;
             }
-            
             .nav-links li {
                 margin: 15px 0;
             }
-            
             .nav-links a {
                 font-size: 1.1rem;
             }
         }
-
         /* Small Mobile Optimization */
         @media (max-width: 480px) {
             .hero h1 {
                 font-size: 2rem;
             }
-            
             .hero p {
                 font-size: 1rem;
             }
-            
             .btn {
                 padding: 10px 20px;
                 font-size: 0.85rem;
                 width: 100%;
                 margin: 5px 0;
             }
-            
             .hero-buttons {
                 display: flex;
                 flex-direction: column;
             }
-            
             .section-title h2 {
                 font-size: 1.8rem;
             }
-            
             .solar-system {
                 width: 280px;
                 height: 280px;
             }
-            
             .sun {
                 width: 50px;
                 height: 50px;
             }
-            
             .mercury-orbit {
                 width: 100px;
                 height: 100px;
             }
-            
             .venus-orbit {
                 width: 130px;
                 height: 130px;
             }
-            
             .earth-orbit {
                 width: 160px;
                 height: 160px;
             }
-            
             .mars-orbit {
                 width: 190px;
                 height: 190px;
             }
-            
             .jupiter-orbit {
                 width: 220px;
                 height: 220px;
             }
-            
             .saturn-orbit {
                 width: 250px;
                 height: 250px;
             }
-            
             .about-image {
                 height: 250px;
             }
-            
             .service-card, .portfolio-item {
                 height: 220px;
             }
-            
             .user-welcome {
                 top: 80px;
                 right: 10px;
                 left: 10px;
                 max-width: none;
             }
-            
             .services-grid {
                 gap: 15px;
             }
-            
             .service-card {
                 padding: 20px 10px;
                 min-height: 180px;
             }
-            
             .service-icon {
                 width: 50px;
                 height: 50px;
                 font-size: 1.3rem;
                 margin-bottom: 10px;
             }
-            
             .service-card h3 {
                 font-size: 1rem;
                 margin-bottom: 8px;
             }
-            
             .service-card p {
                 font-size: 0.75rem;
             }
-            
             .service-link {
                 font-size: 0.75rem;
             }
-            
             .portfolio-grid {
                 gap: 15px;
             }
-            
             .portfolio-item {
                 height: 250px;
             }
-            
             .portfolio-content {
                 padding: 20px;
             }
-            
             .portfolio-content h3 {
                 font-size: 1.2rem;
             }
-            
             .portfolio-content p {
                 font-size: 0.8rem;
                 margin-bottom: 12px;
             }
-            
             .portfolio-link {
                 font-size: 0.8rem;
                 padding: 6px 12px;
             }
-            
             .portfolio-tags {
                 gap: 4px;
                 margin-bottom: 10px;
             }
-            
             .portfolio-tag {
                 font-size: 0.65rem;
                 padding: 3px 8px;
             }
-            
             .filter-btn {
                 padding: 6px 12px;
                 font-size: 0.8rem;
             }
         }
-
         /* Extra Small Mobile Optimization */
         @media (max-width: 360px) {
             .services-grid {
                 grid-template-columns: 1fr;
             }
-            
             .portfolio-item {
                 height: 230px;
             }
-            
             .portfolio-content {
                 padding: 15px;
             }
-            
             .portfolio-content h3 {
                 font-size: 1.1rem;
             }
@@ -1406,7 +1208,7 @@
                 <h1>Hi, I'm Adil<br>Creative Designer</h1>
                 <p>I create stunning digital experiences that help brands stand out and connect with their audience.</p>
                 <div class="hero-buttons">
-                    <a href="https://wa.me/919207271076" class="btn btn-outline">Collab with me</a>
+                    <a href="work.html" class="btn btn-outline">Collab with me</a>
                     <a href="tech.html" class="btn btn-outline">Test your phone</a>
                     <a href="work.html" class="btn btn-outline">Test your website</a>
                     <a href="work.html" class="btn btn-outline">study with me</a>
@@ -1645,7 +1447,7 @@
                 <h2>Get In Touch</h2>
                 <p>Feel free to reach out for collaborations or just a friendly hello</p>
             </div>
-       <!--     <div class="contact-content">
+            <div class="contact-content">
                 <div class="contact-info">
                     <div class="contact-item">
                         <div class="contact-icon">
@@ -1674,7 +1476,7 @@
                             <p>+91 9207271076</p>
                         </div>
                     </div>
-                </div>-->
+                </div>
                 <div class="contact-form">
                     <form id="contactForm">
                         <div class="form-group">
@@ -1921,9 +1723,3 @@
     </script>
 </body>
 </html>
-
-
-
-
-
-
