@@ -606,6 +606,68 @@
             color: var(--gray);
             text-align: left;
         }
+        /* Updated Skills Section - Line by Line */
+        .skills {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+            margin-top: 25px;
+            width: 100%;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        
+        .skill-row {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            width: 100%;
+            padding: 12px 0;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        
+        .skill-row:last-child {
+            border-bottom: none;
+        }
+        
+        .skill-name {
+            font-weight: 500;
+            color: var(--light);
+            font-size: 1rem;
+        }
+        
+        .skill-level {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        
+        .skill-dots {
+            display: flex;
+            gap: 4px;
+        }
+        
+        .skill-dot {
+            width: 10px;
+            height: 10px;
+            border-radius: 50%;
+            background-color: var(--dark-gray);
+            transition: var(--transition);
+        }
+        
+        .skill-dot.active {
+            background-color: var(--primary);
+        }
+        
+        .skill-percentage {
+            font-size: 0.8rem;
+            color: var(--gray);
+            min-width: 40px;
+            text-align: right;
+        }
+        
+        /* Original Skills (commented out for reference)
         .skills {
             display: flex;
             flex-wrap: wrap;
@@ -613,6 +675,7 @@
             margin-top: 25px;
             justify-content: center;
         }
+        
         .skill {
             background-color: var(--dark);
             padding: 8px 16px;
@@ -623,11 +686,14 @@
             border: 1px solid var(--dark-gray);
             font-size: 0.85rem;
         }
+        
         .skill:hover {
             transform: translateY(-3px);
             box-shadow: 0 8px 15px rgba(0, 0, 0, 0.3);
             border-color: var(--primary);
         }
+        */
+        
         /* Services Section - 8 Services */
         .services {
             background-color: var(--dark);
@@ -1307,6 +1373,19 @@
                 padding: 6px 12px;
                 font-size: 0.8rem;
             }
+            
+            /* Mobile skills adjustment */
+            .skill-row {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 8px;
+                padding: 15px 0;
+            }
+            
+            .skill-level {
+                width: 100%;
+                justify-content: space-between;
+            }
         }
         /* Extra Small Mobile Optimization */
         @media (max-width: 360px) {
@@ -1370,84 +1449,174 @@
         </div>
     </section>
     
-            <!-- New Passion Section with Share Idea Card -->
-            <div class="passion-section">
-                <h2 class="passion-text">Creating digital experiences with passion</h2>
-                
-                <div class="share-idea-card" onclick="window.location.href='share-idea.html'">
-                    <div class="share-idea-icon">
-                        <i class="fas fa-lightbulb"></i>
-                    </div>
-                    <h3>Share Your Idea</h3>
-                    <p>Have a creative idea or project in mind? Let's collaborate and bring it to life together!</p>
-                    <span class="share-idea-link">
-                        Share Now <i class="fas fa-arrow-right"></i>
-                    </span>
+    <!-- New Passion Section with Share Idea Card -->
+    <div class="passion-section">
+        <h2 class="passion-text">Creating digital experiences with passion</h2>
+        
+        <div class="share-idea-card" onclick="window.location.href='idea.jsx'">
+            <div class="share-idea-icon">
+                <i class="fas fa-lightbulb"></i>
+            </div>
+            <h3>Share Your Idea</h3>
+            <p>Have a creative idea or project in mind? Let's collaborate and bring it to life together!</p>
+            <span class="share-idea-link">
+                Share Now <i class="fas fa-arrow-right"></i>
+            </span>
+        </div>
+    </div>
+    
+    <!-- Solar System Animation at Top of About Section -->
+    <div class="solar-system-container">
+        <div class="solar-system">
+            <div class="sun"></div>
+            
+            <div class="orbit mercury-orbit">
+                <div class="planet mercury"></div>
+            </div>
+            
+            <div class="orbit venus-orbit">
+                <div class="planet venus"></div>
+            </div>
+            
+            <div class="orbit earth-orbit">
+                <div class="planet earth"></div>
+            </div>
+            
+            <div class="orbit mars-orbit">
+                <div class="planet mars"></div>
+            </div>
+            
+            <div class="orbit jupiter-orbit">
+                <div class="planet jupiter"></div>
+            </div>
+            
+            <div class="orbit saturn-orbit">
+                <div class="planet saturn">
+                    <div class="saturn-rings"></div>
                 </div>
             </div>
             
-            <!-- Solar System Animation at Top of About Section -->
-            <div class="solar-system-container">
-                <div class="solar-system">
-                    <div class="sun"></div>
-                    
-                    <div class="orbit mercury-orbit">
-                        <div class="planet mercury"></div>
-                    </div>
-                    
-                    <div class="orbit venus-orbit">
-                        <div class="planet venus"></div>
-                    </div>
-                    
-                    <div class="orbit earth-orbit">
-                        <div class="planet earth"></div>
-                    </div>
-                    
-                    <div class="orbit mars-orbit">
-                        <div class="planet mars"></div>
-                    </div>
-                    
-                    <div class="orbit jupiter-orbit">
-                        <div class="planet jupiter"></div>
-                    </div>
-                    
-                    <div class="orbit saturn-orbit">
-                        <div class="planet saturn">
-                            <div class="saturn-rings"></div>
-                        </div>
-                    </div>
-                    
-                    <div class="stars" id="stars-container"></div>
-                    
-                    <div class="solar-system-text">
-                        <h3></h3>
-                        <p></p>
-                    </div>
-                </div>
+            <div class="stars" id="stars-container"></div>
+            
+            <div class="solar-system-text">
+                <h3></h3>
+                <p></p>
             </div>
+        </div>
+    </div>
 
-     <!-- About Section with Solar System -->
+    <!-- About Section with Solar System -->
     <section class="about" id="about">
         <div class="container">
             <div class="section-title">
                 <h2>About Me</h2>
-                <p>Get to know more about my background, skills, and passion</p>
+                <p>I'm Adil, a passionate cybersecurity enthusiast and digital creator driven by curiosity, creativity, and innovation. I love building secure and meaningful digital experiences — blending design, technology, and protection to make the online world safer and smarter. Every project I take on is powered by precision, creativity, and passion — whether it's developing websites, testing systems for vulnerabilities, or exploring new cybersecurity tools. My goal is simple: to create digital experiences that inspire trust, spark innovation, and stay one step ahead of cyber threats. Driven by creativity. Powered by passion. Secured by knowledge.</p>
             </div>
             
             <div class="about-content">
-                <div class="about-image"></div>
                 <div class="about-text">
-                    <h3>Bringing Ideas to Life</h3>
-                    <p>I'm a creative designer with over 5 years of experience specializing in UI/UX design, branding, and digital marketing. My approach combines strategic thinking with aesthetic sensibility to deliver solutions that are both beautiful and effective.</p>
-                    <p>I believe in the power of design to transform businesses and create meaningful connections between brands and their audiences.</p>
+                    <h3>My Skills</h3>
+                    <p>Driven by creativity, powered by passion.</p>
+                    
+                    <!-- Updated Skills Section - Line by Line -->
                     <div class="skills">
-                        <div class="skill">UI/UX Design</div>
-                        <div class="skill">Web Development</div>
-                        <div class="skill">Brand Identity</div>
-                        <div class="skill">Digital Marketing</div>
-                        <div class="skill">Motion Graphics</div>
-                        <div class="skill">Penetration Testing</div>
-                        <div class="skill">SOC analyst</div>
+                        <div class="skill-row">
+                            <span class="skill-name">UI/UX Design</span>
+                            <div class="skill-level">
+                                <div class="skill-dots">
+                                    <div class="skill-dot active"></div>
+                                    <div class="skill-dot active"></div>
+                                    <div class="skill-dot active"></div>
+                                    <div class="skill-dot active"></div>
+                                    <div class="skill-dot"></div>
+                                </div>
+                                <span class="skill-percentage">80%</span>
+                            </div>
+                        </div>
+                        
+                        <div class="skill-row">
+                            <span class="skill-name">Web Development</span>
+                            <div class="skill-level">
+                                <div class="skill-dots">
+                                    <div class="skill-dot active"></div>
+                                    <div class="skill-dot active"></div>
+                                    <div class="skill-dot active"></div>
+                                    <div class="skill-dot active"></div>
+                                    <div class="skill-dot active"></div>
+                                </div>
+                                <span class="skill-percentage">95%</span>
+                            </div>
+                        </div>
+                        
+                        <div class="skill-row">
+                            <span class="skill-name">Brand Identity</span>
+                            <div class="skill-level">
+                                <div class="skill-dots">
+                                    <div class="skill-dot active"></div>
+                                    <div class="skill-dot active"></div>
+                                    <div class="skill-dot active"></div>
+                                    <div class="skill-dot"></div>
+                                    <div class="skill-dot"></div>
+                                </div>
+                                <span class="skill-percentage">60%</span>
+                            </div>
+                        </div>
+                        
+                        <div class="skill-row">
+                            <span class="skill-name">Digital Marketing</span>
+                            <div class="skill-level">
+                                <div class="skill-dots">
+                                    <div class="skill-dot active"></div>
+                                    <div class="skill-dot active"></div>
+                                    <div class="skill-dot active"></div>
+                                    <div class="skill-dot active"></div>
+                                    <div class="skill-dot"></div>
+                                </div>
+                                <span class="skill-percentage">75%</span>
+                            </div>
+                        </div>
+                        
+                        <div class="skill-row">
+                            <span class="skill-name">Motion Graphics</span>
+                            <div class="skill-level">
+                                <div class="skill-dots">
+                                    <div class="skill-dot active"></div>
+                                    <div class="skill-dot active"></div>
+                                    <div class="skill-dot"></div>
+                                    <div class="skill-dot"></div>
+                                    <div class="skill-dot"></div>
+                                </div>
+                                <span class="skill-percentage">40%</span>
+                            </div>
+                        </div>
+                        
+                        <div class="skill-row">
+                            <span class="skill-name">Penetration Testing</span>
+                            <div class="skill-level">
+                                <div class="skill-dots">
+                                    <div class="skill-dot active"></div>
+                                    <div class="skill-dot active"></div>
+                                    <div class="skill-dot active"></div>
+                                    <div class="skill-dot active"></div>
+                                    <div class="skill-dot"></div>
+                                </div>
+                                <span class="skill-percentage">85%</span>
+                            </div>
+                        </div>
+                        
+                        <div class="skill-row">
+                            <span class="skill-name">SOC Analyst</span>
+                            <div class="skill-level">
+                                <div class="skill-dots">
+                                    <div class="skill-dot active"></div>
+                                    <div class="skill-dot active"></div>
+                                    <div class="skill-dot active"></div>
+                                    <div class="skill-dot active"></div>
+                                    <div class="skill-dot active"></div>
+                                </div>
+                                <span class="skill-percentage">90%</span>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -1869,4 +2038,3 @@
     </script>
 </body>
 </html>
-
