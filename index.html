@@ -191,15 +191,60 @@
             color: white;
         }
 
-        /* Radar Animation */
-        .radar-container {
+        /* Sections */
+        section {
+            padding: 80px 0;
+        }
+
+        .section-title {
+            text-align: center;
+            margin-bottom: 50px;
+        }
+
+        .section-title h2 {
+            font-size: 2rem;
+            font-weight: 700;
+            margin-bottom: 15px;
+            position: relative;
+            display: inline-block;
+        }
+
+        .section-title h2::after {
+            content: '';
             position: absolute;
-            right: 5%;
-            top: 50%;
-            transform: translateY(-50%);
-            width: 300px;
-            height: 300px;
-            z-index: 1;
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 60px;
+            height: 4px;
+            background-color: var(--primary);
+            border-radius: 2px;
+        }
+
+        .section-title p {
+            color: var(--gray);
+            max-width: 600px;
+            margin: 0 auto;
+            font-size: 0.95rem;
+        }
+
+        /* About Section with Radar */
+        .about {
+            background-color: var(--darker);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .about-radar-container {
+            display: flex;
+            justify-content: center;
+            margin-bottom: 60px;
+        }
+
+        .radar-container {
+            width: 250px;
+            height: 250px;
+            position: relative;
         }
 
         .radar {
@@ -217,6 +262,7 @@
                     transparent 20deg
                 );
             overflow: hidden;
+            border: 2px solid rgba(108, 99, 255, 0.2);
         }
 
         .radar::before {
@@ -301,48 +347,6 @@
                 transform: translate(-50%, -50%) scale(1);
                 opacity: 1;
             }
-        }
-
-        /* Sections */
-        section {
-            padding: 80px 0;
-        }
-
-        .section-title {
-            text-align: center;
-            margin-bottom: 50px;
-        }
-
-        .section-title h2 {
-            font-size: 2rem;
-            font-weight: 700;
-            margin-bottom: 15px;
-            position: relative;
-            display: inline-block;
-        }
-
-        .section-title h2::after {
-            content: '';
-            position: absolute;
-            bottom: -10px;
-            left: 50%;
-            transform: translateX(-50%);
-            width: 60px;
-            height: 4px;
-            background-color: var(--primary);
-            border-radius: 2px;
-        }
-
-        .section-title p {
-            color: var(--gray);
-            max-width: 600px;
-            margin: 0 auto;
-            font-size: 0.95rem;
-        }
-
-        /* About Section */
-        .about {
-            background-color: var(--darker);
         }
 
         .about-content {
@@ -731,6 +735,11 @@
                 font-size: 2.2rem;
             }
             
+            .radar-container {
+                width: 300px;
+                height: 300px;
+            }
+            
             .about-content {
                 flex-direction: row;
                 text-align: left;
@@ -767,6 +776,11 @@
             .hero-buttons {
                 display: flex;
                 justify-content: flex-start;
+            }
+            
+            .radar-container {
+                width: 350px;
+                height: 350px;
             }
             
             .services-grid {
@@ -822,10 +836,6 @@
             .nav-links a {
                 font-size: 1.1rem;
             }
-            
-            .radar-container {
-                display: none;
-            }
         }
 
         /* Small Mobile Optimization */
@@ -852,6 +862,11 @@
             
             .section-title h2 {
                 font-size: 1.8rem;
+            }
+            
+            .radar-container {
+                width: 220px;
+                height: 220px;
             }
             
             .about-image {
@@ -898,26 +913,29 @@
                 </div>
             </div>
         </div>
-        
-        <!-- Radar Animation -->
-        <div class="radar-container">
-            <div class="radar">
-                <div class="radar-center"></div>
-                <div class="radar-dot dot-1"></div>
-                <div class="radar-dot dot-2"></div>
-                <div class="radar-dot dot-3"></div>
-                <div class="radar-dot dot-4"></div>
-            </div>
-        </div>
     </section>
 
-    <!-- About Section -->
+    <!-- About Section with Radar -->
     <section class="about" id="about">
         <div class="container">
             <div class="section-title">
                 <h2>About Me</h2>
                 <p>Get to know more about my background, skills, and passion</p>
             </div>
+            
+            <!-- Radar Animation at Top of About Section -->
+            <div class="about-radar-container">
+                <div class="radar-container">
+                    <div class="radar">
+                        <div class="radar-center"></div>
+                        <div class="radar-dot dot-1"></div>
+                        <div class="radar-dot dot-2"></div>
+                        <div class="radar-dot dot-3"></div>
+                        <div class="radar-dot dot-4"></div>
+                    </div>
+                </div>
+            </div>
+            
             <div class="about-content">
                 <div class="about-image"></div>
                 <div class="about-text">
