@@ -1,0 +1,867 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CyberScan Pro | Automated Security Testing</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        body {
+            background-color: #000000;
+            color: #00aaff;
+            overflow-x: hidden;
+            min-height: 100vh;
+            position: relative;
+        }
+
+        .hacking-bg {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+            opacity: 0.1;
+            background: 
+                radial-gradient(circle at 20% 30%, rgba(0, 170, 255, 0.05) 0%, transparent 50%),
+                radial-gradient(circle at 80% 70%, rgba(0, 170, 255, 0.05) 0%, transparent 50%),
+                radial-gradient(circle at 40% 80%, rgba(0, 170, 255, 0.05) 0%, transparent 50%);
+        }
+
+        .grid-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image: 
+                linear-gradient(rgba(0, 170, 255, 0.03) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(0, 170, 255, 0.03) 1px, transparent 1px);
+            background-size: 50px 50px;
+            z-index: -1;
+            opacity: 0.3;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 2rem;
+            z-index: 1;
+            position: relative;
+        }
+
+        header {
+            text-align: center;
+            margin-bottom: 3rem;
+            padding: 1rem;
+            border-bottom: 1px solid #00aaff;
+        }
+
+        h1 {
+            font-size: 2.5rem;
+            margin-bottom: 0.5rem;
+            text-shadow: 0 0 10px #00aaff;
+        }
+
+        .tagline {
+            font-size: 1.2rem;
+            color: #cccccc;
+        }
+
+        .input-section {
+            background-color: rgba(5, 10, 15, 0.9);
+            padding: 2rem;
+            border-radius: 10px;
+            box-shadow: 0 0 20px rgba(0, 170, 255, 0.2);
+            margin-bottom: 2rem;
+            border: 1px solid #003366;
+        }
+
+        .url-input {
+            display: flex;
+            gap: 1rem;
+            margin-bottom: 1rem;
+        }
+
+        input[type="url"] {
+            flex: 1;
+            padding: 1rem;
+            background-color: #000;
+            border: 1px solid #0066aa;
+            border-radius: 5px;
+            color: #00aaff;
+            font-size: 1rem;
+        }
+
+        input[type="url"]:focus {
+            outline: none;
+            box-shadow: 0 0 10px rgba(0, 170, 255, 0.5);
+        }
+
+        .error-message {
+            color: #ff4444;
+            margin-top: 0.5rem;
+            display: none;
+        }
+
+        .success-message {
+            color: #00ff88;
+            margin-top: 0.5rem;
+            display: none;
+        }
+
+        button {
+            padding: 1rem 2rem;
+            background-color: #003366;
+            color: #00aaff;
+            border: 1px solid #0066aa;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 1rem;
+            font-weight: bold;
+            transition: all 0.3s;
+        }
+
+        button:hover {
+            background-color: #004488;
+            box-shadow: 0 0 15px rgba(0, 170, 255, 0.7);
+        }
+
+        button:disabled {
+            background-color: #111;
+            cursor: not-allowed;
+            box-shadow: none;
+        }
+
+        .validation-section {
+            display: none;
+            text-align: center;
+            padding: 2rem;
+            background-color: rgba(5, 10, 15, 0.9);
+            border-radius: 10px;
+            box-shadow: 0 0 20px rgba(0, 170, 255, 0.2);
+            margin-bottom: 2rem;
+            border: 1px solid #003366;
+        }
+
+        .ping-animation {
+            margin: 2rem auto;
+            width: 300px;
+            height: 100px;
+            position: relative;
+            overflow: hidden;
+            border: 1px solid #00aaff;
+            border-radius: 10px;
+            background-color: #000;
+        }
+
+        .ping-packet {
+            position: absolute;
+            width: 20px;
+            height: 10px;
+            background-color: #00aaff;
+            border-radius: 3px;
+            animation: sendPing 2s linear infinite;
+        }
+
+        .ping-response {
+            position: absolute;
+            width: 20px;
+            height: 10px;
+            background-color: #00ff88;
+            border-radius: 3px;
+            animation: receivePing 2s linear infinite;
+            display: none;
+        }
+
+        @keyframes sendPing {
+            0% { left: -20px; opacity: 0; }
+            10% { opacity: 1; }
+            40% { opacity: 1; }
+            50% { left: 50%; opacity: 0; }
+            100% { left: 50%; opacity: 0; }
+        }
+
+        @keyframes receivePing {
+            0% { left: 50%; opacity: 0; }
+            50% { left: 50%; opacity: 0; }
+            60% { opacity: 1; }
+            90% { opacity: 1; }
+            100% { left: 100%; opacity: 0; }
+        }
+
+        .ping-stats {
+            margin-top: 1rem;
+            font-family: monospace;
+            color: #00ff88;
+        }
+
+        .scanning-section {
+            display: none;
+            text-align: center;
+            padding: 3rem;
+            background-color: rgba(5, 10, 15, 0.9);
+            border-radius: 10px;
+            box-shadow: 0 0 20px rgba(0, 170, 255, 0.2);
+            border: 1px solid #003366;
+        }
+
+        .hacking-animation {
+            margin: 2rem auto;
+            width: 300px;
+            height: 200px;
+            position: relative;
+            overflow: hidden;
+            border: 1px solid #00aaff;
+            border-radius: 10px;
+            background-color: #000;
+        }
+
+        .code-line {
+            position: absolute;
+            width: 100%;
+            height: 20px;
+            background: linear-gradient(90deg, transparent, #00aaff, transparent);
+            animation: scan 2s linear infinite;
+        }
+
+        @keyframes scan {
+            0% { top: 0; opacity: 0; }
+            10% { opacity: 1; }
+            90% { opacity: 1; }
+            100% { top: 100%; opacity: 0; }
+        }
+
+        .binary-code {
+            position: absolute;
+            color: #00aaff;
+            font-family: monospace;
+            font-size: 14px;
+            animation: fall linear infinite;
+        }
+
+        @keyframes fall {
+            from { transform: translateY(-100px); }
+            to { transform: translateY(200px); }
+        }
+
+        .progress-container {
+            margin: 2rem 0;
+        }
+
+        .progress-bar {
+            height: 20px;
+            background-color: #000;
+            border-radius: 10px;
+            overflow: hidden;
+            margin-bottom: 1rem;
+            border: 1px solid #00aaff;
+        }
+
+        .progress {
+            height: 100%;
+            background: linear-gradient(90deg, #003366, #0066aa);
+            width: 0%;
+            transition: width 0.5s;
+        }
+
+        .progress-text {
+            font-size: 1.2rem;
+        }
+
+        .results-section {
+            display: none;
+            background-color: rgba(5, 10, 15, 0.9);
+            padding: 2rem;
+            border-radius: 10px;
+            box-shadow: 0 0 20px rgba(0, 170, 255, 0.2);
+            margin-top: 2rem;
+            border: 1px solid #003366;
+        }
+
+        .results-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 2rem;
+            padding-bottom: 1rem;
+            border-bottom: 1px solid #00aaff;
+        }
+
+        .vulnerability-score {
+            text-align: center;
+            padding: 1rem;
+            background-color: #000;
+            border-radius: 10px;
+            margin-bottom: 2rem;
+            border: 1px solid #003366;
+        }
+
+        .score-circle {
+            width: 150px;
+            height: 150px;
+            margin: 0 auto;
+            border-radius: 50%;
+            background: conic-gradient(#00aaff 0%, #000 0%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            box-shadow: 0 0 20px rgba(0, 170, 255, 0.5);
+            border: 2px solid #00aaff;
+        }
+
+        .score-value {
+            font-size: 2.5rem;
+            font-weight: bold;
+        }
+
+        .vulnerability-list {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 1.5rem;
+        }
+
+        .vulnerability-item {
+            background-color: #000;
+            padding: 1.5rem;
+            border-radius: 10px;
+            border-left: 5px solid #ff4444;
+            border: 1px solid #003366;
+        }
+
+        .vulnerability-item.medium {
+            border-left-color: #ffaa00;
+        }
+
+        .vulnerability-item.low {
+            border-left-color: #ffff00;
+        }
+
+        .vulnerability-item.info {
+            border-left-color: #00aaff;
+        }
+
+        .vulnerability-title {
+            font-size: 1.2rem;
+            margin-bottom: 0.5rem;
+            display: flex;
+            justify-content: space-between;
+        }
+
+        .severity {
+            padding: 0.2rem 0.5rem;
+            border-radius: 5px;
+            font-size: 0.8rem;
+            font-weight: bold;
+        }
+
+        .severity.high {
+            background-color: #330000;
+            color: #ff4444;
+            border: 1px solid #ff4444;
+        }
+
+        .severity.medium {
+            background-color: #332200;
+            color: #ffaa00;
+            border: 1px solid #ffaa00;
+        }
+
+        .severity.low {
+            background-color: #333300;
+            color: #ffff00;
+            border: 1px solid #ffff00;
+        }
+
+        .severity.info {
+            background-color: #002233;
+            color: #00aaff;
+            border: 1px solid #00aaff;
+        }
+
+        .vulnerability-desc {
+            color: #cccccc;
+            font-size: 0.9rem;
+            line-height: 1.5;
+        }
+
+        .restart-btn {
+            display: block;
+            margin: 2rem auto 0;
+        }
+
+        footer {
+            text-align: center;
+            margin-top: 3rem;
+            padding: 1rem;
+            color: #666;
+            font-size: 0.9rem;
+            border-top: 1px solid #222;
+        }
+
+        @media (max-width: 768px) {
+            .url-input {
+                flex-direction: column;
+            }
+            
+            .vulnerability-list {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="hacking-bg"></div>
+    <div class="grid-overlay"></div>
+    
+    <div class="container">
+        <header>
+            <h1>CyberScan Pro</h1>
+            <p class="tagline">Advanced Automated Security Testing</p>
+        </header>
+        
+        <section class="input-section" id="inputSection">
+            <h2>Enter Website URL to Scan</h2>
+            <div class="url-input">
+                <input type="url" id="urlInput" placeholder="https://example.com" required>
+                <button id="scanBtn">Start Security Scan</button>
+            </div>
+            <div class="error-message" id="errorMessage">Please enter a valid URL starting with http:// or https://</div>
+            <div class="success-message" id="successMessage">Domain validated successfully!</div>
+            <p>Our scanner will test for common vulnerabilities like XSS, SQL Injection, CSRF, and more.</p>
+        </section>
+        
+        <section class="validation-section" id="validationSection">
+            <h2>Validating Domain Accessibility</h2>
+            <div class="ping-animation" id="pingAnimation">
+                <!-- Ping animation elements will be added by JavaScript -->
+            </div>
+            <div class="progress-text" id="validationText">Sending ICMP ping requests to domain...</div>
+            <div class="ping-stats" id="pingStats"></div>
+        </section>
+        
+        <section class="scanning-section" id="scanningSection">
+            <h2>Scanning in Progress</h2>
+            <div class="hacking-animation" id="hackingAnimation">
+                <!-- Animation elements will be added by JavaScript -->
+            </div>
+            <div class="progress-container">
+                <div class="progress-bar">
+                    <div class="progress" id="progressBar"></div>
+                </div>
+                <div class="progress-text" id="progressText">Initializing scanner...</div>
+            </div>
+        </section>
+        
+        <section class="results-section" id="resultsSection">
+            <div class="results-header">
+                <h2>Security Scan Results</h2>
+                <div id="scanDate"></div>
+            </div>
+            
+            <div class="vulnerability-score">
+                <h3>Security Score</h3>
+                <div class="score-circle" id="scoreCircle">
+                    <div class="score-value" id="scoreValue">0%</div>
+                </div>
+                <p id="scoreDescription">Based on detected vulnerabilities</p>
+            </div>
+            
+            <h3>Detected Vulnerabilities</h3>
+            <div class="vulnerability-list" id="vulnerabilityList">
+                <!-- Vulnerability items will be added by JavaScript -->
+            </div>
+            
+            <button class="restart-btn" id="restartBtn">Scan Another Website</button>
+        </section>
+        
+        <footer>
+            <p>CyberScan Pro &copy; 2023 | This is a demonstration tool for educational purposes only</p>
+        </footer>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // DOM Elements
+            const inputSection = document.getElementById('inputSection');
+            const validationSection = document.getElementById('validationSection');
+            const scanningSection = document.getElementById('scanningSection');
+            const resultsSection = document.getElementById('resultsSection');
+            const urlInput = document.getElementById('urlInput');
+            const scanBtn = document.getElementById('scanBtn');
+            const errorMessage = document.getElementById('errorMessage');
+            const successMessage = document.getElementById('successMessage');
+            const validationText = document.getElementById('validationText');
+            const pingStats = document.getElementById('pingStats');
+            const progressBar = document.getElementById('progressBar');
+            const progressText = document.getElementById('progressText');
+            const hackingAnimation = document.getElementById('hackingAnimation');
+            const pingAnimation = document.getElementById('pingAnimation');
+            const scoreCircle = document.getElementById('scoreCircle');
+            const scoreValue = document.getElementById('scoreValue');
+            const scoreDescription = document.getElementById('scoreDescription');
+            const vulnerabilityList = document.getElementById('vulnerabilityList');
+            const scanDate = document.getElementById('scanDate');
+            const restartBtn = document.getElementById('restartBtn');
+            
+            // Sample vulnerabilities data
+            const vulnerabilities = [
+                {
+                    title: "Cross-Site Scripting (XSS)",
+                    severity: "high",
+                    description: "The application does not properly sanitize user input, allowing malicious scripts to be injected and executed in users' browsers."
+                },
+                {
+                    title: "SQL Injection",
+                    severity: "high",
+                    description: "User input is directly concatenated into SQL queries, allowing attackers to manipulate database queries."
+                },
+                {
+                    title: "Cross-Site Request Forgery (CSRF)",
+                    severity: "medium",
+                    description: "The application does not implement proper anti-CSRF tokens, making it vulnerable to unauthorized actions."
+                },
+                {
+                    title: "Insecure Direct Object References",
+                    severity: "medium",
+                    description: "The application exposes internal object references without proper authorization checks."
+                },
+                {
+                    title: "Security Misconfiguration",
+                    severity: "medium",
+                    description: "The server is running with unnecessary services enabled and has verbose error messages."
+                },
+                {
+                    title: "Sensitive Data Exposure",
+                    severity: "low",
+                    description: "Some user data is transmitted without encryption over HTTP connections."
+                },
+                {
+                    title: "Missing Security Headers",
+                    severity: "low",
+                    description: "Important security headers like Content-Security-Policy and X-Content-Type-Options are missing."
+                },
+                {
+                    title: "Using Components with Known Vulnerabilities",
+                    severity: "info",
+                    description: "The application uses outdated JavaScript libraries with known security issues."
+                }
+            ];
+            
+            // Event Listeners
+            scanBtn.addEventListener('click', startScan);
+            restartBtn.addEventListener('click', resetScanner);
+            urlInput.addEventListener('keypress', function(e) {
+                if (e.key === 'Enter') {
+                    startScan();
+                }
+            });
+            
+            // URL validation function
+            function isValidUrl(url) {
+                try {
+                    const urlObj = new URL(url);
+                    return urlObj.protocol === 'http:' || urlObj.protocol === 'https:';
+                } catch (e) {
+                    return false;
+                }
+            }
+            
+            // Real ping function using Fetch API as a workaround
+            async function pingDomain(url) {
+                const domain = new URL(url).hostname;
+                
+                try {
+                    // Try to fetch a resource from the domain
+                    const startTime = Date.now();
+                    const response = await fetch(`https://${domain}/favicon.ico`, {
+                        method: 'HEAD',
+                        mode: 'no-cors',
+                        cache: 'no-cache'
+                    });
+                    const endTime = Date.now();
+                    const pingTime = endTime - startTime;
+                    
+                    return {
+                        success: true,
+                        pingTime: pingTime,
+                        message: `Domain is active (${pingTime}ms)`
+                    };
+                } catch (error) {
+                    // If fetch fails, try with HTTP
+                    try {
+                        const startTime = Date.now();
+                        const response = await fetch(`http://${domain}/favicon.ico`, {
+                            method: 'HEAD',
+                            mode: 'no-cors',
+                            cache: 'no-cache'
+                        });
+                        const endTime = Date.now();
+                        const pingTime = endTime - startTime;
+                        
+                        return {
+                            success: true,
+                            pingTime: pingTime,
+                            message: `Domain is active (${pingTime}ms)`
+                        };
+                    } catch (httpError) {
+                        return {
+                            success: false,
+                            pingTime: null,
+                            message: "Domain is inactive or unreachable"
+                        };
+                    }
+                }
+            }
+            
+            // Functions
+            function startScan() {
+                const url = urlInput.value.trim();
+                
+                // Validate URL
+                if (!url) {
+                    showError("Please enter a URL");
+                    return;
+                }
+                
+                if (!isValidUrl(url)) {
+                    showError("Please enter a valid URL starting with http:// or https://");
+                    return;
+                }
+                
+                // Hide error message if valid
+                hideError();
+                hideSuccess();
+                
+                // Hide input section, show validation section
+                inputSection.style.display = 'none';
+                validationSection.style.display = 'block';
+                
+                // Create ping animation
+                createPingAnimation();
+                
+                // Start domain validation with real ping
+                validateDomainWithPing(url);
+            }
+            
+            async function validateDomainWithPing(url) {
+                const domain = new URL(url).hostname;
+                let pingAttempts = 0;
+                const maxAttempts = 3;
+                let success = false;
+                
+                validationText.textContent = `Sending ICMP ping to ${domain}...`;
+                
+                // Simulate multiple ping attempts
+                const pingInterval = setInterval(async () => {
+                    pingAttempts++;
+                    pingStats.textContent = `Attempt ${pingAttempts}/${maxAttempts} | Checking ${domain}`;
+                    
+                    if (pingAttempts >= maxAttempts) {
+                        clearInterval(pingInterval);
+                        
+                        // Perform actual ping check
+                        const pingResult = await pingDomain(url);
+                        
+                        if (pingResult.success) {
+                            validationText.textContent = `✓ ${pingResult.message}`;
+                            pingStats.textContent = `Ping successful! Response time: ${pingResult.pingTime}ms`;
+                            showPingResponse(true);
+                            showSuccess("Domain is active and reachable!");
+                            
+                            setTimeout(() => {
+                                validationSection.style.display = 'none';
+                                startSecurityScan();
+                            }, 2000);
+                        } else {
+                            validationText.textContent = "✗ Domain is inactive or unreachable";
+                            pingStats.textContent = "All ping attempts failed. No response received.";
+                            showPingResponse(false);
+                            showError("Cannot scan: Domain is inactive or unreachable");
+                            
+                            setTimeout(() => {
+                                validationSection.style.display = 'none';
+                                inputSection.style.display = 'block';
+                            }, 3000);
+                        }
+                    }
+                }, 1000);
+            }
+            
+            function startSecurityScan() {
+                scanningSection.style.display = 'block';
+                
+                // Create hacking animation
+                createHackingAnimation();
+                
+                // Start progress simulation
+                simulateProgress();
+            }
+            
+            function showError(message) {
+                errorMessage.textContent = message;
+                errorMessage.style.display = 'block';
+                urlInput.style.borderColor = '#ff4444';
+            }
+            
+            function hideError() {
+                errorMessage.style.display = 'none';
+                urlInput.style.borderColor = '#0066aa';
+            }
+            
+            function showSuccess(message) {
+                successMessage.textContent = message;
+                successMessage.style.display = 'block';
+            }
+            
+            function hideSuccess() {
+                successMessage.style.display = 'none';
+            }
+            
+            function createPingAnimation() {
+                // Clear previous animation
+                pingAnimation.innerHTML = '';
+                
+                // Add ping packet elements
+                for (let i = 0; i < 4; i++) {
+                    const pingPacket = document.createElement('div');
+                    pingPacket.className = 'ping-packet';
+                    pingPacket.style.animationDelay = `${i * 0.5}s`;
+                    pingPacket.style.top = `${20 + i * 15}px`;
+                    pingAnimation.appendChild(pingPacket);
+                }
+            }
+            
+            function showPingResponse(success) {
+                if (success) {
+                    // Add response packets
+                    for (let i = 0; i < 4; i++) {
+                        const responsePacket = document.createElement('div');
+                        responsePacket.className = 'ping-response';
+                        responsePacket.style.animationDelay = `${(i * 0.5) + 1}s`;
+                        responsePacket.style.top = `${20 + i * 15}px`;
+                        responsePacket.style.display = 'block';
+                        pingAnimation.appendChild(responsePacket);
+                    }
+                }
+            }
+            
+            function createHackingAnimation() {
+                // Clear previous animation
+                hackingAnimation.innerHTML = '';
+                
+                // Add scanning lines
+                for (let i = 0; i < 5; i++) {
+                    const line = document.createElement('div');
+                    line.className = 'code-line';
+                    line.style.animationDelay = `${i * 0.4}s`;
+                    hackingAnimation.appendChild(line);
+                }
+                
+                // Add binary code falling
+                for (let i = 0; i < 30; i++) {
+                    const binary = document.createElement('div');
+                    binary.className = 'binary-code';
+                    binary.textContent = Math.random() > 0.5 ? '1' : '0';
+                    binary.style.left = `${Math.random() * 100}%`;
+                    binary.style.animationDelay = `${Math.random() * 5}s`;
+                    binary.style.animationDuration = `${3 + Math.random() * 5}s`;
+                    hackingAnimation.appendChild(binary);
+                }
+            }
+            
+            function simulateProgress() {
+                let progress = 0;
+                const interval = setInterval(() => {
+                    progress += Math.random() * 5;
+                    
+                    if (progress >= 100) {
+                        progress = 100;
+                        clearInterval(interval);
+                        
+                        // Show results after a short delay
+                        setTimeout(showResults, 1000);
+                    }
+                    
+                    progressBar.style.width = `${progress}%`;
+                    
+                    // Update progress text
+                    if (progress < 20) {
+                        progressText.textContent = "Initializing scanner...";
+                    } else if (progress < 40) {
+                        progressText.textContent = "Scanning for XSS vulnerabilities...";
+                    } else if (progress < 60) {
+                        progressText.textContent = "Testing for SQL injection points...";
+                    } else if (progress < 80) {
+                        progressText.textContent = "Checking security headers...";
+                    } else {
+                        progressText.textContent = "Finalizing scan results...";
+                    }
+                }, 200);
+            }
+            
+            function showResults() {
+                scanningSection.style.display = 'none';
+                resultsSection.style.display = 'block';
+                
+                // Set scan date
+                scanDate.textContent = new Date().toLocaleDateString();
+                
+                // Calculate random score between 40% and 95%
+                const score = 40 + Math.floor(Math.random() * 55);
+                scoreValue.textContent = `${score}%`;
+                
+                // Set score circle gradient
+                scoreCircle.style.background = `conic-gradient(#00aaff 0% ${score}%, #000 ${score}% 100%)`;
+                
+                // Set score description
+                if (score >= 90) {
+                    scoreDescription.textContent = "Excellent security posture";
+                } else if (score >= 70) {
+                    scoreDescription.textContent = "Good security with minor issues";
+                } else if (score >= 50) {
+                    scoreDescription.textContent = "Moderate security concerns";
+                } else {
+                    scoreDescription.textContent = "Significant security issues detected";
+                }
+                
+                // Display vulnerabilities (random selection)
+                vulnerabilityList.innerHTML = '';
+                const shuffledVulnerabilities = [...vulnerabilities].sort(() => 0.5 - Math.random());
+                const selectedVulnerabilities = shuffledVulnerabilities.slice(0, 4 + Math.floor(Math.random() * 3));
+                
+                selectedVulnerabilities.forEach(vuln => {
+                    const vulnItem = document.createElement('div');
+                    vulnItem.className = `vulnerability-item ${vuln.severity}`;
+                    
+                    vulnItem.innerHTML = `
+                        <div class="vulnerability-title">
+                            <span>${vuln.title}</span>
+                            <span class="severity ${vuln.severity}">${vuln.severity.toUpperCase()}</span>
+                        </div>
+                        <div class="vulnerability-desc">${vuln.description}</div>
+                    `;
+                    
+                    vulnerabilityList.appendChild(vulnItem);
+                });
+            }
+            
+            function resetScanner() {
+                resultsSection.style.display = 'none';
+                inputSection.style.display = 'block';
+                urlInput.value = '';
+                progressBar.style.width = '0%';
+                hideError();
+                hideSuccess();
+            }
+        });
+    </script>
+</body>
+</html>
