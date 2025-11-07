@@ -17,6 +17,9 @@
             --gray: #8C8EA6;
             --dark-gray: #2A2D3E;
             --transition: all 0.3s ease;
+            --glass-bg: rgba(255, 255, 255, 0.08);
+            --glass-border: rgba(255, 255, 255, 0.1);
+            --glass-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
         }
 
         * {
@@ -172,6 +175,7 @@
             cursor: pointer;
             font-size: 0.9rem;
             margin: 5px;
+            backdrop-filter: blur(10px);
         }
 
         .btn:hover {
@@ -431,24 +435,27 @@
         }
 
         .service-card {
-            background-color: var(--darker);
+            background: var(--glass-bg);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
             padding: 30px 20px;
-            border-radius: 12px;
+            border-radius: 16px;
             text-align: center;
             transition: var(--transition);
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
-            border: 1px solid var(--dark-gray);
+            box-shadow: var(--glass-shadow);
+            border: 1px solid var(--glass-border);
         }
 
         .service-card:hover {
             transform: translateY(-8px);
-            box-shadow: 0 12px 25px rgba(0, 0, 0, 0.3);
-            border-color: var(--primary);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.3);
+            border-color: rgba(108, 99, 255, 0.3);
+            background: rgba(255, 255, 255, 0.12);
         }
 
         .service-icon {
-            width: 60px;
-            height: 60px;
+            width: 70px;
+            height: 70px;
             background: linear-gradient(135deg, var(--primary), var(--secondary));
             border-radius: 50%;
             display: flex;
@@ -456,7 +463,8 @@
             justify-content: center;
             margin: 0 auto 20px;
             color: white;
-            font-size: 1.5rem;
+            font-size: 1.8rem;
+            box-shadow: 0 8px 20px rgba(108, 99, 255, 0.3);
         }
 
         .service-card h3 {
@@ -470,68 +478,136 @@
             font-size: 0.9rem;
         }
 
-        /* Portfolio Section */
+        /* Portfolio Section - Glassmorphism Redesign */
         .portfolio {
-            background-color: var(--darker);
+            background: linear-gradient(135deg, #0c0c0c 0%, #1a1a2e 50%, #16213e 100%);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .portfolio::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: 
+                radial-gradient(circle at 20% 80%, rgba(108, 99, 255, 0.1) 0%, transparent 50%),
+                radial-gradient(circle at 80% 20%, rgba(255, 101, 132, 0.1) 0%, transparent 50%),
+                radial-gradient(circle at 40% 40%, rgba(108, 99, 255, 0.05) 0%, transparent 50%);
+            z-index: 0;
         }
 
         .portfolio-grid {
             display: grid;
             grid-template-columns: 1fr;
             gap: 25px;
+            position: relative;
+            z-index: 1;
         }
 
         .portfolio-item {
-            border-radius: 12px;
+            border-radius: 20px;
             overflow: hidden;
             position: relative;
-            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
-            height: 250px;
-            background: linear-gradient(135deg, var(--primary), var(--secondary));
-            border: 1px solid var(--dark-gray);
+            height: 280px;
+            background: var(--glass-bg);
+            backdrop-filter: blur(15px);
+            -webkit-backdrop-filter: blur(15px);
+            border: 1px solid var(--glass-border);
+            box-shadow: var(--glass-shadow);
+            transition: var(--transition);
         }
 
-        .portfolio-overlay {
+        .portfolio-item::before {
+            content: '';
             position: absolute;
             top: 0;
             left: 0;
             width: 100%;
             height: 100%;
-            background: rgba(10, 10, 10, 0.9);
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            padding: 20px;
+            background: linear-gradient(135deg, 
+                rgba(108, 99, 255, 0.1) 0%, 
+                rgba(255, 101, 132, 0.1) 100%);
+            z-index: 1;
             opacity: 0;
             transition: var(--transition);
         }
 
-        .portfolio-item:hover .portfolio-overlay {
+        .portfolio-item:hover::before {
             opacity: 1;
         }
 
-        .portfolio-overlay h3 {
-            color: white;
-            font-size: 1.3rem;
-            margin-bottom: 10px;
-            transform: translateY(20px);
-            transition: var(--transition);
-            text-align: center;
+        .portfolio-item:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4);
+            border-color: rgba(108, 99, 255, 0.3);
         }
 
-        .portfolio-overlay p {
-            color: var(--gray);
-            text-align: center;
+        .portfolio-content {
+            position: relative;
+            height: 100%;
+            padding: 30px;
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-end;
+            z-index: 2;
+        }
+
+        .portfolio-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
             margin-bottom: 15px;
-            transform: translateY(20px);
-            transition: var(--transition);
-            font-size: 0.9rem;
         }
 
-        .portfolio-item:hover .portfolio-overlay h3,
-        .portfolio-item:hover .portfolio-overlay p {
-            transform: translateY(0);
+        .portfolio-tag {
+            background: rgba(255, 255, 255, 0.15);
+            backdrop-filter: blur(10px);
+            padding: 5px 12px;
+            border-radius: 20px;
+            font-size: 0.75rem;
+            font-weight: 500;
+            color: var(--light);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .portfolio-content h3 {
+            color: white;
+            font-size: 1.5rem;
+            margin-bottom: 10px;
+            font-weight: 700;
+        }
+
+        .portfolio-content p {
+            color: rgba(255, 255, 255, 0.8);
+            margin-bottom: 20px;
+            font-size: 0.9rem;
+            line-height: 1.5;
+        }
+
+        .portfolio-link {
+            display: inline-flex;
+            align-items: center;
+            color: var(--primary);
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 0.9rem;
+            transition: var(--transition);
+        }
+
+        .portfolio-link i {
+            margin-left: 8px;
+            transition: var(--transition);
+        }
+
+        .portfolio-link:hover {
+            color: var(--accent);
+        }
+
+        .portfolio-link:hover i {
+            transform: translateX(5px);
         }
 
         /* Contact Section */
@@ -582,11 +658,13 @@
         }
 
         .contact-form {
-            background-color: var(--darker);
+            background: var(--glass-bg);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
             padding: 30px 20px;
-            border-radius: 12px;
-            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.2);
-            border: 1px solid var(--dark-gray);
+            border-radius: 16px;
+            box-shadow: var(--glass-shadow);
+            border: 1px solid var(--glass-border);
         }
 
         .form-group {
@@ -596,11 +674,11 @@
         .form-control {
             width: 100%;
             padding: 14px;
-            border: 1px solid var(--dark-gray);
+            border: 1px solid var(--glass-border);
             border-radius: 8px;
             font-family: 'Inter', sans-serif;
             transition: var(--transition);
-            background-color: var(--dark);
+            background: rgba(255, 255, 255, 0.05);
             color: var(--light);
             font-size: 0.9rem;
         }
@@ -609,6 +687,7 @@
             outline: none;
             border-color: var(--primary);
             box-shadow: 0 0 0 3px rgba(108, 99, 255, 0.1);
+            background: rgba(255, 255, 255, 0.08);
         }
 
         textarea.form-control {
@@ -928,10 +1007,10 @@
                 <div class="radar-container">
                     <div class="radar">
                         <div class="radar-center"></div>
-                        <div class="📱"></div>
-                        <div class="📱"></div>
-                        <div class="📱"></div>
-                        <div class="📱"></div>
+                        <div class="radar-dot dot-1"></div>
+                        <div class="radar-dot dot-2"></div>
+                        <div class="radar-dot dot-3"></div>
+                        <div class="radar-dot dot-4"></div>
                     </div>
                 </div>
             </div>
@@ -988,7 +1067,7 @@
         </div>
     </section>
 
-    <!-- Portfolio Section -->
+    <!-- Portfolio Section - Glassmorphism Redesign -->
     <section class="portfolio" id="portfolio">
         <div class="container">
             <div class="section-title">
@@ -997,24 +1076,42 @@
             </div>
             <div class="portfolio-grid">
                 <div class="portfolio-item">
-                    <div class="portfolio-overlay">
-                        <h3>E-commerce Website</h3>
-                        <p>Modern e-commerce platform with seamless user experience</p>
-                        <a href="work.html" class="btn">View Project</a>
+                    <div class="portfolio-content">
+                        <div class="portfolio-tags">
+                            <span class="portfolio-tag">UI/UX Design</span>
+                            <span class="portfolio-tag">Web App</span>
+                        </div>
+                        <h3>E-commerce Platform</h3>
+                        <p>Modern e-commerce solution with seamless user experience and advanced filtering system.</p>
+                        <a href="work.html" class="portfolio-link">
+                            View Project <i class="fas fa-arrow-right"></i>
+                        </a>
                     </div>
                 </div>
                 <div class="portfolio-item">
-                    <div class="portfolio-overlay">
-                        <h3>Mobile App UI</h3>
-                        <p>Fitness tracking app with intuitive interface</p>
-                        <a href="work.html" class="btn">View Project</a>
+                    <div class="portfolio-content">
+                        <div class="portfolio-tags">
+                            <span class="portfolio-tag">Mobile App</span>
+                            <span class="portfolio-tag">Fitness</span>
+                        </div>
+                        <h3>Fitness Tracker App</h3>
+                        <p>Intuitive fitness tracking application with personalized workout plans and progress analytics.</p>
+                        <a href="work.html" class="portfolio-link">
+                            View Project <i class="fas fa-arrow-right"></i>
+                        </a>
                     </div>
                 </div>
                 <div class="portfolio-item">
-                    <div class="portfolio-overlay">
-                        <h3>Brand Identity</h3>
-                        <p>Complete rebranding for a tech startup</p>
-                        <a href="work.html" class="btn">View Project</a>
+                    <div class="portfolio-content">
+                        <div class="portfolio-tags">
+                            <span class="portfolio-tag">Branding</span>
+                            <span class="portfolio-tag">Identity</span>
+                        </div>
+                        <h3>Tech Startup Rebrand</h3>
+                        <p>Complete brand identity redesign for innovative tech startup including logo and visual system.</p>
+                        <a href="work.html" class="portfolio-link">
+                            View Project <i class="fas fa-arrow-right"></i>
+                        </a>
                     </div>
                 </div>
             </div>
@@ -1181,5 +1278,3 @@
     </script>
 </body>
 </html>
-
-
