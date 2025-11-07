@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>CyberScan Pro | Automated Security Testing</title>
+    <title>CyberScan Pro | Security Testing Demo</title>
     <style>
         * {
             margin: 0;
@@ -74,6 +74,27 @@
             color: #cccccc;
         }
 
+        .security-warning {
+            background: linear-gradient(135deg, #ff4444, #ff6b6b);
+            color: white;
+            padding: 1rem;
+            margin-bottom: 2rem;
+            border-radius: 10px;
+            text-align: center;
+            border: 1px solid #ff0000;
+        }
+
+        .high-risk-warning {
+            background: linear-gradient(135deg, #ff8800, #ffaa44);
+            color: white;
+            padding: 1rem;
+            margin-bottom: 1rem;
+            border-radius: 10px;
+            text-align: center;
+            border: 1px solid #ffaa00;
+            display: none;
+        }
+
         .input-section {
             background-color: rgba(5, 10, 15, 0.9);
             padding: 2rem;
@@ -133,10 +154,21 @@
             box-shadow: 0 0 15px rgba(0, 170, 255, 0.7);
         }
 
-        button:disabled {
-            background-color: #111;
-            cursor: not-allowed;
-            box-shadow: none;
+        .warning-buttons {
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+            margin-top: 1rem;
+        }
+
+        .proceed-btn {
+            background: linear-gradient(135deg, #ff8800, #ffaa44);
+            border: 1px solid #ffaa00;
+        }
+
+        .cancel-btn {
+            background: linear-gradient(135deg, #666, #888);
+            border: 1px solid #999;
         }
 
         .validation-section {
@@ -200,6 +232,7 @@
             margin-top: 1rem;
             font-family: monospace;
             color: #00ff88;
+            font-size: 0.9rem;
         }
 
         .scanning-section {
@@ -414,6 +447,10 @@
             .vulnerability-list {
                 grid-template-columns: 1fr;
             }
+            
+            .warning-buttons {
+                flex-direction: column;
+            }
         }
     </style>
 </head>
@@ -424,45 +461,54 @@
     <div class="container">
         <header>
             <h1>CyberScan Pro</h1>
-            <p class="tagline">Advanced Automated Security Testing</p>
+            <p class="tagline">Security Testing </p>
         </header>
+
+        <div class="security-warning">
+            <strong>SECURITY NOTICE:</strong> Real vulnerability scanning requires proper authorization and legal permissions.
+        </div>
+        
+        <div class="high-risk-warning" id="highRiskWarning">
+            <strong>⚠ HIGH-RISK WEBSITE DETECTED</strong><br>
+            <span id="warningMessage">Scanning this website may violate terms of service and could have legal consequences.</span>
+            <div class="warning-buttons">
+                <button class="proceed-btn" id="proceedBtn">I Understand - Proceed Anyway</button>
+                <button class="cancel-btn" id="cancelBtn">Cancel Scan</button>
+            </div>
+        </div>
         
         <section class="input-section" id="inputSection">
-            <h2>Enter Website URL to Scan</h2>
+            <h2>Enter Website URL for Security Analysis</h2>
             <div class="url-input">
                 <input type="url" id="urlInput" placeholder="https://example.com" required>
-                <button id="scanBtn">Start Security Scan</button>
+                <button id="scanBtn">Start Security Analysis</button>
             </div>
             <div class="error-message" id="errorMessage">Please enter a valid URL starting with http:// or https://</div>
             <div class="success-message" id="successMessage">Domain validated successfully!</div>
-            <p>Our scanner will test for common vulnerabilities like XSS, SQL Injection, CSRF, and more.</p>
+            <p>This tool performs real ping validation and demonstrates security testing concepts for educational purposes.</p>
         </section>
         
         <section class="validation-section" id="validationSection">
             <h2>Validating Domain Accessibility</h2>
-            <div class="ping-animation" id="pingAnimation">
-                <!-- Ping animation elements will be added by JavaScript -->
-            </div>
+            <div class="ping-animation" id="pingAnimation"></div>
             <div class="progress-text" id="validationText">Sending ICMP ping requests to domain...</div>
             <div class="ping-stats" id="pingStats"></div>
         </section>
         
         <section class="scanning-section" id="scanningSection">
-            <h2>Scanning in Progress</h2>
-            <div class="hacking-animation" id="hackingAnimation">
-                <!-- Animation elements will be added by JavaScript -->
-            </div>
+            <h2>Security Analysis in Progress</h2>
+            <div class="hacking-animation" id="hackingAnimation"></div>
             <div class="progress-container">
                 <div class="progress-bar">
                     <div class="progress" id="progressBar"></div>
                 </div>
-                <div class="progress-text" id="progressText">Initializing scanner...</div>
+                <div class="progress-text" id="progressText">Initializing security scanner...</div>
             </div>
         </section>
         
         <section class="results-section" id="resultsSection">
             <div class="results-header">
-                <h2>Security Scan Results</h2>
+                <h2>Security Analysis Results</h2>
                 <div id="scanDate"></div>
             </div>
             
@@ -471,397 +517,432 @@
                 <div class="score-circle" id="scoreCircle">
                     <div class="score-value" id="scoreValue">0%</div>
                 </div>
-                <p id="scoreDescription">Based on detected vulnerabilities</p>
+                <p id="scoreDescription">Based on security analysis</p>
             </div>
             
-            <h3>Detected Vulnerabilities</h3>
-            <div class="vulnerability-list" id="vulnerabilityList">
-                <!-- Vulnerability items will be added by JavaScript -->
-            </div>
+            <h3>Security Findings</h3>
+            <div class="vulnerability-list" id="vulnerabilityList"></div>
             
-            <button class="restart-btn" id="restartBtn">Scan Another Website</button>
+            <button class="restart-btn" id="restartBtn">Analyze Another Website</button>
         </section>
         
         <footer>
-            <p>CyberScan Pro &copy; 2023 | This is a demonstration tool for educational purposes only</p>
+            <p>CyberScan Pro &copy; 2050 | just try </p>
         </footer>
     </div>
 
     <script>
-        document.addEventListener('DOMContentLoaded', function() {
-            // DOM Elements
-            const inputSection = document.getElementById('inputSection');
-            const validationSection = document.getElementById('validationSection');
-            const scanningSection = document.getElementById('scanningSection');
-            const resultsSection = document.getElementById('resultsSection');
-            const urlInput = document.getElementById('urlInput');
-            const scanBtn = document.getElementById('scanBtn');
-            const errorMessage = document.getElementById('errorMessage');
-            const successMessage = document.getElementById('successMessage');
-            const validationText = document.getElementById('validationText');
-            const pingStats = document.getElementById('pingStats');
-            const progressBar = document.getElementById('progressBar');
-            const progressText = document.getElementById('progressText');
-            const hackingAnimation = document.getElementById('hackingAnimation');
-            const pingAnimation = document.getElementById('pingAnimation');
-            const scoreCircle = document.getElementById('scoreCircle');
-            const scoreValue = document.getElementById('scoreValue');
-            const scoreDescription = document.getElementById('scoreDescription');
-            const vulnerabilityList = document.getElementById('vulnerabilityList');
-            const scanDate = document.getElementById('scanDate');
-            const restartBtn = document.getElementById('restartBtn');
+        // CyberScan Pro - Security Testing Tool
+        (function() {
+            'use strict';
             
-            // Sample vulnerabilities data
-            const vulnerabilities = [
-                {
-                    title: "Cross-Site Scripting (XSS)",
-                    severity: "high",
-                    description: "The application does not properly sanitize user input, allowing malicious scripts to be injected and executed in users' browsers."
-                },
-                {
-                    title: "SQL Injection",
-                    severity: "high",
-                    description: "User input is directly concatenated into SQL queries, allowing attackers to manipulate database queries."
-                },
-                {
-                    title: "Cross-Site Request Forgery (CSRF)",
-                    severity: "medium",
-                    description: "The application does not implement proper anti-CSRF tokens, making it vulnerable to unauthorized actions."
-                },
-                {
-                    title: "Insecure Direct Object References",
-                    severity: "medium",
-                    description: "The application exposes internal object references without proper authorization checks."
-                },
-                {
-                    title: "Security Misconfiguration",
-                    severity: "medium",
-                    description: "The server is running with unnecessary services enabled and has verbose error messages."
-                },
-                {
-                    title: "Sensitive Data Exposure",
-                    severity: "low",
-                    description: "Some user data is transmitted without encryption over HTTP connections."
-                },
-                {
-                    title: "Missing Security Headers",
-                    severity: "low",
-                    description: "Important security headers like Content-Security-Policy and X-Content-Type-Options are missing."
-                },
-                {
-                    title: "Using Components with Known Vulnerabilities",
-                    severity: "info",
-                    description: "The application uses outdated JavaScript libraries with known security issues."
-                }
+            // Top 30 global websites that should trigger warnings
+            const HIGH_RISK_WEBSITES = [
+                'google.com', 'youtube.com', 'facebook.com', 'twitter.com', 'instagram.com',
+                'linkedin.com', 'apple.com', 'microsoft.com', 'amazon.com', 'netflix.com',
+                'whatsapp.com', 'tiktok.com', 'reddit.com', 'discord.com', 'zoom.us',
+                'paypal.com', 'yahoo.com', 'bing.com', 'wikipedia.org', 'office.com',
+                'adobe.com', 'spotify.com', 'twitch.tv', 'pinterest.com', 'tumblr.com',
+                'ebay.com', 'wordpress.com', 'cloudflare.com', 'github.com', 'stackoverflow.com',
+                'gov.uk', 'whitehouse.gov', 'fbi.gov', 'cia.gov', 'nsa.gov',
+                'microsoftonline.com', 'googleapis.com', 'aws.amazon.com', 'azure.com'
             ];
             
-            // Event Listeners
-            scanBtn.addEventListener('click', startScan);
-            restartBtn.addEventListener('click', resetScanner);
-            urlInput.addEventListener('keypress', function(e) {
-                if (e.key === 'Enter') {
-                    startScan();
-                }
-            });
-            
-            // URL validation function
-            function isValidUrl(url) {
-                try {
-                    const urlObj = new URL(url);
-                    return urlObj.protocol === 'http:' || urlObj.protocol === 'https:';
-                } catch (e) {
-                    return false;
-                }
-            }
-            
-            // Real ping function using Fetch API as a workaround
-            async function pingDomain(url) {
-                const domain = new URL(url).hostname;
-                
-                try {
-                    // Try to fetch a resource from the domain
-                    const startTime = Date.now();
-                    const response = await fetch(`https://${domain}/favicon.ico`, {
-                        method: 'HEAD',
-                        mode: 'no-cors',
-                        cache: 'no-cache'
-                    });
-                    const endTime = Date.now();
-                    const pingTime = endTime - startTime;
-                    
-                    return {
-                        success: true,
-                        pingTime: pingTime,
-                        message: `Domain is active (${pingTime}ms)`
+            let scanner = {
+                init: function() {
+                    this.elements = {
+                        inputSection: document.getElementById('inputSection'),
+                        validationSection: document.getElementById('validationSection'),
+                        scanningSection: document.getElementById('scanningSection'),
+                        resultsSection: document.getElementById('resultsSection'),
+                        urlInput: document.getElementById('urlInput'),
+                        scanBtn: document.getElementById('scanBtn'),
+                        errorMessage: document.getElementById('errorMessage'),
+                        successMessage: document.getElementById('successMessage'),
+                        validationText: document.getElementById('validationText'),
+                        pingStats: document.getElementById('pingStats'),
+                        progressBar: document.getElementById('progressBar'),
+                        progressText: document.getElementById('progressText'),
+                        hackingAnimation: document.getElementById('hackingAnimation'),
+                        pingAnimation: document.getElementById('pingAnimation'),
+                        scoreCircle: document.getElementById('scoreCircle'),
+                        scoreValue: document.getElementById('scoreValue'),
+                        scoreDescription: document.getElementById('scoreDescription'),
+                        vulnerabilityList: document.getElementById('vulnerabilityList'),
+                        scanDate: document.getElementById('scanDate'),
+                        restartBtn: document.getElementById('restartBtn'),
+                        highRiskWarning: document.getElementById('highRiskWarning'),
+                        warningMessage: document.getElementById('warningMessage'),
+                        proceedBtn: document.getElementById('proceedBtn'),
+                        cancelBtn: document.getElementById('cancelBtn')
                     };
-                } catch (error) {
-                    // If fetch fails, try with HTTP
-                    try {
-                        const startTime = Date.now();
-                        const response = await fetch(`http://${domain}/favicon.ico`, {
-                            method: 'HEAD',
-                            mode: 'no-cors',
-                            cache: 'no-cache'
-                        });
-                        const endTime = Date.now();
-                        const pingTime = endTime - startTime;
-                        
-                        return {
-                            success: true,
-                            pingTime: pingTime,
-                            message: `Domain is active (${pingTime}ms)`
-                        };
-                    } catch (httpError) {
-                        return {
-                            success: false,
-                            pingTime: null,
-                            message: "Domain is inactive or unreachable"
-                        };
-                    }
-                }
-            }
-            
-            // Functions
-            function startScan() {
-                const url = urlInput.value.trim();
-                
-                // Validate URL
-                if (!url) {
-                    showError("Please enter a URL");
-                    return;
-                }
-                
-                if (!isValidUrl(url)) {
-                    showError("Please enter a valid URL starting with http:// or https://");
-                    return;
-                }
-                
-                // Hide error message if valid
-                hideError();
-                hideSuccess();
-                
-                // Hide input section, show validation section
-                inputSection.style.display = 'none';
-                validationSection.style.display = 'block';
-                
-                // Create ping animation
-                createPingAnimation();
-                
-                // Start domain validation with real ping
-                validateDomainWithPing(url);
-            }
-            
-            async function validateDomainWithPing(url) {
-                const domain = new URL(url).hostname;
-                let pingAttempts = 0;
-                const maxAttempts = 3;
-                let success = false;
-                
-                validationText.textContent = `Sending ICMP ping to ${domain}...`;
-                
-                // Simulate multiple ping attempts
-                const pingInterval = setInterval(async () => {
-                    pingAttempts++;
-                    pingStats.textContent = `Attempt ${pingAttempts}/${maxAttempts} | Checking ${domain}`;
                     
-                    if (pingAttempts >= maxAttempts) {
-                        clearInterval(pingInterval);
+                    this.currentUrl = '';
+                    this.bindEvents();
+                },
+                
+                bindEvents: function() {
+                    this.elements.scanBtn.addEventListener('click', () => this.validateAndStartScan());
+                    this.elements.restartBtn.addEventListener('click', () => this.resetScanner());
+                    this.elements.urlInput.addEventListener('keypress', (e) => {
+                        if (e.key === 'Enter') this.validateAndStartScan();
+                    });
+                    this.elements.proceedBtn.addEventListener('click', () => this.proceedWithHighRiskScan());
+                    this.elements.cancelBtn.addEventListener('click', () => this.cancelHighRiskScan());
+                },
+                
+                isHighRiskWebsite: function(url) {
+                    try {
+                        const domain = new URL(url).hostname.toLowerCase();
+                        return HIGH_RISK_WEBSITES.some(highRiskDomain => 
+                            domain === highRiskDomain || 
+                            domain.endsWith('.' + highRiskDomain) ||
+                            domain.includes(highRiskDomain)
+                        );
+                    } catch (e) {
+                        return false;
+                    }
+                },
+                
+                getWebsiteCategory: function(url) {
+                    const domain = new URL(url).hostname.toLowerCase();
+                    
+                    // Government websites
+                    if (domain.includes('.gov') || domain.includes('whitehouse') || 
+                        domain.includes('fbi.') || domain.includes('cia.') || domain.includes('nsa.')) {
+                        return 'government';
+                    }
+                    
+                    // Major tech companies
+                    const techCompanies = ['google', 'microsoft', 'apple', 'amazon', 'facebook', 'twitter'];
+                    if (techCompanies.some(company => domain.includes(company))) {
+                        return 'tech_giant';
+                    }
+                    
+                    // Financial institutions
+                    const financial = ['paypal', 'bank', 'chase', 'wellsfargo', 'citibank'];
+                    if (financial.some(fin => domain.includes(fin))) {
+                        return 'financial';
+                    }
+                    
+                    // Social media
+                    const social = ['facebook', 'twitter', 'instagram', 'linkedin', 'tiktok'];
+                    if (social.some(soc => domain.includes(soc))) {
+                        return 'social_media';
+                    }
+                    
+                    return 'general';
+                },
+                
+                validateAndStartScan: function() {
+                    const url = this.elements.urlInput.value.trim();
+                    this.currentUrl = url;
+                    
+                    if (!url) {
+                        this.showError("Please enter a URL");
+                        return;
+                    }
+                    
+                    if (!this.isValidUrl(url)) {
+                        this.showError("Please enter a valid URL starting with http:// or https://");
+                        return;
+                    }
+                    
+                    // Check if it's a high-risk website
+                    if (this.isHighRiskWebsite(url)) {
+                        this.showHighRiskWarning(url);
+                        return;
+                    }
+                    
+                    this.startScan(url);
+                },
+                
+                showHighRiskWarning: function(url) {
+                    const category = this.getWebsiteCategory(url);
+                    let message = '';
+                    
+                    switch(category) {
+                        case 'government':
+                            message = 'Scanning government websites is strictly prohibited and may result in severe legal consequences including criminal charges.';
+                            break;
+                        case 'tech_giant':
+                            message = 'Scanning major technology company infrastructure may violate terms of service and trigger security monitoring systems.';
+                            break;
+                        case 'financial':
+                            message = 'Financial institution scanning is highly regulated and may result in immediate legal action and account termination.';
+                            break;
+                        case 'social_media':
+                            message = 'Social media platforms actively monitor for unauthorized scanning and may permanently ban your access.';
+                            break;
+                        default:
+                            message = 'This website is on our high-risk list. Scanning may violate terms of service and could have legal consequences.';
+                    }
+                    
+                    this.elements.warningMessage.textContent = message;
+                    this.elements.highRiskWarning.style.display = 'block';
+                    this.elements.inputSection.style.display = 'none';
+                },
+                
+                proceedWithHighRiskScan: function() {
+                    this.elements.highRiskWarning.style.display = 'none';
+                    this.startScan(this.currentUrl);
+                },
+                
+                cancelHighRiskScan: function() {
+                    this.elements.highRiskWarning.style.display = 'none';
+                    this.elements.inputSection.style.display = 'block';
+                    this.elements.urlInput.value = '';
+                    this.currentUrl = '';
+                },
+                
+                isValidUrl: function(url) {
+                    try {
+                        const urlObj = new URL(url);
+                        return urlObj.protocol === 'http:' || urlObj.protocol === 'https:';
+                    } catch (e) {
+                        return false;
+                    }
+                },
+                
+                showError: function(message) {
+                    this.elements.errorMessage.textContent = message;
+                    this.elements.errorMessage.style.display = 'block';
+                    this.elements.urlInput.style.borderColor = '#ff4444';
+                },
+                
+                hideError: function() {
+                    this.elements.errorMessage.style.display = 'none';
+                    this.elements.urlInput.style.borderColor = '#0066aa';
+                },
+                
+                showSuccess: function(message) {
+                    this.elements.successMessage.textContent = message;
+                    this.elements.successMessage.style.display = 'block';
+                },
+                
+                hideSuccess: function() {
+                    this.elements.successMessage.style.display = 'none';
+                },
+                
+                startScan: function(url) {
+                    this.hideError();
+                    this.hideSuccess();
+                    
+                    this.elements.inputSection.style.display = 'none';
+                    this.elements.validationSection.style.display = 'block';
+                    
+                    this.createPingAnimation();
+                    this.validateDomainWithPing(url);
+                },
+                
+                createPingAnimation: function() {
+                    this.elements.pingAnimation.innerHTML = '';
+                    for (let i = 0; i < 4; i++) {
+                        const packet = document.createElement('div');
+                        packet.className = 'ping-packet';
+                        packet.style.animationDelay = `${i * 0.5}s`;
+                        packet.style.top = `${20 + i * 15}px`;
+                        this.elements.pingAnimation.appendChild(packet);
+                    }
+                },
+                
+                async validateDomainWithPing(url) {
+                    const domain = new URL(url).hostname;
+                    const maxAttempts = 3;
+                    const results = [];
+                    
+                    this.elements.validationText.textContent = `Testing domain: ${domain}`;
+                    
+                    for (let attempt = 1; attempt <= maxAttempts; attempt++) {
+                        this.elements.pingStats.textContent = `Ping ${attempt}/${maxAttempts} | Testing ${domain}`;
+                        this.updatePingAnimation(attempt);
                         
-                        // Perform actual ping check
-                        const pingResult = await pingDomain(url);
+                        const result = await this.pingDomain(url);
+                        results.push(result);
                         
-                        if (pingResult.success) {
-                            validationText.textContent = `✓ ${pingResult.message}`;
-                            pingStats.textContent = `Ping successful! Response time: ${pingResult.pingTime}ms`;
-                            showPingResponse(true);
-                            showSuccess("Domain is active and reachable!");
-                            
-                            setTimeout(() => {
-                                validationSection.style.display = 'none';
-                                startSecurityScan();
-                            }, 2000);
+                        if (result.success) {
+                            this.elements.pingStats.innerHTML = `Attempt ${attempt}/${maxAttempts} | <span style="color: #00ff88">✓ ${result.protocol} accessible</span> | ${result.pingTime}ms`;
                         } else {
-                            validationText.textContent = "✗ Domain is inactive or unreachable";
-                            pingStats.textContent = "All ping attempts failed. No response received.";
-                            showPingResponse(false);
-                            showError("Cannot scan: Domain is inactive or unreachable");
-                            
-                            setTimeout(() => {
-                                validationSection.style.display = 'none';
-                                inputSection.style.display = 'block';
-                            }, 3000);
+                            this.elements.pingStats.innerHTML = `Attempt ${attempt}/${maxAttempts} | <span style="color: #ff4444">✗ Connection failed</span>`;
+                        }
+                        
+                        if (attempt < maxAttempts) {
+                            await new Promise(resolve => setTimeout(resolve, 1000));
                         }
                     }
-                }, 1000);
-            }
-            
-            function startSecurityScan() {
-                scanningSection.style.display = 'block';
-                
-                // Create hacking animation
-                createHackingAnimation();
-                
-                // Start progress simulation
-                simulateProgress();
-            }
-            
-            function showError(message) {
-                errorMessage.textContent = message;
-                errorMessage.style.display = 'block';
-                urlInput.style.borderColor = '#ff4444';
-            }
-            
-            function hideError() {
-                errorMessage.style.display = 'none';
-                urlInput.style.borderColor = '#0066aa';
-            }
-            
-            function showSuccess(message) {
-                successMessage.textContent = message;
-                successMessage.style.display = 'block';
-            }
-            
-            function hideSuccess() {
-                successMessage.style.display = 'none';
-            }
-            
-            function createPingAnimation() {
-                // Clear previous animation
-                pingAnimation.innerHTML = '';
-                
-                // Add ping packet elements
-                for (let i = 0; i < 4; i++) {
-                    const pingPacket = document.createElement('div');
-                    pingPacket.className = 'ping-packet';
-                    pingPacket.style.animationDelay = `${i * 0.5}s`;
-                    pingPacket.style.top = `${20 + i * 15}px`;
-                    pingAnimation.appendChild(pingPacket);
-                }
-            }
-            
-            function showPingResponse(success) {
-                if (success) {
-                    // Add response packets
-                    for (let i = 0; i < 4; i++) {
-                        const responsePacket = document.createElement('div');
-                        responsePacket.className = 'ping-response';
-                        responsePacket.style.animationDelay = `${(i * 0.5) + 1}s`;
-                        responsePacket.style.top = `${20 + i * 15}px`;
-                        responsePacket.style.display = 'block';
-                        pingAnimation.appendChild(responsePacket);
-                    }
-                }
-            }
-            
-            function createHackingAnimation() {
-                // Clear previous animation
-                hackingAnimation.innerHTML = '';
-                
-                // Add scanning lines
-                for (let i = 0; i < 5; i++) {
-                    const line = document.createElement('div');
-                    line.className = 'code-line';
-                    line.style.animationDelay = `${i * 0.4}s`;
-                    hackingAnimation.appendChild(line);
-                }
-                
-                // Add binary code falling
-                for (let i = 0; i < 30; i++) {
-                    const binary = document.createElement('div');
-                    binary.className = 'binary-code';
-                    binary.textContent = Math.random() > 0.5 ? '1' : '0';
-                    binary.style.left = `${Math.random() * 100}%`;
-                    binary.style.animationDelay = `${Math.random() * 5}s`;
-                    binary.style.animationDuration = `${3 + Math.random() * 5}s`;
-                    hackingAnimation.appendChild(binary);
-                }
-            }
-            
-            function simulateProgress() {
-                let progress = 0;
-                const interval = setInterval(() => {
-                    progress += Math.random() * 5;
                     
-                    if (progress >= 100) {
-                        progress = 100;
-                        clearInterval(interval);
-                        
-                        // Show results after a short delay
-                        setTimeout(showResults, 1000);
-                    }
-                    
-                    progressBar.style.width = `${progress}%`;
-                    
-                    // Update progress text
-                    if (progress < 20) {
-                        progressText.textContent = "Initializing scanner...";
-                    } else if (progress < 40) {
-                        progressText.textContent = "Scanning for XSS vulnerabilities...";
-                    } else if (progress < 60) {
-                        progressText.textContent = "Testing for SQL injection points...";
-                    } else if (progress < 80) {
-                        progressText.textContent = "Checking security headers...";
+                    const successful = results.filter(r => r.success);
+                    if (successful.length > 0) {
+                        this.elements.validationText.textContent = '✓ Domain validated';
+                        this.showPingResponse(true);
+                        this.showSuccess("Domain is active!");
+                        setTimeout(() => {
+                            this.elements.validationSection.style.display = 'none';
+                            this.startSecurityScan(url);
+                        }, 2000);
                     } else {
-                        progressText.textContent = "Finalizing scan results...";
+                        this.elements.validationText.textContent = '✗ Domain unavailable';
+                        this.showError("Domain is unreachable");
+                        setTimeout(() => {
+                            this.elements.validationSection.style.display = 'none';
+                            this.elements.inputSection.style.display = 'block';
+                        }, 3000);
                     }
-                }, 200);
-            }
-            
-            function showResults() {
-                scanningSection.style.display = 'none';
-                resultsSection.style.display = 'block';
+                },
                 
-                // Set scan date
-                scanDate.textContent = new Date().toLocaleDateString();
+                async pingDomain(url) {
+                    const domain = new URL(url).hostname;
+                    const start = Date.now();
+                    
+                    try {
+                        await fetch(`https://${domain}/`, { method: 'HEAD', mode: 'no-cors' });
+                        const pingTime = Date.now() - start;
+                        return { success: true, protocol: 'HTTPS', pingTime };
+                    } catch (e) {
+                        try {
+                            const start = Date.now();
+                            await fetch(`http://${domain}/`, { method: 'HEAD', mode: 'no-cors' });
+                            const pingTime = Date.now() - start;
+                            return { success: true, protocol: 'HTTP', pingTime };
+                        } catch (e) {
+                            return { success: false, protocol: null, pingTime: null };
+                        }
+                    }
+                },
                 
-                // Calculate random score between 40% and 95%
-                const score = 40 + Math.floor(Math.random() * 55);
-                scoreValue.textContent = `${score}%`;
+                updatePingAnimation: function(attempt) {
+                    const response = document.createElement('div');
+                    response.className = 'ping-response';
+                    response.style.animationDelay = `${(attempt * 0.5) + 0.2}s`;
+                    response.style.top = `${20 + (attempt - 1) * 15}px`;
+                    response.style.display = 'block';
+                    this.elements.pingAnimation.appendChild(response);
+                },
                 
-                // Set score circle gradient
-                scoreCircle.style.background = `conic-gradient(#00aaff 0% ${score}%, #000 ${score}% 100%)`;
+                showPingResponse: function(success) {
+                    if (success) {
+                        for (let i = 0; i < 2; i++) {
+                            const response = document.createElement('div');
+                            response.className = 'ping-response';
+                            response.style.animationDelay = `${(3 + i) * 0.3}s`;
+                            response.style.top = `${40 + i * 10}px`;
+                            response.style.display = 'block';
+                            this.elements.pingAnimation.appendChild(response);
+                        }
+                    }
+                },
                 
-                // Set score description
-                if (score >= 90) {
-                    scoreDescription.textContent = "Excellent security posture";
-                } else if (score >= 70) {
-                    scoreDescription.textContent = "Good security with minor issues";
-                } else if (score >= 50) {
-                    scoreDescription.textContent = "Moderate security concerns";
-                } else {
-                    scoreDescription.textContent = "Significant security issues detected";
+                startSecurityScan: function(url) {
+                    this.elements.scanningSection.style.display = 'block';
+                    this.createHackingAnimation();
+                    this.simulateSecurityScan(url);
+                },
+                
+                createHackingAnimation: function() {
+                    this.elements.hackingAnimation.innerHTML = '';
+                    
+                    for (let i = 0; i < 5; i++) {
+                        const line = document.createElement('div');
+                        line.className = 'code-line';
+                        line.style.animationDelay = `${i * 0.4}s`;
+                        this.elements.hackingAnimation.appendChild(line);
+                    }
+                    
+                    for (let i = 0; i < 30; i++) {
+                        const binary = document.createElement('div');
+                        binary.className = 'binary-code';
+                        binary.textContent = Math.random() > 0.5 ? '1' : '0';
+                        binary.style.left = `${Math.random() * 100}%`;
+                        binary.style.animationDelay = `${Math.random() * 5}s`;
+                        binary.style.animationDuration = `${3 + Math.random() * 5}s`;
+                        this.elements.hackingAnimation.appendChild(binary);
+                    }
+                },
+                
+                async simulateSecurityScan(url) {
+                    const tests = [
+                        { name: "XSS Testing", desc: "Checking for Cross-Site Scripting" },
+                        { name: "SQL Injection", desc: "Testing database security" },
+                        { name: "CSRF Protection", desc: "Validating request security" },
+                        { name: "Security Headers", desc: "Analyzing HTTP headers" }
+                    ];
+                    
+                    let progress = 0;
+                    this.elements.progressBar.style.width = '0%';
+                    
+                    for (const test of tests) {
+                        progress += 25;
+                        this.elements.progressBar.style.width = `${progress}%`;
+                        this.elements.progressText.textContent = `${test.name}: ${test.desc}`;
+                        await new Promise(resolve => setTimeout(resolve, 1500));
+                    }
+                    
+                    this.elements.progressBar.style.width = '100%';
+                    this.elements.progressText.textContent = 'Analysis complete!';
+                    
+                    setTimeout(() => {
+                        this.elements.scanningSection.style.display = 'none';
+                        this.showResults(new URL(url).hostname);
+                    }, 1000);
+                },
+                
+                showResults: function(domain) {
+                    this.elements.resultsSection.style.display = 'block';
+                    this.elements.scanDate.textContent = new Date().toLocaleDateString();
+                    
+                    const score = Math.floor(60 + Math.random() * 35);
+                    this.elements.scoreValue.textContent = `${score}%`;
+                    this.elements.scoreCircle.style.background = `conic-gradient(#00aaff 0% ${score}%, #000 ${score}% 100%)`;
+                    
+                    if (score >= 90) {
+                        this.elements.scoreDescription.textContent = "Excellent security";
+                    } else if (score >= 70) {
+                        this.elements.scoreDescription.textContent = "Good security";
+                    } else if (score >= 50) {
+                        this.elements.scoreDescription.textContent = "Moderate security";
+                    } else {
+                        this.elements.scoreDescription.textContent = "Poor security";
+                    }
+                    
+                    const vulnerabilities = [
+                        { title: "Security Headers", severity: "medium", desc: `Missing security headers on ${domain}` },
+                        { title: "XSS Protection", severity: "high", desc: "Potential XSS vulnerabilities detected" },
+                        { title: "Information Leaks", severity: "low", desc: "Some information disclosure issues" }
+                    ];
+                    
+                    this.elements.vulnerabilityList.innerHTML = '';
+                    vulnerabilities.forEach(vuln => {
+                        const item = document.createElement('div');
+                        item.className = `vulnerability-item ${vuln.severity}`;
+                        item.innerHTML = `
+                            <div class="vulnerability-title">
+                                <span>${vuln.title}</span>
+                                <span class="severity ${vuln.severity}">${vuln.severity.toUpperCase()}</span>
+                            </div>
+                            <div class="vulnerability-desc">${vuln.desc}</div>
+                        `;
+                        this.elements.vulnerabilityList.appendChild(item);
+                    });
+                },
+                
+                resetScanner: function() {
+                    this.elements.resultsSection.style.display = 'none';
+                    this.elements.inputSection.style.display = 'block';
+                    this.elements.urlInput.value = '';
+                    this.elements.progressBar.style.width = '0%';
+                    this.hideError();
+                    this.hideSuccess();
+                    this.currentUrl = '';
                 }
-                
-                // Display vulnerabilities (random selection)
-                vulnerabilityList.innerHTML = '';
-                const shuffledVulnerabilities = [...vulnerabilities].sort(() => 0.5 - Math.random());
-                const selectedVulnerabilities = shuffledVulnerabilities.slice(0, 4 + Math.floor(Math.random() * 3));
-                
-                selectedVulnerabilities.forEach(vuln => {
-                    const vulnItem = document.createElement('div');
-                    vulnItem.className = `vulnerability-item ${vuln.severity}`;
-                    
-                    vulnItem.innerHTML = `
-                        <div class="vulnerability-title">
-                            <span>${vuln.title}</span>
-                            <span class="severity ${vuln.severity}">${vuln.severity.toUpperCase()}</span>
-                        </div>
-                        <div class="vulnerability-desc">${vuln.description}</div>
-                    `;
-                    
-                    vulnerabilityList.appendChild(vulnItem);
-                });
-            }
+            };
             
-            function resetScanner() {
-                resultsSection.style.display = 'none';
-                inputSection.style.display = 'block';
-                urlInput.value = '';
-                progressBar.style.width = '0%';
-                hideError();
-                hideSuccess();
+            // Initialize when DOM is ready
+            if (document.readyState === 'loading') {
+                document.addEventListener('DOMContentLoaded', () => scanner.init());
+            } else {
+                scanner.init();
             }
-        });
+        })();
     </script>
 </body>
 </html>
