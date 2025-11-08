@@ -28,6 +28,7 @@
             background-color: #f5f7fa;
             color: #333;
             line-height: 1.6;
+            overflow-x: hidden;
         }
 
         /* Header Styles */
@@ -39,48 +40,55 @@
             position: sticky;
             top: 0;
             z-index: 100;
+            transition: transform 0.5s ease-in-out;
         }
 
         .container {
             width: 90%;
             max-width: 1200px;
             margin: 0 auto;
+            padding: 0 15px;
         }
 
         .header-content {
             display: flex;
             justify-content: space-between;
             align-items: center;
+            flex-wrap: wrap;
         }
 
         .logo {
             display: flex;
             align-items: center;
             gap: 10px;
+            margin-bottom: 10px;
         }
 
         .logo i {
-            font-size: 2rem;
+            font-size: 1.8rem;
             color: var(--secondary);
         }
 
         .logo h1 {
-            font-size: 1.8rem;
+            font-size: 1.5rem;
             font-weight: 700;
         }
 
         .nav-links {
             display: flex;
-            gap: 1.5rem;
+            gap: 0.8rem;
+            flex-wrap: wrap;
+            justify-content: center;
         }
 
         .nav-links a {
             color: var(--light);
             text-decoration: none;
             font-weight: 500;
-            padding: 0.5rem 1rem;
+            padding: 0.5rem 0.8rem;
             border-radius: 4px;
             transition: all 0.3s ease;
+            font-size: 0.9rem;
         }
 
         .nav-links a:hover {
@@ -93,10 +101,93 @@
             color: white;
         }
 
+        /* Mobile Header Auto-Close */
+        .mobile-header-auto-close {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            background: linear-gradient(135deg, var(--primary), #1a2530);
+            color: white;
+            padding: 1rem 0;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+            z-index: 101;
+            transition: transform 0.5s ease-in-out;
+        }
+
+        .mobile-header-content {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            width: 90%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 15px;
+            gap: 15px;
+        }
+
+        .mobile-logo {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .mobile-logo i {
+            font-size: 1.5rem;
+            color: var(--secondary);
+        }
+
+        .mobile-logo h1 {
+            font-size: 1.3rem;
+            font-weight: 700;
+        }
+
+        .mobile-nav-links {
+            display: flex;
+            gap: 10px;
+            flex-wrap: wrap;
+            justify-content: center;
+            width: 100%;
+        }
+
+        .mobile-nav-links a {
+            color: var(--light);
+            text-decoration: none;
+            font-weight: 500;
+            padding: 0.5rem 0.8rem;
+            border-radius: 4px;
+            transition: all 0.3s ease;
+            font-size: 0.9rem;
+            text-align: center;
+            flex: 1;
+            min-width: 120px;
+        }
+
+        .mobile-nav-links a:hover {
+            background-color: rgba(255, 255, 255, 0.1);
+            color: var(--secondary);
+        }
+
+        .mobile-nav-links a.active {
+            background-color: var(--secondary);
+            color: white;
+        }
+
+        /* Mobile Menu */
+        .mobile-menu-btn {
+            display: none;
+            background: none;
+            border: none;
+            color: white;
+            font-size: 1.5rem;
+            cursor: pointer;
+        }
+
         /* Page Content */
         .page {
             display: none;
-            padding: 2rem 0;
+            padding: 1.5rem 0;
             min-height: 70vh;
         }
 
@@ -110,31 +201,35 @@
             background-size: cover;
             background-position: center;
             color: white;
-            padding: 4rem 0;
+            padding: 2.5rem 0;
             text-align: center;
         }
 
         .hero h2 {
-            font-size: 2.5rem;
+            font-size: 1.8rem;
             margin-bottom: 1rem;
+            line-height: 1.3;
         }
 
         .hero p {
-            font-size: 1.2rem;
-            max-width: 700px;
+            font-size: 1rem;
+            max-width: 100%;
             margin: 0 auto 2rem;
+            padding: 0 10px;
         }
 
         .cta-button {
             display: inline-block;
             background-color: var(--secondary);
             color: white;
-            padding: 0.8rem 2rem;
+            padding: 0.8rem 1.8rem;
             border-radius: 30px;
             text-decoration: none;
             font-weight: 600;
             transition: all 0.3s ease;
             border: 2px solid var(--secondary);
+            cursor: pointer;
+            font-size: 0.95rem;
         }
 
         .cta-button:hover {
@@ -144,20 +239,21 @@
 
         /* Main Content */
         .main-content {
-            padding: 3rem 0;
+            padding: 2rem 0;
         }
 
         .section-title {
             text-align: center;
-            margin-bottom: 3rem;
+            margin-bottom: 2rem;
             color: var(--primary);
             position: relative;
+            font-size: 1.6rem;
         }
 
         .section-title:after {
             content: '';
             display: block;
-            width: 80px;
+            width: 60px;
             height: 4px;
             background: var(--secondary);
             margin: 10px auto;
@@ -167,9 +263,9 @@
         /* Study Cards */
         .study-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-            gap: 2rem;
-            margin-bottom: 3rem;
+            grid-template-columns: 1fr;
+            gap: 1.5rem;
+            margin-bottom: 2rem;
         }
 
         .study-card {
@@ -181,12 +277,12 @@
         }
 
         .study-card:hover {
-            transform: translateY(-10px);
-            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.15);
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.15);
         }
 
         .card-header {
-            padding: 1.5rem;
+            padding: 1.2rem;
             color: white;
             display: flex;
             align-items: center;
@@ -210,21 +306,22 @@
         }
 
         .card-header i {
-            font-size: 1.5rem;
+            font-size: 1.3rem;
         }
 
         .card-body {
-            padding: 1.5rem;
+            padding: 1.2rem;
         }
 
         .card-body h3 {
             margin-bottom: 1rem;
             color: var(--primary);
+            font-size: 1.2rem;
         }
 
         .card-body ul {
             list-style-type: none;
-            margin-bottom: 1.5rem;
+            margin-bottom: 1.2rem;
         }
 
         .card-body li {
@@ -233,6 +330,7 @@
             display: flex;
             align-items: center;
             gap: 10px;
+            font-size: 0.9rem;
         }
 
         .card-body li:last-child {
@@ -241,6 +339,7 @@
 
         .card-body li i {
             color: var(--success);
+            font-size: 0.9rem;
         }
 
         .progress-bar {
@@ -277,25 +376,26 @@
         }
 
         .resources {
-            margin-top: 2rem;
+            margin-top: 1.5rem;
         }
 
         .resources h4 {
-            margin-bottom: 1rem;
+            margin-bottom: 0.8rem;
             color: var(--primary);
+            font-size: 1.1rem;
         }
 
         .resource-links {
             display: flex;
             flex-wrap: wrap;
-            gap: 10px;
+            gap: 8px;
         }
 
         .resource-link {
             background-color: var(--light);
-            padding: 0.5rem 1rem;
+            padding: 0.4rem 0.8rem;
             border-radius: 20px;
-            font-size: 0.9rem;
+            font-size: 0.8rem;
             text-decoration: none;
             color: var(--dark);
             transition: all 0.3s ease;
@@ -310,34 +410,35 @@
         .schedule {
             background-color: white;
             border-radius: 10px;
-            padding: 2rem;
+            padding: 1.5rem;
             box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
-            margin-bottom: 3rem;
+            margin-bottom: 2rem;
         }
 
         .schedule-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
-            gap: 1.5rem;
+            grid-template-columns: 1fr;
+            gap: 1.2rem;
         }
 
         .day-card {
             background-color: var(--light);
             border-radius: 8px;
-            padding: 1.5rem;
+            padding: 1.2rem;
             transition: all 0.3s ease;
         }
 
         .day-card:hover {
-            transform: translateY(-5px);
+            transform: translateY(-3px);
             box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
         }
 
         .day-card h4 {
             color: var(--primary);
-            margin-bottom: 1rem;
+            margin-bottom: 0.8rem;
             padding-bottom: 0.5rem;
             border-bottom: 2px solid var(--secondary);
+            font-size: 1.1rem;
         }
 
         .day-card ul {
@@ -345,27 +446,29 @@
         }
 
         .day-card li {
-            padding: 0.5rem 0;
+            padding: 0.4rem 0;
             display: flex;
             align-items: center;
-            gap: 10px;
+            gap: 8px;
+            font-size: 0.9rem;
         }
 
         .day-card li i {
             color: var(--secondary);
+            font-size: 0.9rem;
         }
 
         /* Study Plans Page */
         .plans-container {
             display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
-            gap: 2rem;
+            grid-template-columns: 1fr;
+            gap: 1.5rem;
         }
 
         .plan-card {
             background: white;
             border-radius: 10px;
-            padding: 2rem;
+            padding: 1.5rem;
             box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
             transition: transform 0.3s ease;
         }
@@ -376,56 +479,60 @@
 
         .plan-card h3 {
             color: var(--primary);
-            margin-bottom: 1rem;
+            margin-bottom: 0.8rem;
             padding-bottom: 0.5rem;
             border-bottom: 2px solid var(--secondary);
+            font-size: 1.3rem;
         }
 
         .plan-card ul {
             list-style-type: none;
-            margin: 1.5rem 0;
+            margin: 1.2rem 0;
         }
 
         .plan-card li {
-            padding: 0.5rem 0;
+            padding: 0.4rem 0;
             display: flex;
             align-items: center;
-            gap: 10px;
+            gap: 8px;
+            font-size: 0.9rem;
         }
 
         .plan-card li i {
             color: var(--success);
+            font-size: 0.9rem;
         }
 
         .plan-duration {
             display: inline-block;
             background-color: var(--light);
-            padding: 0.3rem 1rem;
+            padding: 0.3rem 0.8rem;
             border-radius: 20px;
-            font-size: 0.9rem;
-            margin-bottom: 1rem;
+            font-size: 0.8rem;
+            margin-bottom: 0.8rem;
         }
 
         /* Resources Page */
         .resources-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-            gap: 2rem;
+            grid-template-columns: 1fr;
+            gap: 1.5rem;
         }
 
         .resource-category {
             background: white;
             border-radius: 10px;
-            padding: 2rem;
+            padding: 1.5rem;
             box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
         }
 
         .resource-category h3 {
             color: var(--primary);
-            margin-bottom: 1.5rem;
+            margin-bottom: 1.2rem;
             display: flex;
             align-items: center;
-            gap: 10px;
+            gap: 8px;
+            font-size: 1.3rem;
         }
 
         .resource-category ul {
@@ -433,7 +540,7 @@
         }
 
         .resource-category li {
-            padding: 0.8rem 0;
+            padding: 0.7rem 0;
             border-bottom: 1px solid #eee;
         }
 
@@ -447,7 +554,8 @@
             transition: color 0.3s ease;
             display: flex;
             align-items: center;
-            gap: 10px;
+            gap: 8px;
+            font-size: 0.9rem;
         }
 
         .resource-category a:hover {
@@ -458,13 +566,13 @@
         .progress-container {
             background: white;
             border-radius: 10px;
-            padding: 2rem;
+            padding: 1.5rem;
             box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
-            margin-bottom: 2rem;
+            margin-bottom: 1.5rem;
         }
 
         .progress-item {
-            margin-bottom: 2rem;
+            margin-bottom: 1.5rem;
         }
 
         .progress-item:last-child {
@@ -479,6 +587,7 @@
 
         .progress-info h4 {
             color: var(--primary);
+            font-size: 1.1rem;
         }
 
         .progress-percentage {
@@ -487,28 +596,28 @@
         }
 
         .skill-progress {
-            height: 12px;
+            height: 10px;
             background-color: #ecf0f1;
-            border-radius: 6px;
+            border-radius: 5px;
             overflow: hidden;
         }
 
         .skill-bar {
             height: 100%;
-            border-radius: 6px;
+            border-radius: 5px;
             transition: width 1.5s ease-in-out;
         }
 
         .achievements {
             display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
-            gap: 1.5rem;
+            grid-template-columns: 1fr;
+            gap: 1.2rem;
         }
 
         .achievement-card {
             background: white;
             border-radius: 10px;
-            padding: 1.5rem;
+            padding: 1.2rem;
             box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
             text-align: center;
             transition: transform 0.3s ease;
@@ -519,53 +628,53 @@
         }
 
         .achievement-card i {
-            font-size: 2.5rem;
+            font-size: 2rem;
             color: var(--warning);
-            margin-bottom: 1rem;
+            margin-bottom: 0.8rem;
         }
 
         /* Community Page */
         .community-stats {
             display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
-            gap: 1.5rem;
-            margin-bottom: 2rem;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 1rem;
+            margin-bottom: 1.5rem;
         }
 
         .stat-card {
             background: white;
             border-radius: 10px;
-            padding: 1.5rem;
+            padding: 1.2rem;
             box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
             text-align: center;
         }
 
         .stat-card i {
-            font-size: 2rem;
+            font-size: 1.8rem;
             color: var(--secondary);
-            margin-bottom: 1rem;
+            margin-bottom: 0.8rem;
         }
 
         .stat-number {
-            font-size: 2rem;
+            font-size: 1.5rem;
             font-weight: bold;
             color: var(--primary);
         }
 
         .stat-label {
             color: #7f8c8d;
-            font-size: 0.9rem;
+            font-size: 0.8rem;
         }
 
         .forum-posts {
             background: white;
             border-radius: 10px;
-            padding: 2rem;
+            padding: 1.5rem;
             box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
         }
 
         .post {
-            padding: 1.5rem 0;
+            padding: 1.2rem 0;
             border-bottom: 1px solid #eee;
         }
 
@@ -575,29 +684,32 @@
 
         .post-header {
             display: flex;
-            justify-content: space-between;
+            flex-direction: column;
             margin-bottom: 0.5rem;
         }
 
         .post-title {
             font-weight: bold;
             color: var(--primary);
+            margin-bottom: 0.3rem;
+            font-size: 1.1rem;
         }
 
         .post-meta {
             color: #7f8c8d;
-            font-size: 0.9rem;
+            font-size: 0.8rem;
         }
 
         .post-excerpt {
             color: #555;
+            font-size: 0.9rem;
         }
 
         /* Footer */
         footer {
             background-color: var(--primary);
             color: white;
-            padding: 2rem 0;
+            padding: 1.5rem 0;
             text-align: center;
         }
 
@@ -605,7 +717,7 @@
             display: flex;
             flex-direction: column;
             align-items: center;
-            gap: 1.5rem;
+            gap: 1.2rem;
         }
 
         .social-links {
@@ -615,7 +727,7 @@
 
         .social-links a {
             color: white;
-            font-size: 1.5rem;
+            font-size: 1.3rem;
             transition: color 0.3s ease;
         }
 
@@ -623,38 +735,147 @@
             color: var(--secondary);
         }
 
-        /* Responsive Design */
-        @media (max-width: 768px) {
-            .header-content {
-                flex-direction: column;
-                gap: 1rem;
+        /* Tablet Styles */
+        @media (min-width: 768px) {
+            .logo h1 {
+                font-size: 1.8rem;
             }
-
-            .nav-links {
-                flex-wrap: wrap;
-                justify-content: center;
+            
+            .nav-links a {
+                font-size: 1rem;
+                padding: 0.5rem 1rem;
             }
-
+            
             .hero h2 {
-                font-size: 2rem;
+                font-size: 2.2rem;
+            }
+            
+            .hero p {
+                font-size: 1.1rem;
+            }
+            
+            .section-title {
+                font-size: 1.8rem;
+            }
+            
+            .study-grid, .plans-container, .resources-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+            
+            .schedule-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+            
+            .achievements {
+                grid-template-columns: repeat(2, 1fr);
+            }
+            
+            .community-stats {
+                grid-template-columns: repeat(4, 1fr);
+            }
+            
+            .post-header {
+                flex-direction: row;
+                justify-content: space-between;
+            }
+            
+            .post-title {
+                margin-bottom: 0;
+            }
+        }
+
+        /* Desktop Styles */
+        @media (min-width: 1024px) {
+            .header-content {
+                flex-wrap: nowrap;
+            }
+            
+            .logo {
+                margin-bottom: 0;
+            }
+            
+            .nav-links {
+                justify-content: flex-end;
+            }
+            
+            .study-grid, .plans-container, .resources-grid {
+                grid-template-columns: repeat(4, 1fr);
+            }
+            
+            .schedule-grid {
+                grid-template-columns: repeat(5, 1fr);
+            }
+            
+            .achievements {
+                grid-template-columns: repeat(4, 1fr);
+            }
+        }
+
+        /* Mobile Menu Styles */
+        @media (max-width: 767px) {
+            .mobile-menu-btn {
+                display: block;
+            }
+            
+            .nav-links {
+                display: none;
+                flex-direction: column;
+                width: 100%;
+                background: var(--primary);
+                position: absolute;
+                top: 100%;
+                left: 0;
+                padding: 1rem;
+                box-shadow: 0 5px 10px rgba(0,0,0,0.1);
+            }
+            
+            .nav-links.active {
+                display: flex;
+            }
+            
+            .nav-links a {
+                width: 100%;
+                text-align: center;
+                padding: 0.8rem;
             }
 
-            .study-grid, .plans-container, .resources-grid, .achievements, .community-stats {
-                grid-template-columns: 1fr;
+            /* Show mobile header auto-close on mobile */
+            .mobile-header-auto-close {
+                display: block;
             }
         }
     </style>
 </head>
 <body>
-    <!-- Header -->
-    <header>
+    <!-- Mobile Header with Auto-Close -->
+    <div class="mobile-header-auto-close" id="mobileHeaderAutoClose">
+        <div class="mobile-header-content">
+            <div class="mobile-logo">
+                <i class="fas fa-laptop-code"></i>
+                <h1>TechStudyHub</h1>
+            </div>
+            <div class="mobile-nav-links">
+                <a href="#" class="nav-link active" data-page="home">Home</a>
+                <a href="#" class="nav-link" data-page="study-plans">Study Plans</a>
+                <a href="#" class="nav-link" data-page="resources">Resources</a>
+                <a href="#" class="nav-link" data-page="progress">Progress</a>
+                <a href="#" class="nav-link" data-page="community">Community</a>
+            </div>
+        </div>
+    </div>
+
+    <!-- Main Header -->
+    <header id="mainHeader">
         <div class="container">
             <div class="header-content">
                 <div class="logo">
                     <i class="fas fa-laptop-code"></i>
                     <h1>TechStudyHub</h1>
                 </div>
-                <nav class="nav-links">
+                <button class="mobile-menu-btn" id="mobileMenuBtn">
+                    <i class="fas fa-bars"></i>
+                </button>
+                <nav class="nav-links" id="navLinks">
                     <a href="#" class="nav-link active" data-page="home">Home</a>
                     <a href="#" class="nav-link" data-page="study-plans">Study Plans</a>
                     <a href="#" class="nav-link" data-page="resources">Resources</a>
@@ -869,7 +1090,7 @@
                         <li><i class="fas fa-check-circle"></i> Security Tools & Techniques</li>
                         <li><i class="fas fa-check-circle"></i> Incident Response</li>
                     </ul>
-                    <a href="#" class="cta-button">Start This Plan</a>
+                    <button class="cta-button start-plan-btn" data-plan="cybersecurity">Start This Plan</button>
                 </div>
                 
                 <div class="plan-card">
@@ -883,7 +1104,7 @@
                         <li><i class="fas fa-check-circle"></i> Database Design & Management</li>
                         <li><i class="fas fa-check-circle"></i> Deployment & DevOps Basics</li>
                     </ul>
-                    <a href="#" class="cta-button">Start This Plan</a>
+                    <button class="cta-button start-plan-btn" data-plan="fullstack">Start This Plan</button>
                 </div>
                 
                 <div class="plan-card">
@@ -897,7 +1118,21 @@
                         <li><i class="fas fa-check-circle"></i> Web Development with Django</li>
                         <li><i class="fas fa-check-circle"></i> Data Analysis & Visualization</li>
                     </ul>
-                    <a href="#" class="cta-button">Start This Plan</a>
+                    <button class="cta-button start-plan-btn" data-plan="python">Start This Plan</button>
+                </div>
+
+                <div class="plan-card">
+                    <span class="plan-duration">14 Weeks</span>
+                    <h3>MERN Stack Mastery</h3>
+                    <p>Master the complete MERN stack for modern web application development.</p>
+                    <ul>
+                        <li><i class="fas fa-check-circle"></i> MongoDB Database Design</li>
+                        <li><i class="fas fa-check-circle"></i> Express.js Server Development</li>
+                        <li><i class="fas fa-check-circle"></i> React Frontend Architecture</li>
+                        <li><i class="fas fa-check-circle"></i> Node.js Backend Integration</li>
+                        <li><i class="fas fa-check-circle"></i> Full-Stack Project Deployment</li>
+                    </ul>
+                    <button class="cta-button start-plan-btn" data-plan="mern">Start This Plan</button>
                 </div>
             </div>
         </div>
@@ -1116,6 +1351,12 @@
         document.addEventListener('DOMContentLoaded', function() {
             const navLinks = document.querySelectorAll('.nav-link');
             const pages = document.querySelectorAll('.page');
+            const startPlanButtons = document.querySelectorAll('.start-plan-btn');
+            const mobileMenuBtn = document.getElementById('mobileMenuBtn');
+            const navLinksContainer = document.getElementById('navLinks');
+            const mobileHeaderAutoClose = document.getElementById('mobileHeaderAutoClose');
+            const mainHeader = document.getElementById('mainHeader');
+            const mobileNavLinks = document.querySelectorAll('.mobile-nav-links a');
             
             // Function to show a specific page
             function showPage(pageId) {
@@ -1134,6 +1375,17 @@
                         link.classList.add('active');
                     }
                 });
+                
+                // Update active mobile nav link
+                mobileNavLinks.forEach(link => {
+                    link.classList.remove('active');
+                    if (link.getAttribute('data-page') === pageId) {
+                        link.classList.add('active');
+                    }
+                });
+                
+                // Close mobile menu if open
+                navLinksContainer.classList.remove('active');
             }
             
             // Add click event to nav links
@@ -1150,6 +1402,80 @@
                     });
                 });
             });
+            
+            // Add click event to mobile nav links
+            mobileNavLinks.forEach(link => {
+                link.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    const pageId = this.getAttribute('data-page');
+                    showPage(pageId);
+                    
+                    // Scroll to top when navigating
+                    window.scrollTo({
+                        top: 0,
+                        behavior: 'smooth'
+                    });
+                    
+                    // Close mobile header after clicking a link
+                    closeMobileHeader();
+                });
+            });
+            
+            // Add click event to "Start This Plan" buttons
+            startPlanButtons.forEach(button => {
+                button.addEventListener('click', function() {
+                    const planName = this.getAttribute('data-plan');
+                    // Navigate to cyber.html when any plan is started
+                    window.location.href = 'cyber.html';
+                });
+            });
+            
+            // Mobile menu toggle
+            mobileMenuBtn.addEventListener('click', function() {
+                navLinksContainer.classList.toggle('active');
+            });
+            
+            // Close mobile menu when clicking outside
+            document.addEventListener('click', function(e) {
+                if (!e.target.closest('.header-content')) {
+                    navLinksContainer.classList.remove('active');
+                }
+            });
+            
+            // Mobile header auto-close functionality
+            function closeMobileHeader() {
+                // Hide the mobile header with animation
+                mobileHeaderAutoClose.style.transform = 'translateY(-100%)';
+                
+                // Show the main header after mobile header is hidden
+                setTimeout(() => {
+                    mainHeader.style.transform = 'translateY(0)';
+                }, 500);
+            }
+            
+            // Check if on mobile device and start countdown
+            function checkMobileDevice() {
+                const isMobile = window.innerWidth <= 767;
+                
+                if (isMobile) {
+                    // Hide main header initially
+                    mainHeader.style.transform = 'translateY(-100%)';
+                    
+                    // Show mobile header and start auto-close timer
+                    mobileHeaderAutoClose.style.display = 'block';
+                    
+                    // Auto-close after 2 seconds
+                    setTimeout(closeMobileHeader, 2000);
+                } else {
+                    // Show main header on desktop
+                    mainHeader.style.transform = 'translateY(0)';
+                    mobileHeaderAutoClose.style.display = 'none';
+                }
+            }
+            
+            // Run on page load and window resize
+            checkMobileDevice();
+            window.addEventListener('resize', checkMobileDevice);
             
             // Animate progress bars on the progress page
             const progressBars = document.querySelectorAll('.skill-bar');
