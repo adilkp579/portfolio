@@ -1,0 +1,1187 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tech Study Hub | Cybersecurity, Full-Stack & Python</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        :root {
+            --primary: #2c3e50;
+            --secondary: #3498db;
+            --accent: #e74c3c;
+            --light: #ecf0f1;
+            --dark: #2c3e50;
+            --success: #2ecc71;
+            --warning: #f39c12;
+            --danger: #e74c3c;
+        }
+
+        body {
+            background-color: #f5f7fa;
+            color: #333;
+            line-height: 1.6;
+        }
+
+        /* Header Styles */
+        header {
+            background: linear-gradient(135deg, var(--primary), #1a2530);
+            color: white;
+            padding: 1rem 0;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        .container {
+            width: 90%;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .header-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .logo i {
+            font-size: 2rem;
+            color: var(--secondary);
+        }
+
+        .logo h1 {
+            font-size: 1.8rem;
+            font-weight: 700;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 1.5rem;
+        }
+
+        .nav-links a {
+            color: var(--light);
+            text-decoration: none;
+            font-weight: 500;
+            padding: 0.5rem 1rem;
+            border-radius: 4px;
+            transition: all 0.3s ease;
+        }
+
+        .nav-links a:hover {
+            background-color: rgba(255, 255, 255, 0.1);
+            color: var(--secondary);
+        }
+
+        .nav-links a.active {
+            background-color: var(--secondary);
+            color: white;
+        }
+
+        /* Page Content */
+        .page {
+            display: none;
+            padding: 2rem 0;
+            min-height: 70vh;
+        }
+
+        .page.active {
+            display: block;
+        }
+
+        /* Hero Section */
+        .hero {
+            background: linear-gradient(rgba(44, 62, 80, 0.8), rgba(44, 62, 80, 0.9)), url('https://images.unsplash.com/photo-1550751827-4bd374c3f58b?ixlib=rb-4.0.3&auto=format&fit=crop&w=1350&q=80');
+            background-size: cover;
+            background-position: center;
+            color: white;
+            padding: 4rem 0;
+            text-align: center;
+        }
+
+        .hero h2 {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .hero p {
+            font-size: 1.2rem;
+            max-width: 700px;
+            margin: 0 auto 2rem;
+        }
+
+        .cta-button {
+            display: inline-block;
+            background-color: var(--secondary);
+            color: white;
+            padding: 0.8rem 2rem;
+            border-radius: 30px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            border: 2px solid var(--secondary);
+        }
+
+        .cta-button:hover {
+            background-color: transparent;
+            color: var(--secondary);
+        }
+
+        /* Main Content */
+        .main-content {
+            padding: 3rem 0;
+        }
+
+        .section-title {
+            text-align: center;
+            margin-bottom: 3rem;
+            color: var(--primary);
+            position: relative;
+        }
+
+        .section-title:after {
+            content: '';
+            display: block;
+            width: 80px;
+            height: 4px;
+            background: var(--secondary);
+            margin: 10px auto;
+            border-radius: 2px;
+        }
+
+        /* Study Cards */
+        .study-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-bottom: 3rem;
+        }
+
+        .study-card {
+            background: white;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .study-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.15);
+        }
+
+        .card-header {
+            padding: 1.5rem;
+            color: white;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .cybersecurity {
+            background: linear-gradient(135deg, #3498db, #2980b9);
+        }
+
+        .fullstack {
+            background: linear-gradient(135deg, #2ecc71, #27ae60);
+        }
+
+        .mern {
+            background: linear-gradient(135deg, #e74c3c, #c0392b);
+        }
+
+        .python {
+            background: linear-gradient(135deg, #f39c12, #e67e22);
+        }
+
+        .card-header i {
+            font-size: 1.5rem;
+        }
+
+        .card-body {
+            padding: 1.5rem;
+        }
+
+        .card-body h3 {
+            margin-bottom: 1rem;
+            color: var(--primary);
+        }
+
+        .card-body ul {
+            list-style-type: none;
+            margin-bottom: 1.5rem;
+        }
+
+        .card-body li {
+            padding: 0.5rem 0;
+            border-bottom: 1px solid #eee;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .card-body li:last-child {
+            border-bottom: none;
+        }
+
+        .card-body li i {
+            color: var(--success);
+        }
+
+        .progress-bar {
+            height: 8px;
+            background-color: #ecf0f1;
+            border-radius: 4px;
+            margin: 1rem 0;
+            overflow: hidden;
+        }
+
+        .progress {
+            height: 100%;
+            border-radius: 4px;
+        }
+
+        .cybersecurity .progress {
+            background-color: #3498db;
+            width: 65%;
+        }
+
+        .fullstack .progress {
+            background-color: #2ecc71;
+            width: 80%;
+        }
+
+        .mern .progress {
+            background-color: #e74c3c;
+            width: 45%;
+        }
+
+        .python .progress {
+            background-color: #f39c12;
+            width: 75%;
+        }
+
+        .resources {
+            margin-top: 2rem;
+        }
+
+        .resources h4 {
+            margin-bottom: 1rem;
+            color: var(--primary);
+        }
+
+        .resource-links {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+
+        .resource-link {
+            background-color: var(--light);
+            padding: 0.5rem 1rem;
+            border-radius: 20px;
+            font-size: 0.9rem;
+            text-decoration: none;
+            color: var(--dark);
+            transition: all 0.3s ease;
+        }
+
+        .resource-link:hover {
+            background-color: var(--secondary);
+            color: white;
+        }
+
+        /* Study Schedule */
+        .schedule {
+            background-color: white;
+            border-radius: 10px;
+            padding: 2rem;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            margin-bottom: 3rem;
+        }
+
+        .schedule-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            gap: 1.5rem;
+        }
+
+        .day-card {
+            background-color: var(--light);
+            border-radius: 8px;
+            padding: 1.5rem;
+            transition: all 0.3s ease;
+        }
+
+        .day-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        }
+
+        .day-card h4 {
+            color: var(--primary);
+            margin-bottom: 1rem;
+            padding-bottom: 0.5rem;
+            border-bottom: 2px solid var(--secondary);
+        }
+
+        .day-card ul {
+            list-style-type: none;
+        }
+
+        .day-card li {
+            padding: 0.5rem 0;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .day-card li i {
+            color: var(--secondary);
+        }
+
+        /* Study Plans Page */
+        .plans-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+            gap: 2rem;
+        }
+
+        .plan-card {
+            background: white;
+            border-radius: 10px;
+            padding: 2rem;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease;
+        }
+
+        .plan-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .plan-card h3 {
+            color: var(--primary);
+            margin-bottom: 1rem;
+            padding-bottom: 0.5rem;
+            border-bottom: 2px solid var(--secondary);
+        }
+
+        .plan-card ul {
+            list-style-type: none;
+            margin: 1.5rem 0;
+        }
+
+        .plan-card li {
+            padding: 0.5rem 0;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .plan-card li i {
+            color: var(--success);
+        }
+
+        .plan-duration {
+            display: inline-block;
+            background-color: var(--light);
+            padding: 0.3rem 1rem;
+            border-radius: 20px;
+            font-size: 0.9rem;
+            margin-bottom: 1rem;
+        }
+
+        /* Resources Page */
+        .resources-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+
+        .resource-category {
+            background: white;
+            border-radius: 10px;
+            padding: 2rem;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        }
+
+        .resource-category h3 {
+            color: var(--primary);
+            margin-bottom: 1.5rem;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .resource-category ul {
+            list-style-type: none;
+        }
+
+        .resource-category li {
+            padding: 0.8rem 0;
+            border-bottom: 1px solid #eee;
+        }
+
+        .resource-category li:last-child {
+            border-bottom: none;
+        }
+
+        .resource-category a {
+            color: var(--dark);
+            text-decoration: none;
+            transition: color 0.3s ease;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .resource-category a:hover {
+            color: var(--secondary);
+        }
+
+        /* Progress Page */
+        .progress-container {
+            background: white;
+            border-radius: 10px;
+            padding: 2rem;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            margin-bottom: 2rem;
+        }
+
+        .progress-item {
+            margin-bottom: 2rem;
+        }
+
+        .progress-item:last-child {
+            margin-bottom: 0;
+        }
+
+        .progress-info {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 0.5rem;
+        }
+
+        .progress-info h4 {
+            color: var(--primary);
+        }
+
+        .progress-percentage {
+            font-weight: bold;
+            color: var(--secondary);
+        }
+
+        .skill-progress {
+            height: 12px;
+            background-color: #ecf0f1;
+            border-radius: 6px;
+            overflow: hidden;
+        }
+
+        .skill-bar {
+            height: 100%;
+            border-radius: 6px;
+            transition: width 1.5s ease-in-out;
+        }
+
+        .achievements {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            gap: 1.5rem;
+        }
+
+        .achievement-card {
+            background: white;
+            border-radius: 10px;
+            padding: 1.5rem;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            text-align: center;
+            transition: transform 0.3s ease;
+        }
+
+        .achievement-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .achievement-card i {
+            font-size: 2.5rem;
+            color: var(--warning);
+            margin-bottom: 1rem;
+        }
+
+        /* Community Page */
+        .community-stats {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+            gap: 1.5rem;
+            margin-bottom: 2rem;
+        }
+
+        .stat-card {
+            background: white;
+            border-radius: 10px;
+            padding: 1.5rem;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            text-align: center;
+        }
+
+        .stat-card i {
+            font-size: 2rem;
+            color: var(--secondary);
+            margin-bottom: 1rem;
+        }
+
+        .stat-number {
+            font-size: 2rem;
+            font-weight: bold;
+            color: var(--primary);
+        }
+
+        .stat-label {
+            color: #7f8c8d;
+            font-size: 0.9rem;
+        }
+
+        .forum-posts {
+            background: white;
+            border-radius: 10px;
+            padding: 2rem;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        }
+
+        .post {
+            padding: 1.5rem 0;
+            border-bottom: 1px solid #eee;
+        }
+
+        .post:last-child {
+            border-bottom: none;
+        }
+
+        .post-header {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 0.5rem;
+        }
+
+        .post-title {
+            font-weight: bold;
+            color: var(--primary);
+        }
+
+        .post-meta {
+            color: #7f8c8d;
+            font-size: 0.9rem;
+        }
+
+        .post-excerpt {
+            color: #555;
+        }
+
+        /* Footer */
+        footer {
+            background-color: var(--primary);
+            color: white;
+            padding: 2rem 0;
+            text-align: center;
+        }
+
+        .footer-content {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 1.5rem;
+        }
+
+        .social-links {
+            display: flex;
+            gap: 1rem;
+        }
+
+        .social-links a {
+            color: white;
+            font-size: 1.5rem;
+            transition: color 0.3s ease;
+        }
+
+        .social-links a:hover {
+            color: var(--secondary);
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .header-content {
+                flex-direction: column;
+                gap: 1rem;
+            }
+
+            .nav-links {
+                flex-wrap: wrap;
+                justify-content: center;
+            }
+
+            .hero h2 {
+                font-size: 2rem;
+            }
+
+            .study-grid, .plans-container, .resources-grid, .achievements, .community-stats {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <div class="container">
+            <div class="header-content">
+                <div class="logo">
+                    <i class="fas fa-laptop-code"></i>
+                    <h1>TechStudyHub</h1>
+                </div>
+                <nav class="nav-links">
+                    <a href="#" class="nav-link active" data-page="home">Home</a>
+                    <a href="#" class="nav-link" data-page="study-plans">Study Plans</a>
+                    <a href="#" class="nav-link" data-page="resources">Resources</a>
+                    <a href="#" class="nav-link" data-page="progress">Progress</a>
+                    <a href="#" class="nav-link" data-page="community">Community</a>
+                </nav>
+            </div>
+        </div>
+    </header>
+
+    <!-- Home Page -->
+    <section id="home" class="page active">
+        <!-- Hero Section -->
+        <div class="hero">
+            <div class="container">
+                <h2>Master Cybersecurity, Full-Stack & Python Development</h2>
+                <p>Your comprehensive study hub for modern tech skills. Track progress, access resources, and follow structured learning paths.</p>
+                <a href="#" class="cta-button">Start Learning Now</a>
+            </div>
+        </div>
+
+        <!-- Main Content -->
+        <main class="main-content container">
+            <h2 class="section-title">Study Tracks</h2>
+            
+            <!-- Study Cards -->
+            <div class="study-grid">
+                <!-- Cybersecurity Card -->
+                <div class="study-card">
+                    <div class="card-header cybersecurity">
+                        <i class="fas fa-shield-alt"></i>
+                        <h3>Cybersecurity</h3>
+                    </div>
+                    <div class="card-body">
+                        <h3>Fundamentals & Advanced Concepts</h3>
+                        <ul>
+                            <li><i class="fas fa-check-circle"></i> Network Security</li>
+                            <li><i class="fas fa-check-circle"></i> Ethical Hacking</li>
+                            <li><i class="fas fa-check-circle"></i> Cryptography</li>
+                            <li><i class="fas fa-check-circle"></i> Threat Intelligence</li>
+                        </ul>
+                        <div class="progress-bar">
+                            <div class="progress"></div>
+                        </div>
+                        <p>65% Complete</p>
+                        
+                        <div class="resources">
+                            <h4>Resources</h4>
+                            <div class="resource-links">
+                                <a href="#" class="resource-link">TryHackMe</a>
+                                <a href="#" class="resource-link">Cybrary</a>
+                                <a href="#" class="resource-link">OWASP</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Full-Stack Card -->
+                <div class="study-card">
+                    <div class="card-header fullstack">
+                        <i class="fas fa-layer-group"></i>
+                        <h3>Full-Stack Development</h3>
+                    </div>
+                    <div class="card-body">
+                        <h3>Frontend & Backend Mastery</h3>
+                        <ul>
+                            <li><i class="fas fa-check-circle"></i> HTML, CSS, JavaScript</li>
+                            <li><i class="fas fa-check-circle"></i> React & Vue.js</li>
+                            <li><i class="fas fa-check-circle"></i> Node.js & Express</li>
+                            <li><i class="fas fa-check-circle"></i> Database Management</li>
+                        </ul>
+                        <div class="progress-bar">
+                            <div class="progress"></div>
+                        </div>
+                        <p>80% Complete</p>
+                        
+                        <div class="resources">
+                            <h4>Resources</h4>
+                            <div class="resource-links">
+                                <a href="#" class="resource-link">MDN Web Docs</a>
+                                <a href="#" class="resource-link">FreeCodeCamp</a>
+                                <a href="#" class="resource-link">Frontend Masters</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- MERN Stack Card -->
+                <div class="study-card">
+                    <div class="card-header mern">
+                        <i class="fab fa-react"></i>
+                        <h3>MERN Stack</h3>
+                    </div>
+                    <div class="card-body">
+                        <h3>Modern Web Development</h3>
+                        <ul>
+                            <li><i class="fas fa-check-circle"></i> MongoDB</li>
+                            <li><i class="fas fa-check-circle"></i> Express.js</li>
+                            <li><i class="fas fa-check-circle"></i> React</li>
+                            <li><i class="fas fa-check-circle"></i> Node.js</li>
+                        </ul>
+                        <div class="progress-bar">
+                            <div class="progress"></div>
+                        </div>
+                        <p>45% Complete</p>
+                        
+                        <div class="resources">
+                            <h4>Resources</h4>
+                            <div class="resource-links">
+                                <a href="#" class="resource-link">React Docs</a>
+                                <a href="#" class="resource-link">MongoDB University</a>
+                                <a href="#" class="resource-link">Node.js Guides</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Python Card -->
+                <div class="study-card">
+                    <div class="card-header python">
+                        <i class="fab fa-python"></i>
+                        <h3>Python Programming</h3>
+                    </div>
+                    <div class="card-body">
+                        <h3>From Basics to Advanced</h3>
+                        <ul>
+                            <li><i class="fas fa-check-circle"></i> Python Fundamentals</li>
+                            <li><i class="fas fa-check-circle"></i> Data Structures</li>
+                            <li><i class="fas fa-check-circle"></i> Web Scraping</li>
+                            <li><i class="fas fa-check-circle"></i> Django & Flask</li>
+                        </ul>
+                        <div class="progress-bar">
+                            <div class="progress"></div>
+                        </div>
+                        <p>75% Complete</p>
+                        
+                        <div class="resources">
+                            <h4>Resources</h4>
+                            <div class="resource-links">
+                                <a href="#" class="resource-link">Real Python</a>
+                                <a href="#" class="resource-link">Python Docs</a>
+                                <a href="#" class="resource-link">Automate the Boring Stuff</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Study Schedule -->
+            <h2 class="section-title">Weekly Study Plan</h2>
+            <div class="schedule">
+                <div class="schedule-grid">
+                    <div class="day-card">
+                        <h4>Monday</h4>
+                        <ul>
+                            <li><i class="fas fa-laptop-code"></i> Cybersecurity Basics</li>
+                            <li><i class="fas fa-code"></i> Python Exercises</li>
+                            <li><i class="fas fa-book"></i> Reading: Network Security</li>
+                        </ul>
+                    </div>
+                    <div class="day-card">
+                        <h4>Tuesday</h4>
+                        <ul>
+                            <li><i class="fab fa-js"></i> JavaScript Practice</li>
+                            <li><i class="fab fa-react"></i> React Components</li>
+                            <li><i class="fas fa-database"></i> MongoDB Queries</li>
+                        </ul>
+                    </div>
+                    <div class="day-card">
+                        <h4>Wednesday</h4>
+                        <ul>
+                            <li><i class="fas fa-shield-alt"></i> Ethical Hacking Lab</li>
+                            <li><i class="fas fa-server"></i> Node.js Backend</li>
+                            <li><i class="fas fa-code"></i> Python Projects</li>
+                        </ul>
+                    </div>
+                    <div class="day-card">
+                        <h4>Thursday</h4>
+                        <ul>
+                            <li><i class="fab fa-react"></i> React Hooks</li>
+                            <li><i class="fas fa-lock"></i> Cryptography</li>
+                            <li><i class="fas fa-code-branch"></i> Git & GitHub</li>
+                        </ul>
+                    </div>
+                    <div class="day-card">
+                        <h4>Friday</h4>
+                        <ul>
+                            <li><i class="fas fa-tasks"></i> Weekly Review</li>
+                            <li><i class="fas fa-project-diagram"></i> Full-Stack Project</li>
+                            <li><i class="fas fa-bug"></i> Debugging Practice</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </section>
+
+    <!-- Study Plans Page -->
+    <section id="study-plans" class="page">
+        <div class="container">
+            <h2 class="section-title">Study Plans</h2>
+            
+            <div class="plans-container">
+                <div class="plan-card">
+                    <span class="plan-duration">12 Weeks</span>
+                    <h3>Cybersecurity Foundation</h3>
+                    <p>A comprehensive plan to build fundamental cybersecurity knowledge and skills.</p>
+                    <ul>
+                        <li><i class="fas fa-check-circle"></i> Network Security Fundamentals</li>
+                        <li><i class="fas fa-check-circle"></i> Cryptography Basics</li>
+                        <li><i class="fas fa-check-circle"></i> Ethical Hacking Principles</li>
+                        <li><i class="fas fa-check-circle"></i> Security Tools & Techniques</li>
+                        <li><i class="fas fa-check-circle"></i> Incident Response</li>
+                    </ul>
+                    <a href="#" class="cta-button">Start This Plan</a>
+                </div>
+                
+                <div class="plan-card">
+                    <span class="plan-duration">16 Weeks</span>
+                    <h3>Full-Stack Developer</h3>
+                    <p>Become a proficient full-stack developer with this structured learning path.</p>
+                    <ul>
+                        <li><i class="fas fa-check-circle"></i> HTML, CSS & JavaScript Mastery</li>
+                        <li><i class="fas fa-check-circle"></i> Frontend Framework (React)</li>
+                        <li><i class="fas fa-check-circle"></i> Backend Development (Node.js)</li>
+                        <li><i class="fas fa-check-circle"></i> Database Design & Management</li>
+                        <li><i class="fas fa-check-circle"></i> Deployment & DevOps Basics</li>
+                    </ul>
+                    <a href="#" class="cta-button">Start This Plan</a>
+                </div>
+                
+                <div class="plan-card">
+                    <span class="plan-duration">10 Weeks</span>
+                    <h3>Python Programming</h3>
+                    <p>From Python basics to advanced concepts and practical applications.</p>
+                    <ul>
+                        <li><i class="fas fa-check-circle"></i> Python Syntax & Fundamentals</li>
+                        <li><i class="fas fa-check-circle"></i> Data Structures & Algorithms</li>
+                        <li><i class="fas fa-check-circle"></i> Object-Oriented Programming</li>
+                        <li><i class="fas fa-check-circle"></i> Web Development with Django</li>
+                        <li><i class="fas fa-check-circle"></i> Data Analysis & Visualization</li>
+                    </ul>
+                    <a href="#" class="cta-button">Start This Plan</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Resources Page -->
+    <section id="resources" class="page">
+        <div class="container">
+            <h2 class="section-title">Learning Resources</h2>
+            
+            <div class="resources-grid">
+                <div class="resource-category">
+                    <h3><i class="fas fa-shield-alt"></i> Cybersecurity</h3>
+                    <ul>
+                        <li><a href="#"><i class="fas fa-external-link-alt"></i> TryHackMe - Interactive learning platform</a></li>
+                        <li><a href="#"><i class="fas fa-external-link-alt"></i> Cybrary - Cybersecurity courses</a></li>
+                        <li><a href="#"><i class="fas fa-external-link-alt"></i> OWASP - Web security resources</a></li>
+                        <li><a href="#"><i class="fas fa-external-link-alt"></i> Hack The Box - Penetration testing labs</a></li>
+                        <li><a href="#"><i class="fas fa-external-link-alt"></i> SANS Reading Room - Security whitepapers</a></li>
+                    </ul>
+                </div>
+                
+                <div class="resource-category">
+                    <h3><i class="fas fa-layer-group"></i> Full-Stack Development</h3>
+                    <ul>
+                        <li><a href="#"><i class="fas fa-external-link-alt"></i> MDN Web Docs - Web technologies reference</a></li>
+                        <li><a href="#"><i class="fas fa-external-link-alt"></i> FreeCodeCamp - Interactive coding challenges</a></li>
+                        <li><a href="#"><i class="fas fa-external-link-alt"></i> Frontend Masters - In-depth courses</a></li>
+                        <li><a href="#"><i class="fas fa-external-link-alt"></i> JavaScript.info - Modern JavaScript tutorial</a></li>
+                        <li><a href="#"><i class="fas fa-external-link-alt"></i> CSS-Tricks - CSS guides and tips</a></li>
+                    </ul>
+                </div>
+                
+                <div class="resource-category">
+                    <h3><i class="fab fa-python"></i> Python Programming</h3>
+                    <ul>
+                        <li><a href="#"><i class="fas fa-external-link-alt"></i> Real Python - Tutorials and articles</a></li>
+                        <li><a href="#"><i class="fas fa-external-link-alt"></i> Python.org - Official documentation</a></li>
+                        <li><a href="#"><i class="fas fa-external-link-alt"></i> Automate the Boring Stuff - Practical projects</a></li>
+                        <li><a href="#"><i class="fas fa-external-link-alt"></i> PyBites - Code challenges and tips</a></li>
+                        <li><a href="#"><i class="fas fa-external-link-alt"></i> Full Stack Python - Deployment guides</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Progress Page -->
+    <section id="progress" class="page">
+        <div class="container">
+            <h2 class="section-title">Your Learning Progress</h2>
+            
+            <div class="progress-container">
+                <h3>Skill Progress</h3>
+                <div class="progress-item">
+                    <div class="progress-info">
+                        <h4>Cybersecurity</h4>
+                        <span class="progress-percentage">65%</span>
+                    </div>
+                    <div class="skill-progress">
+                        <div class="skill-bar cybersecurity" style="width: 65%"></div>
+                    </div>
+                </div>
+                
+                <div class="progress-item">
+                    <div class="progress-info">
+                        <h4>Full-Stack Development</h4>
+                        <span class="progress-percentage">80%</span>
+                    </div>
+                    <div class="skill-progress">
+                        <div class="skill-bar fullstack" style="width: 80%"></div>
+                    </div>
+                </div>
+                
+                <div class="progress-item">
+                    <div class="progress-info">
+                        <h4>MERN Stack</h4>
+                        <span class="progress-percentage">45%</span>
+                    </div>
+                    <div class="skill-progress">
+                        <div class="skill-bar mern" style="width: 45%"></div>
+                    </div>
+                </div>
+                
+                <div class="progress-item">
+                    <div class="progress-info">
+                        <h4>Python Programming</h4>
+                        <span class="progress-percentage">75%</span>
+                    </div>
+                    <div class="skill-progress">
+                        <div class="skill-bar python" style="width: 75%"></div>
+                    </div>
+                </div>
+            </div>
+            
+            <h3 class="section-title">Achievements</h3>
+            <div class="achievements">
+                <div class="achievement-card">
+                    <i class="fas fa-trophy"></i>
+                    <h4>Python Basics</h4>
+                    <p>Completed Python fundamentals course</p>
+                </div>
+                
+                <div class="achievement-card">
+                    <i class="fas fa-trophy"></i>
+                    <h4>Web Security</h4>
+                    <p>Finished OWASP top 10 challenges</p>
+                </div>
+                
+                <div class="achievement-card">
+                    <i class="fas fa-trophy"></i>
+                    <h4>React Master</h4>
+                    <p>Built 5 React applications</p>
+                </div>
+                
+                <div class="achievement-card">
+                    <i class="fas fa-trophy"></i>
+                    <h4>Database Design</h4>
+                    <p>Created 3 database schemas</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Community Page -->
+    <section id="community" class="page">
+        <div class="container">
+            <h2 class="section-title">Community</h2>
+            
+            <div class="community-stats">
+                <div class="stat-card">
+                    <i class="fas fa-users"></i>
+                    <div class="stat-number">5,247</div>
+                    <div class="stat-label">Active Learners</div>
+                </div>
+                
+                <div class="stat-card">
+                    <i class="fas fa-comments"></i>
+                    <div class="stat-number">1,893</div>
+                    <div class="stat-label">Forum Posts</div>
+                </div>
+                
+                <div class="stat-card">
+                    <i class="fas fa-code-branch"></i>
+                    <div class="stat-number">642</div>
+                    <div class="stat-label">Projects Shared</div>
+                </div>
+                
+                <div class="stat-card">
+                    <i class="fas fa-question-circle"></i>
+                    <div class="stat-number">327</div>
+                    <div class="stat-label">Questions Answered</div>
+                </div>
+            </div>
+            
+            <div class="forum-posts">
+                <h3>Recent Forum Activity</h3>
+                
+                <div class="post">
+                    <div class="post-header">
+                        <div class="post-title">Help with React State Management</div>
+                        <div class="post-meta">2 hours ago</div>
+                    </div>
+                    <div class="post-excerpt">I'm having trouble understanding when to use useState vs useReducer in my application. Can anyone explain the best practices?</div>
+                </div>
+                
+                <div class="post">
+                    <div class="post-header">
+                        <div class="post-title">Python Web Scraping Ethics</div>
+                        <div class="post-meta">5 hours ago</div>
+                    </div>
+                    <div class="post-excerpt">What are the ethical considerations when web scraping? I want to make sure I'm following proper guidelines.</div>
+                </div>
+                
+                <div class="post">
+                    <div class="post-header">
+                        <div class="post-title">Cybersecurity Career Path</div>
+                        <div class="post-meta">1 day ago</div>
+                    </div>
+                    <div class="post-excerpt">I'm interested in transitioning to cybersecurity from web development. What certifications would you recommend?</div>
+                </div>
+                
+                <div class="post">
+                    <div class="post-header">
+                        <div class="post-title">MERN Stack Deployment Issues</div>
+                        <div class="post-meta">2 days ago</div>
+                    </div>
+                    <div class="post-excerpt">Having trouble deploying my MERN application to Heroku. The build succeeds but the app crashes on startup.</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="logo">
+                    <i class="fas fa-laptop-code"></i>
+                    <h2>TechStudyHub</h2>
+                </div>
+                <p>Your pathway to mastering modern technology skills</p>
+                <div class="social-links">
+                    <a href="#"><i class="fab fa-twitter"></i></a>
+                    <a href="#"><i class="fab fa-github"></i></a>
+                    <a href="#"><i class="fab fa-linkedin"></i></a>
+                    <a href="#"><i class="fab fa-youtube"></i></a>
+                </div>
+                <p>&copy; 2023 TechStudyHub. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Page Navigation
+        document.addEventListener('DOMContentLoaded', function() {
+            const navLinks = document.querySelectorAll('.nav-link');
+            const pages = document.querySelectorAll('.page');
+            
+            // Function to show a specific page
+            function showPage(pageId) {
+                // Hide all pages
+                pages.forEach(page => {
+                    page.classList.remove('active');
+                });
+                
+                // Show the selected page
+                document.getElementById(pageId).classList.add('active');
+                
+                // Update active nav link
+                navLinks.forEach(link => {
+                    link.classList.remove('active');
+                    if (link.getAttribute('data-page') === pageId) {
+                        link.classList.add('active');
+                    }
+                });
+            }
+            
+            // Add click event to nav links
+            navLinks.forEach(link => {
+                link.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    const pageId = this.getAttribute('data-page');
+                    showPage(pageId);
+                    
+                    // Scroll to top when navigating
+                    window.scrollTo({
+                        top: 0,
+                        behavior: 'smooth'
+                    });
+                });
+            });
+            
+            // Animate progress bars on the progress page
+            const progressBars = document.querySelectorAll('.skill-bar');
+            
+            function animateProgressBars() {
+                progressBars.forEach(bar => {
+                    const width = bar.style.width;
+                    bar.style.width = '0';
+                    
+                    setTimeout(() => {
+                        bar.style.transition = 'width 1.5s ease-in-out';
+                        bar.style.width = width;
+                    }, 500);
+                });
+            }
+            
+            // Observe when progress page becomes active
+            const progressPage = document.getElementById('progress');
+            const observer = new MutationObserver(function(mutations) {
+                mutations.forEach(function(mutation) {
+                    if (mutation.attributeName === 'class') {
+                        if (progressPage.classList.contains('active')) {
+                            animateProgressBars();
+                        }
+                    }
+                });
+            });
+            
+            observer.observe(progressPage, {
+                attributes: true
+            });
+        });
+    </script>
+</body>
+</html>
