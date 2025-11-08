@@ -195,7 +195,364 @@
             display: block;
         }
 
-        /* Hero Section */
+        /* Progress Page Styles */
+        .progress-container {
+            background: white;
+            border-radius: 10px;
+            padding: 1.5rem;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            margin-bottom: 1.5rem;
+        }
+
+        .progress-item {
+            margin-bottom: 1.5rem;
+        }
+
+        .progress-item:last-child {
+            margin-bottom: 0;
+        }
+
+        .progress-info {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 0.5rem;
+        }
+
+        .progress-info h4 {
+            color: var(--primary);
+            font-size: 1.1rem;
+        }
+
+        .progress-percentage {
+            font-weight: bold;
+            color: var(--secondary);
+        }
+
+        .skill-progress {
+            height: 10px;
+            background-color: #ecf0f1;
+            border-radius: 5px;
+            overflow: hidden;
+        }
+
+        .skill-bar {
+            height: 100%;
+            border-radius: 5px;
+            transition: width 1.5s ease-in-out;
+        }
+
+        .progress-controls {
+            display: flex;
+            gap: 10px;
+            margin-top: 10px;
+        }
+
+        .progress-btn {
+            background-color: var(--secondary);
+            color: white;
+            border: none;
+            padding: 5px 10px;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 0.8rem;
+            transition: background-color 0.3s;
+        }
+
+        .progress-btn:hover {
+            background-color: #2980b9;
+        }
+
+        .progress-btn.reset {
+            background-color: var(--danger);
+        }
+
+        .progress-btn.reset:hover {
+            background-color: #c0392b;
+        }
+
+        .achievements {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 1.2rem;
+        }
+
+        .achievement-card {
+            background: white;
+            border-radius: 10px;
+            padding: 1.2rem;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            text-align: center;
+            transition: transform 0.3s ease;
+        }
+
+        .achievement-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .achievement-card i {
+            font-size: 2rem;
+            color: var(--warning);
+            margin-bottom: 0.8rem;
+        }
+
+        .achievement-card.locked {
+            opacity: 0.6;
+        }
+
+        .achievement-card.locked i {
+            color: #95a5a6;
+        }
+
+        .study-time {
+            background: white;
+            border-radius: 10px;
+            padding: 1.5rem;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            margin-bottom: 1.5rem;
+        }
+
+        .time-display {
+            font-size: 1.5rem;
+            text-align: center;
+            margin: 1rem 0;
+            font-weight: bold;
+            color: var(--primary);
+        }
+
+        .time-controls {
+            display: flex;
+            justify-content: center;
+            gap: 10px;
+            margin-top: 1rem;
+        }
+
+        .time-btn {
+            background-color: var(--success);
+            color: white;
+            border: none;
+            padding: 8px 15px;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 0.9rem;
+            transition: background-color 0.3s;
+        }
+
+        .time-btn:hover {
+            background-color: #27ae60;
+        }
+
+        .time-btn.stop {
+            background-color: var(--danger);
+        }
+
+        .time-btn.stop:hover {
+            background-color: #c0392b;
+        }
+
+        .time-btn.reset {
+            background-color: var(--warning);
+        }
+
+        .time-btn.reset:hover {
+            background-color: #e67e22;
+        }
+
+        /* Challenges Page Styles */
+        .challenges-container {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 2rem;
+        }
+
+        .challenge-category {
+            background: white;
+            border-radius: 10px;
+            padding: 1.5rem;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        }
+
+        .challenge-category h3 {
+            color: var(--primary);
+            margin-bottom: 1.5rem;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-size: 1.5rem;
+            padding-bottom: 0.5rem;
+            border-bottom: 2px solid var(--secondary);
+        }
+
+        .challenge-category.ctf h3 {
+            color: #3498db;
+            border-bottom-color: #3498db;
+        }
+
+        .challenge-category.development h3 {
+            color: #2ecc71;
+            border-bottom-color: #2ecc71;
+        }
+
+        .challenge-category.programming h3 {
+            color: #f39c12;
+            border-bottom-color: #f39c12;
+        }
+
+        .challenge-list {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 1rem;
+        }
+
+        .challenge-item {
+            background: var(--light);
+            border-radius: 8px;
+            padding: 1.2rem;
+            transition: all 0.3s ease;
+            border-left: 4px solid var(--secondary);
+        }
+
+        .challenge-item:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        }
+
+        .challenge-item.ctf {
+            border-left-color: #3498db;
+        }
+
+        .challenge-item.development {
+            border-left-color: #2ecc71;
+        }
+
+        .challenge-item.programming {
+            border-left-color: #f39c12;
+        }
+
+        .challenge-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            margin-bottom: 0.8rem;
+        }
+
+        .challenge-title {
+            font-weight: bold;
+            color: var(--primary);
+            font-size: 1.1rem;
+        }
+
+        .challenge-difficulty {
+            padding: 0.3rem 0.8rem;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            font-weight: bold;
+        }
+
+        .difficulty-easy {
+            background-color: #d5f4e6;
+            color: #27ae60;
+        }
+
+        .difficulty-medium {
+            background-color: #fff3cd;
+            color: #f39c12;
+        }
+
+        .difficulty-hard {
+            background-color: #f8d7da;
+            color: #e74c3c;
+        }
+
+        .challenge-description {
+            color: #555;
+            margin-bottom: 1rem;
+            font-size: 0.9rem;
+        }
+
+        .challenge-meta {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 1rem;
+            font-size: 0.8rem;
+            color: #7f8c8d;
+        }
+
+        .challenge-points {
+            font-weight: bold;
+            color: var(--primary);
+        }
+
+        .challenge-actions {
+            display: flex;
+            gap: 10px;
+        }
+
+        .challenge-btn {
+            background-color: var(--secondary);
+            color: white;
+            border: none;
+            padding: 0.5rem 1rem;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 0.8rem;
+            transition: background-color 0.3s;
+            flex: 1;
+        }
+
+        .challenge-btn:hover {
+            background-color: #2980b9;
+        }
+
+        .challenge-btn.start {
+            background-color: var(--success);
+        }
+
+        .challenge-btn.start:hover {
+            background-color: #27ae60;
+        }
+
+        .challenge-btn.view {
+            background-color: var(--secondary);
+        }
+
+        .challenge-btn.view:hover {
+            background-color: #2980b9;
+        }
+
+        .challenge-stats {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 1rem;
+            margin-bottom: 2rem;
+        }
+
+        .stat-card {
+            background: white;
+            border-radius: 10px;
+            padding: 1.2rem;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            text-align: center;
+        }
+
+        .stat-card i {
+            font-size: 1.8rem;
+            color: var(--secondary);
+            margin-bottom: 0.8rem;
+        }
+
+        .stat-number {
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: var(--primary);
+        }
+
+        .stat-label {
+            color: #7f8c8d;
+            font-size: 0.8rem;
+        }
+
+        /* Other page styles remain the same */
         .hero {
             background: linear-gradient(rgba(44, 62, 80, 0.8), rgba(44, 62, 80, 0.9)), url('https://images.unsplash.com/photo-1550751827-4bd374c3f58b?ixlib=rb-4.0.3&auto=format&fit=crop&w=1350&q=80');
             background-size: cover;
@@ -237,7 +594,6 @@
             color: var(--secondary);
         }
 
-        /* Main Content */
         .main-content {
             padding: 2rem 0;
         }
@@ -260,7 +616,6 @@
             border-radius: 2px;
         }
 
-        /* Study Cards */
         .study-grid {
             display: grid;
             grid-template-columns: 1fr;
@@ -357,22 +712,18 @@
 
         .cybersecurity .progress {
             background-color: #3498db;
-            width: 65%;
         }
 
         .fullstack .progress {
             background-color: #2ecc71;
-            width: 80%;
         }
 
         .mern .progress {
             background-color: #e74c3c;
-            width: 45%;
         }
 
         .python .progress {
             background-color: #f39c12;
-            width: 75%;
         }
 
         .resources {
@@ -406,7 +757,6 @@
             color: white;
         }
 
-        /* Study Schedule */
         .schedule {
             background-color: white;
             border-radius: 10px;
@@ -458,7 +808,6 @@
             font-size: 0.9rem;
         }
 
-        /* Study Plans Page */
         .plans-container {
             display: grid;
             grid-template-columns: 1fr;
@@ -512,7 +861,6 @@
             margin-bottom: 0.8rem;
         }
 
-        /* Resources Page */
         .resources-grid {
             display: grid;
             grid-template-columns: 1fr;
@@ -562,150 +910,6 @@
             color: var(--secondary);
         }
 
-        /* Progress Page */
-        .progress-container {
-            background: white;
-            border-radius: 10px;
-            padding: 1.5rem;
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
-            margin-bottom: 1.5rem;
-        }
-
-        .progress-item {
-            margin-bottom: 1.5rem;
-        }
-
-        .progress-item:last-child {
-            margin-bottom: 0;
-        }
-
-        .progress-info {
-            display: flex;
-            justify-content: space-between;
-            margin-bottom: 0.5rem;
-        }
-
-        .progress-info h4 {
-            color: var(--primary);
-            font-size: 1.1rem;
-        }
-
-        .progress-percentage {
-            font-weight: bold;
-            color: var(--secondary);
-        }
-
-        .skill-progress {
-            height: 10px;
-            background-color: #ecf0f1;
-            border-radius: 5px;
-            overflow: hidden;
-        }
-
-        .skill-bar {
-            height: 100%;
-            border-radius: 5px;
-            transition: width 1.5s ease-in-out;
-        }
-
-        .achievements {
-            display: grid;
-            grid-template-columns: 1fr;
-            gap: 1.2rem;
-        }
-
-        .achievement-card {
-            background: white;
-            border-radius: 10px;
-            padding: 1.2rem;
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
-            text-align: center;
-            transition: transform 0.3s ease;
-        }
-
-        .achievement-card:hover {
-            transform: translateY(-5px);
-        }
-
-        .achievement-card i {
-            font-size: 2rem;
-            color: var(--warning);
-            margin-bottom: 0.8rem;
-        }
-
-        /* Community Page */
-        .community-stats {
-            display: grid;
-            grid-template-columns: repeat(2, 1fr);
-            gap: 1rem;
-            margin-bottom: 1.5rem;
-        }
-
-        .stat-card {
-            background: white;
-            border-radius: 10px;
-            padding: 1.2rem;
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
-            text-align: center;
-        }
-
-        .stat-card i {
-            font-size: 1.8rem;
-            color: var(--secondary);
-            margin-bottom: 0.8rem;
-        }
-
-        .stat-number {
-            font-size: 1.5rem;
-            font-weight: bold;
-            color: var(--primary);
-        }
-
-        .stat-label {
-            color: #7f8c8d;
-            font-size: 0.8rem;
-        }
-
-        .forum-posts {
-            background: white;
-            border-radius: 10px;
-            padding: 1.5rem;
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
-        }
-
-        .post {
-            padding: 1.2rem 0;
-            border-bottom: 1px solid #eee;
-        }
-
-        .post:last-child {
-            border-bottom: none;
-        }
-
-        .post-header {
-            display: flex;
-            flex-direction: column;
-            margin-bottom: 0.5rem;
-        }
-
-        .post-title {
-            font-weight: bold;
-            color: var(--primary);
-            margin-bottom: 0.3rem;
-            font-size: 1.1rem;
-        }
-
-        .post-meta {
-            color: #7f8c8d;
-            font-size: 0.8rem;
-        }
-
-        .post-excerpt {
-            color: #555;
-            font-size: 0.9rem;
-        }
-
-        /* Footer */
         footer {
             background-color: var(--primary);
             color: white;
@@ -770,17 +974,12 @@
                 grid-template-columns: repeat(2, 1fr);
             }
             
-            .community-stats {
+            .challenge-stats {
                 grid-template-columns: repeat(4, 1fr);
             }
             
-            .post-header {
-                flex-direction: row;
-                justify-content: space-between;
-            }
-            
-            .post-title {
-                margin-bottom: 0;
+            .challenge-list {
+                grid-template-columns: repeat(2, 1fr);
             }
         }
 
@@ -808,6 +1007,10 @@
             
             .achievements {
                 grid-template-columns: repeat(4, 1fr);
+            }
+            
+            .challenge-list {
+                grid-template-columns: repeat(3, 1fr);
             }
         }
 
@@ -859,7 +1062,7 @@
                 <a href="#" class="nav-link" data-page="study-plans">Study Plans</a>
                 <a href="#" class="nav-link" data-page="resources">Resources</a>
                 <a href="#" class="nav-link" data-page="progress">Progress</a>
-                <a href="#" class="nav-link" data-page="community">Community</a>
+                <a href="#" class="nav-link" data-page="challenges">Challenges</a>
             </div>
         </div>
     </div>
@@ -880,7 +1083,7 @@
                     <a href="#" class="nav-link" data-page="study-plans">Study Plans</a>
                     <a href="#" class="nav-link" data-page="resources">Resources</a>
                     <a href="#" class="nav-link" data-page="progress">Progress</a>
-                    <a href="#" class="nav-link" data-page="community">Community</a>
+                    <a href="#" class="nav-link" data-page="challenges">Challenges</a>
                 </nav>
             </div>
         </div>
@@ -918,9 +1121,9 @@
                             <li><i class="fas fa-check-circle"></i> Threat Intelligence</li>
                         </ul>
                         <div class="progress-bar">
-                            <div class="progress"></div>
+                            <div class="progress cybersecurity" id="cybersecurity-progress"></div>
                         </div>
-                        <p>65% Complete</p>
+                        <p id="cybersecurity-percentage">0% Complete</p>
                         
                         <div class="resources">
                             <h4>Resources</h4>
@@ -948,9 +1151,9 @@
                             <li><i class="fas fa-check-circle"></i> Database Management</li>
                         </ul>
                         <div class="progress-bar">
-                            <div class="progress"></div>
+                            <div class="progress fullstack" id="fullstack-progress"></div>
                         </div>
-                        <p>80% Complete</p>
+                        <p id="fullstack-percentage">0% Complete</p>
                         
                         <div class="resources">
                             <h4>Resources</h4>
@@ -978,9 +1181,9 @@
                             <li><i class="fas fa-check-circle"></i> Node.js</li>
                         </ul>
                         <div class="progress-bar">
-                            <div class="progress"></div>
+                            <div class="progress mern" id="mern-progress"></div>
                         </div>
-                        <p>45% Complete</p>
+                        <p id="mern-percentage">0% Complete</p>
                         
                         <div class="resources">
                             <h4>Resources</h4>
@@ -1008,9 +1211,9 @@
                             <li><i class="fas fa-check-circle"></i> Django & Flask</li>
                         </ul>
                         <div class="progress-bar">
-                            <div class="progress"></div>
+                            <div class="progress python" id="python-progress"></div>
                         </div>
-                        <p>75% Complete</p>
+                        <p id="python-percentage">0% Complete</p>
                         
                         <div class="resources">
                             <h4>Resources</h4>
@@ -1185,142 +1388,326 @@
         <div class="container">
             <h2 class="section-title">Your Learning Progress</h2>
             
+            <!-- Study Time Tracker -->
+            <div class="study-time">
+                <h3>Study Time Tracker</h3>
+                <div class="time-display" id="studyTimeDisplay">00:00:00</div>
+                <div class="time-controls">
+                    <button class="time-btn" id="startTimer">Start Timer</button>
+                    <button class="time-btn stop" id="stopTimer" disabled>Stop Timer</button>
+                    <button class="time-btn reset" id="resetTimer">Reset Timer</button>
+                </div>
+                <p style="text-align: center; margin-top: 10px; color: #7f8c8d;">
+                    Track your study sessions to earn achievements!
+                </p>
+            </div>
+            
+            <!-- Skill Progress -->
             <div class="progress-container">
                 <h3>Skill Progress</h3>
                 <div class="progress-item">
                     <div class="progress-info">
                         <h4>Cybersecurity</h4>
-                        <span class="progress-percentage">65%</span>
+                        <span class="progress-percentage" id="cybersecurity-progress-text">0%</span>
                     </div>
                     <div class="skill-progress">
-                        <div class="skill-bar cybersecurity" style="width: 65%"></div>
+                        <div class="skill-bar cybersecurity" id="cybersecurity-skill-bar" style="width: 0%"></div>
+                    </div>
+                    <div class="progress-controls">
+                        <button class="progress-btn" data-skill="cybersecurity" data-action="increase">+5%</button>
+                        <button class="progress-btn" data-skill="cybersecurity" data-action="decrease">-5%</button>
+                        <button class="progress-btn reset" data-skill="cybersecurity" data-action="reset">Reset</button>
                     </div>
                 </div>
                 
                 <div class="progress-item">
                     <div class="progress-info">
                         <h4>Full-Stack Development</h4>
-                        <span class="progress-percentage">80%</span>
+                        <span class="progress-percentage" id="fullstack-progress-text">0%</span>
                     </div>
                     <div class="skill-progress">
-                        <div class="skill-bar fullstack" style="width: 80%"></div>
+                        <div class="skill-bar fullstack" id="fullstack-skill-bar" style="width: 0%"></div>
+                    </div>
+                    <div class="progress-controls">
+                        <button class="progress-btn" data-skill="fullstack" data-action="increase">+5%</button>
+                        <button class="progress-btn" data-skill="fullstack" data-action="decrease">-5%</button>
+                        <button class="progress-btn reset" data-skill="fullstack" data-action="reset">Reset</button>
                     </div>
                 </div>
                 
                 <div class="progress-item">
                     <div class="progress-info">
                         <h4>MERN Stack</h4>
-                        <span class="progress-percentage">45%</span>
+                        <span class="progress-percentage" id="mern-progress-text">0%</span>
                     </div>
                     <div class="skill-progress">
-                        <div class="skill-bar mern" style="width: 45%"></div>
+                        <div class="skill-bar mern" id="mern-skill-bar" style="width: 0%"></div>
+                    </div>
+                    <div class="progress-controls">
+                        <button class="progress-btn" data-skill="mern" data-action="increase">+5%</button>
+                        <button class="progress-btn" data-skill="mern" data-action="decrease">-5%</button>
+                        <button class="progress-btn reset" data-skill="mern" data-action="reset">Reset</button>
                     </div>
                 </div>
                 
                 <div class="progress-item">
                     <div class="progress-info">
                         <h4>Python Programming</h4>
-                        <span class="progress-percentage">75%</span>
+                        <span class="progress-percentage" id="python-progress-text">0%</span>
                     </div>
                     <div class="skill-progress">
-                        <div class="skill-bar python" style="width: 75%"></div>
+                        <div class="skill-bar python" id="python-skill-bar" style="width: 0%"></div>
+                    </div>
+                    <div class="progress-controls">
+                        <button class="progress-btn" data-skill="python" data-action="increase">+5%</button>
+                        <button class="progress-btn" data-skill="python" data-action="decrease">-5%</button>
+                        <button class="progress-btn reset" data-skill="python" data-action="reset">Reset</button>
                     </div>
                 </div>
             </div>
             
+            <!-- Achievements -->
             <h3 class="section-title">Achievements</h3>
             <div class="achievements">
-                <div class="achievement-card">
+                <div class="achievement-card" id="achievement-1">
                     <i class="fas fa-trophy"></i>
-                    <h4>Python Basics</h4>
-                    <p>Completed Python fundamentals course</p>
+                    <h4>First Steps</h4>
+                    <p>Complete 25% in any skill</p>
                 </div>
                 
-                <div class="achievement-card">
+                <div class="achievement-card locked" id="achievement-2">
                     <i class="fas fa-trophy"></i>
-                    <h4>Web Security</h4>
-                    <p>Finished OWASP top 10 challenges</p>
+                    <h4>Halfway There</h4>
+                    <p>Complete 50% in any skill</p>
                 </div>
                 
-                <div class="achievement-card">
+                <div class="achievement-card locked" id="achievement-3">
                     <i class="fas fa-trophy"></i>
-                    <h4>React Master</h4>
-                    <p>Built 5 React applications</p>
+                    <h4>Master in Training</h4>
+                    <p>Complete 75% in any skill</p>
                 </div>
                 
-                <div class="achievement-card">
+                <div class="achievement-card locked" id="achievement-4">
                     <i class="fas fa-trophy"></i>
-                    <h4>Database Design</h4>
-                    <p>Created 3 database schemas</p>
+                    <h4>Skill Master</h4>
+                    <p>Complete 100% in any skill</p>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- Community Page -->
-    <section id="community" class="page">
+    <!-- Challenges Page -->
+    <section id="challenges" class="page">
         <div class="container">
-            <h2 class="section-title">Community</h2>
+            <h2 class="section-title">Challenges</h2>
             
-            <div class="community-stats">
+            <!-- Challenge Stats -->
+            <div class="challenge-stats">
                 <div class="stat-card">
-                    <i class="fas fa-users"></i>
-                    <div class="stat-number">5,247</div>
-                    <div class="stat-label">Active Learners</div>
+                    <i class="fas fa-flag"></i>
+                    <div class="stat-number" id="total-challenges">24</div>
+                    <div class="stat-label">Total Challenges</div>
                 </div>
                 
                 <div class="stat-card">
-                    <i class="fas fa-comments"></i>
-                    <div class="stat-number">1,893</div>
-                    <div class="stat-label">Forum Posts</div>
+                    <i class="fas fa-check-circle"></i>
+                    <div class="stat-number" id="completed-challenges">0</div>
+                    <div class="stat-label">Completed</div>
                 </div>
                 
                 <div class="stat-card">
-                    <i class="fas fa-code-branch"></i>
-                    <div class="stat-number">642</div>
-                    <div class="stat-label">Projects Shared</div>
+                    <i class="fas fa-star"></i>
+                    <div class="stat-number" id="total-points">0</div>
+                    <div class="stat-label">Points Earned</div>
                 </div>
                 
                 <div class="stat-card">
-                    <i class="fas fa-question-circle"></i>
-                    <div class="stat-number">327</div>
-                    <div class="stat-label">Questions Answered</div>
+                    <i class="fas fa-trophy"></i>
+                    <div class="stat-number" id="rank">#-</div>
+                    <div class="stat-label">Your Rank</div>
                 </div>
             </div>
             
-            <div class="forum-posts">
-                <h3>Recent Forum Activity</h3>
-                
-                <div class="post">
-                    <div class="post-header">
-                        <div class="post-title">Help with React State Management</div>
-                        <div class="post-meta">2 hours ago</div>
+            <!-- Challenges by Category -->
+            <div class="challenges-container">
+                <!-- CTF Challenges -->
+                <div class="challenge-category ctf">
+                    <h3><i class="fas fa-shield-alt"></i> CTF Challenges</h3>
+                    <div class="challenge-list">
+                        <div class="challenge-item ctf">
+                            <div class="challenge-header">
+                                <div class="challenge-title">Web Security Basics</div>
+                                <div class="challenge-difficulty difficulty-easy">Easy</div>
+                            </div>
+                            <div class="challenge-description">
+                                Find and exploit common web vulnerabilities in a simulated environment.
+                            </div>
+                            <div class="challenge-meta">
+                                <div class="challenge-points">50 points</div>
+                                <div class="challenge-time">30 min</div>
+                            </div>
+                            <div class="challenge-actions">
+                                <button class="challenge-btn start">Start Challenge</button>
+                                <button class="challenge-btn view">View Details</button>
+                            </div>
+                        </div>
+                        
+                        <div class="challenge-item ctf">
+                            <div class="challenge-header">
+                                <div class="challenge-title">Network Forensics</div>
+                                <div class="challenge-difficulty difficulty-medium">Medium</div>
+                            </div>
+                            <div class="challenge-description">
+                                Analyze network traffic to identify security breaches and extract hidden data.
+                            </div>
+                            <div class="challenge-meta">
+                                <div class="challenge-points">100 points</div>
+                                <div class="challenge-time">45 min</div>
+                            </div>
+                            <div class="challenge-actions">
+                                <button class="challenge-btn start">Start Challenge</button>
+                                <button class="challenge-btn view">View Details</button>
+                            </div>
+                        </div>
+                        
+                        <div class="challenge-item ctf">
+                            <div class="challenge-header">
+                                <div class="challenge-title">Cryptography Puzzle</div>
+                                <div class="challenge-difficulty difficulty-hard">Hard</div>
+                            </div>
+                            <div class="challenge-description">
+                                Decrypt encoded messages using various cryptographic techniques and algorithms.
+                            </div>
+                            <div class="challenge-meta">
+                                <div class="challenge-points">150 points</div>
+                                <div class="challenge-time">60 min</div>
+                            </div>
+                            <div class="challenge-actions">
+                                <button class="challenge-btn start">Start Challenge</button>
+                                <button class="challenge-btn view">View Details</button>
+                            </div>
+                        </div>
                     </div>
-                    <div class="post-excerpt">I'm having trouble understanding when to use useState vs useReducer in my application. Can anyone explain the best practices?</div>
                 </div>
                 
-                <div class="post">
-                    <div class="post-header">
-                        <div class="post-title">Python Web Scraping Ethics</div>
-                        <div class="post-meta">5 hours ago</div>
+                <!-- Development Challenges -->
+                <div class="challenge-category development">
+                    <h3><i class="fas fa-code"></i> Development Challenges</h3>
+                    <div class="challenge-list">
+                        <div class="challenge-item development">
+                            <div class="challenge-header">
+                                <div class="challenge-title">Responsive Dashboard</div>
+                                <div class="challenge-difficulty difficulty-easy">Easy</div>
+                            </div>
+                            <div class="challenge-description">
+                                Create a responsive admin dashboard using HTML, CSS, and JavaScript.
+                            </div>
+                            <div class="challenge-meta">
+                                <div class="challenge-points">40 points</div>
+                                <div class="challenge-time">45 min</div>
+                            </div>
+                            <div class="challenge-actions">
+                                <button class="challenge-btn start">Start Challenge</button>
+                                <button class="challenge-btn view">View Details</button>
+                            </div>
+                        </div>
+                        
+                        <div class="challenge-item development">
+                            <div class="challenge-header">
+                                <div class="challenge-title">REST API Implementation</div>
+                                <div class="challenge-difficulty difficulty-medium">Medium</div>
+                            </div>
+                            <div class="challenge-description">
+                                Build a RESTful API with CRUD operations using Node.js and Express.
+                            </div>
+                            <div class="challenge-meta">
+                                <div class="challenge-points">80 points</div>
+                                <div class="challenge-time">60 min</div>
+                            </div>
+                            <div class="challenge-actions">
+                                <button class="challenge-btn start">Start Challenge</button>
+                                <button class="challenge-btn view">View Details</button>
+                            </div>
+                        </div>
+                        
+                        <div class="challenge-item development">
+                            <div class="challenge-header">
+                                <div class="challenge-title">Full-Stack E-commerce</div>
+                                <div class="challenge-difficulty difficulty-hard">Hard</div>
+                            </div>
+                            <div class="challenge-description">
+                                Develop a complete e-commerce application with React frontend and Node.js backend.
+                            </div>
+                            <div class="challenge-meta">
+                                <div class="challenge-points">120 points</div>
+                                <div class="challenge-time">120 min</div>
+                            </div>
+                            <div class="challenge-actions">
+                                <button class="challenge-btn start">Start Challenge</button>
+                                <button class="challenge-btn view">View Details</button>
+                            </div>
+                        </div>
                     </div>
-                    <div class="post-excerpt">What are the ethical considerations when web scraping? I want to make sure I'm following proper guidelines.</div>
                 </div>
                 
-                <div class="post">
-                    <div class="post-header">
-                        <div class="post-title">Cybersecurity Career Path</div>
-                        <div class="post-meta">1 day ago</div>
+                <!-- Programming Challenges -->
+                <div class="challenge-category programming">
+                    <h3><i class="fas fa-laptop-code"></i> Programming Challenges</h3>
+                    <div class="challenge-list">
+                        <div class="challenge-item programming">
+                            <div class="challenge-header">
+                                <div class="challenge-title">Data Structures Practice</div>
+                                <div class="challenge-difficulty difficulty-easy">Easy</div>
+                            </div>
+                            <div class="challenge-description">
+                                Implement common data structures like linked lists, stacks, and queues in Python.
+                            </div>
+                            <div class="challenge-meta">
+                                <div class="challenge-points">30 points</div>
+                                <div class="challenge-time">30 min</div>
+                            </div>
+                            <div class="challenge-actions">
+                                <button class="challenge-btn start">Start Challenge</button>
+                                <button class="challenge-btn view">View Details</button>
+                            </div>
+                        </div>
+                        
+                        <div class="challenge-item programming">
+                            <div class="challenge-header">
+                                <div class="challenge-title">Algorithm Optimization</div>
+                                <div class="challenge-difficulty difficulty-medium">Medium</div>
+                            </div>
+                            <div class="challenge-description">
+                                Optimize given algorithms for better time and space complexity.
+                            </div>
+                            <div class="challenge-meta">
+                                <div class="challenge-points">70 points</div>
+                                <div class="challenge-time">45 min</div>
+                            </div>
+                            <div class="challenge-actions">
+                                <button class="challenge-btn start">Start Challenge</button>
+                                <button class="challenge-btn view">View Details</button>
+                            </div>
+                        </div>
+                        
+                        <div class="challenge-item programming">
+                            <div class="challenge-header">
+                                <div class="challenge-title">Web Scraper Project</div>
+                                <div class="challenge-difficulty difficulty-hard">Hard</div>
+                            </div>
+                            <div class="challenge-description">
+                                Build a web scraper that extracts and processes data from multiple websites.
+                            </div>
+                            <div class="challenge-meta">
+                                <div class="challenge-points">100 points</div>
+                                <div class="challenge-time">90 min</div>
+                            </div>
+                            <div class="challenge-actions">
+                                <button class="challenge-btn start">Start Challenge</button>
+                                <button class="challenge-btn view">View Details</button>
+                            </div>
+                        </div>
                     </div>
-                    <div class="post-excerpt">I'm interested in transitioning to cybersecurity from web development. What certifications would you recommend?</div>
-                </div>
-                
-                <div class="post">
-                    <div class="post-header">
-                        <div class="post-title">MERN Stack Deployment Issues</div>
-                        <div class="post-meta">2 days ago</div>
-                    </div>
-                    <div class="post-excerpt">Having trouble deploying my MERN application to Heroku. The build succeeds but the app crashes on startup.</div>
                 </div>
             </div>
         </div>
@@ -1347,6 +1734,187 @@
     </footer>
 
     <script>
+        // Progress Data Management
+        const progressData = {
+            cybersecurity: 0,
+            fullstack: 0,
+            mern: 0,
+            python: 0,
+            studyTime: 0, // in seconds
+            achievements: {
+                firstSteps: false,
+                halfwayThere: false,
+                masterInTraining: false,
+                skillMaster: false
+            },
+            challenges: {
+                completed: 0,
+                points: 0
+            }
+        };
+
+        // Timer variables
+        let studyTimer = null;
+        let studyTime = 0;
+        let isTimerRunning = false;
+
+        // Load progress data from localStorage
+        function loadProgressData() {
+            const savedData = localStorage.getItem('techStudyHubProgress');
+            if (savedData) {
+                const parsedData = JSON.parse(savedData);
+                Object.assign(progressData, parsedData);
+                
+                // Update study time from saved data
+                studyTime = progressData.studyTime || 0;
+                updateStudyTimeDisplay();
+            }
+            
+            // Update all progress displays
+            updateAllProgressDisplays();
+            updateChallengeStats();
+        }
+
+        // Save progress data to localStorage
+        function saveProgressData() {
+            progressData.studyTime = studyTime;
+            localStorage.setItem('techStudyHubProgress', JSON.stringify(progressData));
+        }
+
+        // Update progress for a specific skill
+        function updateSkillProgress(skill, change) {
+            if (change === 'reset') {
+                progressData[skill] = 0;
+            } else {
+                progressData[skill] += change;
+                // Ensure progress stays between 0 and 100
+                progressData[skill] = Math.max(0, Math.min(100, progressData[skill]));
+            }
+            
+            // Update display
+            updateProgressDisplay(skill);
+            
+            // Check for achievements
+            checkAchievements();
+            
+            // Save to localStorage
+            saveProgressData();
+        }
+
+        // Update progress display for a specific skill
+        function updateProgressDisplay(skill) {
+            const progress = progressData[skill];
+            const progressBar = document.getElementById(`${skill}-skill-bar`);
+            const progressText = document.getElementById(`${skill}-progress-text`);
+            const homeProgressBar = document.getElementById(`${skill}-progress`);
+            const homeProgressText = document.getElementById(`${skill}-percentage`);
+            
+            if (progressBar) progressBar.style.width = `${progress}%`;
+            if (progressText) progressText.textContent = `${progress}%`;
+            if (homeProgressBar) homeProgressBar.style.width = `${progress}%`;
+            if (homeProgressText) homeProgressText.textContent = `${progress}% Complete`;
+        }
+
+        // Update all progress displays
+        function updateAllProgressDisplays() {
+            const skills = ['cybersecurity', 'fullstack', 'mern', 'python'];
+            skills.forEach(skill => updateProgressDisplay(skill));
+            checkAchievements();
+        }
+
+        // Update challenge statistics
+        function updateChallengeStats() {
+            document.getElementById('completed-challenges').textContent = progressData.challenges.completed;
+            document.getElementById('total-points').textContent = progressData.challenges.points;
+        }
+
+        // Check and update achievements
+        function checkAchievements() {
+            const skills = ['cybersecurity', 'fullstack', 'mern', 'python'];
+            
+            // Check if any skill has reached certain milestones
+            const maxProgress = Math.max(...skills.map(skill => progressData[skill]));
+            
+            // First Steps - 25% in any skill
+            if (maxProgress >= 25 && !progressData.achievements.firstSteps) {
+                progressData.achievements.firstSteps = true;
+                document.getElementById('achievement-1').classList.remove('locked');
+            }
+            
+            // Halfway There - 50% in any skill
+            if (maxProgress >= 50 && !progressData.achievements.halfwayThere) {
+                progressData.achievements.halfwayThere = true;
+                document.getElementById('achievement-2').classList.remove('locked');
+            }
+            
+            // Master in Training - 75% in any skill
+            if (maxProgress >= 75 && !progressData.achievements.masterInTraining) {
+                progressData.achievements.masterInTraining = true;
+                document.getElementById('achievement-3').classList.remove('locked');
+            }
+            
+            // Skill Master - 100% in any skill
+            if (maxProgress >= 100 && !progressData.achievements.skillMaster) {
+                progressData.achievements.skillMaster = true;
+                document.getElementById('achievement-4').classList.remove('locked');
+            }
+            
+            saveProgressData();
+        }
+
+        // Study Timer Functions
+        function startStudyTimer() {
+            if (!isTimerRunning) {
+                isTimerRunning = true;
+                document.getElementById('startTimer').disabled = true;
+                document.getElementById('stopTimer').disabled = false;
+                
+                studyTimer = setInterval(() => {
+                    studyTime++;
+                    updateStudyTimeDisplay();
+                    saveProgressData();
+                }, 1000);
+            }
+        }
+
+        function stopStudyTimer() {
+            if (isTimerRunning) {
+                isTimerRunning = false;
+                document.getElementById('startTimer').disabled = false;
+                document.getElementById('stopTimer').disabled = true;
+                
+                clearInterval(studyTimer);
+                studyTimer = null;
+            }
+        }
+
+        function resetStudyTimer() {
+            stopStudyTimer();
+            studyTime = 0;
+            updateStudyTimeDisplay();
+            saveProgressData();
+        }
+
+        function updateStudyTimeDisplay() {
+            const hours = Math.floor(studyTime / 3600);
+            const minutes = Math.floor((studyTime % 3600) / 60);
+            const seconds = studyTime % 60;
+            
+            const timeString = `${hours.toString().padStart(2, '0')}:${minutes.toString().padStart(2, '0')}:${seconds.toString().padStart(2, '0')}`;
+            document.getElementById('studyTimeDisplay').textContent = timeString;
+        }
+
+        // Challenge completion function
+        function completeChallenge(points) {
+            progressData.challenges.completed++;
+            progressData.challenges.points += points;
+            updateChallengeStats();
+            saveProgressData();
+            
+            // Show completion message
+            alert(`Challenge completed! You earned ${points} points.`);
+        }
+
         // Page Navigation
         document.addEventListener('DOMContentLoaded', function() {
             const navLinks = document.querySelectorAll('.nav-link');
@@ -1357,6 +1925,11 @@
             const mobileHeaderAutoClose = document.getElementById('mobileHeaderAutoClose');
             const mainHeader = document.getElementById('mainHeader');
             const mobileNavLinks = document.querySelectorAll('.mobile-nav-links a');
+            const progressButtons = document.querySelectorAll('.progress-btn');
+            const challengeButtons = document.querySelectorAll('.challenge-btn.start');
+            
+            // Load progress data
+            loadProgressData();
             
             // Function to show a specific page
             function showPage(pageId) {
@@ -1386,6 +1959,11 @@
                 
                 // Close mobile menu if open
                 navLinksContainer.classList.remove('active');
+                
+                // Animate progress bars when progress page is shown
+                if (pageId === 'progress') {
+                    animateProgressBars();
+                }
             }
             
             // Add click event to nav links
@@ -1429,6 +2007,37 @@
                     window.location.href = 'cyber.html';
                 });
             });
+            
+            // Add click event to progress control buttons
+            progressButtons.forEach(button => {
+                button.addEventListener('click', function() {
+                    const skill = this.getAttribute('data-skill');
+                    const action = this.getAttribute('data-action');
+                    
+                    let change = 0;
+                    if (action === 'increase') change = 5;
+                    else if (action === 'decrease') change = -5;
+                    
+                    updateSkillProgress(skill, change);
+                });
+            });
+            
+            // Add click event to challenge buttons
+            challengeButtons.forEach(button => {
+                button.addEventListener('click', function() {
+                    const challengeItem = this.closest('.challenge-item');
+                    const pointsText = challengeItem.querySelector('.challenge-points').textContent;
+                    const points = parseInt(pointsText);
+                    
+                    // Simulate challenge completion
+                    completeChallenge(points);
+                });
+            });
+            
+            // Timer controls
+            document.getElementById('startTimer').addEventListener('click', startStudyTimer);
+            document.getElementById('stopTimer').addEventListener('click', stopStudyTimer);
+            document.getElementById('resetTimer').addEventListener('click', resetStudyTimer);
             
             // Mobile menu toggle
             mobileMenuBtn.addEventListener('click', function() {
@@ -1478,9 +2087,9 @@
             window.addEventListener('resize', checkMobileDevice);
             
             // Animate progress bars on the progress page
-            const progressBars = document.querySelectorAll('.skill-bar');
-            
             function animateProgressBars() {
+                const progressBars = document.querySelectorAll('.skill-bar');
+                
                 progressBars.forEach(bar => {
                     const width = bar.style.width;
                     bar.style.width = '0';
@@ -1491,22 +2100,6 @@
                     }, 500);
                 });
             }
-            
-            // Observe when progress page becomes active
-            const progressPage = document.getElementById('progress');
-            const observer = new MutationObserver(function(mutations) {
-                mutations.forEach(function(mutation) {
-                    if (mutation.attributeName === 'class') {
-                        if (progressPage.classList.contains('active')) {
-                            animateProgressBars();
-                        }
-                    }
-                });
-            });
-            
-            observer.observe(progressPage, {
-                attributes: true
-            });
         });
     </script>
 </body>
