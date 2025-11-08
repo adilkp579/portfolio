@@ -42,7 +42,8 @@
             margin: 0 auto;
             padding: 0 15px;
         }
-        /* Header & Navigation - Mobile First */
+        
+        /* Header & Navigation - Improved Spacing */
         header {
             position: fixed;
             top: 0;
@@ -111,45 +112,51 @@
             color: var(--light);
             z-index: 1001;
         }
-        /* Hero Section */
+        
+        /* Hero Section - Improved Spacing */
         .hero {
-            height: 100vh;
+            min-height: 100vh;
             display: flex;
             align-items: center;
             position: relative;
             overflow: hidden;
             background: linear-gradient(135deg, var(--darker) 0%, var(--dark) 100%);
-            padding-top: 70px;
+            padding: 100px 0 60px; /* Increased top padding for header space */
         }
         .hero-content {
             max-width: 100%;
             z-index: 2;
             text-align: center;
+            padding: 20px 0; /* Added vertical padding */
         }
         .hero h1 {
-           font-size: 2.5rem;
-           font-weight: 800;
-           margin-bottom: 15px;
-           line-height: 1.2;
-           color: var(--primary); /* Fallback color */
+            font-size: 2.5rem;
+            font-weight: 800;
+            margin-bottom: 20px; /* Increased margin for better spacing */
+            line-height: 1.2;
+            color: var(--primary); /* Fallback color */
+            word-wrap: break-word;
+            overflow-wrap: break-word;
+            padding: 0 10px; /* Added horizontal padding */
         }
 
         /* Gradient text for supported browsers */
         @supports (-webkit-background-clip: text) or (background-clip: text) {
             .hero h1 {
-               background: linear-gradient(135deg, var(--light) 0%, var(--primary) 100%);
-              -webkit-background-clip: text;
-              -webkit-text-fill-color: transparent;
-              background-clip: text;
-              color: transparent;
+                background: linear-gradient(135deg, var(--light) 0%, var(--primary) 100%);
+                -webkit-background-clip: text;
+                -webkit-text-fill-color: transparent;
+                background-clip: text;
+                color: transparent;
             }
         }
         
         .hero p {
             font-size: 1.1rem;
             color: var(--gray);
-            margin-bottom: 30px;
+            margin-bottom: 35px; /* Increased margin for better spacing */
             line-height: 1.6;
+            padding: 0 15px; /* Added horizontal padding */
         }
         .btn {
             display: inline-block;
@@ -180,10 +187,18 @@
             background-color: var(--primary);
             color: white;
         }
+        .hero-buttons {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 10px; /* Added gap between buttons */
+            padding: 0 10px; /* Added horizontal padding */
+        }
+        
         /* User Welcome Message */
         .user-welcome {
             position: fixed;
-            top: 20px;
+            top: 80px; /* Adjusted to appear below header */
             right: 20px;
             background: var(--glass-bg);
             backdrop-filter: blur(10px);
@@ -215,6 +230,7 @@
                 opacity: 1;
             }
         }
+        
         /* Sections */
         section {
             padding: 80px 0;
@@ -247,6 +263,7 @@
             margin: 0 auto;
             font-size: 0.95rem;
         }
+        
         /* About Section with Solar System */
         .about {
             background-color: var(--darker);
@@ -606,6 +623,7 @@
             color: var(--gray);
             text-align: left;
         }
+        
         /* Updated Skills Section - Line by Line */
         .skills {
             display: flex;
@@ -666,33 +684,6 @@
             min-width: 40px;
             text-align: right;
         }
-        
-        /* Original Skills (commented out for reference)
-        .skills {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 10px;
-            margin-top: 25px;
-            justify-content: center;
-        }
-        
-        .skill {
-            background-color: var(--dark);
-            padding: 8px 16px;
-            border-radius: 20px;
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
-            font-weight: 500;
-            transition: var(--transition);
-            border: 1px solid var(--dark-gray);
-            font-size: 0.85rem;
-        }
-        
-        .skill:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 8px 15px rgba(0, 0, 0, 0.3);
-            border-color: var(--primary);
-        }
-        */
         
         /* Services Section - 8 Services */
         .services {
@@ -788,6 +779,7 @@
         .service-link:hover i {
             transform: translateX(3px);
         }
+        
         /* Portfolio Section - Mobile Optimized */
         .portfolio {
             background: linear-gradient(135deg, #0c0c0c 0%, #1a1a2e 50%, #16213e 100%);
@@ -912,6 +904,7 @@
         .portfolio-link:hover i {
             transform: translateX(4px);
         }
+        
         /* Portfolio Filters */
         .portfolio-filters {
             display: flex;
@@ -938,6 +931,7 @@
             color: white;
             border-color: var(--primary);
         }
+        
         /* Contact Section */
         .contact {
             background-color: var(--dark);
@@ -1011,6 +1005,7 @@
             min-height: 120px;
             resize: vertical;
         }
+        
         /* Footer */
         footer {
             background-color: var(--darker);
@@ -1093,10 +1088,14 @@
             color: #B0B3C1;
             font-size: 0.85rem;
         }
+        
         /* Tablet Styles */
         @media (min-width: 768px) {
             .container {
                 padding: 0 20px;
+            }
+            .hero {
+                padding: 120px 0 80px; /* Increased padding for tablets */
             }
             .hero h1 {
                 font-size: 3rem;
@@ -1174,15 +1173,25 @@
                 grid-template-columns: 2fr 1fr 1fr;
             }
         }
+        
         /* Desktop Styles */
         @media (min-width: 992px) {
+            .hero {
+                padding: 140px 0 100px; /* Increased padding for desktop */
+            }
             .hero-content {
                 text-align: left;
                 max-width: 600px;
             }
+            .hero h1 {
+                padding: 0; /* Reset padding for desktop */
+            }
+            .hero p {
+                padding: 0; /* Reset padding for desktop */
+            }
             .hero-buttons {
-                display: flex;
                 justify-content: flex-start;
+                padding: 0; /* Reset padding for desktop */
             }
             .passion-text {
                 font-size: 2.5rem;
@@ -1207,6 +1216,7 @@
                 display: none;
             }
         }
+        
         /* Mobile Navigation */
         @media (max-width: 991px) {
             .menu-toggle {
@@ -1236,23 +1246,28 @@
                 font-size: 1.1rem;
             }
         }
+        
         /* Small Mobile Optimization */
         @media (max-width: 480px) {
+            .hero {
+                padding: 90px 0 50px; /* Adjusted for small mobile */
+            }
             .hero h1 {
                 font-size: 2rem;
+                padding: 0 5px; /* Minimal padding for small screens */
             }
             .hero p {
                 font-size: 1rem;
+                padding: 0 10px; /* Adjusted padding for small screens */
+            }
+            .hero-buttons {
+                padding: 0 5px; /* Minimal padding for small screens */
             }
             .btn {
                 padding: 10px 20px;
                 font-size: 0.85rem;
                 width: 100%;
                 margin: 5px 0;
-            }
-            .hero-buttons {
-                display: flex;
-                flex-direction: column;
             }
             .section-title h2 {
                 font-size: 1.8rem;
@@ -1387,6 +1402,7 @@
                 justify-content: space-between;
             }
         }
+        
         /* Extra Small Mobile Optimization */
         @media (max-width: 360px) {
             .services-grid {
@@ -2009,13 +2025,3 @@
     </script>
 </body>
 </html>
-
-
-
-
-
-
-
-
-
-
