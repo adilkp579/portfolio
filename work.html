@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>My Works — Portfolio</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          fontFamily: { sans: ['Inter', 'ui-sans-serif', 'system-ui'] },
+          boxShadow: { lift: '0 10px 25px rgba(2,6,23,.08), 0 4px 8px rgba(2,6,23,.06)' },
+          colors: { brand: { 600: '#2563eb', 700: '#1d4ed8' } }
+        }
+      }
+    }
+  </script>
+  <style>
+    html,body{height:100%}
+    body{font-family: Inter, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, "Apple Color Emoji", "Segoe UI Emoji"; -webkit-font-smoothing: antialiased; text-rendering: optimizeLegibility}
+  </style>
+</head>
+<body class="bg-slate-50 text-slate-800">
+  <!-- Header -->
+  <header class="sticky top-0 z-30 border-b border-slate-200 bg-white/90 backdrop-blur">
+    <div class="mx-auto max-w-6xl px-4 py-4 flex items-center justify-between">
+      <a href="#" class="flex items-center gap-2">
+        <div class="h-9 w-9 rounded-lg bg-brand-600 grid place-items-center text-white font-bold">A</div>
+        <div class="leading-tight">
+          <div class="text-base font-extrabold tracking-tight">Adil — Works</div>
+          <div class="text-xs text-slate-500">Selected projects</div>
+        </div>
+      </a>
+      <nav class="hidden sm:flex items-center gap-6 text-sm font-medium">
+        <a class="hover:text-brand-600" href="#">Home</a>
+        <a class="hover:text-brand-600" href="#">About</a>
+        <a class="text-brand-600" href="#">My Works</a>
+        <a class="hover:text-brand-600" href="#">Contact</a>
+      </nav>
+      <button class="sm:hidden rounded-lg border border-slate-200 px-3 py-2 text-sm" aria-label="Menu">Menu</button>
+    </div>
+  </header>
+
+  <main class="mx-auto max-w-6xl px-4 py-10">
+    <header class="mb-8">
+      <h1 class="text-3xl sm:text-4xl font-extrabold tracking-tight">My Works</h1>
+      <p class="mt-2 max-w-2xl text-slate-600">Modern typography (Inter), sharp card grid with hover elevation, and a clean header & footer. Replace links with your live demos and GitHub repos.</p>
+    </header>
+
+    <!-- Grid -->
+    <section class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+      <!-- Card -->
+      <article class="group relative overflow-hidden rounded-2xl border border-slate-200 bg-white transition duration-300 hover:-translate-y-1 hover:shadow-lift">
+        <div class="aspect-[16/10] overflow-hidden">
+          <img src="https://images.unsplash.com/photo-1498050108023-c5249f4df085?q=80&w=1600&auto=format&fit=crop" alt="Project preview" class="h-full w-full object-cover transition-transform duration-500 group-hover:scale-[1.03]" loading="lazy"/>
+        </div>
+        <div class="p-5">
+          <div class="mb-2 flex items-center gap-2">
+            <span class="inline-flex items-center rounded-full bg-slate-100 px-2 py-0.5 text-xs text-slate-600">Web App</span>
+            <span class="inline-flex items-center rounded-full bg-slate-100 px-2 py-0.5 text-xs text-slate-600">React</span>
+          </div>
+          <h3 class="text-lg font-semibold leading-snug">Analytics Dashboard</h3>
+          <p class="mt-1 line-clamp-2 text-sm text-slate-600">A responsive analytics dashboard with charts, theming, and role-based access.</p>
+          <div class="mt-4 flex items-center gap-3 text-sm font-medium">
+            <a href="#" class="inline-flex items-center gap-1 text-brand-600 hover:underline focus:outline-none focus-visible:ring-2 focus-visible:ring-brand-600 rounded">Live <span aria-hidden>↗</span></a>
+            <a href="#" class="inline-flex items-center gap-1 text-slate-700 hover:underline focus:outline-none focus-visible:ring-2 focus-visible:ring-slate-400 rounded">Code <span aria-hidden>⟡</span></a>
+          </div>
+        </div>
+      </article>
+
+    
+
+  <!-- Footer -->
+  <footer class="border-t border-slate-200 bg-white py-8">
+    <div class="mx-auto max-w-6xl px-4 flex flex-col items-center justify-between gap-4 sm:flex-row">
+      <p class="text-sm text-slate-500">© <span id="y"></span> Adil. All rights reserved.</p>
+      <div class="flex items-center gap-4 text-sm">
+        <a class="hover:text-brand-600" href="#">Twitter</a>
+        <a class="hover:text-brand-600" href="#">GitHub</a>
+        <a class="hover:text-brand-600" href="#">Email</a>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    document.getElementById('y').textContent = new Date().getFullYear();
+  </script>
+</body>
+</html>
