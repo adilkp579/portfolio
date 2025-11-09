@@ -1,1198 +1,501 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" class="scroll-smooth">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>TechPulse - Latest Technology News</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-        }
-
-        :root {
-            --primary: #2563eb;
-            --secondary: #1e293b;
-            --accent: #f59e0b;
-            --light: #f8fafc;
-            --dark: #0f172a;
-            --gray: #64748b;
-            --success: #10b981;
-        }
-
-        body {
-            background-color: #f1f5f9;
-            color: var(--dark);
-            line-height: 1.6;
-        }
-
-        .container {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 0 20px;
-        }
-
-        /* Header Styles */
-        header {
-            background-color: white;
-            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
-            position: sticky;
-            top: 0;
-            z-index: 100;
-        }
-
-        .header-content {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 15px 0;
-        }
-
-        .logo {
-            display: flex;
-            align-items: center;
-            gap: 10px;
-            font-size: 1.8rem;
-            font-weight: 700;
-            color: var(--primary);
-            text-decoration: none;
-        }
-
-        .logo i {
-            color: var(--accent);
-        }
-
-        nav ul {
-            display: flex;
-            list-style: none;
-            gap: 25px;
-        }
-
-        nav a {
-            text-decoration: none;
-            color: var(--secondary);
-            font-weight: 500;
-            transition: color 0.3s;
-            padding: 5px 10px;
-            border-radius: 5px;
-            cursor: pointer;
-        }
-
-        nav a:hover, nav a.active {
-            color: var(--primary);
-            background-color: rgba(37, 99, 235, 0.1);
-        }
-
-        .header-actions {
-            display: flex;
-            gap: 15px;
-        }
-
-        .search-box {
-            display: flex;
-            align-items: center;
-            background: var(--light);
-            border-radius: 30px;
-            padding: 8px 15px;
-        }
-
-        .search-box input {
-            border: none;
-            background: transparent;
-            outline: none;
-            padding: 5px;
-            width: 200px;
-        }
-
-        .btn {
-            padding: 8px 16px;
-            border-radius: 5px;
-            border: none;
-            cursor: pointer;
-            font-weight: 500;
-            transition: all 0.3s;
-        }
-
-        .btn-primary {
-            background-color: var(--primary);
-            color: white;
-        }
-
-        .btn-primary:hover {
-            background-color: #1d4ed8;
-        }
-
-        /* Hero Section */
-        .hero {
-            background: linear-gradient(135deg, var(--primary), #1e40af);
-            color: white;
-            padding: 60px 0;
-            margin-bottom: 40px;
-        }
-
-        .hero-content {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            text-align: center;
-            max-width: 800px;
-            margin: 0 auto;
-        }
-
-        .hero h1 {
-            font-size: 2.8rem;
-            margin-bottom: 20px;
-        }
-
-        .hero p {
-            font-size: 1.2rem;
-            margin-bottom: 30px;
-            opacity: 0.9;
-        }
-
-        .hero-stats {
-            display: flex;
-            gap: 30px;
-            margin-top: 20px;
-        }
-
-        .stat {
-            text-align: center;
-        }
-
-        .stat-value {
-            font-size: 2rem;
-            font-weight: 700;
-        }
-
-        .stat-label {
-            font-size: 0.9rem;
-            opacity: 0.8;
-        }
-
-        /* Main Content */
-        .main-content {
-            display: grid;
-            grid-template-columns: 2fr 1fr;
-            gap: 30px;
-            margin-bottom: 50px;
-        }
-
-        .section-title {
-            font-size: 1.5rem;
-            margin-bottom: 20px;
-            padding-bottom: 10px;
-            border-bottom: 2px solid var(--primary);
-            display: inline-block;
-        }
-
-        /* News Grid */
-        .news-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-            gap: 25px;
-            margin-bottom: 40px;
-        }
-
-        .news-card {
-            background: white;
-            border-radius: 10px;
-            overflow: hidden;
-            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
-            transition: transform 0.3s, box-shadow 0.3s;
-        }
-
-        .news-card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 10px 15px rgba(0, 0, 0, 0.1);
-        }
-
-        .card-image {
-            height: 180px;
-            width: 100%;
-            background-color: var(--gray);
-            position: relative;
-            overflow: hidden;
-        }
-
-        .card-image img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-        }
-
-        .card-category {
-            position: absolute;
-            top: 10px;
-            left: 10px;
-            background: var(--primary);
-            color: white;
-            padding: 5px 10px;
-            border-radius: 20px;
-            font-size: 0.8rem;
-            font-weight: 500;
-        }
-
-        .card-content {
-            padding: 20px;
-        }
-
-        .card-content h3 {
-            margin-bottom: 10px;
-            font-size: 1.2rem;
-        }
-
-        .card-content p {
-            color: var(--gray);
-            font-size: 0.9rem;
-            margin-bottom: 15px;
-        }
-
-        .card-meta {
-            display: flex;
-            justify-content: space-between;
-            font-size: 0.8rem;
-            color: var(--gray);
-        }
-
-        /* Featured Section */
-        .featured-article {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 30px;
-            background: white;
-            border-radius: 10px;
-            overflow: hidden;
-            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
-            margin-bottom: 40px;
-        }
-
-        .featured-image {
-            height: 300px;
-        }
-
-        .featured-image img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-        }
-
-        .featured-content {
-            padding: 30px;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-        }
-
-        .featured-category {
-            display: inline-block;
-            background: var(--accent);
-            color: white;
-            padding: 5px 15px;
-            border-radius: 20px;
-            font-size: 0.8rem;
-            font-weight: 500;
-            margin-bottom: 15px;
-        }
-
-        .featured-content h2 {
-            font-size: 1.8rem;
-            margin-bottom: 15px;
-        }
-
-        .featured-content p {
-            color: var(--gray);
-            margin-bottom: 20px;
-        }
-
-        /* Category Content */
-        .category-content {
-            display: none;
-        }
-
-        .category-content.active {
-            display: block;
-        }
-
-        /* Trending Section */
-        .trending-news {
-            background: white;
-            border-radius: 10px;
-            padding: 25px;
-            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
-            margin-bottom: 30px;
-        }
-
-        .trending-list {
-            list-style: none;
-        }
-
-        .trending-item {
-            display: flex;
-            gap: 15px;
-            padding: 15px 0;
-            border-bottom: 1px solid #e2e8f0;
-        }
-
-        .trending-item:last-child {
-            border-bottom: none;
-        }
-
-        .trending-rank {
-            font-weight: 700;
-            color: var(--primary);
-            font-size: 1.2rem;
-        }
-
-        .trending-content h4 {
-            font-size: 1rem;
-            margin-bottom: 5px;
-        }
-
-        .trending-content .meta {
-            font-size: 0.8rem;
-            color: var(--gray);
-        }
-
-        /* Categories */
-        .categories {
-            background: white;
-            border-radius: 10px;
-            padding: 25px;
-            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
-        }
-
-        .category-list {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 10px;
-            margin-top: 15px;
-        }
-
-        .category {
-            background: var(--light);
-            padding: 8px 15px;
-            border-radius: 20px;
-            font-size: 0.9rem;
-            transition: all 0.3s;
-            cursor: pointer;
-        }
-
-        .category:hover {
-            background: var(--primary);
-            color: white;
-        }
-
-        /* Newsletter */
-        .newsletter {
-            background: linear-gradient(135deg, var(--secondary), var(--dark));
-            color: white;
-            padding: 50px 0;
-            text-align: center;
-            margin: 50px 0;
-        }
-
-        .newsletter-content {
-            max-width: 600px;
-            margin: 0 auto;
-        }
-
-        .newsletter h2 {
-            margin-bottom: 15px;
-        }
-
-        .newsletter p {
-            margin-bottom: 25px;
-            opacity: 0.9;
-        }
-
-        .newsletter-form {
-            display: flex;
-            max-width: 500px;
-            margin: 0 auto;
-        }
-
-        .newsletter-form input {
-            flex: 1;
-            padding: 12px 15px;
-            border: none;
-            border-radius: 5px 0 0 5px;
-            outline: none;
-        }
-
-        .newsletter-form button {
-            background: var(--accent);
-            color: white;
-            border: none;
-            padding: 0 20px;
-            border-radius: 0 5px 5px 0;
-            cursor: pointer;
-            font-weight: 500;
-        }
-
-        /* Footer */
-        footer {
-            background: var(--dark);
-            color: white;
-            padding: 50px 0 20px;
-        }
-
-        .footer-content {
-            display: grid;
-            grid-template-columns: repeat(4, 1fr);
-            gap: 30px;
-            margin-bottom: 40px;
-        }
-
-        .footer-column h3 {
-            font-size: 1.2rem;
-            margin-bottom: 20px;
-            position: relative;
-            padding-bottom: 10px;
-        }
-
-        .footer-column h3::after {
-            content: '';
-            position: absolute;
-            left: 0;
-            bottom: 0;
-            width: 40px;
-            height: 2px;
-            background: var(--primary);
-        }
-
-        .footer-links {
-            list-style: none;
-        }
-
-        .footer-links li {
-            margin-bottom: 10px;
-        }
-
-        .footer-links a {
-            color: #cbd5e1;
-            text-decoration: none;
-            transition: color 0.3s;
-        }
-
-        .footer-links a:hover {
-            color: white;
-        }
-
-        .social-links {
-            display: flex;
-            gap: 15px;
-            margin-top: 20px;
-        }
-
-        .social-links a {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            width: 36px;
-            height: 36px;
-            background: rgba(255, 255, 255, 0.1);
-            border-radius: 50%;
-            color: white;
-            transition: background 0.3s;
-        }
-
-        .social-links a:hover {
-            background: var(--primary);
-        }
-
-        .copyright {
-            text-align: center;
-            padding-top: 20px;
-            border-top: 1px solid #334155;
-            color: #94a3b8;
-            font-size: 0.9rem;
-        }
-
-        /* Responsive Design */
-        @media (max-width: 992px) {
-            .main-content {
-                grid-template-columns: 1fr;
-            }
-
-            .featured-article {
-                grid-template-columns: 1fr;
-            }
-
-            .footer-content {
-                grid-template-columns: repeat(2, 1fr);
-            }
-        }
-
-        @media (max-width: 768px) {
-            .header-content {
-                flex-direction: column;
-                gap: 15px;
-            }
-
-            nav ul {
-                gap: 15px;
-                flex-wrap: wrap;
-                justify-content: center;
-            }
-
-            .hero h1 {
-                font-size: 2.2rem;
-            }
-
-            .news-grid {
-                grid-template-columns: 1fr;
-            }
-
-            .footer-content {
-                grid-template-columns: 1fr;
-            }
-
-            .newsletter-form {
-                flex-direction: column;
-                gap: 10px;
-            }
-
-            .newsletter-form input,
-            .newsletter-form button {
-                width: 100%;
-                border-radius: 5px;
-            }
-        }
-    </style>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>TechStream — Modern Tech News</title>
+  <meta name="description" content="A fast, modern, and responsive tech news page with dark mode, search, filters, and infinite scrolling." />
+  <meta name="theme-color" media="(prefers-color-scheme: light)" content="#ffffff">
+  <meta name="theme-color" media="(prefers-color-scheme: dark)" content="#0b1020">
+  
+  <!-- Tailwind CSS CDN (standalone) -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    // Tailwind Config: fonts + container + dark mode class
+    tailwind.config = {
+      darkMode: 'class',
+      theme: {
+        extend: {
+          fontFamily: {
+            sans: ['Inter', 'ui-sans-serif', 'system-ui', 'Segoe UI', 'Roboto', 'Helvetica', 'Arial', 'Apple Color Emoji', 'Segoe UI Emoji'],
+          },
+          colors: {
+            brand: {
+              50: '#eef5ff', 100: '#d9e8ff', 200: '#accaff', 300: '#7facff', 400: '#4f91ff', 500: '#2d74ff', 600: '#1c58db', 700: '#1747af', 800: '#133a8b', 900: '#112f71'
+            },
+          },
+          boxShadow: {
+            soft: '0 10px 30px rgba(2,6,23,0.06)'
+          }
+        }
+      }
+    }
+  </script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" integrity="sha512-fD9qY..." crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+  <style>
+    /* Smooth cards + line clamp utility for Tailwind CDN */
+    .line-clamp-2 { display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; }
+    .line-clamp-3 { display: -webkit-box; -webkit-line-clamp: 3; -webkit-box-orient: vertical; overflow: hidden; }
+    .glass { backdrop-filter: saturate(120%) blur(10px); background: linear-gradient(180deg, rgba(255,255,255,.7), rgba(255,255,255,.55)); }
+    .dark .glass { background: linear-gradient(180deg, rgba(17,24,39,.75), rgba(17,24,39,.6)); }
+    .sr-only-focusable:focus { position: static; width: auto; height: auto; clip: auto; }
+  </style>
 </head>
-<body>
-    <!-- Header -->
-    <header>
-        <div class="container">
-            <div class="header-content">
-                <a href="#" class="logo">
-                    <i class="fas fa-satellite-dish"></i>
-                    <span>TechPulse</span>
-                </a>
-                <nav>
-                    <ul>
-                        <li><a href="#" class="nav-link active" data-category="home">Home</a></li>
-                        <li><a href="#" class="nav-link" data-category="ai">AI & Machine Learning</a></li>
-                        <li><a href="#" class="nav-link" data-category="software">Software</a></li>
-                        <li><a href="#" class="nav-link" data-category="hardware">Hardware</a></li>
-                        <li><a href="#" class="nav-link" data-category="gadgets">Gadgets</a></li>
-                        <li><a href="#" class="nav-link" data-category="startups">Startups</a></li>
-                    </ul>
-                </nav>
-                <div class="header-actions">
-                    <div class="search-box">
-                        <i class="fas fa-search"></i>
-                        <input type="text" placeholder="Search news...">
-                    </div>
-                    <button class="btn btn-primary">Subscribe</button>
-                </div>
-            </div>
-        </div>
-    </header>
+<body class="min-h-screen bg-slate-50 text-slate-800 dark:bg-slate-900 dark:text-slate-100 font-sans">
+  <!-- Skip link -->
+  <a href="#content" class="sr-only sr-only-focusable absolute left-2 top-2 z-50 rounded bg-brand-600 px-3 py-2 text-white">Skip to content</a>
 
-    <!-- Hero Section -->
-    <section class="hero">
-        <div class="container">
-            <div class="hero-content">
-                <h1>Stay Ahead with the Latest in Technology</h1>
-                <p>Your daily dose of tech news, product launches, AI breakthroughs, and industry insights from around the globe.</p>
-                <div class="hero-stats">
-                    <div class="stat">
-                        <div class="stat-value">500+</div>
-                        <div class="stat-label">Daily Articles</div>
-                    </div>
-                    <div class="stat">
-                        <div class="stat-value">2M+</div>
-                        <div class="stat-label">Monthly Readers</div>
-                    </div>
-                    <div class="stat">
-                        <div class="stat-value">50+</div>
-                        <div class="stat-label">Expert Contributors</div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Main Content -->
-    <div class="container">
-        <!-- Home Content -->
-        <div id="home-content" class="category-content active">
-            <!-- Featured Article -->
-            <section class="featured-article">
-                <div class="featured-image">
-                    <img src="https://images.unsplash.com/photo-1485827404703-89b55fcc595e?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1000&q=80" alt="Quantum Computing">
-                </div>
-                <div class="featured-content">
-                    <span class="featured-category">BREAKING NEWS</span>
-                    <h2>Quantum Computing Breakthrough Could Revolutionize Drug Discovery</h2>
-                    <p>Scientists at MIT have developed a new quantum algorithm that dramatically accelerates molecular simulations, potentially cutting drug development time from years to months.</p>
-                    <div class="card-meta">
-                        <span><i class="far fa-clock"></i> 3 hours ago</span>
-                        <span><i class="far fa-comment"></i> 87 comments</span>
-                    </div>
-                </div>
-            </section>
-
-            <div class="main-content">
-                <!-- Left Column -->
-                <div class="left-column">
-                    <h2 class="section-title">Latest Tech News</h2>
-                    
-                    <div class="news-grid">
-                        <!-- News Card 1 -->
-                        <div class="news-card">
-                            <div class="card-image">
-                                <div class="card-category">AI</div>
-                                <img src="https://images.unsplash.com/photo-1677442136019-21780ecad995?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1000&q=80" alt="AI Breakthrough">
-                            </div>
-                            <div class="card-content">
-                                <h3>OpenAI Announces GPT-5 With Revolutionary Multimodal Capabilities</h3>
-                                <p>The latest iteration of the popular AI model can process text, images, audio, and video simultaneously, marking a significant leap in artificial intelligence.</p>
-                                <div class="card-meta">
-                                    <span><i class="far fa-clock"></i> 2 hours ago</span>
-                                    <span><i class="far fa-comment"></i> 142 comments</span>
-                                </div>
-                            </div>
-                        </div>
-                        
-                        <!-- News Card 2 -->
-                        <div class="news-card">
-                            <div class="card-image">
-                                <div class="card-category">Hardware</div>
-                                <img src="https://images.unsplash.com/photo-1593640408182-31c70c8268f5?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1000&q=80" alt="Quantum Computer">
-                            </div>
-                            <div class="card-content">
-                                <h3>IBM Unveils 1,000 Qubit Quantum Processor</h3>
-                                <p>IBM's new quantum processor promises to solve complex problems that are currently impossible for classical computers, with potential applications in drug discovery and climate modeling.</p>
-                                <div class="card-meta">
-                                    <span><i class="far fa-clock"></i> 5 hours ago</span>
-                                    <span><i class="far fa-comment"></i> 89 comments</span>
-                                </div>
-                            </div>
-                        </div>
-                        
-                        <!-- News Card 3 -->
-                        <div class="news-card">
-                            <div class="card-image">
-                                <div class="card-category">Software</div>
-                                <img src="https://images.unsplash.com/photo-1555066931-4365d14bab8c?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1000&q=80" alt="Programming">
-                            </div>
-                            <div class="card-content">
-                                <h3>Microsoft Releases Windows 12 With Built-In AI Assistant</h3>
-                                <p>The latest Windows operating system features an integrated AI assistant that can automate tasks, generate content, and provide contextual help throughout the OS.</p>
-                                <div class="card-meta">
-                                    <span><i class="far fa-clock"></i> 8 hours ago</span>
-                                    <span><i class="far fa-comment"></i> 203 comments</span>
-                                </div>
-                            </div>
-                        </div>
-                        
-                        <!-- News Card 4 -->
-                        <div class="news-card">
-                            <div class="card-image">
-                                <div class="card-category">Gadgets</div>
-                                <img src="https://images.unsplash.com/photo-1593113630400-ea4288922497?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1000&q=80" alt="AR Glasses">
-                            </div>
-                            <div class="card-content">
-                                <h3>Apple's AR Glasses Set to Launch in Q4 With Revolutionary Display Technology</h3>
-                                <p>After years of development, Apple's highly anticipated augmented reality glasses feature micro-LED displays and advanced spatial computing capabilities.</p>
-                                <div class="card-meta">
-                                    <span><i class="far fa-clock"></i> 1 day ago</span>
-                                    <span><i class="far fa-comment"></i> 312 comments</span>
-                                </div>
-                            </div>
-                        </div>
-                        
-                        <!-- News Card 5 -->
-                        <div class="news-card">
-                            <div class="card-image">
-                                <div class="card-category">Cybersecurity</div>
-                                <img src="https://images.unsplash.com/photo-1550751827-4bd374c3f58b?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1000&q=80" alt="Cybersecurity">
-                            </div>
-                            <div class="card-content">
-                                <h3>New Zero-Day Vulnerability Affects All Major Web Browsers</h3>
-                                <p>Security researchers have discovered a critical vulnerability that could allow attackers to execute arbitrary code through specially crafted web pages.</p>
-                                <div class="card-meta">
-                                    <span><i class="far fa-clock"></i> 1 day ago</span>
-                                    <span><i class="far fa-comment"></i> 167 comments</span>
-                                </div>
-                            </div>
-                        </div>
-                        
-                        <!-- News Card 6 -->
-                        <div class="news-card">
-                            <div class="card-image">
-                                <div class="card-category">Startups</div>
-                                <img src="https://images.unsplash.com/photo-1556761175-b413da4baf72?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1000&q=80" alt="Startup Office">
-                            </div>
-                            <div class="card-content">
-                                <h3>Neuralink Competitor Raises $200M for Non-Invasive Brain-Computer Interface</h3>
-                                <p>Synchron, a neurotechnology company, has secured significant funding to advance its stent-based brain-computer interface that doesn't require open brain surgery.</p>
-                                <div class="card-meta">
-                                    <span><i class="far fa-clock"></i> 2 days ago</span>
-                                    <span><i class="far fa-comment"></i> 94 comments</span>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                
-                <!-- Right Column -->
-                <div class="right-column">
-                    <!-- Trending News -->
-                    <div class="trending-news">
-                        <h2 class="section-title">Trending Now</h2>
-                        <ul class="trending-list">
-                            <li class="trending-item">
-                                <div class="trending-rank">1</div>
-                                <div class="trending-content">
-                                    <h4>Google's New Search Algorithm Rewrites the Rules of SEO</h4>
-                                    <div class="meta">Tech Industry • 45K views</div>
-                                </div>
-                            </li>
-                            <li class="trending-item">
-                                <div class="trending-rank">2</div>
-                                <div class="trending-content">
-                                    <h4>Elon Musk's Neuralink Reports First Successful Human Trials</h4>
-                                    <div class="meta">Biotech • 38K views</div>
-                                </div>
-                            </li>
-                            <li class="trending-item">
-                                <div class="trending-rank">3</div>
-                                <div class="trending-content">
-                                    <h4>FTC Sues Amazon Over Alleged Monopoly Practices</h4>
-                                    <div class="meta">Business • 32K views</div>
-                                </div>
-                            </li>
-                            <li class="trending-item">
-                                <div class="trending-rank">4</div>
-                                <div class="trending-content">
-                                    <h4>Revolutionary Battery Tech Promises 1,000-Mile EV Range</h4>
-                                    <div class="meta">Energy • 28K views</div>
-                                </div>
-                            </li>
-                            <li class="trending-item">
-                                <div class="trending-rank">5</div>
-                                <div class="trending-content">
-                                    <h4>Meta's New VR Headset Features Photorealistic Avatars</h4>
-                                    <div class="meta">Virtual Reality • 25K views</div>
-                                </div>
-                            </li>
-                        </ul>
-                    </div>
-                    
-                    <!-- Categories -->
-                    <div class="categories">
-                        <h2 class="section-title">Categories</h2>
-                        <div class="category-list">
-                            <div class="category">Artificial Intelligence</div>
-                            <div class="category">Machine Learning</div>
-                            <div class="category">Software Development</div>
-                            <div class="category">Cybersecurity</div>
-                            <div class="category">Cloud Computing</div>
-                            <div class="category">Blockchain</div>
-                            <div class="category">Internet of Things</div>
-                            <div class="category">Quantum Computing</div>
-                            <div class="category">Robotics</div>
-                            <div class="category">5G & Telecom</div>
-                            <div class="category">AR/VR</div>
-                            <div class="category">Autonomous Vehicles</div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <!-- AI & Machine Learning Content -->
-        <div id="ai-content" class="category-content">
-            <h2 class="section-title">AI & Machine Learning News</h2>
-            <div class="news-grid">
-                <div class="news-card">
-                    <div class="card-image">
-                        <div class="card-category">AI</div>
-                        <img src="https://images.unsplash.com/photo-1677442136019-21780ecad995?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1000&q=80" alt="AI Breakthrough">
-                    </div>
-                    <div class="card-content">
-                        <h3>OpenAI Announces GPT-5 With Revolutionary Multimodal Capabilities</h3>
-                        <p>The latest iteration of the popular AI model can process text, images, audio, and video simultaneously, marking a significant leap in artificial intelligence.</p>
-                        <div class="card-meta">
-                            <span><i class="far fa-clock"></i> 2 hours ago</span>
-                            <span><i class="far fa-comment"></i> 142 comments</span>
-                        </div>
-                    </div>
-                </div>
-                
-                <div class="news-card">
-                    <div class="card-image">
-                        <div class="card-category">AI</div>
-                        <img src="https://images.unsplash.com/photo-1676299081937-d4886c0d1cc0?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1000&q=80" alt="Neural Networks">
-                    </div>
-                    <div class="card-content">
-                        <h3>DeepMind's New AI Model Solves Complex Protein Folding Problems</h3>
-                        <p>The AlphaFold 3 system can predict the 3D structure of proteins with unprecedented accuracy, accelerating drug discovery and biological research.</p>
-                        <div class="card-meta">
-                            <span><i class="far fa-clock"></i> 1 day ago</span>
-                            <span><i class="far fa-comment"></i> 78 comments</span>
-                        </div>
-                    </div>
-                </div>
-                
-                <div class="news-card">
-                    <div class="card-image">
-                        <div class="card-category">Machine Learning</div>
-                        <img src="https://images.unsplash.com/photo-1555255707-c07966088b7b?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1000&q=80" alt="Machine Learning">
-                    </div>
-                    <div class="card-content">
-                        <h3>Researchers Develop AI That Can Learn From Just a Handful of Examples</h3>
-                        <p>This breakthrough in few-shot learning could dramatically reduce the data requirements for training effective AI models across various domains.</p>
-                        <div class="card-meta">
-                            <span><i class="far fa-clock"></i> 2 days ago</span>
-                            <span><i class="far fa-comment"></i> 56 comments</span>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <!-- Software Content -->
-        <div id="software-content" class="category-content">
-            <h2 class="section-title">Software News</h2>
-            <div class="news-grid">
-                <div class="news-card">
-                    <div class="card-image">
-                        <div class="card-category">Software</div>
-                        <img src="https://images.unsplash.com/photo-1555066931-4365d14bab8c?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1000&q=80" alt="Programming">
-                    </div>
-                    <div class="card-content">
-                        <h3>Microsoft Releases Windows 12 With Built-In AI Assistant</h3>
-                        <p>The latest Windows operating system features an integrated AI assistant that can automate tasks, generate content, and provide contextual help throughout the OS.</p>
-                        <div class="card-meta">
-                            <span><i class="far fa-clock"></i> 8 hours ago</span>
-                            <span><i class="far fa-comment"></i> 203 comments</span>
-                        </div>
-                    </div>
-                </div>
-                
-                <div class="news-card">
-                    <div class="card-image">
-                        <div class="card-category">Software</div>
-                        <img src="https://images.unsplash.com/photo-1627398242454-45a1465c2479?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1000&q=80" alt="Software Development">
-                    </div>
-                    <div class="card-content">
-                        <h3>GitHub Copilot X Revolutionizes Code Generation With GPT-4</h3>
-                        <p>The enhanced AI pair programmer now supports pull requests, documentation, and command-line interface, making developers more productive than ever.</p>
-                        <div class="card-meta">
-                            <span><i class="far fa-clock"></i> 1 day ago</span>
-                            <span><i class="far fa-comment"></i> 124 comments</span>
-                        </div>
-                    </div>
-                </div>
-                
-                <div class="news-card">
-                    <div class="card-image">
-                        <div class="card-category">Software</div>
-                        <img src="https://images.unsplash.com/photo-1551650975-87deedd944c3?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1000&q=80" alt="Mobile Apps">
-                    </div>
-                    <div class="card-content">
-                        <h3>Apple's iOS 18 Brings Major Redesign and AI-Powered Features</h3>
-                        <p>The upcoming iOS update includes a completely redesigned interface, advanced AI capabilities, and improved cross-device functionality.</p>
-                        <div class="card-meta">
-                            <span><i class="far fa-clock"></i> 2 days ago</span>
-                            <span><i class="far fa-comment"></i> 198 comments</span>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <!-- Hardware Content -->
-        <div id="hardware-content" class="category-content">
-            <h2 class="section-title">Hardware News</h2>
-            <div class="news-grid">
-                <div class="news-card">
-                    <div class="card-image">
-                        <div class="card-category">Hardware</div>
-                        <img src="https://images.unsplash.com/photo-1593640408182-31c70c8268f5?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1000&q=80" alt="Quantum Computer">
-                    </div>
-                    <div class="card-content">
-                        <h3>IBM Unveils 1,000 Qubit Quantum Processor</h3>
-                        <p>IBM's new quantum processor promises to solve complex problems that are currently impossible for classical computers, with potential applications in drug discovery and climate modeling.</p>
-                        <div class="card-meta">
-                            <span><i class="far fa-clock"></i> 5 hours ago</span>
-                            <span><i class="far fa-comment"></i> 89 comments</span>
-                        </div>
-                    </div>
-                </div>
-                
-                <div class="news-card">
-                    <div class="card-image">
-                        <div class="card-category">Hardware</div>
-                        <img src="https://images.unsplash.com/photo-1591799264318-7e6ef8ddb7ea?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1000&q=80" alt="Processor">
-                    </div>
-                    <div class="card-content">
-                        <h3>AMD's Ryzen 9000 Series Breaks Performance Records</h3>
-                        <p>The new processors feature a 3D V-Cache design that delivers up to 40% better gaming performance compared to previous generations.</p>
-                        <div class="card-meta">
-                            <span><i class="far fa-clock"></i> 1 day ago</span>
-                            <span><i class="far fa-comment"></i> 156 comments</span>
-                        </div>
-                    </div>
-                </div>
-                
-                <div class="news-card">
-                    <div class="card-image">
-                        <div class="card-category">Hardware</div>
-                        <img src="https://images.unsplash.com/photo-1592899677977-9c10ca588bbd?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1000&q=80" alt="Graphics Card">
-                    </div>
-                    <div class="card-content">
-                        <h3>NVIDIA's RTX 5090 Delivers 2x Performance of Previous Generation</h3>
-                        <p>The flagship graphics card features a new architecture with dedicated AI cores, enabling real-time ray tracing at 8K resolution.</p>
-                        <div class="card-meta">
-                            <span><i class="far fa-clock"></i> 2 days ago</span>
-                            <span><i class="far fa-comment"></i> 243 comments</span>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <!-- Gadgets Content -->
-        <div id="gadgets-content" class="category-content">
-            <h2 class="section-title">Gadgets News</h2>
-            <div class="news-grid">
-                <div class="news-card">
-                    <div class="card-image">
-                        <div class="card-category">Gadgets</div>
-                        <img src="https://images.unsplash.com/photo-1593113630400-ea4288922497?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1000&q=80" alt="AR Glasses">
-                    </div>
-                    <div class="card-content">
-                        <h3>Apple's AR Glasses Set to Launch in Q4 With Revolutionary Display Technology</h3>
-                        <p>After years of development, Apple's highly anticipated augmented reality glasses feature micro-LED displays and advanced spatial computing capabilities.</p>
-                        <div class="card-meta">
-                            <span><i class="far fa-clock"></i> 1 day ago</span>
-                            <span><i class="far fa-comment"></i> 312 comments</span>
-                        </div>
-                    </div>
-                </div>
-                
-                <div class="news-card">
-                    <div class="card-image">
-                        <div class="card-category">Gadgets</div>
-                        <img src="https://images.unsplash.com/photo-1546868871-7041f2a55e12?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1000&q=80" alt="Smartwatch">
-                    </div>
-                    <div class="card-content">
-                        <h3>Samsung Galaxy Watch 7 Features Non-Invasive Blood Glucose Monitoring</h3>
-                        <p>The new smartwatch uses advanced sensors to measure blood glucose levels without breaking the skin, a major breakthrough for diabetes management.</p>
-                        <div class="card-meta">
-                            <span><i class="far fa-clock"></i> 1 day ago</span>
-                            <span><i class="far fa-comment"></i> 187 comments</span>
-                        </div>
-                    </div>
-                </div>
-                
-                <div class="news-card">
-                    <div class="card-image">
-                        <div class="card-category">Gadgets</div>
-                        <img src="https://images.unsplash.com/photo-1592899677977-9c10ca588bbd?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1000&q=80" alt="Foldable Phone">
-                    </div>
-                    <div class="card-content">
-                        <h3>Google Pixel Fold 2 Leaks Reveal Larger Cover Screen and Thinner Design</h3>
-                        <p>Leaked renders show a significant redesign with a wider outer display and improved hinge mechanism for better durability.</p>
-                        <div class="card-meta">
-                            <span><i class="far fa-clock"></i> 2 days ago</span>
-                            <span><i class="far fa-comment"></i> 231 comments</span>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <!-- Startups Content -->
-        <div id="startups-content" class="category-content">
-            <h2 class="section-title">Startups News</h2>
-            <div class="news-grid">
-                <div class="news-card">
-                    <div class="card-image">
-                        <div class="card-category">Startups</div>
-                        <img src="https://images.unsplash.com/photo-1556761175-b413da4baf72?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1000&q=80" alt="Startup Office">
-                    </div>
-                    <div class="card-content">
-                        <h3>Neuralink Competitor Raises $200M for Non-Invasive Brain-Computer Interface</h3>
-                        <p>Synchron, a neurotechnology company, has secured significant funding to advance its stent-based brain-computer interface that doesn't require open brain surgery.</p>
-                        <div class="card-meta">
-                            <span><i class="far fa-clock"></i> 2 days ago</span>
-                            <span><i class="far fa-comment"></i> 94 comments</span>
-                        </div>
-                    </div>
-                </div>
-                
-                <div class="news-card">
-                    <div class="card-image">
-                        <div class="card-category">Startups</div>
-                        <img src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1000&q=80" alt="Startup Funding">
-                    </div>
-                    <div class="card-content">
-                        <h3>Climate Tech Startup Secures $150M Series B for Carbon Capture Technology</h3>
-                        <p>The company's innovative approach uses specialized membranes to capture CO2 directly from the atmosphere at a fraction of the cost of existing methods.</p>
-                        <div class="card-meta">
-                            <span><i class="far fa-clock"></i> 1 day ago</span>
-                            <span><i class="far fa-comment"></i> 67 comments</span>
-                        </div>
-                    </div>
-                </div>
-                
-                <div class="news-card">
-                    <div class="card-image">
-                        <div class="card-category">Startups</div>
-                        <img src="https://images.unsplash.com/photo-1560520653-9e0e4c89eb11?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1000&q=80" alt="AI Startup">
-                    </div>
-                    <div class="card-content">
-                        <h3>AI-Powered Drug Discovery Startup Valued at $2B After Latest Funding Round</h3>
-                        <p>The company uses machine learning algorithms to identify promising drug candidates, reducing development time from years to months.</p>
-                        <div class="card-meta">
-                            <span><i class="far fa-clock"></i> 3 days ago</span>
-                            <span><i class="far fa-comment"></i> 112 comments</span>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
+  <!-- Top ticker -->
+  <div id="ticker" class="sticky top-0 z-40 border-b border-slate-200 bg-white/80 dark:border-slate-800 dark:bg-slate-900/70 glass">
+    <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 flex items-center gap-3 py-2 text-sm">
+      <span class="inline-flex items-center gap-2 font-semibold text-brand-700 dark:text-brand-300"><i class="fa-solid fa-bolt"></i> Trending</span>
+      <div class="relative flex-1 overflow-hidden">
+        <div id="ticker-track" class="whitespace-nowrap will-change-transform"></div>
+      </div>
+      <button id="themeToggle" class="rounded-lg px-3 py-1.5 text-sm bg-slate-100 hover:bg-slate-200 dark:bg-slate-800 dark:hover:bg-slate-700" aria-label="Toggle dark mode">
+        <i class="fa-solid fa-moon"></i>
+      </button>
     </div>
+  </div>
 
-    <!-- Newsletter -->
-    <section class="newsletter">
-        <div class="container">
-            <div class="newsletter-content">
-                <h2>Stay Updated with TechPulse</h2>
-                <p>Subscribe to our daily newsletter and never miss important tech news and updates.</p>
-                <form class="newsletter-form">
-                    <input type="email" placeholder="Enter your email address">
-                    <button type="submit">Subscribe</button>
-                </form>
-            </div>
+  <!-- Header -->
+  <header class="bg-gradient-to-b from-white/80 to-transparent dark:from-slate-900/80 sticky top-[40px] z-30 backdrop-blur">
+    <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-6 flex items-center justify-between">
+      <div class="flex items-center gap-3">
+        <div class="h-10 w-10 rounded-xl bg-brand-600 text-white grid place-items-center shadow-soft"><i class="fa-solid fa-radar"></i></div>
+        <div>
+          <h1 class="text-2xl font-extrabold tracking-tight">TechStream</h1>
+          <p class="text-xs text-slate-500 dark:text-slate-400">Fast. Focused. Future-ready.</p>
         </div>
+      </div>
+      <nav class="hidden md:flex items-center gap-6 text-sm">
+        <a class="hover:text-brand-600" href="#/latest" data-route="latest">Latest</a>
+        <a class="hover:text-brand-600" href="#/ai" data-route="ai">AI</a>
+        <a class="hover:text-brand-600" href="#/mobile" data-route="mobile">Mobile</a>
+        <a class="hover:text-brand-600" href="#/security" data-route="security">Security</a>
+        <a class="hover:text-brand-600" href="#/reviews" data-route="reviews">Reviews</a>
+      </nav>
+      <div class="flex items-center gap-3">
+        <div class="relative hidden sm:block">
+          <input id="searchInput" type="search" placeholder="Search news, topics…" class="peer w-64 rounded-xl border border-slate-200 bg-white/70 py-2 pl-9 pr-3 text-sm outline-none placeholder:text-slate-400 focus:border-brand-500 focus:ring-2 focus:ring-brand-500/30 dark:border-slate-700 dark:bg-slate-800" />
+          <i class="fa-solid fa-magnifying-glass absolute left-3 top-1/2 -translate-y-1/2 text-slate-400 peer-focus:text-brand-500"></i>
+        </div>
+        <button id="mobileMenuBtn" class="md:hidden rounded-xl border border-slate-200 bg-white/70 px-3 py-2 text-sm dark:border-slate-700 dark:bg-slate-800" aria-expanded="false" aria-controls="mobileMenu"><i class="fa-solid fa-bars"></i></button>
+      </div>
+    </div>
+    <div id="mobileMenu" class="md:hidden hidden border-t border-slate-200 px-4 py-3 dark:border-slate-800">
+      <div class="relative mb-3">
+        <input id="searchInputMobile" type="search" placeholder="Search news, topics…" class="w-full rounded-xl border border-slate-200 bg-white/70 py-2 pl-9 pr-3 text-sm outline-none placeholder:text-slate-400 focus:border-brand-500 focus:ring-2 focus:ring-brand-500/30 dark:border-slate-700 dark:bg-slate-800" />
+        <i class="fa-solid fa-magnifying-glass absolute left-3 top-1/2 -translate-y-1/2 text-slate-400"></i>
+      </div>
+      <nav class="flex flex-wrap gap-4 text-sm">
+        <a class="hover:text-brand-600" href="#/latest" data-route="latest">Latest</a>
+        <a class="hover:text-brand-600" href="#/ai" data-route="ai">AI</a>
+        <a class="hover:text-brand-600" href="#/mobile" data-route="mobile">Mobile</a>
+        <a class="hover:text-brand-600" href="#/security" data-route="security">Security</a>
+        <a class="hover:text-brand-600" href="#/reviews" data-route="reviews">Reviews</a>
+      </nav>
+    </div>
+  </header>
+
+  <!-- Main -->
+  <main id="content" class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 pb-16">
+    <!-- Hero / Featured -->
+    <section id="latest" class="grid grid-cols-1 lg:grid-cols-3 gap-6 pt-6">
+      <article class="relative lg:col-span-2 overflow-hidden rounded-2xl bg-slate-100 dark:bg-slate-800 shadow-soft">
+        <img id="featuredImage" class="h-72 w-full object-cover" alt="Featured story cover" loading="lazy" src="https://images.unsplash.com/photo-1518779578993-ec3579fee39f?q=80&w=1600&auto=format&fit=crop"/>
+        <div class="absolute inset-0 bg-gradient-to-t from-black/70 to-transparent"></div>
+        <div class="absolute bottom-0 p-6 text-white space-y-2">
+          <div class="flex items-center gap-2 text-xs opacity-90">
+            <span class="inline-flex items-center gap-1 rounded-full bg-white/20 px-2 py-1 backdrop-blur"><i class="fa-solid fa-robot"></i> AI</span>
+            <time id="featuredDate" class="opacity-90" datetime="">Just now</time>
+            <span aria-hidden>•</span>
+            <span id="featuredReadTime">5 min read</span>
+          </div>
+          <h2 id="featuredTitle" class="text-2xl sm:text-3xl font-extrabold leading-tight">Open models race accelerates as startups unveil multimodal breakthroughs</h2>
+          <p id="featuredExcerpt" class="max-w-2xl text-sm sm:text-base opacity-95 line-clamp-2">From voice-native assistants to on-device inference, here are the launches that actually matter this week—and why.</p>
+        </div>
+        <button id="featuredOpen" class="absolute inset-0" aria-label="Open featured article"></button>
+      </article>
+
+      <!-- Side widgets -->
+      <aside class="space-y-6">
+        <!-- Categories -->
+        <div class="rounded-2xl border border-slate-200 bg-white p-4 dark:border-slate-800 dark:bg-slate-900 shadow-soft">
+          <h3 class="mb-3 text-sm font-semibold uppercase tracking-wide text-slate-500">Filter by topic</h3>
+          <div id="categoryPills" class="flex flex-wrap gap-2"></div>
+        </div>
+        <!-- Newsletter -->
+        <div class="rounded-2xl border border-slate-200 bg-white p-4 dark:border-slate-800 dark:bg-slate-900 shadow-soft">
+          <h3 class="text-lg font-bold">Stay in the loop</h3>
+          <p class="text-sm text-slate-500 dark:text-slate-400 mt-1">Weekly digest of the biggest tech stories, straight to your inbox.</p>
+          <form class="mt-3 flex gap-2" onsubmit="event.preventDefault(); alert('Subscribed! (demo)')">
+            <input type="email" required placeholder="you@domain.com" class="flex-1 rounded-xl border border-slate-200 bg-white/70 px-3 py-2 text-sm outline-none focus:border-brand-500 focus:ring-2 focus:ring-brand-500/30 dark:border-slate-700 dark:bg-slate-800" />
+            <button class="rounded-xl bg-brand-600 px-4 py-2 text-sm font-semibold text-white hover:bg-brand-700">Subscribe</button>
+          </form>
+          <p class="mt-2 text-xs text-slate-500">No spam. Unsubscribe anytime.</p>
+        </div>
+      </aside>
     </section>
 
-    <!-- Footer -->
-    <footer>
-        <div class="container">
-            <div class="footer-content">
-                <div class="footer-column">
-                    <h3>TechPulse</h3>
-                    <p>Your trusted source for the latest technology news, reviews, and insights from around the world.</p>
-                    <div class="social-links">
-                        <a href="#"><i class="fab fa-twitter"></i></a>
-                        <a href="#"><i class="fab fa-facebook-f"></i></a>
-                        <a href="#"><i class="fab fa-linkedin-in"></i></a>
-                        <a href="#"><i class="fab fa-instagram"></i></a>
-                        <a href="#"><i class="fab fa-youtube"></i></a>
-                    </div>
-                </div>
-                <div class="footer-column">
-                    <h3>Categories</h3>
-                    <ul class="footer-links">
-                        <li><a href="#" class="nav-link" data-category="ai">AI & Machine Learning</a></li>
-                        <li><a href="#" class="nav-link" data-category="software">Software & Apps</a></li>
-                        <li><a href="#" class="nav-link" data-category="hardware">Hardware</a></li>
-                        <li><a href="#" class="nav-link" data-category="gadgets">Gadgets & Devices</a></li>
-                        <li><a href="#" class="nav-link" data-category="startups">Startups</a></li>
-                    </ul>
-                </div>
-                <div class="footer-column">
-                    <h3>Company</h3>
-                    <ul class="footer-links">
-                        <li><a href="#">About Us</a></li>
-                        <li><a href="#">Our Team</a></li>
-                        <li><a href="#">Careers</a></li>
-                        <li><a href="#">Contact</a></li>
-                        <li><a href="#">Advertise</a></li>
-                    </ul>
-                </div>
-                <div class="footer-column">
-                    <h3>Legal</h3>
-                    <ul class="footer-links">
-                        <li><a href="#">Terms of Service</a></li>
-                        <li><a href="#">Privacy Policy</a></li>
-                        <li><a href="#">Cookie Policy</a></li>
-                        <li><a href="#">GDPR Compliance</a></li>
-                        <li><a href="#">Ethics Policy</a></li>
-                    </ul>
-                </div>
-            </div>
-            <div class="copyright">
-                <p>&copy; 2023 TechPulse. All rights reserved.</p>
-            </div>
+    <!-- Controls -->
+    <section class="mt-8 flex flex-wrap items-center justify-between gap-3">
+      <div class="flex items-center gap-2 text-sm">
+        <label class="text-slate-500">Sort:</label>
+        <select id="sortSelect" class="rounded-xl border border-slate-200 bg-white px-3 py-2 text-sm dark:border-slate-700 dark:bg-slate-800">
+          <option value="newest">Newest</option>
+          <option value="popular">Most Popular</option>
+          <option value="shortest">Shortest Read</option>
+        </select>
+      </div>
+      <div class="text-xs text-slate-500" id="resultCount">Showing 0 results</div>
+    </section>
+
+    <!-- Section Title -->
+    <h2 id="sectionTitle" class="mt-6 text-xl sm:text-2xl font-extrabold tracking-tight">Latest</h2>
+
+    <!-- Articles Grid -->
+    <section id="articles" class="mt-4 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6"></section>
+
+    <!-- Infinite Scroll Sentinel -->
+    <div id="sentinel" class="h-10"></div>
+
+    <!-- Modal -->
+    <div id="articleModal" class="fixed inset-0 z-50 hidden">
+      <div class="absolute inset-0 bg-black/60" data-close></div>
+      <div class="pointer-events-auto absolute left-1/2 top-1/2 w-[min(95vw,900px)] -translate-x-1/2 -translate-y-1/2 overflow-hidden rounded-2xl bg-white shadow-2xl dark:bg-slate-900">
+        <div class="flex items-center justify-between border-b border-slate-200 p-4 dark:border-slate-800">
+          <h3 id="modalTitle" class="text-lg font-bold">Article</h3>
+          <button class="rounded-lg p-2 text-slate-500 hover:bg-slate-100 dark:hover:bg-slate-800" data-close aria-label="Close"><i class="fa-solid fa-xmark"></i></button>
         </div>
-    </footer>
+        <div class="grid grid-cols-1 lg:grid-cols-5 gap-0">
+          <div class="lg:col-span-3 p-4">
+            <img id="modalImage" alt="Article image" class="mb-4 h-56 w-full rounded-xl object-cover" loading="lazy"/>
+            <div class="flex items-center gap-3 text-xs text-slate-500">
+              <span id="modalMeta"></span>
+              <a id="modalSource" target="_blank" rel="noopener" class="inline-flex items-center gap-1 text-brand-600 hover:underline">Source <i class="fa-solid fa-arrow-up-right-from-square text-[10px]"></i></a>
+            </div>
+            <p id="modalBody" class="mt-3 text-sm leading-relaxed text-slate-700 dark:text-slate-300"></p>
+          </div>
+          <aside class="lg:col-span-2 border-t lg:border-l lg:border-t-0 border-slate-200 p-4 dark:border-slate-800">
+            <h4 class="mb-3 text-sm font-semibold uppercase tracking-wide text-slate-500">Related</h4>
+            <ul id="relatedList" class="space-y-3 text-sm"></ul>
+          </aside>
+        </div>
+      </div>
+    </div>
+  </main>
 
-    <script>
-        // Navigation functionality
-        document.addEventListener('DOMContentLoaded', function() {
-            const navLinks = document.querySelectorAll('.nav-link');
-            const categoryContents = document.querySelectorAll('.category-content');
-            
-            // Function to show specific category content
-            function showCategory(category) {
-                // Hide all category contents
-                categoryContents.forEach(content => {
-                    content.classList.remove('active');
-                });
-                
-                // Show the selected category content
-                const targetContent = document.getElementById(`${category}-content`);
-                if (targetContent) {
-                    targetContent.classList.add('active');
-                }
-                
-                // Update active nav link
-                navLinks.forEach(link => {
-                    link.classList.remove('active');
-                    if (link.getAttribute('data-category') === category) {
-                        link.classList.add('active');
-                    }
-                });
-            }
-            
-            // Add click event listeners to nav links
-            navLinks.forEach(link => {
-                link.addEventListener('click', function(e) {
-                    e.preventDefault();
-                    const category = this.getAttribute('data-category');
-                    showCategory(category);
-                    
-                    // Scroll to top of content
-                    window.scrollTo({
-                        top: document.querySelector('.container').offsetTop - 100,
-                        behavior: 'smooth'
-                    });
-                });
-            });
-            
-            // Simple script to handle newsletter form submission
-            document.querySelector('.newsletter-form').addEventListener('submit', function(e) {
-                e.preventDefault();
-                const email = this.querySelector('input').value;
-                if(email) {
-                    alert(`Thank you for subscribing with ${email}! You'll receive our next newsletter.`);
-                    this.querySelector('input').value = '';
-                }
-            });
+  <!-- Footer -->
+  <footer class="border-t border-slate-200 bg-white/70 py-10 text-sm dark:border-slate-800 dark:bg-slate-900/70">
+    <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+      <div>
+        <div class="flex items-center gap-2">
+          <div class="h-8 w-8 rounded-lg bg-brand-600 text-white grid place-items-center"><i class="fa-solid fa-radar"></i></div>
+          <span class="font-extrabold">TechStream</span>
+        </div>
+        <p class="mt-2 text-slate-500 dark:text-slate-400">Your daily dose of AI, gadgets, and the future—built as a demo page you can customize.</p>
+      </div>
+      <div>
+        <h5 class="mb-2 font-semibold">Sections</h5>
+        <ul class="space-y-1 text-slate-600 dark:text-slate-300">
+          <li><a href="#ai" class="hover:text-brand-600">AI</a></li>
+          <li><a href="#mobile" class="hover:text-brand-600">Mobile</a></li>
+          <li><a href="#security" class="hover:text-brand-600">Security</a></li>
+          <li><a href="#reviews" class="hover:text-brand-600">Reviews</a></li>
+        </ul>
+      </div>
+      <div>
+        <h5 class="mb-2 font-semibold">Company</h5>
+        <ul class="space-y-1 text-slate-600 dark:text-slate-300">
+          <li><a href="#" class="hover:text-brand-600">About</a></li>
+          <li><a href="#" class="hover:text-brand-600">Advertise</a></li>
+          <li><a href="#" class="hover:text-brand-600">Contact</a></li>
+        </ul>
+      </div>
+      <div>
+        <h5 class="mb-2 font-semibold">Follow</h5>
+        <div class="flex gap-3 text-lg text-slate-500">
+          <a href="#" aria-label="Twitter" class="hover:text-brand-600"><i class="fa-brands fa-x-twitter"></i></a>
+          <a href="#" aria-label="YouTube" class="hover:text-brand-600"><i class="fa-brands fa-youtube"></i></a>
+          <a href="#" aria-label="GitHub" class="hover:text-brand-600"><i class="fa-brands fa-github"></i></a>
+        </div>
+      </div>
+    </div>
+    <div class="mt-8 text-center text-xs text-slate-500">© <span id="year"></span> TechStream. Demo UI for a tech news page.</div>
+  </footer>
 
-            // Add some interactivity to category buttons
-            document.querySelectorAll('.category').forEach(button => {
-                button.addEventListener('click', function() {
-                    alert(`Loading news for: ${this.textContent}`);
-                });
-            });
+  <!-- Data + JS -->
+  <script>
+    /**
+     * Demo data to simulate articles from an API
+     * Replace with real fetch("/api/news") later
+     */
+    const topics = ['All','AI','Mobile','Gadgets','Security','Software','Gaming','Science','Reviews'];
 
-            // Add current year to copyright
-            document.querySelector('.copyright p').innerHTML = `&copy; ${new Date().getFullYear()} TechPulse. All rights reserved.`;
-        });
-    </script>
+    const sample = (arr) => arr[Math.floor(Math.random()*arr.length)];
+
+    function genArticles(start = 0, count = 12) {
+      const sources = ['Wired','The Verge','TechCrunch','Ars Technica','The Information','Engadget','Tom\'s Hardware','Android Authority'];
+      const thumbs = [
+        'https://images.unsplash.com/photo-1518779578993-ec3579fee39f?q=80&w=1600&auto=format&fit=crop',
+        'https://images.unsplash.com/photo-1550751827-4bd374c3f58b?q=80&w=1600&auto=format&fit=crop',
+        'https://images.unsplash.com/photo-1518770660439-4636190af475?q=80&w=1600&auto=format&fit=crop',
+        'https://images.unsplash.com/photo-1498050108023-c5249f4df085?q=80&w=1600&auto=format&fit=crop',
+        'https://images.unsplash.com/photo-1498049794561-7780e7231661?q=80&w=1600&auto=format&fit=crop',
+        'https://images.unsplash.com/photo-1518773553398-650c184e0bb3?q=80&w=1600&auto=format&fit=crop'
+      ];
+      const cats = topics.slice(1); // exclude All
+      return Array.from({length: count}).map((_,i)=>{
+        const id = start + i + 1;
+        const category = sample(cats);
+        const read = [3,4,5,6,7,8][Math.floor(Math.random()*6)];
+        const minutesAgo = Math.floor(Math.random()*720); // within last 12h
+        return {
+          id,
+          title: `${category}: ${['Breakthrough','Launch','Update','Leak','Report','Deep Dive'][Math.floor(Math.random()*6)]} #${id}`,
+          excerpt: 'Short summary of the story with the key details. This demo text shows how the card will look in the grid.',
+          image: sample(thumbs),
+          source: sample(sources),
+          url: '#',
+          category,
+          read,
+          views: Math.floor(Math.random()*5000)+500,
+          publishedAt: Date.now() - minutesAgo*60*1000
+        };
+      });
+    }
+
+    let allArticles = genArticles(0, 24);
+    let loaded = 0;
+    const pageSize = 9;
+
+    const state = {
+      query: '',
+      category: 'All',
+      sort: 'newest'
+    };
+    // Client-side router for section pages
+    const routes = {
+      latest: { label: 'Latest', category: 'All' },
+      ai: { label: 'AI', category: 'AI' },
+      mobile: { label: 'Mobile', category: 'Mobile' },
+      security: { label: 'Security', category: 'Security' },
+      reviews: { label: 'Reviews', category: 'Reviews' }
+    };
+
+    function applyRoute() {
+      const hash = (location.hash || '#/latest').toLowerCase();
+      const key = hash.replace('#/','');
+      const route = routes[key] || routes.latest;
+      state.category = route.category;
+      loaded = 0;
+      updateActiveNav(key);
+      const titleEl = document.getElementById('sectionTitle');
+      if (titleEl) titleEl.textContent = route.label;
+      document.title = `${route.label} — TechStream`;
+      render(true);
+      // Scroll to top of content for "page" feel
+      document.getElementById('content')?.scrollIntoView({behavior: 'smooth', block: 'start'});
+    }
+
+    function updateActiveNav(activeKey){
+      document.querySelectorAll('[data-route]').forEach(a=>{
+        if(a.getAttribute('data-route') === activeKey){
+          a.classList.add('text-brand-600','font-semibold');
+        } else {
+          a.classList.remove('text-brand-600','font-semibold');
+        }
+      });
+      highlightActivePill(state.category === 'All' ? 'All' : state.category);
+    }
+
+    window.addEventListener('hashchange', applyRoute);
+
+    // Elements
+    const articlesEl = document.getElementById('articles');
+    const resultCountEl = document.getElementById('resultCount');
+    const sortSelect = document.getElementById('sortSelect');
+    const searchInput = document.getElementById('searchInput');
+    const searchInputMobile = document.getElementById('searchInputMobile');
+    const sentinel = document.getElementById('sentinel');
+
+    // Year
+    document.getElementById('year').textContent = new Date().getFullYear();
+
+    // Theme toggle with localStorage
+    const themeToggle = document.getElementById('themeToggle');
+    const root = document.documentElement;
+    const setTheme = (mode) => {
+      if (mode === 'dark') root.classList.add('dark'); else root.classList.remove('dark');
+      localStorage.setItem('theme', mode);
+      themeToggle.innerHTML = mode === 'dark' ? '<i class="fa-solid fa-sun"></i>' : '<i class="fa-solid fa-moon"></i>';
+    };
+    setTheme(localStorage.getItem('theme') || (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light'));
+    themeToggle.addEventListener('click',()=> setTheme(root.classList.contains('dark') ? 'light' : 'dark'));
+
+    // Mobile menu toggle
+    const mobileMenuBtn = document.getElementById('mobileMenuBtn');
+    const mobileMenu = document.getElementById('mobileMenu');
+    mobileMenuBtn.addEventListener('click', ()=>{
+      const open = mobileMenu.classList.toggle('hidden');
+      mobileMenuBtn.setAttribute('aria-expanded', String(!open));
+    });
+
+    // Build category pills
+    const categoryPills = document.getElementById('categoryPills');
+    topics.forEach(t=>{
+      const btn = document.createElement('button');
+      btn.className = 'px-3 py-1.5 rounded-full text-sm border border-slate-200 dark:border-slate-700 hover:bg-slate-100 dark:hover:bg-slate-800';
+      btn.textContent = t;
+      btn.dataset.value = t;
+      btn.addEventListener('click',()=>{ state.category = t; loaded = 0; render(true); highlightActivePill(t); });
+      categoryPills.appendChild(btn);
+    });
+
+    function highlightActivePill(val){
+      [...categoryPills.children].forEach(el=>{
+        if(el.dataset.value === val){ el.classList.add('bg-brand-600','text-white','border-brand-600'); }
+        else { el.classList.remove('bg-brand-600','text-white','border-brand-600'); }
+      });
+    }
+    highlightActivePill('All');
+
+    // Search
+    function onSearch(e){ state.query = e.target.value.toLowerCase(); loaded = 0; render(true); }
+    searchInput?.addEventListener('input', onSearch);
+    searchInputMobile?.addEventListener('input', onSearch);
+
+    // Sort
+    sortSelect.addEventListener('change',()=>{ state.sort = sortSelect.value; loaded = 0; render(true); });
+
+    // Ticker
+    const tickerData = [
+      'Apple\'s R1 chip rumored to boost on-device AI',
+      'Open-source LLMs inch closer to GPT-4 class',
+      'Linux kernel gets major scheduler revamp',
+      'Wi‑Fi 7 routers hit mainstream pricing',
+      'USB‑C certification crackdown rolls out',
+    ];
+    const tickerTrack = document.getElementById('ticker-track');
+    function buildTicker(){
+      tickerTrack.innerHTML = '';
+      const row = document.createElement('div');
+      row.className = 'animate-marquee inline-block';
+      row.style.animation = 'marquee 30s linear infinite';
+      row.innerHTML = tickerData.map(t=>`<span class=\"mx-6 inline-flex items-center gap-2 text-slate-600 dark:text-slate-300\"><i class=\"fa-solid fa-circle text-[6px]\"></i> ${t}</span>`).join('');
+      tickerTrack.appendChild(row);
+    }
+    buildTicker();
+    const style = document.createElement('style');
+    style.textContent = '@keyframes marquee { 0% { transform: translateX(0); } 100% { transform: translateX(-50%); } }';
+    document.head.appendChild(style);
+
+    // Render
+    function formatTime(ts){
+      const diff = Math.max(1, Math.floor((Date.now()-ts)/60000));
+      if(diff < 60) return `${diff} min ago`;
+      const h = Math.floor(diff/60); if(h<24) return `${h} hr${h>1?'s':''} ago`;
+      const d = Math.floor(h/24); return `${d} day${d>1?'s':''} ago`;
+    }
+
+    function applyFilters(list){
+      return list.filter(a => (state.category==='All' || a.category===state.category) &&
+        (state.query==='' || a.title.toLowerCase().includes(state.query) || a.excerpt.toLowerCase().includes(state.query)));
+    }
+
+    function applySort(list){
+      const arr = [...list];
+      if(state.sort==='newest') arr.sort((a,b)=>b.publishedAt - a.publishedAt);
+      if(state.sort==='popular') arr.sort((a,b)=>b.views - a.views);
+      if(state.sort==='shortest') arr.sort((a,b)=>a.read - b.read);
+      return arr;
+    }
+
+    function createCard(a){
+      const el = document.createElement('article');
+      el.className = 'group overflow-hidden rounded-2xl border border-slate-200 bg-white dark:border-slate-800 dark:bg-slate-900 hover:shadow-xl transition-shadow shadow-soft';
+      el.innerHTML = `
+        <div class=\"relative\">
+          <img alt=\"${a.title}\" src=\"${a.image}\" class=\"h-44 w-full object-cover transition-transform duration-300 group-hover:scale-[1.02]\" loading=\"lazy\"/>
+          <span class=\"absolute left-3 top-3 rounded-full bg-black/60 px-2 py-1 text-xs text-white backdrop-blur\"><i class=\"fa-solid fa-tag\"></i> ${a.category}</span>
+        </div>
+        <div class=\"p-4 space-y-2\">
+          <h3 class=\"text-lg font-bold leading-snug line-clamp-2\">${a.title}</h3>
+          <p class=\"text-sm text-slate-600 dark:text-slate-300 line-clamp-3\">${a.excerpt}</p>
+          <div class=\"flex items-center justify-between text-xs text-slate-500\">
+            <span>${a.source}</span>
+            <span>${formatTime(a.publishedAt)} • ${a.read} min</span>
+          </div>
+        </div>`;
+      el.addEventListener('click', ()=> openModal(a));
+      return el;
+    }
+
+    function openModal(a){
+      document.getElementById('modalTitle').textContent = a.title;
+      const meta = `${a.source} • ${formatTime(a.publishedAt)} • ${a.read} min read`;
+      document.getElementById('modalMeta').textContent = meta;
+      document.getElementById('modalImage').src = a.image;
+      document.getElementById('modalBody').textContent = `${a.excerpt} This is a demo modal. Link out to the full article for details.`;
+      const relatedRoot = document.getElementById('relatedList');
+      relatedRoot.innerHTML = '';
+      applyFilters(allArticles.filter(x=>x.category===a.category && x.id!==a.id)).slice(0,5).forEach(r=>{
+        const li = document.createElement('li');
+        li.innerHTML = `<a class=\"hover:underline\" href=\"#\">${r.title}</a>`;
+        relatedRoot.appendChild(li);
+      });
+      const modal = document.getElementById('articleModal');
+      modal.classList.remove('hidden');
+      modal.querySelectorAll('[data-close]').forEach(b=> b.addEventListener('click', ()=> modal.classList.add('hidden')));
+    }
+
+    // Featured binds
+    document.getElementById('featuredOpen').addEventListener('click', ()=> openModal(allArticles[0]));
+
+    function render(reset=false){
+      const filtered = applySort(applyFilters(allArticles));
+      resultCountEl.textContent = `Showing ${filtered.length} results`;
+
+      if(reset){ articlesEl.innerHTML = ''; loaded = 0; }
+
+      const batch = filtered.slice(loaded, loaded + pageSize);
+      batch.forEach(a=> articlesEl.appendChild(createCard(a)));
+      loaded += batch.length;
+
+      // update featured from first filtered
+      if(filtered[0]){
+        const f = filtered[0];
+        document.getElementById('featuredTitle').textContent = f.title;
+        document.getElementById('featuredExcerpt').textContent = f.excerpt;
+        document.getElementById('featuredImage').src = f.image;
+        document.getElementById('featuredDate').textContent = formatTime(f.publishedAt);
+        document.getElementById('featuredReadTime').textContent = `${f.read} min read`;
+      }
+    }
+
+    // Infinite scroll using IntersectionObserver
+    const io = new IntersectionObserver((entries)=>{
+      if(entries[0].isIntersecting){
+        const filtered = applySort(applyFilters(allArticles));
+        if(loaded < filtered.length){
+          render(false);
+        } else {
+          // simulate loading more from API
+          const more = genArticles(allArticles.length, 12);
+          allArticles = allArticles.concat(more);
+          render(false);
+        }
+      }
+    }, {rootMargin: '200px'});
+    io.observe(sentinel);
+
+    // Initial render via route
+    applyRoute();
+  </script>
 </body>
 </html>
