@@ -171,14 +171,13 @@
         .portfolio-link i { margin-left: 6px; transition: var(--transition); font-size: 0.8rem; }
         .portfolio-link:hover { color: var(--accent); background: rgba(255,101,132,0.1); border-color: rgba(255,101,132,0.2); }
 
-        /* Portfolio Filters (optional) */
-        .portfolio-filters { display: flex; justify-content: center; flex-wrap: wrap; gap: 10px; margin-bottom: 30px; }
-        .filter-btn { padding: 8px 16px; background: var(--glass-bg); border: 1px solid var(--glass-border); border-radius: 20px; color: var(--light); font-size: 0.85rem; font-weight: 500; cursor: pointer; transition: var(--transition); backdrop-filter: blur(10px); }
-        .filter-btn.active, .filter-btn:hover { background: var(--primary); color: white; border-color: var(--primary); }
-
-        /* Contact */
+        /* Contact Section with About Me */
         .contact { background-color: var(--dark); }
         .contact-content { display: flex; flex-direction: column; gap: 40px; }
+        .contact-about { text-align: center; margin-bottom: 40px; }
+        .contact-about h2 { font-size: clamp(1.8rem, 4vw, 2.5rem); font-weight: 700; margin-bottom: 20px; position: relative; display: inline-block; }
+        .contact-about h2::after { content: ''; position: absolute; bottom: -10px; left: 50%; transform: translateX(-50%); width: 60px; height: 4px; background-color: var(--primary); border-radius: 2px; }
+        .contact-about p { color: var(--gray); max-width: 800px; margin: 0 auto 30px; font-size: 1.1rem; line-height: 1.7; }
         .contact-info { display: flex; flex-direction: column; gap: 20px; }
         .contact-item { display: flex; align-items: flex-start; gap: 15px; }
         .contact-icon { width: 45px; height: 45px; background: linear-gradient(135deg, var(--primary), var(--secondary)); border-radius: 50%; display: flex; align-items: center; justify-content: center; color: white; font-size: 1.1rem; flex-shrink: 0; }
@@ -340,13 +339,13 @@
         <div class="container">
             <div class="hero-content">
                 <h1>Hi, I'm Adil<br>Creative Designer</h1>
-                <p>Your brand deserves a digital soul —---   I     build it..</p>
+                <p>Your brand deserves a digital soul — I build it.</p>
                 <div class="hero-buttons">
                     <a href="https://wa.me/919207271076" class="btn btn-outline">Freelance Works</a>
                     <a href="tech.html" class="btn btn-outline">Test your phone</a>
                     <a href="webtest.html" class="btn btn-outline">Test your website</a>
-                    <a href="study.html" class="btn btn-outline">study with me</a>
-                    <a href="work.html" class="btn btn-outline">tech news</a>
+                    <a href="study.html" class="btn btn-outline">Study with me</a>
+                    <a href="work.html" class="btn btn-outline">Tech news</a>
                     <a href="work.html" class="btn btn-outline">View My Work</a>
                 </div>
             </div>
@@ -358,7 +357,7 @@
         <h2 class="passion-text"></h2>
         <div class="share-idea-card" onclick="window.location.href='idea.html'">
             <div class="share-idea-icon">
-                <i class="fas fa-lightbulb"> Dream Develop Deliver</i>
+                <i class="fas fa-lightbulb"></i>
             </div>
             <h3>Share Your Idea</h3>
             <p>Have a creative idea or project in mind? Let's collaborate and bring it to life together!</p>
@@ -386,7 +385,11 @@
         </div>
     </div>
 
-   <!--skill-->
+    <!-- Skills Section -->
+    <section class="about" id="about">
+        <div class="container">
+            <div class="about-content">
+                <div class="about-text">
                     <h3>My Skills</h3>
                     <p>Driven by creativity, powered by passion.</p>
                     <div class="skills">
@@ -443,7 +446,7 @@
                             </div>
                         </div>
                         <div class="skill-row">
-                            <span class="skill-name">video editing</span>
+                            <span class="skill-name">Video Editing</span>
                             <div class="skill-level">
                                 <div class="skill-dots">
                                     <div class="skill-dot active"></div>
@@ -527,14 +530,14 @@
                 </a>
                 <a href="motion-graphics.html" class="service-card">
                     <div class="service-icon"><i class="fas fa-video"></i></div>
-                    <h3>Video editing</h3>
+                    <h3>Video Editing</h3>
                     <p>Creating dynamic animations and visual effects to bring your brand story to life.</p>
                     <span class="service-link">Learn More <i class="fas fa-arrow-right"></i></span>
                 </a>
                 <a href="photography.html" class="service-card">
                     <div class="service-icon"><i class="fas fa-camera"></i></div>
-                    <h3>cybersecurity services</h3>
-                    <p>protect digital assets from threats, and solutions like risk assessments, managed detection, and vulnerability management</p>
+                    <h3>Cybersecurity Services</h3>
+                    <p>Protect digital assets from threats, and solutions like risk assessments, managed detection, and vulnerability management</p>
                     <span class="service-link">Learn More <i class="fas fa-arrow-right"></i></span>
                 </a>
                 <a href="seo-optimization.html" class="service-card">
@@ -584,7 +587,7 @@
                             <span class="portfolio-tag">MACHINE</span>
                         </div>
                         <h3>Vulnerable System</h3>
-                        <p> essential training tools that teach critical thinking, hands-on ethical hacking, collaboration, and real-world problem-solving</p>
+                        <p>Essential training tools that teach critical thinking, hands-on ethical hacking, collaboration, and real-world problem-solving</p>
                         <a href="https://tryhackme.com/room/hexhunter2o" class="portfolio-link">View Project <i class="fas fa-arrow-right"></i></a>
                     </div>
                 </div>
@@ -592,23 +595,19 @@
         </div>
     </section>
 
- <!-- About -->
-    <section class="about" id="about">
-        <div class="container">
-            <div class="section-title">
-                <h2>About Me</h2>
-                <p>I'm Adil, a passionate cybersecurity enthusiast and digital creator driven by curiosity, creativity, and innovation. I love building secure and meaningful digital experiences — blending design, technology, and protection to make the online world safer and smarter. Every project I take on is powered by precision, creativity, and passion — whether it's developing websites, testing systems for vulnerabilities, or exploring new cybersecurity tools. My goal is simple: to create digital experiences that inspire trust, spark innovation, and stay one step ahead of cyber threats. Driven by creativity. Powered by passion. Secured by knowledge.</p>
-            </div>
-            <div class="about-content">
-                <div class="about-text">
-    
-    <!-- Contact -->
+    <!-- Contact with About Me at the top -->
     <section class="contact" id="contact">
         <div class="container">
+            <div class="contact-about">
+                <h2>About Me</h2>
+                <p>I'm Adil, a passionate cybersecurity enthusiast and digital creator driven by curiosity, creativity, and innovation. I love building secure and meaningful digital experiences — blending design, technology, and protection to make the online world safer and smarter.</p>
+            </div>
+            
             <div class="section-title">
                 <h2>Get In Touch</h2>
                 <p>Feel free to reach out for collaborations or just a friendly hello</p>
             </div>
+            
             <div class="contact-content">
                 <div class="contact-form">
                     <form id="contactForm">
@@ -729,18 +728,6 @@
             this.reset();
         });
 
-        // Portfolio Filtering (if you add buttons with .filter-btn)
-        document.querySelectorAll('.filter-btn').forEach(button => {
-            button.addEventListener('click', function() {
-                document.querySelectorAll('.filter-btn').forEach(btn => btn.classList.remove('active'));
-                this.classList.add('active');
-                const filterValue = this.getAttribute('data-filter');
-                document.querySelectorAll('.portfolio-item').forEach(item => {
-                    item.style.display = (filterValue === 'all' || item.getAttribute('data-category') === filterValue) ? 'block' : 'none';
-                });
-            });
-        });
-
         // Create stars for solar system
         function createStars() {
             const starsContainer = document.getElementById('stars-container');
@@ -767,4 +754,3 @@
     </script>
 </body>
 </html>
-
