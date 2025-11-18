@@ -209,9 +209,9 @@
             box-shadow: 0 6px 20px rgba(225, 48, 108, 0.4);
         }
 
-        /* Hero Section with Full Background for DREAM WEDDING */
+        /* Hero Section with 3D Carousel */
         .hero {
-            background: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.7)), url('https://crystallinestudio.com/image_gallery_big/Crystalline_photography_1228.jpg');
+            background: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.7)), url('https://images.unsplash.com/photo-1519225421980-715cb0215aed?ixlib=rb-4.0.3&auto=format&fit=crop&w=1350&q=80');
             background-size: cover;
             background-position: center;
             background-attachment: fixed;
@@ -246,27 +246,80 @@
             gap: 2rem;
         }
 
-        .hero-image {
+        /* 3D Carousel - Image Only */
+        .carousel-container {
             width: 100%;
+            max-width: 1000px;
+            height: 500px;
+            perspective: 1200px;
+            margin: 0 auto 3rem;
+            position: relative;
+        }
+
+        .carousel {
+            width: 100%;
+            height: 100%;
+            position: relative;
+            transform-style: preserve-3d;
+            transition: transform 0.8s ease;
+        }
+
+        .carousel-item {
+            position: absolute;
+            width: 350px;
+            height: 450px;
+            border-radius: 20px;
+            box-shadow: 0 25px 50px rgba(0, 0, 0, 0.5);
+            transition: all 0.5s ease;
+            transform-origin: center center;
+            overflow: hidden;
+            border: 3px solid rgba(255, 255, 255, 0.3);
+            cursor: pointer;
+        }
+
+        .carousel-item.active {
+            transform: translateZ(250px) scale(1.15);
+            box-shadow: 0 30px 60px rgba(212, 175, 55, 0.4);
+            border-color: var(--accent);
+        }
+
+        .carousel-image {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s ease;
+        }
+
+        .carousel-item.active .carousel-image {
+            transform: scale(1.05);
+        }
+
+        .carousel-indicators {
             display: flex;
             justify-content: center;
-            align-items: center;
-            margin-bottom: 2rem;
+            gap: 12px;
+            margin-top: 2rem;
         }
 
-        /* Responsive Wedding Image Size */
-        .wedding-image {
-            width: 100%;
-            max-width: 450px;
-            border-radius: 20px;
-            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
-            border: 3px solid var(--accent);
-            animation: fadeInDown 1.5s ease-out;
-            transition: transform 0.3s ease;
+        .indicator {
+            width: 14px;
+            height: 14px;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.4);
+            cursor: pointer;
+            transition: all 0.3s ease;
+            border: 2px solid transparent;
         }
 
-        .wedding-image:hover {
-            transform: scale(1.02);
+        .indicator.active {
+            background: var(--accent);
+            transform: scale(1.3);
+            box-shadow: 0 0 15px rgba(212, 175, 55, 0.7);
+        }
+
+        .indicator:hover {
+            background: rgba(212, 175, 55, 0.7);
+            transform: scale(1.2);
         }
 
         .hero-text {
@@ -380,18 +433,10 @@
             animation: fadeInUp 1s ease-out forwards;
         }
 
-        .event-type:nth-child(1) {
-            animation-delay: 0.2s;
-        }
-        .event-type:nth-child(2) {
-            animation-delay: 0.4s;
-        }
-        .event-type:nth-child(3) {
-            animation-delay: 0.6s;
-        }
-        .event-type:nth-child(4) {
-            animation-delay: 0.8s;
-        }
+        .event-type:nth-child(1) { animation-delay: 0.2s; }
+        .event-type:nth-child(2) { animation-delay: 0.4s; }
+        .event-type:nth-child(3) { animation-delay: 0.6s; }
+        .event-type:nth-child(4) { animation-delay: 0.8s; }
 
         .event-icon {
             width: 100px;
@@ -992,27 +1037,14 @@
         }
 
         /* Responsive Design */
-        @media (max-width: 1200px) {
-            .gallery-grid {
-                grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            }
-            
-            .services-grid {
-                grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            }
-        }
-
         @media (max-width: 992px) {
-            .gallery-grid {
-                grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            .carousel-container {
+                height: 450px;
             }
             
-            .services-grid {
-                grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            }
-            
-            .gallery-card {
-                height: 350px;
+            .carousel-item {
+                width: 300px;
+                height: 400px;
             }
         }
 
@@ -1021,9 +1053,6 @@
                 width: 92%;
                 padding: 12px 25px;
                 top: 20px;
-                background: rgba(255, 255, 255, 0.15);
-                backdrop-filter: blur(25px) saturate(200%);
-                -webkit-backdrop-filter: blur(25px) saturate(200%);
             }
 
             .mobile-menu-btn {
@@ -1094,35 +1123,13 @@
                 font-size: 1.4rem;
             }
 
-            .about-content {
-                grid-template-columns: 1fr;
-            }
-
-            .wedding-events {
-                gap: 20px;
-            }
-
-            .event-type {
-                width: 150px;
-            }
-
-            .gallery-grid {
-                grid-template-columns: repeat(2, 1fr);
-                gap: 1.5rem;
+            .carousel-container {
+                height: 400px;
             }
             
-            .services-grid {
-                grid-template-columns: repeat(2, 1fr);
-                gap: 1.5rem;
-            }
-            
-            .gallery-card {
-                height: 300px;
-            }
-            
-            .service-card {
-                min-height: 300px;
-                padding: 2rem 1.2rem;
+            .carousel-item {
+                width: 250px;
+                height: 350px;
             }
         }
 
@@ -1166,84 +1173,13 @@
                 font-size: 2rem;
             }
 
-            .gallery-grid {
-                grid-template-columns: 1fr;
-                gap: 1.5rem;
+            .carousel-container {
+                height: 350px;
             }
             
-            .services-grid {
-                grid-template-columns: 1fr;
-                gap: 1.5rem;
-            }
-            
-            .gallery-card {
-                height: 280px;
-            }
-            
-            .service-card {
-                min-height: 280px;
-                padding: 1.5rem 1rem;
-            }
-            
-            .service-icon {
-                font-size: 2.5rem;
-                margin-bottom: 1rem;
-            }
-            
-            .service-card h3 {
-                font-size: 1.3rem;
-            }
-            
-            .service-card p {
-                font-size: 0.9rem;
-            }
-        }
-
-        @media (max-width: 480px) {
-            .header-buttons {
-                flex-direction: row;
-                gap: 8px;
-            }
-            
-            .header-button {
-                width: 170px;
-                padding: 12px 24px;
-                font-size: 0.9rem;
-            }
-        }
-
-        @media (max-width: 400px) {
-            .header-buttons {
-                flex-direction: row;
-                gap: 6px;
-            }
-            
-            .header-button {
-                width: 160px;
-                padding: 12px 20px;
-                font-size: 0.85rem;
-            }
-            
-            .gallery-card {
-                height: 250px;
-            }
-            
-            .service-card {
-                min-height: 250px;
-            }
-            
-            .wedding-events {
-                gap: 10px;
-            }
-            
-            .event-type {
-                width: 120px;
-            }
-            
-            .event-icon {
-                width: 70px;
-                height: 70px;
-                font-size: 1.8rem;
+            .carousel-item {
+                width: 200px;
+                height: 300px;
             }
         }
     </style>
@@ -1285,12 +1221,17 @@
     <section class="hero" id="home">
         <div class="container">
             <div class="hero-content">
-                <!-- Wedding Image at Top -->
-                <div class="hero-image">
-                    <img src="https://i.pinimg.com/originals/69/60/ff/6960ff11f53bf71ccc69d5f5394432d9.jpg" alt="Beautiful Wedding" class="wedding-image">
+                <!-- 3D Carousel for Images Only -->
+                <div class="carousel-container">
+                    <div class="carousel" id="featuresCarousel">
+                        <!-- Carousel items will be dynamically positioned by JavaScript -->
+                    </div>
+                    <div class="carousel-indicators" id="carouselIndicators">
+                        <!-- Indicators will be dynamically generated by JavaScript -->
+                    </div>
                 </div>
                 
-                <!-- Text Content Below Image -->
+                <!-- Text Content Below Carousel -->
                 <div class="hero-text">
                     <h1 class="dream-wedding-text">DREAM WEDDING</h1>
                     <p class="please-contact-text"></p>
@@ -1301,7 +1242,7 @@
                         <div class="event-type">
                             <div class="event-icon">
                                 <i class="fas fa-ring"></i>
-                            </div>
+                            </div>     
                             <h3>Traditional</h3>
                             <p>Classic Ceremonies</p>
                         </div>
@@ -1329,85 +1270,85 @@
                     </div>
                     
                     <a href="#contact" class="plan-wedding-btn">
-                        <i class=""></i>
-                        Please Contact
+                        <i class="fas fa-heart"></i>
+                        Plan Your Dream Wedding
                     </a>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- Services Section with Background Videos -->
-    <section class="services" id="services">
-        <div class="container">
-            <div class="section-title">
-                <h2>Our Wedding Services</h2>
-                <p>Comprehensive services to make your special day perfect</p>
+   <!-- Services Section with Background Videos -->
+   <section class="services" id="services">
+    <div class="container">
+        <div class="section-title">
+            <h2>Our Wedding Services</h2>
+            <p>Comprehensive services to make your special day perfect</p>
+        </div>
+        <div class="services-grid">
+            <div class="service-card">
+                <video class="service-video-bg" autoplay muted loop playsinline>
+                    <source src="cataring.mp4" type="video/mp4">
+                </video>
+                <div class="service-icon">
+                    <i class=""></i>
+                </div>
+                <h3>Catering Services</h3>
+                <p>Exquisite culinary experiences with custom menus tailored to your taste and preferences.</p>
             </div>
-            <div class="services-grid">
-                <div class="service-card">
-                    <video class="service-video-bg" autoplay muted loop playsinline>
-                        <source src="cataring.mp4" type="video/mp4">
-                    </video>
-                    <div class="service-icon">
-                        <i class=""></i>
-                    </div>
-                    <h3>Catering Services</h3>
-                    <p>Exquisite culinary experiences with custom menus tailored to your taste and preferences.</p>
+            <div class="service-card">
+                <video class="service-video-bg" autoplay muted loop playsinline>
+                    <source src="event.mp4" type="video/mp4">
+                </video>
+                <div class="service-icon">
+                    <i class=""></i>
                 </div>
-                <div class="service-card">
-                    <video class="service-video-bg" autoplay muted loop playsinline>
-                        <source src="event.mp4" type="video/mp4">
-                    </video>
-                    <div class="service-icon">
-                        <i class=""></i>
-                    </div>
-                    <h3>Event Management</h3>
-                    <p>Complete wedding planning and coordination to ensure a seamless and stress-free experience.</p>
+                <h3>Event Management</h3>
+                <p>Complete wedding planning and coordination to ensure a seamless and stress-free experience.</p>
+            </div>
+            <div class="service-card">
+                <video class="service-video-bg" autoplay muted loop playsinline>
+                    <source src="food.mp4" type="video/mp4">
+                </video>
+                <div class="service-icon">
+                    <i class=""></i>
                 </div>
-                <div class="service-card">
-                    <video class="service-video-bg" autoplay muted loop playsinline>
-                        <source src="food.mp4" type="video/mp4">
-                    </video>
-                    <div class="service-icon">
-                        <i class=""></i>
-                    </div>
-                    <h3>Food and Tea</h3>
-                    <p>Premium catering services including traditional tea ceremonies and gourmet food stations.</p>
+                <h3>Food and Tea</h3>
+                <p>Premium catering services including traditional tea ceremonies and gourmet food stations.</p>
+            </div>
+            <div class="service-card">
+                <video class="service-video-bg" autoplay muted loop playsinline>
+                    <source src="photography.mp4" type="video/mp4">
+                </video>
+                <div class="service-icon">
+                    <i class=""></i>
                 </div>
-                <div class="service-card">
-                    <video class="service-video-bg" autoplay muted loop playsinline>
-                        <source src="photography.mp4" type="video/mp4">
-                    </video>
-                    <div class="service-icon">
-                        <i class=""></i>
-                    </div>
-                    <h3>Photography & Videography</h3>
-                    <p>Capture every precious moment with our professional photography and cinematic videography.</p>
+                <h3>Photography & Videography</h3>
+                <p>Capture every precious moment with our professional photography and cinematic videography.</p>
+            </div>
+            <div class="service-card">
+                <video class="service-video-bg" autoplay muted loop playsinline>
+                    <source src="https://media.istockphoto.com/id/1224104034/video/indian-or-hindu-traditional-ceremony-venue-decoration.mp4?s=mp4-640x640-is&k=20&c=sfHfbgXQkfysy_h0NQ9L8fHfAdvBvROGqvpgp2uib6Y=" type="video/mp4">
+                </video>
+                <div class="service-icon">
+                    <i class=""></i>
                 </div>
-                <div class="service-card">
-                    <video class="service-video-bg" autoplay muted loop playsinline>
-                        <source src="https://media.istockphoto.com/id/1224104034/video/indian-or-hindu-traditional-ceremony-venue-decoration.mp4?s=mp4-640x640-is&k=20&c=sfHfbgXQkfysy_h0NQ9L8fHfAdvBvROGqvpgp2uib6Y=" type="video/mp4">
-                    </video>
-                    <div class="service-icon">
-                        <i class=""></i>
-                    </div>
-                    <h3>Stage Design</h3>
-                    <p>Breathtaking stage designs and decorations that transform your venue into a magical space.</p>
+                <h3>Stage Design</h3>
+                <p>Breathtaking stage designs and decorations that transform your venue into a magical space.</p>
+            </div>
+            <div class="service-card">
+                <video class="service-video-bg" autoplay muted loop playsinline>
+                    <source src="light.mp4" type="video/mp4">
+                </video>
+                <div class="service-icon">
+                    <i class=""></i>
                 </div>
-                <div class="service-card">
-                    <video class="service-video-bg" autoplay muted loop playsinline>
-                        <source src="light.mp4" type="video/mp4">
-                    </video>
-                    <div class="service-icon">
-                        <i class=""></i>
-                    </div>
-                    <h3>Light & Sound</h3>
-                    <p>Professional audio-visual equipment and lighting to create the perfect ambiance.</p>
-                </div>
+                <h3>Light & Sound</h3>
+                <p>Professional audio-visual equipment and lighting to create the perfect ambiance.</p>
             </div>
         </div>
-    </section>
+    </div>
+</section>
 
     <!-- Gallery Section -->
     <section class="gallery" id="gallery">
@@ -1680,7 +1621,7 @@
                             <textarea id="message" class="form-control" placeholder="Tell us about your dream wedding..." required></textarea>
                         </div>
                         <button type="submit" class="submit-button">
-                            <i class="fas fa-heart"></i>
+                            <i class="fas fa-paper-plane"></i>
                             Send Wedding Inquiry
                         </button>
                     </form>
@@ -1692,141 +1633,359 @@
     <!-- Footer -->
     <footer>
         <div class="container">
-            
+            <div class="footer-content">
                 <div class="footer-column">
                     <h3>Contact Info</h3>
                     <ul class="footer-links">
                         <li><i class="fas fa-phone"></i> +1 (555) 123-4567</li>
-                        <li><i class="fas fa-envelope"></i> info@dreamwedding.com</li>
-                        <li><i class="fas fa-clock"></i> Mon-Sun: 9AM-7PM</li>
+                        <li><i class="fas fa-envelope"></i> info@krispevent.com</li>
+                        <li><i class="fas fa-clock"></i> All time contact</li>
                     </ul>
                 </div>
+               
             </div>
             <div class="copyright">
-                <p>&copy; 2023 Dream Wedding. All Rights Reserved.</p>
+                <p>&copy; 2025 krisp event. All Rights Reserved.</p>
             </div>
         </div>
     </footer>
 
     <script>
-        // Floating header scroll effect
-        window.addEventListener('scroll', function() {
-            const header = document.getElementById('floatingHeader');
-            const headerButtons = document.getElementById('headerButtons');
-            
-            if (window.scrollY > 50) {
-                header.classList.add('scrolled');
-                headerButtons.classList.add('scrolled');
-            } else {
-                header.classList.remove('scrolled');
-                headerButtons.classList.remove('scrolled');
+        // 3D Carousel Data with Images Only
+        const carouselData = [
+            {
+                image: 'https://www.google.com/url?sa=i&url=https%3A%2F%2Fwww.vogue.in%2Fgallery%2Fthis-couples-haute-couture-inspired-wedding-in-california-was-an-ode-to-the-brides-love-for-fashion&psig=AOvVaw2BJAHvWIKBFKT0YWpSKOO5&ust=1763559231694000&source=images&cd=vfe&opi=89978449&ved=0CBIQjRxqFwoTCOj6m6Xo-5ADFQAAAAAdAAAAABAK'
+            },
+            {
+                image: 'https://images.unsplash.com/photo-1465495976277-4387d4b0e4a6?ixlib=rb-4.0.3&auto=format&fit=crop&w=1350&q=80'
+            },
+            {
+                image: 'https://images.unsplash.com/photo-1551244072-5b4aa7a1d6c9?ixlib=rb-4.0.3&auto=format&fit=crop&w=1350&q=80'
+            },
+            {
+                image: 'https://images.unsplash.com/photo-1583939003579-730e3918a45a?ixlib=rb-4.0.3&auto=format&fit=crop&w=1350&q=80'
+            },
+            {
+                image: 'https://images.unsplash.com/photo-1511795409834-ef04bbd61622?ixlib=rb-4.0.3&auto=format&fit=crop&w=1350&q=80'
             }
-        });
+        ];
 
-        // Mobile menu toggle
-        const mobileMenuBtn = document.getElementById('mobileMenuBtn');
-        const navLinks = document.getElementById('navLinks');
-        
-        mobileMenuBtn.addEventListener('click', () => {
-            navLinks.classList.toggle('active');
-        });
-
-        // Close mobile menu when clicking on a link
-        document.querySelectorAll('.nav-links a').forEach(link => {
-            link.addEventListener('click', () => {
-                navLinks.classList.remove('active');
-            });
-        });
-
-        // Smooth scrolling for navigation links
-        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-            anchor.addEventListener('click', function (e) {
-                e.preventDefault();
+        // 3D Carousel functionality
+        class Carousel3D {
+            constructor(container, data) {
+                this.container = container;
+                this.carousel = container.querySelector('.carousel');
+                this.indicatorsContainer = container.querySelector('.carousel-indicators');
+                this.data = data;
+                this.currentIndex = 0;
+                this.totalItems = data.length;
+                this.autoRotateInterval = null;
+                this.rotationSpeed = 2000; // 2 second rotation
                 
-                const targetId = this.getAttribute('href');
-                if(targetId === '#') return;
+                this.init();
+            }
+            
+            init() {
+                this.createCarouselItems();
+                this.createIndicators();
+                this.setupEventListeners();
+                this.updateDimensions();
+                this.updateCarousel();
+                this.startAutoRotation();
                 
-                const targetElement = document.querySelector(targetId);
-                if(targetElement) {
-                    window.scrollTo({
-                        top: targetElement.offsetTop - 100,
-                        behavior: 'smooth'
+                // Update dimensions on window resize
+                window.addEventListener('resize', () => {
+                    this.updateDimensions();
+                    this.updateCarousel();
+                });
+            }
+            
+            createCarouselItems() {
+                this.data.forEach((item, index) => {
+                    const carouselItem = document.createElement('div');
+                    carouselItem.className = 'carousel-item';
+                    carouselItem.innerHTML = `
+                        <img src="${item.image}" alt="Wedding Image ${index + 1}" class="carousel-image">
+                    `;
+                    this.carousel.appendChild(carouselItem);
+                });
+            }
+            
+            createIndicators() {
+                this.data.forEach((_, index) => {
+                    const indicator = document.createElement('span');
+                    indicator.className = 'indicator';
+                    if (index === 0) indicator.classList.add('active');
+                    indicator.addEventListener('click', () => {
+                        this.currentIndex = index;
+                        this.updateCarousel();
+                        this.resetAutoRotation();
                     });
-                }
-            });
-        });
-
-        // Contact form submission
-        document.getElementById('weddingForm').addEventListener('submit', function(e) {
-            e.preventDefault();
-            alert('Thank you for your wedding inquiry! We will contact you soon to discuss your dream wedding.');
-            this.reset();
-        });
-
-        // Carousel functionality
-        const carouselStates = {
-            'carousel1': 0,
-            'carousel2': 0,
-            'carousel3': 0,
-            'carousel4': 0
-        };
-
-        function moveSlide(carouselId, direction) {
-            const carousel = document.getElementById(carouselId);
-            const indicators = document.getElementById('indicators' + carouselId.slice(-1));
-            const totalSlides = 5;
-            
-            carouselStates[carouselId] += direction;
-            
-            if (carouselStates[carouselId] >= totalSlides) {
-                carouselStates[carouselId] = 0;
-            } else if (carouselStates[carouselId] < 0) {
-                carouselStates[carouselId] = totalSlides - 1;
+                    this.indicatorsContainer.appendChild(indicator);
+                });
             }
             
-            carousel.style.transform = `translateX(-${carouselStates[carouselId] * 20}%)`;
+            setupEventListeners() {
+                // Pause auto-rotation on hover
+                this.container.addEventListener('mouseenter', () => {
+                    this.stopAutoRotation();
+                });
+                
+                this.container.addEventListener('mouseleave', () => {
+                    this.startAutoRotation();
+                });
+                
+                // Add click navigation to carousel items
+                this.carousel.addEventListener('click', (e) => {
+                    if (e.target.closest('.carousel-item')) {
+                        const items = Array.from(this.carousel.querySelectorAll('.carousel-item'));
+                        const clickedIndex = items.indexOf(e.target.closest('.carousel-item'));
+                        if (clickedIndex !== -1) {
+                            this.currentIndex = clickedIndex;
+                            this.updateCarousel();
+                            this.resetAutoRotation();
+                        }
+                    }
+                });
+            }
             
-            // Update indicators
-            const indicatorElements = indicators.querySelectorAll('.indicator');
-            indicatorElements.forEach((indicator, index) => {
-                if (index === carouselStates[carouselId]) {
-                    indicator.classList.add('active');
+            // Update dimensions based on screen size
+            updateDimensions() {
+                const containerWidth = this.container.offsetWidth;
+                let itemWidth, itemHeight, zDistance, xDistance;
+                
+                if (containerWidth < 576) {
+                    // Mobile phones
+                    itemWidth = 200;
+                    itemHeight = 300;
+                    zDistance = 200;
+                    xDistance = 300;
+                } else if (containerWidth < 768) {
+                    // Tablets
+                    itemWidth = 250;
+                    itemHeight = 350;
+                    zDistance = 250;
+                    xDistance = 350;
+                } else if (containerWidth < 992) {
+                    // Small desktops
+                    itemWidth = 300;
+                    itemHeight = 400;
+                    zDistance = 300;
+                    xDistance = 400;
                 } else {
-                    indicator.classList.remove('active');
+                    // Large screens
+                    itemWidth = 350;
+                    itemHeight = 450;
+                    zDistance = 300;
+                    xDistance = 450;
                 }
-            });
-        }
-
-        function showSlide(carouselId, slideIndex) {
-            const carousel = document.getElementById(carouselId);
-            const indicators = document.getElementById('indicators' + carouselId.slice(-1));
+                
+                // Apply dimensions to carousel items
+                const items = this.carousel.querySelectorAll('.carousel-item');
+                items.forEach(item => {
+                    item.style.width = `${itemWidth}px`;
+                    item.style.height = `${itemHeight}px`;
+                });
+                
+                // Store for calculations
+                this.itemWidth = itemWidth;
+                this.itemHeight = itemHeight;
+                this.zDistance = zDistance;
+                this.xDistance = xDistance;
+            }
             
-            carouselStates[carouselId] = slideIndex;
-            carousel.style.transform = `translateX(-${slideIndex * 20}%)`;
+            updateCarousel() {
+                const items = this.carousel.querySelectorAll('.carousel-item');
+                const indicators = this.indicatorsContainer.querySelectorAll('.indicator');
+                const angleStep = 360 / this.totalItems;
+                
+                items.forEach((item, index) => {
+                    const angle = angleStep * index;
+                    const z = this.zDistance;
+                    const activeAngle = angleStep * this.currentIndex;
+                    
+                    // Calculate position for 3D effect
+                    const x = Math.sin((angle * Math.PI) / 180) * this.xDistance;
+                    const zPos = Math.cos((angle * Math.PI) / 180) * z;
+                    const rotationY = -angle + activeAngle;
+                    
+                    item.style.transform = `
+                        translateX(${x}px) 
+                        translateZ(${zPos}px) 
+                        rotateY(${rotationY}deg)
+                        scale(${index === this.currentIndex ? 1.15 : 0.85})
+                    `;
+                    item.style.opacity = index === this.currentIndex ? '1' : '0.7';
+                    
+                    // Update active class
+                    if (index === this.currentIndex) {
+                        item.classList.add('active');
+                    } else {
+                        item.classList.remove('active');
+                    }
+                });
+                
+                // Update indicators
+                indicators.forEach((indicator, index) => {
+                    if (index === this.currentIndex) {
+                        indicator.classList.add('active');
+                    } else {
+                        indicator.classList.remove('active');
+                    }
+                });
+            }
             
-            // Update indicators
-            const indicatorElements = indicators.querySelectorAll('.indicator');
-            indicatorElements.forEach((indicator, index) => {
-                if (index === slideIndex) {
-                    indicator.classList.add('active');
-                } else {
-                    indicator.classList.remove('active');
+            nextSlide() {
+                this.currentIndex = (this.currentIndex + 1) % this.totalItems;
+                this.updateCarousel();
+            }
+            
+            prevSlide() {
+                this.currentIndex = (this.currentIndex - 1 + this.totalItems) % this.totalItems;
+                this.updateCarousel();
+            }
+            
+            startAutoRotation() {
+                this.autoRotateInterval = setInterval(() => {
+                    this.nextSlide();
+                }, this.rotationSpeed); // Use the rotation speed property
+            }
+            
+            stopAutoRotation() {
+                if (this.autoRotateInterval) {
+                    clearInterval(this.autoRotateInterval);
+                    this.autoRotateInterval = null;
                 }
-            });
+            }
+            
+            resetAutoRotation() {
+                this.stopAutoRotation();
+                this.startAutoRotation();
+            }
         }
 
-        // Auto-rotate carousels
-        function autoRotateCarousels() {
-            Object.keys(carouselStates).forEach(carouselId => {
-                moveSlide(carouselId, 1);
-            });
-        }
-
-        // Set up auto rotation every 5 seconds
-        setInterval(autoRotateCarousels, 5000);
-
-        // Initialize the page
+        // Initialize the 3D Carousel when DOM is loaded
         document.addEventListener('DOMContentLoaded', function() {
+            const carouselContainer = document.querySelector('.carousel-container');
+            const carousel3D = new Carousel3D(carouselContainer, carouselData);
+            
+            // Other existing functionality
+            // Floating header scroll effect
+            window.addEventListener('scroll', function() {
+                const header = document.getElementById('floatingHeader');
+                const headerButtons = document.getElementById('headerButtons');
+                
+                if (window.scrollY > 50) {
+                    header.classList.add('scrolled');
+                    headerButtons.classList.add('scrolled');
+                } else {
+                    header.classList.remove('scrolled');
+                    headerButtons.classList.remove('scrolled');
+                }
+            });
+
+            // Mobile menu toggle
+            const mobileMenuBtn = document.getElementById('mobileMenuBtn');
+            const navLinks = document.getElementById('navLinks');
+            
+            mobileMenuBtn.addEventListener('click', () => {
+                navLinks.classList.toggle('active');
+            });
+
+            // Close mobile menu when clicking on a link
+            document.querySelectorAll('.nav-links a').forEach(link => {
+                link.addEventListener('click', () => {
+                    navLinks.classList.remove('active');
+                });
+            });
+
+            // Smooth scrolling for navigation links
+            document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+                anchor.addEventListener('click', function (e) {
+                    e.preventDefault();
+                    
+                    const targetId = this.getAttribute('href');
+                    if(targetId === '#') return;
+                    
+                    const targetElement = document.querySelector(targetId);
+                    if(targetElement) {
+                        window.scrollTo({
+                            top: targetElement.offsetTop - 100,
+                            behavior: 'smooth'
+                        });
+                    }
+                });
+            });
+
+            // Contact form submission
+            document.getElementById('weddingForm').addEventListener('submit', function(e) {
+                e.preventDefault();
+                alert('Thank you for your wedding inquiry! We will contact you soon to discuss your dream wedding.');
+                this.reset();
+            });
+
+            // Gallery carousel functionality
+            const carouselStates = {
+                'carousel1': 0,
+                'carousel2': 0,
+                'carousel3': 0,
+                'carousel4': 0
+            };
+
+            function moveSlide(carouselId, direction) {
+                const carousel = document.getElementById(carouselId);
+                const indicators = document.getElementById('indicators' + carouselId.slice(-1));
+                const totalSlides = 5;
+                
+                carouselStates[carouselId] += direction;
+                
+                if (carouselStates[carouselId] >= totalSlides) {
+                    carouselStates[carouselId] = 0;
+                } else if (carouselStates[carouselId] < 0) {
+                    carouselStates[carouselId] = totalSlides - 1;
+                }
+                
+                carousel.style.transform = `translateX(-${carouselStates[carouselId] * 20}%)`;
+                
+                // Update indicators
+                const indicatorElements = indicators.querySelectorAll('.indicator');
+                indicatorElements.forEach((indicator, index) => {
+                    if (index === carouselStates[carouselId]) {
+                        indicator.classList.add('active');
+                    } else {
+                        indicator.classList.remove('active');
+                    }
+                });
+            }
+
+            function showSlide(carouselId, slideIndex) {
+                const carousel = document.getElementById(carouselId);
+                const indicators = document.getElementById('indicators' + carouselId.slice(-1));
+                
+                carouselStates[carouselId] = slideIndex;
+                carousel.style.transform = `translateX(-${slideIndex * 20}%)`;
+                
+                // Update indicators
+                const indicatorElements = indicators.querySelectorAll('.indicator');
+                indicatorElements.forEach((indicator, index) => {
+                    if (index === slideIndex) {
+                        indicator.classList.add('active');
+                    } else {
+                        indicator.classList.remove('active');
+                    }
+                });
+            }
+
+            // Auto-rotate gallery carousels
+            function autoRotateCarousels() {
+                Object.keys(carouselStates).forEach(carouselId => {
+                    moveSlide(carouselId, 1);
+                });
+            }
+
+            // Set up auto rotation every 5 seconds
+            setInterval(autoRotateCarousels, 3000);
+
             console.log('Dream Wedding website loaded successfully!');
         });
     </script>
