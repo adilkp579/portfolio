@@ -1,0 +1,1834 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dream Wedding - Premium Wedding Services</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@400;500;600;700&family=Playfair+Display:wght@400;500;600;700&family=Montserrat:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --primary: #ffffff;
+            --secondary: #f8f9fa;
+            --accent: #d4af37;
+            --light: #f8f9fa;
+            --dark: #343a40;
+            --gray: #6c757d;
+            --rose: #f8e0e6;
+            --text-dark: #212529;
+        }
+
+        body {
+            background-color: var(--primary);
+            color: var(--text-dark);
+            line-height: 1.6;
+            font-family: 'Montserrat', sans-serif;
+            overflow-x: hidden;
+        }
+
+        .container {
+            width: 90%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* Floating Top Header - Glass Effect */
+        .floating-header {
+            position: fixed;
+            top: 25px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(20px) saturate(180%);
+            -webkit-backdrop-filter: blur(20px) saturate(180%);
+            border-radius: 50px;
+            padding: 15px 35px;
+            box-shadow: 
+                0 8px 32px rgba(0, 0, 0, 0.1),
+                inset 0 1px 0 rgba(255, 255, 255, 0.2),
+                inset 0 -1px 0 rgba(0, 0, 0, 0.1);
+            z-index: 1000;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            width: auto;
+            min-width: 320px;
+            transition: all 0.3s ease;
+            border: 1px solid rgba(255, 255, 255, 0.18);
+        }
+
+        .floating-header.scrolled {
+            top: 20px;
+            padding: 12px 30px;
+            background: rgba(255, 255, 255, 0.15);
+            backdrop-filter: blur(25px) saturate(200%);
+            -webkit-backdrop-filter: blur(25px) saturate(200%);
+        }
+
+        .logo {
+            font-size: 1.6rem;
+            font-weight: 700;
+            display: flex;
+            align-items: center;
+            font-family: 'Dancing Script', cursive;
+        }
+
+        .logo span:first-child {
+            color: white;
+            text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+        }
+
+        .logo span:last-child {
+            color: var(--accent);
+            margin-left: 5px;
+            text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+        }
+
+        .nav-links {
+            display: flex;
+            list-style: none;
+            margin: 0;
+            padding: 0;
+        }
+
+        .nav-links li {
+            margin: 0 1.2rem;
+            position: relative;
+        }
+
+        .nav-links a {
+            color: white;
+            text-decoration: none;
+            font-weight: 500;
+            transition: all 0.3s ease;
+            padding: 8px 0;
+            font-size: 0.95rem;
+            font-family: 'Montserrat', sans-serif;
+            text-shadow: 0 1px 3px rgba(0, 0, 0, 0.3);
+        }
+
+        .nav-links a:hover {
+            color: var(--accent);
+            text-shadow: 0 0 8px rgba(212, 175, 55, 0.5);
+        }
+
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: linear-gradient(90deg, transparent, var(--accent), transparent);
+            transition: width 0.3s ease;
+        }
+
+        .nav-links a:hover::after {
+            width: 100%;
+        }
+
+        .mobile-menu-btn {
+            display: none;
+            background: none;
+            border: none;
+            color: white;
+            font-size: 1.3rem;
+            cursor: pointer;
+            padding: 5px;
+            text-shadow: 0 1px 3px rgba(0, 0, 0, 0.3);
+        }
+
+        /* Header Buttons - Fixed Size and Position */
+        .header-buttons {
+            position: fixed;
+            top: 110px;
+            left: 50%;
+            transform: translateX(-50%);
+            display: flex;
+            gap: 20px;
+            z-index: 999;
+            transition: all 0.3s ease;
+        }
+
+        .header-buttons.scrolled {
+            top: 95px;
+        }
+
+        .header-button {
+            background-color: var(--accent);
+            color: white;
+            border: none;
+            padding: 14px 32px;
+            border-radius: 30px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-size: 0.95rem;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            box-shadow: 0 4px 15px rgba(212, 175, 55, 0.3);
+            white-space: nowrap;
+            text-decoration: none;
+            font-family: 'Montserrat', sans-serif;
+            width: 180px;
+            justify-content: center;
+        }
+
+        .header-button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(212, 175, 55, 0.4);
+        }
+
+        .header-button.whatsapp {
+            background-color: #25D366;
+            color: white;
+        }
+
+        .header-button.whatsapp:hover {
+            background-color: #20bd5a;
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(37, 211, 102, 0.4);
+        }
+
+        .header-button.instagram {
+            background: linear-gradient(45deg, #f09433, #e6683c, #dc2743, #cc2366, #bc1888);
+            color: white;
+        }
+
+        .header-button.instagram:hover {
+            background: linear-gradient(45deg, #e0852e, #d85f35, #d2243f, #c22060, #b0167e);
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(225, 48, 108, 0.4);
+        }
+
+        /* Hero Section with Full Background for DREAM WEDDING */
+        .hero {
+            background: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.7)), url('https://crystallinestudio.com/image_gallery_big/Crystalline_photography_1228.jpg');
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+            padding: 14rem 0 8rem;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: radial-gradient(circle at center, rgba(212, 175, 55, 0.1) 0%, rgba(0, 0, 0, 0) 70%);
+            z-index: -1;
+        }
+
+        .hero-content {
+            width: 100%;
+            max-width: 1200px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            gap: 2rem;
+        }
+
+        .hero-image {
+            width: 100%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin-bottom: 2rem;
+        }
+
+        /* Responsive Wedding Image Size */
+        .wedding-image {
+            width: 100%;
+            max-width: 450px;
+            border-radius: 20px;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+            border: 3px solid var(--accent);
+            animation: fadeInDown 1.5s ease-out;
+            transition: transform 0.3s ease;
+        }
+
+        .wedding-image:hover {
+            transform: scale(1.02);
+        }
+
+        .hero-text {
+            width: 100%;
+            max-width: 800px;
+            text-align: center;
+        }
+
+        /* DREAM WEDDING with Full Background Effect */
+        .dream-wedding-text {
+            font-family: 'Dancing Script', cursive;
+            font-size: 5.5rem;
+            color: white;
+            margin-bottom: 1.5rem;
+            text-shadow: 3px 3px 15px rgba(0, 0, 0, 0.7);
+            font-weight: 700;
+            letter-spacing: 3px;
+            animation: fadeInUp 1.5s ease-out;
+            line-height: 1.1;
+            padding: 20px 40px;
+            background: linear-gradient(135deg, rgba(212, 175, 55, 0.2), rgba(255, 255, 255, 0.1));
+            border-radius: 20px;
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.3);
+        }
+
+        .please-contact-text {
+            font-family: 'Playfair Display', serif;
+            font-size: 2.2rem;
+            color: var(--accent);
+            margin-bottom: 2rem;
+            letter-spacing: 4px;
+            text-transform: uppercase;
+            font-weight: 500;
+            animation: fadeIn 2s ease-out 0.5s both;
+            text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.5);
+        }
+
+        .tagline-text {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.8rem;
+            color: white;
+            margin-bottom: 3rem;
+            font-style: italic;
+            font-weight: 400;
+            line-height: 1.4;
+            text-shadow: 1px 1px 6px rgba(0, 0, 0, 0.5);
+            animation: fadeIn 2s ease-out 1s both;
+        }
+
+        /* Plan Your Wedding Button with Special Animation */
+        .plan-wedding-btn {
+            background: linear-gradient(135deg, var(--accent), #f1c40f);
+            color: white;
+            border: none;
+            padding: 18px 40px;
+            border-radius: 50px;
+            font-weight: 700;
+            cursor: pointer;
+            transition: all 0.4s ease;
+            font-size: 1.2rem;
+            display: inline-flex;
+            align-items: center;
+            gap: 12px;
+            box-shadow: 0 6px 20px rgba(212, 175, 55, 0.4);
+            white-space: nowrap;
+            text-decoration: none;
+            font-family: 'Montserrat', sans-serif;
+            position: relative;
+            overflow: hidden;
+            animation: pulseGlow 2.5s infinite, fadeInUp 1.5s ease-out 1.5s both;
+            z-index: 1;
+        }
+
+        .plan-wedding-btn::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.3), transparent);
+            transition: all 0.6s;
+            z-index: -1;
+        }
+
+        .plan-wedding-btn:hover::before {
+            left: 100%;
+        }
+
+        .plan-wedding-btn:hover {
+            transform: translateY(-5px) scale(1.05);
+            box-shadow: 0 10px 30px rgba(212, 175, 55, 0.6);
+        }
+
+        /* Wedding Event Type Animation */
+        .wedding-events {
+            display: flex;
+            justify-content: center;
+            gap: 30px;
+            margin: 4rem 0;
+            flex-wrap: wrap;
+        }
+
+        .event-type {
+            text-align: center;
+            width: 180px;
+            opacity: 0;
+            transform: translateY(30px);
+            animation: fadeInUp 1s ease-out forwards;
+        }
+
+        .event-type:nth-child(1) {
+            animation-delay: 0.2s;
+        }
+        .event-type:nth-child(2) {
+            animation-delay: 0.4s;
+        }
+        .event-type:nth-child(3) {
+            animation-delay: 0.6s;
+        }
+        .event-type:nth-child(4) {
+            animation-delay: 0.8s;
+        }
+
+        .event-icon {
+            width: 100px;
+            height: 100px;
+            margin: 0 auto 15px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: rgba(255, 255, 255, 0.9);
+            border: 2px solid var(--accent);
+            font-size: 2.5rem;
+            color: var(--accent);
+            transition: all 0.3s ease;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        }
+
+        .event-type:hover .event-icon {
+            transform: scale(1.1);
+            background: rgba(212, 175, 55, 0.2);
+            box-shadow: 0 0 20px rgba(212, 175, 55, 0.4);
+        }
+
+        .event-type h3 {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.2rem;
+            color: white;
+            margin-bottom: 5px;
+            text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.5);
+        }
+
+        .event-type p {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 0.9rem;
+            color: #e0e0e0;
+        }
+
+        /* Animation Keyframes */
+        @keyframes fadeInDown {
+            from {
+                opacity: 0;
+                transform: translateY(-50px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+            }
+            to {
+                opacity: 1;
+            }
+        }
+
+        @keyframes pulseGlow {
+            0% {
+                box-shadow: 0 6px 20px rgba(212, 175, 55, 0.4);
+            }
+            50% {
+                box-shadow: 0 6px 30px rgba(212, 175, 55, 0.7);
+            }
+            100% {
+                box-shadow: 0 6px 20px rgba(212, 175, 55, 0.4);
+            }
+        }
+
+        /* Services Section - Updated with Background Videos */
+        .services {
+            padding: 5rem 0;
+            background-color: var(--primary);
+        }
+
+        .section-title {
+            text-align: center;
+            margin-bottom: 3rem;
+        }
+
+        .section-title h2 {
+            font-size: 2.5rem;
+            color: var(--text-dark);
+            margin-bottom: 1rem;
+            font-family: 'Playfair Display', serif;
+        }
+
+        .section-title p {
+            color: var(--gray);
+            max-width: 600px;
+            margin: 0 auto;
+            font-family: 'Montserrat', sans-serif;
+        }
+
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+
+        .service-card {
+            border-radius: 15px;
+            padding: 2.5rem 1.5rem;
+            transition: all 0.3s ease;
+            text-align: center;
+            border-top: 4px solid var(--accent);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+            opacity: 0;
+            transform: translateY(30px);
+            animation: fadeInUp 0.8s ease-out forwards;
+            display: flex;
+            flex-direction: column;
+            height: 100%;
+            position: relative;
+            overflow: hidden;
+            min-height: 350px;
+        }
+
+        .service-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(135deg, rgba(212, 175, 55, 0.1), rgba(255, 255, 255, 0.05));
+            z-index: 0;
+            transition: all 0.3s ease;
+        }
+
+        .service-card > * {
+            position: relative;
+            z-index: 1;
+        }
+
+        .service-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 40px rgba(212, 175, 55, 0.3);
+        }
+
+        .service-card:hover::before {
+            background: linear-gradient(135deg, rgba(212, 175, 55, 0.2), rgba(255, 255, 255, 0.1));
+        }
+
+        .service-icon {
+            font-size: 3rem;
+            color: var(--accent);
+            margin-bottom: 1.5rem;
+            text-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
+        }
+
+        .service-card h3 {
+            margin-bottom: 1rem;
+            color: white;
+            font-size: 1.5rem;
+            font-family: 'Playfair Display', serif;
+            text-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
+        }
+
+        .service-card p {
+            color: #f0f0f0;
+            line-height: 1.6;
+            font-family: 'Montserrat', sans-serif;
+            flex-grow: 1;
+            text-shadow: 0 1px 3px rgba(0, 0, 0, 0.5);
+        }
+
+        /* Background Video for Service Cards */
+        .service-video-bg {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            z-index: -1;
+            transition: transform 0.5s ease;
+        }
+
+        .service-card:hover .service-video-bg {
+            transform: scale(1.05);
+        }
+
+        .service-card:nth-child(1) { animation-delay: 0.1s; }
+        .service-card:nth-child(2) { animation-delay: 0.2s; }
+        .service-card:nth-child(3) { animation-delay: 0.3s; }
+        .service-card:nth-child(4) { animation-delay: 0.4s; }
+        .service-card:nth-child(5) { animation-delay: 0.5s; }
+        .service-card:nth-child(6) { animation-delay: 0.6s; }
+
+        /* Gallery Section with Responsive Cards */
+        .gallery {
+            padding: 5rem 0;
+            background-color: var(--secondary);
+        }
+
+        .gallery-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 2rem;
+        }
+
+        .gallery-card {
+            border-radius: 15px;
+            overflow: hidden;
+            height: 400px;
+            position: relative;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+            transition: all 0.3s ease;
+        }
+
+        .gallery-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.3);
+        }
+
+        .gallery-carousel {
+            position: relative;
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+            border-radius: 15px;
+        }
+
+        .carousel-slides {
+            display: flex;
+            width: 500%;
+            height: 100%;
+            transition: transform 1s ease-in-out;
+        }
+
+        .carousel-slide {
+            width: 20%;
+            height: 100%;
+            flex-shrink: 0;
+        }
+
+        .carousel-slide img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .gallery-overlay {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: linear-gradient(transparent, rgba(0,0,0,0.8));
+            color: white;
+            padding: 1.5rem;
+            transform: translateY(0);
+            transition: transform 0.3s ease;
+        }
+
+        .gallery-card:hover .gallery-overlay {
+            transform: translateY(0);
+        }
+
+        .carousel-controls {
+            position: absolute;
+            top: 50%;
+            width: 100%;
+            display: flex;
+            justify-content: space-between;
+            padding: 0 15px;
+            transform: translateY(-50%);
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        .gallery-card:hover .carousel-controls {
+            opacity: 1;
+        }
+
+        .carousel-btn {
+            background: rgba(255, 255, 255, 0.8);
+            border: none;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            color: var(--text-dark);
+            font-size: 1.2rem;
+        }
+
+        .carousel-btn:hover {
+            background: white;
+            transform: scale(1.1);
+        }
+
+        .carousel-indicators {
+            position: absolute;
+            bottom: 20px;
+            left: 0;
+            right: 0;
+            display: flex;
+            justify-content: center;
+            gap: 8px;
+        }
+
+        .indicator {
+            width: 10px;
+            height: 10px;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.5);
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .indicator.active {
+            background: white;
+            transform: scale(1.2);
+        }
+
+        /* About Section */
+        .about {
+            padding: 5rem 0;
+            background-color: var(--primary);
+        }
+
+        .about-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 3rem;
+            align-items: center;
+        }
+
+        .about-text h2 {
+            font-size: 2.5rem;
+            color: var(--text-dark);
+            margin-bottom: 1.5rem;
+            font-family: 'Playfair Display', serif;
+        }
+
+        .about-text p {
+            margin-bottom: 1.5rem;
+            color: var(--gray);
+            line-height: 1.7;
+            font-family: 'Montserrat', sans-serif;
+        }
+
+        .service-list {
+            list-style: none;
+        }
+
+        .service-list li {
+            margin-bottom: 1rem;
+            display: flex;
+            align-items: center;
+            color: var(--gray);
+            font-family: 'Montserrat', sans-serif;
+        }
+
+        .service-list i {
+            color: var(--accent);
+            margin-right: 10px;
+            font-size: 1.2rem;
+        }
+
+        .about-image {
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+        }
+
+        .about-image img {
+            width: 100%;
+            height: auto;
+            display: block;
+            transition: transform 0.5s ease;
+        }
+
+        .about-image:hover img {
+            transform: scale(1.05);
+        }
+
+        /* Contact Section */
+        .contact {
+            padding: 5rem 0;
+            background-color: var(--secondary);
+        }
+
+        .contact-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 3rem;
+        }
+
+        .contact-info h2 {
+            font-size: 2.5rem;
+            margin-bottom: 1.5rem;
+            color: var(--text-dark);
+            font-family: 'Playfair Display', serif;
+        }
+
+        .contact-info p {
+            margin-bottom: 2rem;
+            color: var(--gray);
+            line-height: 1.7;
+            font-family: 'Montserrat', sans-serif;
+        }
+
+        .contact-details {
+            list-style: none;
+        }
+
+        .contact-details li {
+            margin-bottom: 1.5rem;
+            display: flex;
+            align-items: flex-start;
+            color: var(--gray);
+            font-family: 'Montserrat', sans-serif;
+        }
+
+        .contact-details i {
+            margin-right: 15px;
+            font-size: 1.2rem;
+            color: var(--accent);
+            margin-top: 3px;
+        }
+
+        .contact-form {
+            background: white;
+            padding: 2.5rem;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.08);
+        }
+
+        .contact-form h3 {
+            color: var(--text-dark);
+            margin-bottom: 1.5rem;
+            text-align: center;
+            font-size: 1.8rem;
+            font-family: 'Playfair Display', serif;
+        }
+
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 0.5rem;
+            color: var(--text-dark);
+            font-weight: 500;
+            font-family: 'Montserrat', sans-serif;
+        }
+
+        .form-control {
+            width: 100%;
+            padding: 12px 15px;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            font-size: 1rem;
+            transition: all 0.3s ease;
+            background: white;
+            color: var(--text-dark);
+            font-family: 'Montserrat', sans-serif;
+        }
+
+        .form-control:focus {
+            border-color: var(--accent);
+            box-shadow: 0 0 0 3px rgba(212, 175, 55, 0.1);
+            outline: none;
+        }
+
+        textarea.form-control {
+            min-height: 150px;
+            resize: vertical;
+        }
+
+        .submit-button {
+            width: 100%;
+            background: var(--accent);
+            color: white;
+            border: none;
+            padding: 15px;
+            border-radius: 30px;
+            font-size: 1.1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            font-family: 'Montserrat', sans-serif;
+        }
+
+        .submit-button:hover {
+            background: #c19d2e;
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(212, 175, 55, 0.4);
+        }
+
+        /* Footer */
+        footer {
+            background-color: var(--secondary);
+            color: var(--text-dark);
+            padding: 3rem 0 1.5rem;
+        }
+
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 2rem;
+            margin-bottom: 2rem;
+        }
+
+        .footer-column h3 {
+            font-size: 1.2rem;
+            margin-bottom: 1.5rem;
+            position: relative;
+            padding-bottom: 10px;
+            font-family: 'Playfair Display', serif;
+        }
+
+        .footer-column h3::after {
+            content: '';
+            position: absolute;
+            left: 0;
+            bottom: 0;
+            width: 40px;
+            height: 3px;
+            background: var(--accent);
+        }
+
+        .footer-links {
+            list-style: none;
+        }
+
+        .footer-links li {
+            margin-bottom: 0.8rem;
+        }
+
+        .footer-links a {
+            color: var(--gray);
+            text-decoration: none;
+            transition: all 0.3s ease;
+            font-family: 'Montserrat', sans-serif;
+        }
+
+        .footer-links a:hover {
+            color: var(--text-dark);
+            padding-left: 5px;
+        }
+
+        .copyright {
+            text-align: center;
+            padding-top: 1.5rem;
+            border-top: 1px solid rgba(0, 0, 0, 0.1);
+            color: var(--gray);
+            font-size: 0.9rem;
+            font-family: 'Montserrat', sans-serif;
+        }
+
+        /* Social Media Links */
+        .social-links {
+            display: flex;
+            gap: 15px;
+            margin-top: 1rem;
+        }
+
+        .social-link {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background: rgba(0, 0, 0, 0.05);
+            color: var(--text-dark);
+            transition: all 0.3s ease;
+            text-decoration: none;
+        }
+
+        .social-link:hover {
+            transform: translateY(-3px);
+            background: var(--accent);
+            color: white;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 1200px) {
+            .gallery-grid {
+                grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            }
+            
+            .services-grid {
+                grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            }
+        }
+
+        @media (max-width: 992px) {
+            .gallery-grid {
+                grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            }
+            
+            .services-grid {
+                grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            }
+            
+            .gallery-card {
+                height: 350px;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .floating-header {
+                width: 92%;
+                padding: 12px 25px;
+                top: 20px;
+                background: rgba(255, 255, 255, 0.15);
+                backdrop-filter: blur(25px) saturate(200%);
+                -webkit-backdrop-filter: blur(25px) saturate(200%);
+            }
+
+            .mobile-menu-btn {
+                display: block;
+            }
+
+            .nav-links {
+                position: fixed;
+                top: 80px;
+                left: -100%;
+                width: 85%;
+                height: calc(100vh - 80px);
+                background: rgba(255, 255, 255, 0.15);
+                backdrop-filter: blur(25px) saturate(200%);
+                -webkit-backdrop-filter: blur(25px) saturate(200%);
+                transition: all 0.3s ease;
+                z-index: 999;
+                box-shadow: 2px 0 10px rgba(0, 0, 0, 0.3);
+                border: 1px solid rgba(255, 255, 255, 0.18);
+                flex-direction: column;
+                padding: 2rem;
+            }
+
+            .nav-links.active {
+                left: 0;
+            }
+
+            .nav-links li {
+                margin: 0 0 1.5rem 0;
+            }
+
+            .header-buttons {
+                top: 105px;
+                flex-direction: row;
+                align-items: center;
+                gap: 12px;
+            }
+
+            .header-buttons.scrolled {
+                top: 90px;
+            }
+
+            .header-button {
+                width: 180px;
+                padding: 14px 32px;
+                font-size: 0.95rem;
+                justify-content: center;
+            }
+
+            .hero {
+                padding: 12rem 0 6rem;
+            }
+
+            .hero-content {
+                gap: 1.5rem;
+            }
+
+            .dream-wedding-text {
+                font-size: 4rem;
+                padding: 15px 30px;
+            }
+
+            .please-contact-text {
+                font-size: 1.8rem;
+            }
+
+            .tagline-text {
+                font-size: 1.4rem;
+            }
+
+            .about-content {
+                grid-template-columns: 1fr;
+            }
+
+            .wedding-events {
+                gap: 20px;
+            }
+
+            .event-type {
+                width: 150px;
+            }
+
+            .gallery-grid {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 1.5rem;
+            }
+            
+            .services-grid {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 1.5rem;
+            }
+            
+            .gallery-card {
+                height: 300px;
+            }
+            
+            .service-card {
+                min-height: 300px;
+                padding: 2rem 1.2rem;
+            }
+        }
+
+        @media (max-width: 576px) {
+            .header-buttons {
+                flex-direction: row;
+                gap: 10px;
+                top: 110px;
+            }
+            
+            .header-button {
+                width: 180px;
+                padding: 14px 32px;
+                font-size: 0.95rem;
+            }
+            
+            .dream-wedding-text {
+                font-size: 3rem;
+                padding: 10px 20px;
+            }
+            
+            .please-contact-text {
+                font-size: 1.4rem;
+            }
+            
+            .tagline-text {
+                font-size: 1.1rem;
+            }
+
+            .wedding-events {
+                gap: 15px;
+            }
+
+            .event-type {
+                width: 130px;
+            }
+
+            .event-icon {
+                width: 80px;
+                height: 80px;
+                font-size: 2rem;
+            }
+
+            .gallery-grid {
+                grid-template-columns: 1fr;
+                gap: 1.5rem;
+            }
+            
+            .services-grid {
+                grid-template-columns: 1fr;
+                gap: 1.5rem;
+            }
+            
+            .gallery-card {
+                height: 280px;
+            }
+            
+            .service-card {
+                min-height: 280px;
+                padding: 1.5rem 1rem;
+            }
+            
+            .service-icon {
+                font-size: 2.5rem;
+                margin-bottom: 1rem;
+            }
+            
+            .service-card h3 {
+                font-size: 1.3rem;
+            }
+            
+            .service-card p {
+                font-size: 0.9rem;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .header-buttons {
+                flex-direction: row;
+                gap: 8px;
+            }
+            
+            .header-button {
+                width: 170px;
+                padding: 12px 24px;
+                font-size: 0.9rem;
+            }
+        }
+
+        @media (max-width: 400px) {
+            .header-buttons {
+                flex-direction: row;
+                gap: 6px;
+            }
+            
+            .header-button {
+                width: 160px;
+                padding: 12px 20px;
+                font-size: 0.85rem;
+            }
+            
+            .gallery-card {
+                height: 250px;
+            }
+            
+            .service-card {
+                min-height: 250px;
+            }
+            
+            .wedding-events {
+                gap: 10px;
+            }
+            
+            .event-type {
+                width: 120px;
+            }
+            
+            .event-icon {
+                width: 70px;
+                height: 70px;
+                font-size: 1.8rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Floating Top Header -->
+    <header class="floating-header" id="floatingHeader">
+        <div class="logo">
+            <span>KRISP</span>
+            <span>Events</span>
+        </div>
+        
+        <button class="mobile-menu-btn" id="mobileMenuBtn">
+            <i class="fas fa-bars"></i>
+        </button>
+        
+        <ul class="nav-links" id="navLinks">
+            <li><a href="#home">Home</a></li>
+            <li><a href="#services">Services</a></li>
+            <li><a href="#gallery">Gallery</a></li>
+            <li><a href="#about">About</a></li>
+            <li><a href="#contact">Contact</a></li>
+        </ul>
+    </header>
+
+    <!-- Header Buttons - WhatsApp and Instagram -->
+    <div class="header-buttons" id="headerButtons">
+        <a href="https://wa.me/15551234567?text=Hi%20Dream%20Wedding%2C%20I%20would%20like%20to%20inquire%20about%20your%20wedding%20services" class="header-button whatsapp" target="_blank">
+            <i class="fab fa-whatsapp"></i>
+            WhatsApp
+        </a>
+        <a href="https://www.instagram.com/dreamwedding" class="header-button instagram" target="_blank">
+            <i class="fab fa-instagram"></i>
+            Instagram
+        </a>
+    </div>
+
+    <!-- Hero Section -->
+    <section class="hero" id="home">
+        <div class="container">
+            <div class="hero-content">
+                <!-- Wedding Image at Top -->
+                <div class="hero-image">
+                    <img src="https://i.pinimg.com/originals/69/60/ff/6960ff11f53bf71ccc69d5f5394432d9.jpg" alt="Beautiful Wedding" class="wedding-image">
+                </div>
+                
+                <!-- Text Content Below Image -->
+                <div class="hero-text">
+                    <h1 class="dream-wedding-text">DREAM WEDDING</h1>
+                    <p class="please-contact-text"></p>
+                    <p class="tagline-text"></p>
+                    
+                    <!-- Wedding Event Types -->
+                    <div class="wedding-events">
+                        <div class="event-type">
+                            <div class="event-icon">
+                                <i class="fas fa-ring"></i>
+                            </div>
+                            <h3>Traditional</h3>
+                            <p>Classic Ceremonies</p>
+                        </div>
+                        <div class="event-type">
+                            <div class="event-icon">
+                                <i class="fas fa-umbrella-beach"></i>
+                            </div>
+                            <h3>Beach</h3>
+                            <p>Seaside Celebrations</p>
+                        </div>
+                        <div class="event-type">
+                            <div class="event-icon">
+                                <i class="fas fa-mountain"></i>
+                            </div>
+                            <h3>Destination</h3>
+                            <p>Exotic Locations</p>
+                        </div>
+                        <div class="event-type">
+                            <div class="event-icon">
+                                <i class="fas fa-glass-cheers"></i>
+                            </div>
+                            <h3>Luxury</h3>
+                            <p>Premium Experiences</p>
+                        </div>
+                    </div>
+                    
+                    <a href="#contact" class="plan-wedding-btn">
+                        <i class=""></i>
+                        Please Contact
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Services Section with Background Videos -->
+    <section class="services" id="services">
+        <div class="container">
+            <div class="section-title">
+                <h2>Our Wedding Services</h2>
+                <p>Comprehensive services to make your special day perfect</p>
+            </div>
+            <div class="services-grid">
+                <div class="service-card">
+                    <video class="service-video-bg" autoplay muted loop playsinline>
+                        <source src="cataring.mp4" type="video/mp4">
+                    </video>
+                    <div class="service-icon">
+                        <i class=""></i>
+                    </div>
+                    <h3>Catering Services</h3>
+                    <p>Exquisite culinary experiences with custom menus tailored to your taste and preferences.</p>
+                </div>
+                <div class="service-card">
+                    <video class="service-video-bg" autoplay muted loop playsinline>
+                        <source src="event.mp4" type="video/mp4">
+                    </video>
+                    <div class="service-icon">
+                        <i class=""></i>
+                    </div>
+                    <h3>Event Management</h3>
+                    <p>Complete wedding planning and coordination to ensure a seamless and stress-free experience.</p>
+                </div>
+                <div class="service-card">
+                    <video class="service-video-bg" autoplay muted loop playsinline>
+                        <source src="food.mp4" type="video/mp4">
+                    </video>
+                    <div class="service-icon">
+                        <i class=""></i>
+                    </div>
+                    <h3>Food and Tea</h3>
+                    <p>Premium catering services including traditional tea ceremonies and gourmet food stations.</p>
+                </div>
+                <div class="service-card">
+                    <video class="service-video-bg" autoplay muted loop playsinline>
+                        <source src="photography.mp4" type="video/mp4">
+                    </video>
+                    <div class="service-icon">
+                        <i class=""></i>
+                    </div>
+                    <h3>Photography & Videography</h3>
+                    <p>Capture every precious moment with our professional photography and cinematic videography.</p>
+                </div>
+                <div class="service-card">
+                    <video class="service-video-bg" autoplay muted loop playsinline>
+                        <source src="https://media.istockphoto.com/id/1224104034/video/indian-or-hindu-traditional-ceremony-venue-decoration.mp4?s=mp4-640x640-is&k=20&c=sfHfbgXQkfysy_h0NQ9L8fHfAdvBvROGqvpgp2uib6Y=" type="video/mp4">
+                    </video>
+                    <div class="service-icon">
+                        <i class=""></i>
+                    </div>
+                    <h3>Stage Design</h3>
+                    <p>Breathtaking stage designs and decorations that transform your venue into a magical space.</p>
+                </div>
+                <div class="service-card">
+                    <video class="service-video-bg" autoplay muted loop playsinline>
+                        <source src="light.mp4" type="video/mp4">
+                    </video>
+                    <div class="service-icon">
+                        <i class=""></i>
+                    </div>
+                    <h3>Light & Sound</h3>
+                    <p>Professional audio-visual equipment and lighting to create the perfect ambiance.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Gallery Section -->
+    <section class="gallery" id="gallery">
+        <div class="container">
+            <div class="section-title">
+                <h2>Wedding Gallery</h2>
+                <p>Browse through our recent wedding celebrations</p>
+            </div>
+            <div class="gallery-grid">
+                <!-- Card 1 - Traditional Weddings -->
+                <div class="gallery-card">
+                    <div class="gallery-carousel">
+                        <div class="carousel-slides" id="carousel1">
+                            <div class="carousel-slide">
+                                <img src="https://images.unsplash.com/photo-1519225421980-715cb0215aed?ixlib=rb-4.0.3&auto=format&fit=crop&w=1350&q=80" alt="Traditional Wedding 1">
+                            </div>
+                            <div class="carousel-slide">
+                                <img src="https://images.unsplash.com/photo-1465495976277-4387d4b0e4a6?ixlib=rb-4.0.3&auto=format&fit=crop&w=1350&q=80" alt="Traditional Wedding 2">
+                            </div>
+                            <div class="carousel-slide">
+                                <img src="https://images.unsplash.com/photo-1551244072-5b4aa7a1d6c9?ixlib=rb-4.0.3&auto=format&fit=crop&w=1350&q=80" alt="Traditional Wedding 3">
+                            </div>
+                            <div class="carousel-slide">
+                                <img src="https://images.unsplash.com/photo-1583939003579-730e3918a45a?ixlib=rb-4.0.3&auto=format&fit=crop&w=1350&q=80" alt="Traditional Wedding 4">
+                            </div>
+                            <div class="carousel-slide">
+                                <img src="https://images.unsplash.com/photo-1511795409834-ef04bbd61622?ixlib=rb-4.0.3&auto=format&fit=crop&w=1350&q=80" alt="Traditional Wedding 5">
+                            </div>
+                        </div>
+                        <div class="carousel-controls">
+                            <button class="carousel-btn prev" onclick="moveSlide('carousel1', -1)">
+                                <i class="fas fa-chevron-left"></i>
+                            </button>
+                            <button class="carousel-btn next" onclick="moveSlide('carousel1', 1)">
+                                <i class="fas fa-chevron-right"></i>
+                            </button>
+                        </div>
+                        <div class="carousel-indicators" id="indicators1">
+                            <span class="indicator active" onclick="showSlide('carousel1', 0)"></span>
+                            <span class="indicator" onclick="showSlide('carousel1', 1)"></span>
+                            <span class="indicator" onclick="showSlide('carousel1', 2)"></span>
+                            <span class="indicator" onclick="showSlide('carousel1', 3)"></span>
+                            <span class="indicator" onclick="showSlide('carousel1', 4)"></span>
+                        </div>
+                    </div>
+                    <div class="gallery-overlay">
+                        <h3>Traditional Weddings</h3>
+                        <p>Elegant ceremonies with timeless traditions</p>
+                    </div>
+                </div>
+
+                <!-- Card 2 - Beach Weddings -->
+                <div class="gallery-card">
+                    <div class="gallery-carousel">
+                        <div class="carousel-slides" id="carousel2">
+                            <div class="carousel-slide">
+                                <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?ixlib=rb-4.0.3&auto=format&fit=crop&w=1350&q=80" alt="Beach Wedding 1">
+                            </div>
+                            <div class="carousel-slide">
+                                <img src="https://images.unsplash.com/photo-1465495976277-4387d4b0e4a6?ixlib=rb-4.0.3&auto=format&fit=crop&w=1350&q=80" alt="Beach Wedding 2">
+                            </div>
+                            <div class="carousel-slide">
+                                <img src="https://images.unsplash.com/photo-1511795409834-ef04bbd61622?ixlib=rb-4.0.3&auto=format&fit=crop&w=1350&q=80" alt="Beach Wedding 3">
+                            </div>
+                            <div class="carousel-slide">
+                                <img src="https://images.unsplash.com/photo-1519225421980-715cb0215aed?ixlib=rb-4.0.3&auto=format&fit=crop&w=1350&q=80" alt="Beach Wedding 4">
+                            </div>
+                            <div class="carousel-slide">
+                                <img src="https://images.unsplash.com/photo-1551244072-5b4aa7a1d6c9?ixlib=rb-4.0.3&auto=format&fit=crop&w=1350&q=80" alt="Beach Wedding 5">
+                            </div>
+                        </div>
+                        <div class="carousel-controls">
+                            <button class="carousel-btn prev" onclick="moveSlide('carousel2', -1)">
+                                <i class="fas fa-chevron-left"></i>
+                            </button>
+                            <button class="carousel-btn next" onclick="moveSlide('carousel2', 1)">
+                                <i class="fas fa-chevron-right"></i>
+                            </button>
+                        </div>
+                        <div class="carousel-indicators" id="indicators2">
+                            <span class="indicator active" onclick="showSlide('carousel2', 0)"></span>
+                            <span class="indicator" onclick="showSlide('carousel2', 1)"></span>
+                            <span class="indicator" onclick="showSlide('carousel2', 2)"></span>
+                            <span class="indicator" onclick="showSlide('carousel2', 3)"></span>
+                            <span class="indicator" onclick="showSlide('carousel2', 4)"></span>
+                        </div>
+                    </div>
+                    <div class="gallery-overlay">
+                        <h3>Beach Weddings</h3>
+                        <p>Romantic ceremonies by the sea</p>
+                    </div>
+                </div>
+
+                <!-- Card 3 - Destination Weddings -->
+                <div class="gallery-card">
+                    <div class="gallery-carousel">
+                        <div class="carousel-slides" id="carousel3">
+                            <div class="carousel-slide">
+                                <img src="https://images.unsplash.com/photo-1465495976277-4387d4b0e4a6?ixlib=rb-4.0.3&auto=format&fit=crop&w=1350&q=80" alt="Destination Wedding 1">
+                            </div>
+                            <div class="carousel-slide">
+                                <img src="https://images.unsplash.com/photo-1519225421980-715cb0215aed?ixlib=rb-4.0.3&auto=format&fit=crop&w=1350&q=80" alt="Destination Wedding 2">
+                            </div>
+                            <div class="carousel-slide">
+                                <img src="https://images.unsplash.com/photo-1551244072-5b4aa7a1d6c9?ixlib=rb-4.0.3&auto=format&fit=crop&w=1350&q=80" alt="Destination Wedding 3">
+                            </div>
+                            <div class="carousel-slide">
+                                <img src="https://images.unsplash.com/photo-1583939003579-730e3918a45a?ixlib=rb-4.0.3&auto=format&fit=crop&w=1350&q=80" alt="Destination Wedding 4">
+                            </div>
+                            <div class="carousel-slide">
+                                <img src="https://images.unsplash.com/photo-1511795409834-ef04bbd61622?ixlib=rb-4.0.3&auto=format&fit=crop&w=1350&q=80" alt="Destination Wedding 5">
+                            </div>
+                        </div>
+                        <div class="carousel-controls">
+                            <button class="carousel-btn prev" onclick="moveSlide('carousel3', -1)">
+                                <i class="fas fa-chevron-left"></i>
+                            </button>
+                            <button class="carousel-btn next" onclick="moveSlide('carousel3', 1)">
+                                <i class="fas fa-chevron-right"></i>
+                            </button>
+                        </div>
+                        <div class="carousel-indicators" id="indicators3">
+                            <span class="indicator active" onclick="showSlide('carousel3', 0)"></span>
+                            <span class="indicator" onclick="showSlide('carousel3', 1)"></span>
+                            <span class="indicator" onclick="showSlide('carousel3', 2)"></span>
+                            <span class="indicator" onclick="showSlide('carousel3', 3)"></span>
+                            <span class="indicator" onclick="showSlide('carousel3', 4)"></span>
+                        </div>
+                    </div>
+                    <div class="gallery-overlay">
+                        <h3>Destination Weddings</h3>
+                        <p>Exotic locations for unforgettable celebrations</p>
+                    </div>
+                </div>
+
+                <!-- Card 4 - Luxury Weddings -->
+                <div class="gallery-card">
+                    <div class="gallery-carousel">
+                        <div class="carousel-slides" id="carousel4">
+                            <div class="carousel-slide">
+                                <img src="https://images.unsplash.com/photo-1583939003579-730e3918a45a?ixlib=rb-4.0.3&auto=format&fit=crop&w=1350&q=80" alt="Luxury Wedding 1">
+                            </div>
+                            <div class="carousel-slide">
+                                <img src="https://images.unsplash.com/photo-1511795409834-ef04bbd61622?ixlib=rb-4.0.3&auto=format&fit=crop&w=1350&q=80" alt="Luxury Wedding 2">
+                            </div>
+                            <div class="carousel-slide">
+                                <img src="https://images.unsplash.com/photo-1519225421980-715cb0215aed?ixlib=rb-4.0.3&auto=format&fit=crop&w=1350&q=80" alt="Luxury Wedding 3">
+                            </div>
+                            <div class="carousel-slide">
+                                <img src="https://images.unsplash.com/photo-1465495976277-4387d4b0e4a6?ixlib=rb-4.0.3&auto=format&fit=crop&w=1350&q=80" alt="Luxury Wedding 4">
+                            </div>
+                            <div class="carousel-slide">
+                                <img src="https://images.unsplash.com/photo-1551244072-5b4aa7a1d6c9?ixlib=rb-4.0.3&auto=format&fit=crop&w=1350&q=80" alt="Luxury Wedding 5">
+                            </div>
+                        </div>
+                        <div class="carousel-controls">
+                            <button class="carousel-btn prev" onclick="moveSlide('carousel4', -1)">
+                                <i class="fas fa-chevron-left"></i>
+                            </button>
+                            <button class="carousel-btn next" onclick="moveSlide('carousel4', 1)">
+                                <i class="fas fa-chevron-right"></i>
+                            </button>
+                        </div>
+                        <div class="carousel-indicators" id="indicators4">
+                            <span class="indicator active" onclick="showSlide('carousel4', 0)"></span>
+                            <span class="indicator" onclick="showSlide('carousel4', 1)"></span>
+                            <span class="indicator" onclick="showSlide('carousel4', 2)"></span>
+                            <span class="indicator" onclick="showSlide('carousel4', 3)"></span>
+                            <span class="indicator" onclick="showSlide('carousel4', 4)"></span>
+                        </div>
+                    </div>
+                    <div class="gallery-overlay">
+                        <h3>Luxury Weddings</h3>
+                        <p>Premium experiences with exquisite details</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section class="about" id="about">
+        <div class="container">
+            <div class="section-title">
+                <h2>About Dream Wedding</h2>
+                <p>Creating magical moments that last a lifetime</p>
+            </div>
+            <div class="about-content">
+                <div class="about-text">
+                    <h2>Your Perfect Wedding Day</h2>
+                    <p>At Dream Wedding, we specialize in creating unforgettable wedding experiences tailored to your unique vision. With years of expertise in wedding planning and coordination, we handle every detail so you can focus on enjoying your special day.</p>
+                    <p>From intimate ceremonies to grand celebrations, our team ensures flawless execution and attention to every detail.</p>
+                    <ul class="service-list">
+                        <li><i class="fas fa-check-circle"></i> Complete wedding planning and coordination</li>
+                        <li><i class="fas fa-check-circle"></i> Venue selection and decoration</li>
+                        <li><i class="fas fa-check-circle"></i> Catering and food services</li>
+                        <li><i class="fas fa-check-circle"></i> Photography and videography</li>
+                    </ul>
+                </div>
+                <div class="about-image">
+                    <img src="https://images.unsplash.com/photo-1511795409834-ef04bbd61622?ixlib=rb-4.0.3&auto=format&fit=crop&w=1350&q=80" alt="Wedding Planning Team">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section class="contact" id="contact">
+        <div class="container">
+            <div class="contact-container">
+                <div class="contact-info">
+                    <h2>Plan Your Dream Wedding</h2>
+                    <p>Contact us today to start planning the wedding of your dreams. Let's create something magical together.</p>
+                    <ul class="contact-details">
+                        <li>
+                            <i class="fas fa-user"></i>
+                            <div>
+                                <strong>Your Wedding Specialist</strong><br>
+                                Professional Wedding Planner
+                            </div>
+                        </li>
+                        <li>
+                            <i class="fas fa-phone"></i>
+                            <div>
+                                <strong>Phone Number</strong><br>
+                                +1 (555) 123-4567
+                            </div>
+                        </li>
+                        <li>
+                            <i class="fas fa-envelope"></i>
+                            <div>
+                                <strong>Email Address</strong><br>
+                                info@dreamwedding.com
+                            </div>
+                        </li>
+                    </ul>
+                    <div class="social-links">
+                        <a href="https://wa.me/15551234567?text=Hi%20Dream%20Wedding%2C%20I%20would%20like%20to%20inquire%20about%20your%20wedding%20services" class="social-link" target="_blank">
+                            <i class="fab fa-whatsapp"></i>
+                        </a>
+                        <a href="https://www.instagram.com/dreamwedding" class="social-link" target="_blank">
+                            <i class="fab fa-instagram"></i>
+                        </a>
+                        <a href="https://www.facebook.com/dreamwedding" class="social-link" target="_blank">
+                            <i class="fab fa-facebook-f"></i>
+                        </a>
+                    </div>
+                </div>
+                <div class="contact-form">
+                    <h3>Wedding Inquiry Form</h3>
+                    <form id="weddingForm">
+                        <div class="form-group">
+                            <label for="name">Couple's Names</label>
+                            <input type="text" id="name" class="form-control" placeholder="Enter your names" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="contact-email">Email Address</label>
+                            <input type="email" id="contact-email" class="form-control" placeholder="Enter your email" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="wedding-date">Proposed Wedding Date</label>
+                            <input type="date" id="wedding-date" class="form-control">
+                        </div>
+                        <div class="form-group">
+                            <label for="guest-count">Estimated Guest Count</label>
+                            <input type="number" id="guest-count" class="form-control" placeholder="Number of guests">
+                        </div>
+                        <div class="form-group">
+                            <label for="message">Wedding Vision & Details</label>
+                            <textarea id="message" class="form-control" placeholder="Tell us about your dream wedding..." required></textarea>
+                        </div>
+                        <button type="submit" class="submit-button">
+                            <i class="fas fa-heart"></i>
+                            Send Wedding Inquiry
+                        </button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            
+                <div class="footer-column">
+                    <h3>Contact Info</h3>
+                    <ul class="footer-links">
+                        <li><i class="fas fa-phone"></i> +1 (555) 123-4567</li>
+                        <li><i class="fas fa-envelope"></i> info@dreamwedding.com</li>
+                        <li><i class="fas fa-clock"></i> Mon-Sun: 9AM-7PM</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="copyright">
+                <p>&copy; 2023 Dream Wedding. All Rights Reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Floating header scroll effect
+        window.addEventListener('scroll', function() {
+            const header = document.getElementById('floatingHeader');
+            const headerButtons = document.getElementById('headerButtons');
+            
+            if (window.scrollY > 50) {
+                header.classList.add('scrolled');
+                headerButtons.classList.add('scrolled');
+            } else {
+                header.classList.remove('scrolled');
+                headerButtons.classList.remove('scrolled');
+            }
+        });
+
+        // Mobile menu toggle
+        const mobileMenuBtn = document.getElementById('mobileMenuBtn');
+        const navLinks = document.getElementById('navLinks');
+        
+        mobileMenuBtn.addEventListener('click', () => {
+            navLinks.classList.toggle('active');
+        });
+
+        // Close mobile menu when clicking on a link
+        document.querySelectorAll('.nav-links a').forEach(link => {
+            link.addEventListener('click', () => {
+                navLinks.classList.remove('active');
+            });
+        });
+
+        // Smooth scrolling for navigation links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                
+                const targetId = this.getAttribute('href');
+                if(targetId === '#') return;
+                
+                const targetElement = document.querySelector(targetId);
+                if(targetElement) {
+                    window.scrollTo({
+                        top: targetElement.offsetTop - 100,
+                        behavior: 'smooth'
+                    });
+                }
+            });
+        });
+
+        // Contact form submission
+        document.getElementById('weddingForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            alert('Thank you for your wedding inquiry! We will contact you soon to discuss your dream wedding.');
+            this.reset();
+        });
+
+        // Carousel functionality
+        const carouselStates = {
+            'carousel1': 0,
+            'carousel2': 0,
+            'carousel3': 0,
+            'carousel4': 0
+        };
+
+        function moveSlide(carouselId, direction) {
+            const carousel = document.getElementById(carouselId);
+            const indicators = document.getElementById('indicators' + carouselId.slice(-1));
+            const totalSlides = 5;
+            
+            carouselStates[carouselId] += direction;
+            
+            if (carouselStates[carouselId] >= totalSlides) {
+                carouselStates[carouselId] = 0;
+            } else if (carouselStates[carouselId] < 0) {
+                carouselStates[carouselId] = totalSlides - 1;
+            }
+            
+            carousel.style.transform = `translateX(-${carouselStates[carouselId] * 20}%)`;
+            
+            // Update indicators
+            const indicatorElements = indicators.querySelectorAll('.indicator');
+            indicatorElements.forEach((indicator, index) => {
+                if (index === carouselStates[carouselId]) {
+                    indicator.classList.add('active');
+                } else {
+                    indicator.classList.remove('active');
+                }
+            });
+        }
+
+        function showSlide(carouselId, slideIndex) {
+            const carousel = document.getElementById(carouselId);
+            const indicators = document.getElementById('indicators' + carouselId.slice(-1));
+            
+            carouselStates[carouselId] = slideIndex;
+            carousel.style.transform = `translateX(-${slideIndex * 20}%)`;
+            
+            // Update indicators
+            const indicatorElements = indicators.querySelectorAll('.indicator');
+            indicatorElements.forEach((indicator, index) => {
+                if (index === slideIndex) {
+                    indicator.classList.add('active');
+                } else {
+                    indicator.classList.remove('active');
+                }
+            });
+        }
+
+        // Auto-rotate carousels
+        function autoRotateCarousels() {
+            Object.keys(carouselStates).forEach(carouselId => {
+                moveSlide(carouselId, 1);
+            });
+        }
+
+        // Set up auto rotation every 5 seconds
+        setInterval(autoRotateCarousels, 5000);
+
+        // Initialize the page
+        document.addEventListener('DOMContentLoaded', function() {
+            console.log('Dream Wedding website loaded successfully!');
+        });
+    </script>
+</body>
+</html>
