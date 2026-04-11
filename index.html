@@ -484,7 +484,7 @@
         /* Touch hint for mobile */
         .touch-hint {
             position: absolute;
-            bottom: 80px;
+            bottom: 20px;
             left: 50%;
             transform: translateX(-50%);
             background: rgba(0, 0, 0, 0.6);
@@ -797,32 +797,6 @@
             align-items: center;
             gap: 8px;
         }
-
-        /* Reset button */
-        .reset-view-btn {
-            position: absolute;
-            bottom: 20px;
-            right: 20px;
-            padding: 10px 18px;
-            background: rgba(0, 0, 0, 0.7);
-            color: #00f3ff;
-            border: 1px solid #00f3ff;
-            border-radius: 30px;
-            font-size: 13px;
-            cursor: pointer;
-            backdrop-filter: blur(10px);
-            z-index: 100;
-            transition: all 0.3s;
-            display: flex;
-            align-items: center;
-            gap: 8px;
-        }
-        
-        .reset-view-btn:hover {
-            background: #00f3ff;
-            color: #000;
-            box-shadow: 0 0 20px #00f3ff;
-        }
     </style>
 </head>
 <body>
@@ -910,9 +884,6 @@
                 <div class="touch-hint" id="touchHint">
                     <i class="fas fa-hand-pointer"></i> Drag to move robot head
                 </div>
-                <button class="reset-view-btn" id="resetHeadBtn">
-                    <i class="fas fa-sync-alt"></i> Reset View
-                </button>
             </div>
         </div>
 
@@ -1341,20 +1312,6 @@
         } else {
             initMouseTracking();
         }
-        
-        // Reset head position
-        function resetHeadPosition() {
-            targetRotationX = 0;
-            targetRotationY = 0;
-            
-            // Show hint briefly on mobile after reset
-            if (isMobile) {
-                touchHint.classList.add('visible');
-                setTimeout(() => touchHint.classList.remove('visible'), 2000);
-            }
-        }
-        
-        document.getElementById('resetHeadBtn').addEventListener('click', resetHeadPosition);
         
         // Animation loop
         function animateRobot() {
