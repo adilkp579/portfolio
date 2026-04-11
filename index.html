@@ -83,32 +83,31 @@
             padding: 0 15px; 
         }
 
-        /* ===== IPHONE STYLE DYNAMIC ISLAND HEADER ===== */
+        /* ===== OPTIMIZED IPHONE STYLE DYNAMIC ISLAND HEADER ===== */
         .iphone-header {
             position: fixed;
             top: 0;
             left: 0;
             right: 0;
             z-index: 1000;
-            padding: 12px 20px;
-            padding-top: calc(12px + var(--safe-area-top));
+            padding: 12px 16px;
+            padding-top: max(12px, var(--safe-area-top));
             display: flex;
             justify-content: center;
             pointer-events: none;
         }
         
         .dynamic-island {
-            background: rgba(0, 0, 0, 0.85);
+            background: rgba(0, 0, 0, 0.8);
             backdrop-filter: blur(40px) saturate(180%);
             -webkit-backdrop-filter: blur(40px) saturate(180%);
-            border-radius: 40px;
-            padding: 8px 16px;
+            border-radius: 44px;
+            padding: 8px 18px;
             display: flex;
             align-items: center;
             justify-content: space-between;
-            width: auto;
-            max-width: 400px;
-            min-width: 320px;
+            width: 100%;
+            max-width: 520px;
             border: 0.5px solid rgba(255, 255, 255, 0.15);
             box-shadow: 0 20px 40px rgba(0, 0, 0, 0.5), 0 0 0 0.5px rgba(0, 243, 255, 0.2) inset, 0 0 30px rgba(0, 243, 255, 0.1);
             pointer-events: auto;
@@ -123,14 +122,16 @@
         .island-left, .island-right {
             display: flex;
             align-items: center;
-            gap: 8px;
+            gap: 6px;
         }
         
         .island-center {
             display: flex;
             align-items: center;
-            gap: 15px;
-            padding: 0 15px;
+            gap: 8px;
+            padding: 0 6px;
+            flex-wrap: wrap;
+            justify-content: center;
         }
         
         .logo-text {
@@ -141,6 +142,7 @@
             background-clip: text;
             color: transparent;
             letter-spacing: -0.5px;
+            text-decoration: none;
         }
         
         .logo-text span {
@@ -150,11 +152,11 @@
         }
         
         .nav-item {
-            color: rgba(255, 255, 255, 0.8);
+            color: rgba(255, 255, 255, 0.85);
             text-decoration: none;
-            font-size: 0.85rem;
+            font-size: 0.8rem;
             font-weight: 500;
-            padding: 6px 12px;
+            padding: 6px 10px;
             border-radius: 30px;
             transition: all 0.3s;
             background: transparent;
@@ -170,7 +172,7 @@
             background: none;
             border: none;
             color: rgba(255, 255, 255, 0.9);
-            font-size: 1.1rem;
+            font-size: 1rem;
             cursor: pointer;
             padding: 6px 10px;
             border-radius: 30px;
@@ -230,6 +232,46 @@
             height: 50px;
             border-radius: 25px;
             cursor: pointer;
+        }
+
+        /* Responsive header optimizations */
+        @media (max-width: 600px) {
+            .iphone-header {
+                padding: 8px 12px;
+            }
+            .dynamic-island {
+                padding: 6px 12px;
+                max-width: 100%;
+                border-radius: 36px;
+            }
+            .island-center {
+                gap: 4px;
+            }
+            .nav-item {
+                font-size: 0.7rem;
+                padding: 4px 6px;
+            }
+            .logo-text {
+                font-size: 1rem;
+            }
+            .menu-btn {
+                padding: 4px 8px;
+                font-size: 0.9rem;
+            }
+        }
+
+        @media (min-width: 1024px) {
+            .dynamic-island {
+                max-width: 600px;
+                padding: 8px 22px;
+            }
+            .nav-item {
+                font-size: 0.9rem;
+                padding: 6px 12px;
+            }
+            .island-center {
+                gap: 12px;
+            }
         }
 
         /* ===== HERO SECTION ===== */
@@ -321,9 +363,6 @@
         @media (max-width: 768px) {
             .hero-content { padding: 30px 15px; }
             .btn { padding: 12px 20px; white-space: normal; width: calc(50% - 6px); }
-            .dynamic-island { min-width: 280px; padding: 6px 12px; }
-            .island-center { gap: 8px; padding: 0 8px; }
-            .nav-item { font-size: 0.75rem; padding: 4px 8px; }
         }
 
         /* Welcome message */
@@ -432,16 +471,47 @@
             border: 0.5px solid var(--glass-border);
             box-shadow: 0 30px 60px rgba(0, 0, 0, 0.5), 0 0 0 0.5px rgba(0, 243, 255, 0.1) inset;
             position: relative;
+            touch-action: pan-y pinch-zoom;
         }
         
         #robot-canvas {
             width: 100%;
             height: 100%;
             display: block;
+            touch-action: none;
         }
         
+        /* Touch hint for mobile */
+        .touch-hint {
+            position: absolute;
+            bottom: 80px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: rgba(0, 0, 0, 0.6);
+            backdrop-filter: blur(10px);
+            color: var(--tron-blue);
+            padding: 8px 20px;
+            border-radius: 30px;
+            font-size: 13px;
+            border: 0.5px solid var(--tron-blue);
+            pointer-events: none;
+            opacity: 0;
+            transition: opacity 0.5s;
+            white-space: nowrap;
+            z-index: 50;
+        }
+        
+        .touch-hint i {
+            margin-right: 8px;
+        }
+        
+        .touch-hint.visible {
+            opacity: 1;
+        }
+
         @media (min-width: 992px) {
             .tron-3d-container { height: 500px; }
+            .touch-hint { display: none; }
         }
 
         /* Skills */
@@ -760,7 +830,7 @@
     <div id="canvas-container"></div>
 
     <div class="content-wrapper">
-        <!-- iPhone Style Dynamic Island Header -->
+        <!-- OPTIMIZED iPhone Style Dynamic Island Header -->
         <header class="iphone-header" id="iphoneHeader">
             <div class="dynamic-island" id="dynamicIsland">
                 <div class="island-left">
@@ -768,10 +838,10 @@
                 </div>
                 <div class="island-center">
                     <a href="#home" class="nav-item">Home</a>
-                <!--    <a href="#about" class="nav-item">About</a> -->
+                    <a href="#about" class="nav-item">About</a>
                     <a href="#services" class="nav-item">Services</a>
                     <a href="#portfolio" class="nav-item">Work</a>
-              <!--      <a href="#contact" class="nav-item">Contact</a>-->
+                    <a href="#contact" class="nav-item">Contact</a>
                 </div>
                 <div class="island-right">
                     <button class="menu-btn" id="menuBtn">
@@ -833,15 +903,18 @@
             </div>
         </div>
         
-         <!-- 3D Robot TRON Container -->
-         <div class="container">
+        <!-- 3D Robot TRON Container -->
+        <div class="container">
             <div class="tron-3d-container" id="tronContainer">
                 <canvas id="robot-canvas"></canvas>
+                <div class="touch-hint" id="touchHint">
+                    <i class="fas fa-hand-pointer"></i> Drag to move robot head
+                </div>
                 <button class="reset-view-btn" id="resetHeadBtn">
-                    <i class="fas fa-sync-alt"></i> 
+                    <i class="fas fa-sync-alt"></i> Reset View
                 </button>
             </div>
-        </div
+        </div>
 
         <!-- About Section -->
         <section class="about" id="about">
@@ -859,7 +932,7 @@
                 </div>
             </div>
         </section>
-        
+
         <!-- Services Section -->
         <section class="services" id="services">
             <div class="container">
@@ -985,12 +1058,13 @@
 
     <script type="module">
         // ============================================
-        // 3D ROBOT WITH HEAD TRACKING
+        // 3D ROBOT WITH TOUCH/DRAG RESPONSE FOR MOBILE
         // ============================================
         import * as THREE from 'three';
         
         const container = document.getElementById('tronContainer');
         const canvas = document.getElementById('robot-canvas');
+        const touchHint = document.getElementById('touchHint');
         
         // Robot Scene
         const scene = new THREE.Scene();
@@ -1172,7 +1246,15 @@
         
         createRobot();
         
-        // Mouse tracking
+        // Show touch hint on mobile
+        if (isMobile) {
+            setTimeout(() => {
+                touchHint.classList.add('visible');
+                setTimeout(() => touchHint.classList.remove('visible'), 3000);
+            }, 1000);
+        }
+        
+        // Mouse tracking for desktop
         function initMouseTracking() {
             window.addEventListener('mousemove', (e) => {
                 const mouseX = (e.clientX / window.innerWidth) * 2 - 1;
@@ -1187,37 +1269,75 @@
             });
         }
         
-        // Gyroscope for mobile
-        let initialOrientation = null;
-        
-        function initGyroscope() {
-            if (typeof DeviceOrientationEvent !== 'undefined') {
-                window.addEventListener('deviceorientation', (e) => {
-                    if (e.gamma === null || e.beta === null) return;
-                    
-                    if (initialOrientation === null) {
-                        initialOrientation = { gamma: e.gamma, beta: e.beta };
-                        return;
-                    }
-                    
-                    let deltaGamma = e.gamma - initialOrientation.gamma;
-                    let deltaBeta = e.beta - initialOrientation.beta;
-                    
-                    deltaGamma = Math.max(-45, Math.min(45, deltaGamma));
-                    deltaBeta = Math.max(-45, Math.min(45, deltaBeta));
-                    
-                    targetRotationY = (deltaGamma / 45) * 1.5;
-                    targetRotationX = (deltaBeta / 45) * 0.8;
-                    
-                    targetRotationY = Math.max(-1.5, Math.min(1.5, targetRotationY));
-                    targetRotationX = Math.max(-0.8, Math.min(0.8, targetRotationX));
-                });
-            }
+        // Touch/Drag controls for mobile
+        function initTouchControls() {
+            let isDragging = false;
+            let lastX = 0;
+            let lastY = 0;
+            
+            // Track relative rotation values
+            let dragRotationY = 0;
+            let dragRotationX = 0;
+            
+            canvas.addEventListener('touchstart', (e) => {
+                e.preventDefault();
+                const touch = e.touches[0];
+                lastX = touch.clientX;
+                lastY = touch.clientY;
+                isDragging = true;
+                
+                // Hide hint when user starts interacting
+                touchHint.classList.remove('visible');
+            }, { passive: false });
+            
+            canvas.addEventListener('touchmove', (e) => {
+                e.preventDefault();
+                if (!isDragging) return;
+                
+                const touch = e.touches[0];
+                const deltaX = touch.clientX - lastX;
+                const deltaY = touch.clientY - lastY;
+                
+                lastX = touch.clientX;
+                lastY = touch.clientY;
+                
+                // Convert pixel movement to rotation (sensitivity)
+                const sensitivity = 0.015;
+                dragRotationY += deltaX * sensitivity;
+                dragRotationX += deltaY * sensitivity;
+                
+                // Clamp values
+                dragRotationY = Math.max(-MAX_ROTATION_Y, Math.min(MAX_ROTATION_Y, dragRotationY));
+                dragRotationX = Math.max(-MAX_ROTATION_X, Math.min(MAX_ROTATION_X, dragRotationX));
+                
+                targetRotationY = dragRotationY;
+                targetRotationX = dragRotationX;
+            }, { passive: false });
+            
+            canvas.addEventListener('touchend', (e) => {
+                e.preventDefault();
+                isDragging = false;
+                
+                // Smooth return to center
+                targetRotationY = 0;
+                targetRotationX = 0;
+                dragRotationY = 0;
+                dragRotationX = 0;
+            });
+            
+            canvas.addEventListener('touchcancel', (e) => {
+                e.preventDefault();
+                isDragging = false;
+                targetRotationY = 0;
+                targetRotationX = 0;
+                dragRotationY = 0;
+                dragRotationX = 0;
+            });
         }
         
-        // Initialize tracking
+        // Initialize appropriate controls
         if (isMobile) {
-            initGyroscope();
+            initTouchControls();
         } else {
             initMouseTracking();
         }
@@ -1226,7 +1346,12 @@
         function resetHeadPosition() {
             targetRotationX = 0;
             targetRotationY = 0;
-            if (isMobile) initialOrientation = null;
+            
+            // Show hint briefly on mobile after reset
+            if (isMobile) {
+                touchHint.classList.add('visible');
+                setTimeout(() => touchHint.classList.remove('visible'), 2000);
+            }
         }
         
         document.getElementById('resetHeadBtn').addEventListener('click', resetHeadPosition);
@@ -1244,7 +1369,6 @@
             }
             
             // Animate rings
-            const time = Date.now() * 0.001;
             ring.rotation.z += 0.005;
             ring2.rotation.x += 0.003;
             ring2.rotation.y += 0.004;
