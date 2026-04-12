@@ -1,1993 +1,1023 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Dream Wedding - Premium Wedding Services</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@400;500;600;700&family=Playfair+Display:wght@400;500;600;700&family=Montserrat:wght@300;400;500;600&display=swap" rel="stylesheet">
-    <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
-        :root {
-            --primary: #ffffff;
-            --secondary: #f8f9fa;
-            --accent: #d4af37;
-            --light: #f8f9fa;
-            --dark: #343a40;
-            --gray: #6c757d;
-            --rose: #f8e0e6;
-            --text-dark: #212529;
-        }
-
-        body {
-            background-color: var(--primary);
-            color: var(--text-dark);
-            line-height: 1.6;
-            font-family: 'Montserrat', sans-serif;
-            overflow-x: hidden;
-        }
-
-        .container {
-            width: 90%;
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 0 20px;
-        }
-
-        /* Floating Top Header - Glass Effect */
-        .floating-header {
-            position: fixed;
-            top: 25px;
-            left: 50%;
-            transform: translateX(-50%);
-            background: rgba(255, 255, 255, 0.1);
-            backdrop-filter: blur(20px) saturate(180%);
-            -webkit-backdrop-filter: blur(20px) saturate(180%);
-            border-radius: 50px;
-            padding: 15px 35px;
-            box-shadow: 
-                0 8px 32px rgba(0, 0, 0, 0.1),
-                inset 0 1px 0 rgba(255, 255, 255, 0.2),
-                inset 0 -1px 0 rgba(0, 0, 0, 0.1);
-            z-index: 1000;
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            width: auto;
-            min-width: 320px;
-            transition: all 0.3s ease;
-            border: 1px solid rgba(255, 255, 255, 0.18);
-        }
-
-        .floating-header.scrolled {
-            top: 20px;
-            padding: 12px 30px;
-            background: rgba(255, 255, 255, 0.15);
-            backdrop-filter: blur(25px) saturate(200%);
-            -webkit-backdrop-filter: blur(25px) saturate(200%);
-        }
-
-        .logo {
-            font-size: 1.6rem;
-            font-weight: 700;
-            display: flex;
-            align-items: center;
-            font-family: 'Dancing Script', cursive;
-        }
-
-        .logo span:first-child {
-            color: white;
-            text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
-        }
-
-        .logo span:last-child {
-            color: var(--accent);
-            margin-left: 5px;
-            text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
-        }
-
-        .nav-links {
-            display: flex;
-            list-style: none;
-            margin: 0;
-            padding: 0;
-        }
-
-        .nav-links li {
-            margin: 0 1.2rem;
-            position: relative;
-        }
-
-        .nav-links a {
-            color: white;
-            text-decoration: none;
-            font-weight: 500;
-            transition: all 0.3s ease;
-            padding: 8px 0;
-            font-size: 0.95rem;
-            font-family: 'Montserrat', sans-serif;
-            text-shadow: 0 1px 3px rgba(0, 0, 0, 0.3);
-        }
-
-        .nav-links a:hover {
-            color: var(--accent);
-            text-shadow: 0 0 8px rgba(212, 175, 55, 0.5);
-        }
-
-        .nav-links a::after {
-            content: '';
-            position: absolute;
-            bottom: -5px;
-            left: 0;
-            width: 0;
-            height: 2px;
-            background: linear-gradient(90deg, transparent, var(--accent), transparent);
-            transition: width 0.3s ease;
-        }
-
-        .nav-links a:hover::after {
-            width: 100%;
-        }
-
-        .mobile-menu-btn {
-            display: none;
-            background: none;
-            border: none;
-            color: white;
-            font-size: 1.3rem;
-            cursor: pointer;
-            padding: 5px;
-            text-shadow: 0 1px 3px rgba(0, 0, 0, 0.3);
-        }
-
-        /* Header Buttons - Fixed Size and Position */
-        .header-buttons {
-            position: fixed;
-            top: 110px;
-            left: 50%;
-            transform: translateX(-50%);
-            display: flex;
-            gap: 20px;
-            z-index: 999;
-            transition: all 0.3s ease;
-        }
-
-        .header-buttons.scrolled {
-            top: 95px;
-        }
-
-        .header-button {
-            background-color: var(--accent);
-            color: white;
-            border: none;
-            padding: 14px 32px;
-            border-radius: 30px;
-            font-weight: 600;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            font-size: 0.95rem;
-            display: flex;
-            align-items: center;
-            gap: 10px;
-            box-shadow: 0 4px 15px rgba(212, 175, 55, 0.3);
-            white-space: nowrap;
-            text-decoration: none;
-            font-family: 'Montserrat', sans-serif;
-            width: 180px;
-            justify-content: center;
-        }
-
-        .header-button:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 6px 20px rgba(212, 175, 55, 0.4);
-        }
-
-        .header-button.whatsapp {
-            background-color: #25D366;
-            color: white;
-        }
-
-        .header-button.whatsapp:hover {
-            background-color: #20bd5a;
-            transform: translateY(-2px);
-            box-shadow: 0 6px 20px rgba(37, 211, 102, 0.4);
-        }
-
-        .header-button.instagram {
-            background: linear-gradient(45deg, #f09433, #e6683c, #dc2743, #cc2366, #bc1888);
-            color: white;
-        }
-
-        .header-button.instagram:hover {
-            background: linear-gradient(45deg, #e0852e, #d85f35, #d2243f, #c22060, #b0167e);
-            transform: translateY(-2px);
-            box-shadow: 0 6px 20px rgba(225, 48, 108, 0.4);
-        }
-
-        /* Hero Section with 3D Carousel */
-        .hero {
-            background: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.7)), url('https://www.google.com/url?sa=i&url=https%3A%2F%2Fmemoriesdesigner.in%2Fblog%2Ftraditional-wedding-photography-poses&psig=AOvVaw2BJAHvWIKBFKT0YWpSKOO5&ust=1763559231694000&source=images&cd=vfe&opi=89978449&ved=0CBIQjRxqFwoTCOj6m6Xo-5ADFQAAAAAdAAAAABBM');
-            background-size: cover;
-            background-position: center;
-            background-attachment: fixed;
-            padding: 14rem 0 8rem;
-            text-align: center;
-            position: relative;
-            overflow: hidden;
-            min-height: 100vh;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-        }
-
-        .hero::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background: radial-gradient(circle at center, rgba(212, 175, 55, 0.1) 0%, rgba(0, 0, 0, 0) 70%);
-            z-index: -1;
-        }
-
-        .hero-content {
-            width: 100%;
-            max-width: 1200px;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            gap: 2rem;
-        }
-
-        /* 3D Carousel - Image Only */
-        .carousel-container {
-            width: 100%;
-            max-width: 1000px;
-            height: 500px;
-            perspective: 1200px;
-            margin: 0 auto 3rem;
-            position: relative;
-        }
-
-        .carousel {
-            width: 100%;
-            height: 100%;
-            position: relative;
-            transform-style: preserve-3d;
-            transition: transform 0.8s ease;
-        }
-
-        .carousel-item {
-            position: absolute;
-            width: 350px;
-            height: 450px;
-            border-radius: 20px;
-            box-shadow: 0 25px 50px rgba(0, 0, 0, 0.5);
-            transition: all 0.5s ease;
-            transform-origin: center center;
-            overflow: hidden;
-            border: 3px solid rgba(255, 255, 255, 0.3);
-            cursor: pointer;
-        }
-
-        .carousel-item.active {
-            transform: translateZ(250px) scale(1.15);
-            box-shadow: 0 30px 60px rgba(212, 175, 55, 0.4);
-            border-color: var(--accent);
-        }
-
-        .carousel-image {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            transition: transform 0.5s ease;
-        }
-
-        .carousel-item.active .carousel-image {
-            transform: scale(1.05);
-        }
-
-        .carousel-indicators {
-            display: flex;
-            justify-content: center;
-            gap: 12px;
-            margin-top: 2rem;
-        }
-
-        .indicator {
-            width: 14px;
-            height: 14px;
-            border-radius: 50%;
-            background: rgba(255, 255, 255, 0.4);
-            cursor: pointer;
-            transition: all 0.3s ease;
-            border: 2px solid transparent;
-        }
-
-        .indicator.active {
-            background: var(--accent);
-            transform: scale(1.3);
-            box-shadow: 0 0 15px rgba(212, 175, 55, 0.7);
-        }
-
-        .indicator:hover {
-            background: rgba(212, 175, 55, 0.7);
-            transform: scale(1.2);
-        }
-
-        .hero-text {
-            width: 100%;
-            max-width: 800px;
-            text-align: center;
-        }
-
-        /* DREAM WEDDING with Full Background Effect */
-        .dream-wedding-text {
-            font-family: 'Dancing Script', cursive;
-            font-size: 5.5rem;
-            color: white;
-            margin-bottom: 1.5rem;
-            text-shadow: 3px 3px 15px rgba(0, 0, 0, 0.7);
-            font-weight: 700;
-            letter-spacing: 3px;
-            animation: fadeInUp 1.5s ease-out;
-            line-height: 1.1;
-            padding: 20px 40px;
-            background: linear-gradient(135deg, rgba(212, 175, 55, 0.2), rgba(255, 255, 255, 0.1));
-            border-radius: 20px;
-            backdrop-filter: blur(10px);
-            border: 1px solid rgba(255, 255, 255, 0.2);
-            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.3);
-        }
-
-        .please-contact-text {
-            font-family: 'Playfair Display', serif;
-            font-size: 2.2rem;
-            color: var(--accent);
-            margin-bottom: 2rem;
-            letter-spacing: 4px;
-            text-transform: uppercase;
-            font-weight: 500;
-            animation: fadeIn 2s ease-out 0.5s both;
-            text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.5);
-        }
-
-        .tagline-text {
-            font-family: 'Playfair Display', serif;
-            font-size: 1.8rem;
-            color: white;
-            margin-bottom: 3rem;
-            font-style: italic;
-            font-weight: 400;
-            line-height: 1.4;
-            text-shadow: 1px 1px 6px rgba(0, 0, 0, 0.5);
-            animation: fadeIn 2s ease-out 1s both;
-        }
-
-        /* Plan Your Wedding Button with Special Animation */
-        .plan-wedding-btn {
-            background: linear-gradient(135deg, var(--accent), #f1c40f);
-            color: white;
-            border: none;
-            padding: 18px 40px;
-            border-radius: 50px;
-            font-weight: 700;
-            cursor: pointer;
-            transition: all 0.4s ease;
-            font-size: 1.2rem;
-            display: inline-flex;
-            align-items: center;
-            gap: 12px;
-            box-shadow: 0 6px 20px rgba(212, 175, 55, 0.4);
-            white-space: nowrap;
-            text-decoration: none;
-            font-family: 'Montserrat', sans-serif;
-            position: relative;
-            overflow: hidden;
-            animation: pulseGlow 2.5s infinite, fadeInUp 1.5s ease-out 1.5s both;
-            z-index: 1;
-        }
-
-        .plan-wedding-btn::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: -100%;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.3), transparent);
-            transition: all 0.6s;
-            z-index: -1;
-        }
-
-        .plan-wedding-btn:hover::before {
-            left: 100%;
-        }
-
-        .plan-wedding-btn:hover {
-            transform: translateY(-5px) scale(1.05);
-            box-shadow: 0 10px 30px rgba(212, 175, 55, 0.6);
-        }
-
-        /* Wedding Event Type Animation */
-        .wedding-events {
-            display: flex;
-            justify-content: center;
-            gap: 30px;
-            margin: 4rem 0;
-            flex-wrap: wrap;
-        }
-
-        .event-type {
-            text-align: center;
-            width: 180px;
-            opacity: 0;
-            transform: translateY(30px);
-            animation: fadeInUp 1s ease-out forwards;
-        }
-
-        .event-type:nth-child(1) { animation-delay: 0.2s; }
-        .event-type:nth-child(2) { animation-delay: 0.4s; }
-        .event-type:nth-child(3) { animation-delay: 0.6s; }
-        .event-type:nth-child(4) { animation-delay: 0.8s; }
-
-        .event-icon {
-            width: 100px;
-            height: 100px;
-            margin: 0 auto 15px;
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            background: rgba(255, 255, 255, 0.9);
-            border: 2px solid var(--accent);
-            font-size: 2.5rem;
-            color: var(--accent);
-            transition: all 0.3s ease;
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
-        }
-
-        .event-type:hover .event-icon {
-            transform: scale(1.1);
-            background: rgba(212, 175, 55, 0.2);
-            box-shadow: 0 0 20px rgba(212, 175, 55, 0.4);
-        }
-
-        .event-type h3 {
-            font-family: 'Playfair Display', serif;
-            font-size: 1.2rem;
-            color: white;
-            margin-bottom: 5px;
-            text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.5);
-        }
-
-        .event-type p {
-            font-family: 'Montserrat', sans-serif;
-            font-size: 0.9rem;
-            color: #e0e0e0;
-        }
-
-        /* Animation Keyframes */
-        @keyframes fadeInDown {
-            from {
-                opacity: 0;
-                transform: translateY(-50px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-
-        @keyframes fadeInUp {
-            from {
-                opacity: 0;
-                transform: translateY(30px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-
-        @keyframes fadeIn {
-            from {
-                opacity: 0;
-            }
-            to {
-                opacity: 1;
-            }
-        }
-
-        @keyframes pulseGlow {
-            0% {
-                box-shadow: 0 6px 20px rgba(212, 175, 55, 0.4);
-            }
-            50% {
-                box-shadow: 0 6px 30px rgba(212, 175, 55, 0.7);
-            }
-            100% {
-                box-shadow: 0 6px 20px rgba(212, 175, 55, 0.4);
-            }
-        }
-
-        /* Services Section - Updated with Background Videos */
-        .services {
-            padding: 5rem 0;
-            background-color: var(--primary);
-        }
-
-        .section-title {
-            text-align: center;
-            margin-bottom: 3rem;
-        }
-
-        .section-title h2 {
-            font-size: 2.5rem;
-            color: var(--text-dark);
-            margin-bottom: 1rem;
-            font-family: 'Playfair Display', serif;
-        }
-
-        .section-title p {
-            color: var(--gray);
-            max-width: 600px;
-            margin: 0 auto;
-            font-family: 'Montserrat', sans-serif;
-        }
-
-        .services-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 2rem;
-        }
-
-        .service-card {
-            border-radius: 15px;
-            padding: 2.5rem 1.5rem;
-            transition: all 0.3s ease;
-            text-align: center;
-            border-top: 4px solid var(--accent);
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
-            opacity: 0;
-            transform: translateY(30px);
-            animation: fadeInUp 0.8s ease-out forwards;
-            display: flex;
-            flex-direction: column;
-            height: 100%;
-            position: relative;
-            overflow: hidden;
-            min-height: 350px;
-        }
-
-        .service-card::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background: linear-gradient(135deg, rgba(212, 175, 55, 0.1), rgba(255, 255, 255, 0.05));
-            z-index: 0;
-            transition: all 0.3s ease;
-        }
-
-        .service-card > * {
-            position: relative;
-            z-index: 1;
-        }
-
-        .service-card:hover {
-            transform: translateY(-10px);
-            box-shadow: 0 15px 40px rgba(212, 175, 55, 0.3);
-        }
-
-        .service-card:hover::before {
-            background: linear-gradient(135deg, rgba(212, 175, 55, 0.2), rgba(255, 255, 255, 0.1));
-        }
-
-        .service-icon {
-            font-size: 3rem;
-            color: var(--accent);
-            margin-bottom: 1.5rem;
-            text-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
-        }
-
-        .service-card h3 {
-            margin-bottom: 1rem;
-            color: white;
-            font-size: 1.5rem;
-            font-family: 'Playfair Display', serif;
-            text-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
-        }
-
-        .service-card p {
-            color: #f0f0f0;
-            line-height: 1.6;
-            font-family: 'Montserrat', sans-serif;
-            flex-grow: 1;
-            text-shadow: 0 1px 3px rgba(0, 0, 0, 0.5);
-        }
-
-        /* Background Video for Service Cards */
-        .service-video-bg {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            z-index: -1;
-            transition: transform 0.5s ease;
-        }
-
-        .service-card:hover .service-video-bg {
-            transform: scale(1.05);
-        }
-
-        .service-card:nth-child(1) { animation-delay: 0.1s; }
-        .service-card:nth-child(2) { animation-delay: 0.2s; }
-        .service-card:nth-child(3) { animation-delay: 0.3s; }
-        .service-card:nth-child(4) { animation-delay: 0.4s; }
-        .service-card:nth-child(5) { animation-delay: 0.5s; }
-        .service-card:nth-child(6) { animation-delay: 0.6s; }
-
-        /* Gallery Section with Responsive Cards */
-        .gallery {
-            padding: 5rem 0;
-            background-color: var(--secondary);
-        }
-
-        .gallery-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 2rem;
-        }
-
-        .gallery-card {
-            border-radius: 15px;
-            overflow: hidden;
-            height: 400px;
-            position: relative;
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
-            transition: all 0.3s ease;
-        }
-
-        .gallery-card:hover {
-            transform: translateY(-10px);
-            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.3);
-        }
-
-        .gallery-carousel {
-            position: relative;
-            width: 100%;
-            height: 100%;
-            overflow: hidden;
-            border-radius: 15px;
-        }
-
-        .carousel-slides {
-            display: flex;
-            width: 500%;
-            height: 100%;
-            transition: transform 1s ease-in-out;
-        }
-
-        .carousel-slide {
-            width: 20%;
-            height: 100%;
-            flex-shrink: 0;
-        }
-
-        .carousel-slide img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-        }
-
-        .gallery-overlay {
-            position: absolute;
-            bottom: 0;
-            left: 0;
-            right: 0;
-            background: linear-gradient(transparent, rgba(0,0,0,0.8));
-            color: white;
-            padding: 1.5rem;
-            transform: translateY(0);
-            transition: transform 0.3s ease;
-        }
-
-        .gallery-card:hover .gallery-overlay {
-            transform: translateY(0);
-        }
-
-        .carousel-controls {
-            position: absolute;
-            top: 50%;
-            width: 100%;
-            display: flex;
-            justify-content: space-between;
-            padding: 0 15px;
-            transform: translateY(-50%);
-            opacity: 0;
-            transition: opacity 0.3s ease;
-        }
-
-        .gallery-card:hover .carousel-controls {
-            opacity: 1;
-        }
-
-        .carousel-btn {
-            background: rgba(255, 255, 255, 0.8);
-            border: none;
-            width: 40px;
-            height: 40px;
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            color: var(--text-dark);
-            font-size: 1.2rem;
-        }
-
-        .carousel-btn:hover {
-            background: white;
-            transform: scale(1.1);
-        }
-
-        .carousel-indicators {
-            position: absolute;
-            bottom: 20px;
-            left: 0;
-            right: 0;
-            display: flex;
-            justify-content: center;
-            gap: 8px;
-        }
-
-        .indicator {
-            width: 10px;
-            height: 10px;
-            border-radius: 50%;
-            background: rgba(255, 255, 255, 0.5);
-            cursor: pointer;
-            transition: all 0.3s ease;
-        }
-
-        .indicator.active {
-            background: white;
-            transform: scale(1.2);
-        }
-
-        /* About Section */
-        .about {
-            padding: 5rem 0;
-            background-color: var(--primary);
-        }
-
-        .about-content {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 3rem;
-            align-items: center;
-        }
-
-        .about-text h2 {
-            font-size: 2.5rem;
-            color: var(--text-dark);
-            margin-bottom: 1.5rem;
-            font-family: 'Playfair Display', serif;
-        }
-
-        .about-text p {
-            margin-bottom: 1.5rem;
-            color: var(--gray);
-            line-height: 1.7;
-            font-family: 'Montserrat', sans-serif;
-        }
-
-        .service-list {
-            list-style: none;
-        }
-
-        .service-list li {
-            margin-bottom: 1rem;
-            display: flex;
-            align-items: center;
-            color: var(--gray);
-            font-family: 'Montserrat', sans-serif;
-        }
-
-        .service-list i {
-            color: var(--accent);
-            margin-right: 10px;
-            font-size: 1.2rem;
-        }
-
-        .about-image {
-            border-radius: 10px;
-            overflow: hidden;
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
-        }
-
-        .about-image img {
-            width: 100%;
-            height: auto;
-            display: block;
-            transition: transform 0.5s ease;
-        }
-
-        .about-image:hover img {
-            transform: scale(1.05);
-        }
-
-        /* Contact Section */
-        .contact {
-            padding: 5rem 0;
-            background-color: var(--secondary);
-        }
-
-        .contact-container {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 3rem;
-        }
-
-        .contact-info h2 {
-            font-size: 2.5rem;
-            margin-bottom: 1.5rem;
-            color: var(--text-dark);
-            font-family: 'Playfair Display', serif;
-        }
-
-        .contact-info p {
-            margin-bottom: 2rem;
-            color: var(--gray);
-            line-height: 1.7;
-            font-family: 'Montserrat', sans-serif;
-        }
-
-        .contact-details {
-            list-style: none;
-        }
-
-        .contact-details li {
-            margin-bottom: 1.5rem;
-            display: flex;
-            align-items: flex-start;
-            color: var(--gray);
-            font-family: 'Montserrat', sans-serif;
-        }
-
-        .contact-details i {
-            margin-right: 15px;
-            font-size: 1.2rem;
-            color: var(--accent);
-            margin-top: 3px;
-        }
-
-        .contact-form {
-            background: white;
-            padding: 2.5rem;
-            border-radius: 10px;
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.08);
-        }
-
-        .contact-form h3 {
-            color: var(--text-dark);
-            margin-bottom: 1.5rem;
-            text-align: center;
-            font-size: 1.8rem;
-            font-family: 'Playfair Display', serif;
-        }
-
-        .form-group {
-            margin-bottom: 1.5rem;
-        }
-
-        .form-group label {
-            display: block;
-            margin-bottom: 0.5rem;
-            color: var(--text-dark);
-            font-weight: 500;
-            font-family: 'Montserrat', sans-serif;
-        }
-
-        .form-control {
-            width: 100%;
-            padding: 12px 15px;
-            border: 1px solid #ddd;
-            border-radius: 8px;
-            font-size: 1rem;
-            transition: all 0.3s ease;
-            background: white;
-            color: var(--text-dark);
-            font-family: 'Montserrat', sans-serif;
-        }
-
-        .form-control:focus {
-            border-color: var(--accent);
-            box-shadow: 0 0 0 3px rgba(212, 175, 55, 0.1);
-            outline: none;
-        }
-
-        textarea.form-control {
-            min-height: 150px;
-            resize: vertical;
-        }
-
-        .submit-button {
-            width: 100%;
-            background: var(--accent);
-            color: white;
-            border: none;
-            padding: 15px;
-            border-radius: 30px;
-            font-size: 1.1rem;
-            font-weight: 600;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 10px;
-            font-family: 'Montserrat', sans-serif;
-        }
-
-        .submit-button:hover {
-            background: #c19d2e;
-            transform: translateY(-2px);
-            box-shadow: 0 6px 20px rgba(212, 175, 55, 0.4);
-        }
-
-        /* Footer */
-        footer {
-            background-color: var(--secondary);
-            color: var(--text-dark);
-            padding: 3rem 0 1.5rem;
-        }
-
-        .footer-content {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-            gap: 2rem;
-            margin-bottom: 2rem;
-        }
-
-        .footer-column h3 {
-            font-size: 1.2rem;
-            margin-bottom: 1.5rem;
-            position: relative;
-            padding-bottom: 10px;
-            font-family: 'Playfair Display', serif;
-        }
-
-        .footer-column h3::after {
-            content: '';
-            position: absolute;
-            left: 0;
-            bottom: 0;
-            width: 40px;
-            height: 3px;
-            background: var(--accent);
-        }
-
-        .footer-links {
-            list-style: none;
-        }
-
-        .footer-links li {
-            margin-bottom: 0.8rem;
-        }
-
-        .footer-links a {
-            color: var(--gray);
-            text-decoration: none;
-            transition: all 0.3s ease;
-            font-family: 'Montserrat', sans-serif;
-        }
-
-        .footer-links a:hover {
-            color: var(--text-dark);
-            padding-left: 5px;
-        }
-
-        .copyright {
-            text-align: center;
-            padding-top: 1.5rem;
-            border-top: 1px solid rgba(0, 0, 0, 0.1);
-            color: var(--gray);
-            font-size: 0.9rem;
-            font-family: 'Montserrat', sans-serif;
-        }
-
-        /* Social Media Links */
-        .social-links {
-            display: flex;
-            gap: 15px;
-            margin-top: 1rem;
-        }
-
-        .social-link {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            width: 40px;
-            height: 40px;
-            border-radius: 50%;
-            background: rgba(0, 0, 0, 0.05);
-            color: var(--text-dark);
-            transition: all 0.3s ease;
-            text-decoration: none;
-        }
-
-        .social-link:hover {
-            transform: translateY(-3px);
-            background: var(--accent);
-            color: white;
-        }
-
-        /* Responsive Design */
-        @media (max-width: 992px) {
-            .carousel-container {
-                height: 450px;
-            }
-            
-            .carousel-item {
-                width: 300px;
-                height: 400px;
-            }
-        }
-
-        @media (max-width: 768px) {
-            .floating-header {
-                width: 92%;
-                padding: 12px 25px;
-                top: 20px;
-            }
-
-            .mobile-menu-btn {
-                display: block;
-            }
-
-            .nav-links {
-                position: fixed;
-                top: 80px;
-                left: -100%;
-                width: 85%;
-                height: calc(100vh - 80px);
-                background: rgba(255, 255, 255, 0.15);
-                backdrop-filter: blur(25px) saturate(200%);
-                -webkit-backdrop-filter: blur(25px) saturate(200%);
-                transition: all 0.3s ease;
-                z-index: 999;
-                box-shadow: 2px 0 10px rgba(0, 0, 0, 0.3);
-                border: 1px solid rgba(255, 255, 255, 0.18);
-                flex-direction: column;
-                padding: 2rem;
-            }
-
-            .nav-links.active {
-                left: 0;
-            }
-
-            .nav-links li {
-                margin: 0 0 1.5rem 0;
-            }
-
-            .header-buttons {
-                top: 105px;
-                flex-direction: row;
-                align-items: center;
-                gap: 12px;
-            }
-
-            .header-buttons.scrolled {
-                top: 90px;
-            }
-
-            .header-button {
-                width: 180px;
-                padding: 14px 32px;
-                font-size: 0.95rem;
-                justify-content: center;
-            }
-
-            .hero {
-                padding: 12rem 0 6rem;
-            }
-
-            .hero-content {
-                gap: 1.5rem;
-            }
-
-            .dream-wedding-text {
-                font-size: 4rem;
-                padding: 15px 30px;
-            }
-
-            .please-contact-text {
-                font-size: 1.8rem;
-            }
-
-            .tagline-text {
-                font-size: 1.4rem;
-            }
-
-            .carousel-container {
-                height: 400px;
-            }
-            
-            .carousel-item {
-                width: 250px;
-                height: 350px;
-            }
-        }
-
-        @media (max-width: 576px) {
-            .header-buttons {
-                flex-direction: row;
-                gap: 10px;
-                top: 110px;
-            }
-            
-            .header-button {
-                width: 180px;
-                padding: 14px 32px;
-                font-size: 0.95rem;
-            }
-            
-            .dream-wedding-text {
-                font-size: 3rem;
-                padding: 10px 20px;
-            }
-            
-            .please-contact-text {
-                font-size: 1.4rem;
-            }
-            
-            .tagline-text {
-                font-size: 1.1rem;
-            }
-
-            .wedding-events {
-                gap: 15px;
-            }
-
-            .event-type {
-                width: 130px;
-            }
-
-            .event-icon {
-                width: 80px;
-                height: 80px;
-                font-size: 2rem;
-            }
-
-            .carousel-container {
-                height: 350px;
-            }
-            
-            .carousel-item {
-                width: 200px;
-                height: 300px;
-            }
-        }
-    </style>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=yes, viewport-fit=cover">
+  <meta name="theme-color" content="#03060b">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <title>CyberScan Pro · 3D Ping & Validate</title>
+  <style>
+    /* —— OPTIMIZED RESET & BASE —— */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Inter', system-ui, sans-serif;
+    }
+
+    body {
+      background-color: #03060b;
+      color: #a0e7ff;
+      min-height: 100vh;
+      position: relative;
+      overflow-x: hidden;
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+      text-rendering: optimizeLegibility;
+    }
+
+    /* Performance optimized backgrounds */
+    .hacking-bg {
+      position: fixed;
+      top: 0; left: 0; width: 100%; height: 100%;
+      z-index: -2;
+      opacity: 0.15;
+      background: 
+        radial-gradient(circle at 20% 30%, rgba(0, 255, 255, 0.15) 0%, transparent 40%),
+        radial-gradient(circle at 80% 60%, #003344 0%, transparent 50%),
+        repeating-linear-gradient(45deg, #0a1a2a 0px, #0a1a2a 2px, #0b1b2f 2px, #0b1b2f 8px);
+      pointer-events: none;
+    }
+
+    .grid-overlay {
+      position: fixed;
+      top: 0; left: 0; width: 100%; height: 100%;
+      background-image: 
+        linear-gradient(rgba(0, 255, 255, 0.08) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(0, 255, 255, 0.08) 1px, transparent 1px);
+      background-size: 40px 40px;
+      z-index: -1;
+      pointer-events: none;
+    }
+
+    /* Responsive container */
+    .container {
+      max-width: min(1300px, 95vw);
+      margin: 0 auto;
+      padding: clamp(1rem, 5vw, 2rem);
+      position: relative;
+      z-index: 5;
+      width: 100%;
+    }
+
+    /* Mobile-first header */
+    header {
+      text-align: center;
+      margin-bottom: clamp(1.5rem, 4vw, 3rem);
+      padding: clamp(0.5rem, 2vw, 1rem);
+      border-bottom: 1px solid #00aaff33;
+    }
+
+    h1 {
+      font-size: clamp(1.8rem, 8vw, 2.5rem);
+      margin-bottom: 0.5rem;
+      text-shadow: 0 0 10px #00aaff;
+      word-break: break-word;
+    }
+
+    .tagline {
+      font-size: clamp(0.9rem, 3vw, 1.2rem);
+      color: #cccccc;
+    }
+
+    /* Security warnings - responsive */
+    .security-warning {
+      background: linear-gradient(135deg, #ff4444dd, #ff6b6bdd);
+      color: white;
+      padding: clamp(0.8rem, 2vw, 1rem);
+      margin-bottom: clamp(1rem, 3vw, 2rem);
+      border-radius: clamp(8px, 2vw, 10px);
+      text-align: center;
+      border: 1px solid #ff0000;
+      font-size: clamp(0.85rem, 2.5vw, 1rem);
+      backdrop-filter: blur(10px);
+    }
+
+    .high-risk-warning {
+      background: linear-gradient(135deg, #ff8800dd, #ffaa44dd);
+      color: white;
+      padding: clamp(0.8rem, 2vw, 1rem);
+      margin-bottom: 1rem;
+      border-radius: clamp(8px, 2vw, 10px);
+      text-align: center;
+      border: 1px solid #ffaa00;
+      display: none;
+      backdrop-filter: blur(10px);
+      font-size: clamp(0.85rem, 2.5vw, 1rem);
+    }
+
+    .warning-buttons {
+      display: flex;
+      gap: clamp(0.5rem, 2vw, 1rem);
+      justify-content: center;
+      margin-top: 1rem;
+      flex-wrap: wrap;
+    }
+
+    .proceed-btn, .cancel-btn {
+      padding: clamp(0.6rem, 2vw, 1rem) clamp(1.2rem, 3vw, 2rem);
+      font-size: clamp(0.85rem, 2.5vw, 1rem);
+      border-radius: clamp(6px, 1.5vw, 8px);
+      cursor: pointer;
+      border: none;
+      font-weight: bold;
+      transition: all 0.2s;
+      touch-action: manipulation;
+    }
+
+    .proceed-btn {
+      background: linear-gradient(135deg, #ff8800, #ffaa44);
+      border: 1px solid #ffaa00;
+    }
+
+    .cancel-btn {
+      background: linear-gradient(135deg, #666, #888);
+      border: 1px solid #999;
+    }
+
+    /* —— 3D CARD OPTIMIZED —— */
+    .scan-3d-wrapper {
+      perspective: 1200px;
+      margin: clamp(1rem, 3vw, 2rem) 0 clamp(2rem, 5vw, 3rem);
+      width: 100%;
+    }
+
+    .cyber-scan-card {
+      background: rgba(2, 15, 28, 0.55);
+      backdrop-filter: blur(16px) saturate(180%);
+      -webkit-backdrop-filter: blur(16px) saturate(180%);
+      border: 1.5px solid rgba(0, 255, 255, 0.25);
+      border-radius: clamp(24px, 5vw, 42px);
+      padding: clamp(1.5rem, 4vw, 2.5rem) clamp(1.2rem, 3vw, 2.8rem);
+      box-shadow: 0 30px 50px rgba(0, 0, 0, 0.7), 0 0 0 1px rgba(0, 255, 255, 0.1) inset, 0 0 30px rgba(0, 230, 250, 0.2);
+      transition: box-shadow 0.3s, transform 0.05s linear;
+      transform-style: preserve-3d;
+      will-change: transform;
+      position: relative;
+      overflow: hidden;
+      width: 100%;
+    }
+
+    /* Disable tilt on mobile for better performance */
+    @media (max-width: 768px) {
+      .cyber-scan-card {
+        transform: none !important;
+        transition: none;
+      }
+      
+      .cyber-scan-card:hover {
+        transform: none !important;
+      }
+    }
+
+    .cyber-scan-card::after {
+      content: '';
+      position: absolute;
+      inset: -2px;
+      border-radius: clamp(26px, 5.2vw, 44px);
+      padding: 2px;
+      background: linear-gradient(145deg, #0cf, #0af, #004466);
+      mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+      -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+      -webkit-mask-composite: xor;
+      mask-composite: exclude;
+      opacity: 0.5;
+      pointer-events: none;
+    }
+
+    .card-title {
+      font-size: clamp(1.5rem, 6vw, 2.2rem);
+      font-weight: 600;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      background: linear-gradient(135deg, #b0f0ff, #6ef);
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+      margin-bottom: clamp(1.2rem, 3vw, 1.8rem);
+      text-shadow: 0 0 20px #0cf, 0 0 40px #0af;
+      transform: translateZ(25px);
+      word-break: break-word;
+    }
+
+    .input-group {
+      display: flex;
+      flex-direction: column;
+      gap: clamp(0.8rem, 2vw, 1.2rem);
+      transform: translateZ(15px);
+    }
+
+    .url-input-row {
+      display: flex;
+      gap: clamp(0.5rem, 2vw, 1rem);
+      align-items: center;
+      flex-wrap: wrap;
+    }
+
+    .cyber-input {
+      flex: 1 1 200px;
+      min-width: 200px;
+      background: rgba(0, 20, 35, 0.8);
+      border: 1.5px solid #0cf3;
+      border-radius: clamp(30px, 8vw, 60px);
+      padding: clamp(0.8rem, 2.5vw, 1rem) clamp(1.2rem, 3vw, 1.8rem);
+      font-size: clamp(1rem, 3vw, 1.2rem);
+      color: #b4f4ff;
+      backdrop-filter: blur(5px);
+      box-shadow: 0 4px 12px #00000055, 0 0 8px #0cf3 inset;
+      transition: all 0.25s;
+      letter-spacing: 0.5px;
+      width: 100%;
+      -webkit-appearance: none;
+      appearance: none;
+    }
+
+    .cyber-input:focus {
+      outline: none;
+      border-color: #0cf;
+      box-shadow: 0 0 25px #0cf8, 0 0 5px #0cf inset;
+      background: #021a26;
+    }
+
+    .cyber-input.error-glow {
+      border-color: #ff3a5e;
+      box-shadow: 0 0 20px #ff3a5eaa, 0 0 8px #ff3a5e inset;
+      animation: shake 0.4s ease-in-out;
+    }
+
+    .cyber-input.valid-glow {
+      border-color: #0f0;
+      box-shadow: 0 0 25px #0f0, 0 0 6px #0f0 inset;
+    }
+
+    /* Button optimization */
+    .cyber-button {
+      background: rgba(0, 40, 60, 0.7);
+      border: 1.5px solid #0cf;
+      border-radius: clamp(30px, 8vw, 60px);
+      padding: clamp(0.8rem, 2.5vw, 1rem) clamp(1.5rem, 4vw, 2.5rem);
+      font-weight: bold;
+      font-size: clamp(1rem, 3vw, 1.2rem);
+      text-transform: uppercase;
+      letter-spacing: clamp(2px, 1vw, 3px);
+      color: #0cf;
+      backdrop-filter: blur(8px);
+      box-shadow: 0 0 12px #0cf3, 0 4px 12px #000;
+      cursor: pointer;
+      transition: 0.2s;
+      text-shadow: 0 0 6px #0cf;
+      transform: translateZ(20px);
+      position: relative;
+      overflow: hidden;
+      white-space: nowrap;
+      touch-action: manipulation;
+      -webkit-tap-highlight-color: transparent;
+      flex-shrink: 0;
+    }
+
+    @media (max-width: 480px) {
+      .cyber-button {
+        white-space: normal;
+        width: 100%;
+      }
+    }
+
+    .cyber-button::before {
+      content: '';
+      position: absolute;
+      top: 0; left: -100%;
+      width: 100%; height: 100%;
+      background: linear-gradient(90deg, transparent, #0cf6, transparent);
+      transition: left 0.5s;
+    }
+
+    .cyber-button:hover::before {
+      left: 100%;
+    }
+
+    .cyber-button:disabled {
+      opacity: 0.45;
+      border-color: #457;
+      color: #7a9bb5;
+      box-shadow: none;
+      text-shadow: none;
+      cursor: not-allowed;
+      pointer-events: none;
+    }
+
+    .cyber-button.active-glow {
+      border-color: #0f0;
+      box-shadow: 0 0 35px #0f0, 0 0 15px #0f0 inset;
+      color: #e0ffe0;
+      background: #003322cc;
+    }
+
+    /* Status area responsive */
+    .status-area {
+      margin-top: clamp(1.2rem, 3vw, 2rem);
+      min-height: 60px;
+      transform: translateZ(10px);
+    }
+
+    .ping-status {
+      display: flex;
+      align-items: center;
+      gap: clamp(8px, 2vw, 16px);
+      flex-wrap: wrap;
+    }
+
+    .status-badge {
+      display: flex;
+      align-items: center;
+      gap: clamp(6px, 2vw, 12px);
+      padding: clamp(8px, 2vw, 10px) clamp(12px, 3vw, 20px);
+      background: #031a24cc;
+      border-radius: clamp(20px, 5vw, 40px);
+      border: 1px solid #0cf6;
+      backdrop-filter: blur(8px);
+      font-size: clamp(0.85rem, 2.5vw, 1rem);
+      flex-wrap: wrap;
+    }
+
+    .spinner {
+      width: clamp(18px, 4vw, 24px);
+      height: clamp(18px, 4vw, 24px);
+      border: 3px solid #0cf3;
+      border-top-color: #0cf;
+      border-radius: 50%;
+      animation: spin 0.8s linear infinite;
+    }
+
+    .pulse-dot {
+      width: clamp(12px, 3vw, 16px);
+      height: clamp(12px, 3vw, 16px);
+      border-radius: 50%;
+      background: #0cf;
+      box-shadow: 0 0 20px #0cf;
+      animation: pulse 1.2s infinite;
+    }
+
+    .valid-indicator {
+      color: #0f0;
+      text-shadow: 0 0 15px #0f0;
+      font-weight: 600;
+      letter-spacing: 1px;
+    }
+
+    .invalid-indicator {
+      color: #ff3a5e;
+      text-shadow: 0 0 15px #ff3a5e;
+    }
+
+    .error-message {
+      color: #ff7b8c;
+      margin-top: 12px;
+      font-size: clamp(0.9rem, 2.5vw, 1.1rem);
+    }
+
+    /* Scanning section responsive */
+    .scanning-section {
+      display: none;
+      text-align: center;
+      padding: clamp(1.5rem, 4vw, 3rem);
+      background-color: rgba(5, 10, 15, 0.9);
+      border-radius: clamp(8px, 2vw, 10px);
+      box-shadow: 0 0 20px rgba(0, 170, 255, 0.2);
+      border: 1px solid #003366;
+      margin: clamp(1rem, 3vw, 2rem) 0;
+    }
+
+    .hacking-animation {
+      margin: clamp(1rem, 3vw, 2rem) auto;
+      width: min(300px, 90%);
+      height: min(200px, 40vw);
+      position: relative;
+      overflow: hidden;
+      border: 1px solid #00aaff;
+      border-radius: 10px;
+      background-color: #000;
+    }
+
+    .progress-container {
+      margin: clamp(1rem, 3vw, 2rem) 0;
+    }
+
+    .progress-bar {
+      height: clamp(15px, 3vw, 20px);
+      background-color: #000;
+      border-radius: 10px;
+      overflow: hidden;
+      margin-bottom: 1rem;
+      border: 1px solid #00aaff;
+    }
+
+    .progress {
+      height: 100%;
+      background: linear-gradient(90deg, #003366, #0066aa);
+      width: 0%;
+      transition: width 0.5s;
+    }
+
+    .progress-text {
+      font-size: clamp(1rem, 3vw, 1.2rem);
+    }
+
+    /* Results section responsive */
+    .results-section {
+      display: none;
+      background-color: rgba(5, 10, 15, 0.9);
+      padding: clamp(1.2rem, 3vw, 2rem);
+      border-radius: clamp(8px, 2vw, 10px);
+      box-shadow: 0 0 20px rgba(0, 170, 255, 0.2);
+      margin-top: clamp(1rem, 3vw, 2rem);
+      border: 1px solid #003366;
+    }
+
+    .results-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: clamp(1.2rem, 3vw, 2rem);
+      padding-bottom: 1rem;
+      border-bottom: 1px solid #00aaff;
+      flex-wrap: wrap;
+      gap: 1rem;
+    }
+
+    .vulnerability-score {
+      text-align: center;
+      padding: clamp(0.8rem, 2vw, 1rem);
+      background-color: #000;
+      border-radius: 10px;
+      margin-bottom: clamp(1.2rem, 3vw, 2rem);
+      border: 1px solid #003366;
+    }
+
+    .score-circle {
+      width: min(150px, 40vw);
+      height: min(150px, 40vw);
+      margin: 0 auto;
+      border-radius: 50%;
+      background: conic-gradient(#00aaff 0%, #000 0%);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      position: relative;
+      box-shadow: 0 0 20px rgba(0, 170, 255, 0.5);
+      border: 2px solid #00aaff;
+    }
+
+    .score-value {
+      font-size: clamp(1.8rem, 6vw, 2.5rem);
+      font-weight: bold;
+    }
+
+    .vulnerability-list {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(min(300px, 100%), 1fr));
+      gap: clamp(0.8rem, 2vw, 1.5rem);
+    }
+
+    .vulnerability-item {
+      background-color: #000;
+      padding: clamp(1rem, 2.5vw, 1.5rem);
+      border-radius: 10px;
+      border-left: 5px solid #ff4444;
+      border: 1px solid #003366;
+    }
+
+    .vulnerability-title {
+      font-size: clamp(1rem, 3vw, 1.2rem);
+      margin-bottom: 0.5rem;
+      display: flex;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 0.5rem;
+    }
+
+    .severity {
+      padding: 0.2rem 0.5rem;
+      border-radius: 5px;
+      font-size: clamp(0.7rem, 2vw, 0.8rem);
+      font-weight: bold;
+    }
+
+    .vulnerability-desc {
+      color: #cccccc;
+      font-size: clamp(0.8rem, 2.2vw, 0.9rem);
+      line-height: 1.5;
+    }
+
+    .restart-btn {
+      display: block;
+      margin: clamp(1.2rem, 3vw, 2rem) auto 0;
+      padding: clamp(0.8rem, 2.5vw, 1rem) clamp(1.5rem, 4vw, 2rem);
+      font-size: clamp(0.9rem, 2.5vw, 1rem);
+    }
+
+    footer {
+      text-align: center;
+      margin-top: clamp(2rem, 5vw, 3rem);
+      padding: clamp(0.8rem, 2vw, 1rem);
+      color: #666;
+      font-size: clamp(0.8rem, 2.2vw, 0.9rem);
+      border-top: 1px solid #222;
+    }
+
+    /* Animations */
+    @keyframes spin { 100% { transform: rotate(360deg); } }
+    @keyframes pulse { 
+      0% { opacity: 0.6; transform: scale(1); } 
+      50% { opacity: 1; transform: scale(1.3); } 
+      100% { opacity: 0.6; transform: scale(1); } 
+    }
+    @keyframes shake {
+      0%,100% { transform: translateX(0); }
+      20% { transform: translateX(-10px); }
+      40% { transform: translateX(10px); }
+      60% { transform: translateX(-5px); }
+      80% { transform: translateX(5px); }
+    }
+
+    /* Touch device optimizations */
+    @media (hover: none) and (pointer: coarse) {
+      .cyber-button:hover::before {
+        left: -100%;
+      }
+      
+      .cyber-button:active {
+        transform: scale(0.98);
+      }
+      
+      .cyber-scan-card {
+        backdrop-filter: blur(12px);
+      }
+    }
+
+    /* High contrast / accessibility */
+    @media (prefers-reduced-motion: reduce) {
+      * {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+      }
+      
+      .cyber-scan-card {
+        transform: none !important;
+      }
+    }
+
+    /* Landscape orientation optimization */
+    @media (orientation: landscape) and (max-height: 600px) {
+      .container {
+        padding: 0.5rem;
+      }
+      
+      .cyber-scan-card {
+        padding: 1rem 1.5rem;
+      }
+      
+      .card-title {
+        margin-bottom: 0.8rem;
+      }
+      
+      .status-area {
+        margin-top: 0.8rem;
+        min-height: 40px;
+      }
+    }
+
+    /* High DPI screen optimization */
+    @media (-webkit-min-device-pixel-ratio: 2), (min-resolution: 192dpi) {
+      .cyber-input, .cyber-button {
+        -webkit-font-smoothing: antialiased;
+      }
+    }
+  </style>
 </head>
 <body>
-    <!-- Floating Top Header -->
-    <header class="floating-header" id="floatingHeader">
-        <div class="logo">
-            <span>KRISP</span>
-            <span>Events</span>
-        </div>
-        
-        <button class="mobile-menu-btn" id="mobileMenuBtn">
-            <i class="fas fa-bars"></i>
-        </button>
-        
-        <ul class="nav-links" id="navLinks">
-            <li><a href="#home">Home</a></li>
-            <li><a href="#services">Services</a></li>
-            <li><a href="#gallery">Gallery</a></li>
-            <li><a href="#about">About</a></li>
-            <li><a href="#contact">Contact</a></li>
-        </ul>
+  <div class="hacking-bg"></div>
+  <div class="grid-overlay"></div>
+
+  <div class="container">
+    <header>
+      <h1>CyberScan Pro</h1>
+      <p class="tagline">Security Testing · 3D Ping Validation</p>
     </header>
 
-    <!-- Header Buttons - WhatsApp and Instagram -->
-    <div class="header-buttons" id="headerButtons">
-        <a href="https://wa.me/15551234567?text=Hi%20Dream%20Wedding%2C%20I%20would%20like%20to%20inquire%20about%20your%20wedding%20services" class="header-button whatsapp" target="_blank">
-            <i class="fab fa-whatsapp"></i>
-            WhatsApp
-        </a>
-        <a href="https://www.instagram.com/krisp.event" class="header-button instagram" target="_blank">
-            <i class="fab fa-instagram"></i>
-            Instagram
-        </a>
+    <div class="security-warning">
+      <strong>SECURITY NOTICE:</strong> Real vulnerability scanning requires proper authorization.
     </div>
 
-    <!-- Hero Section -->
-    <section class="hero" id="home">
-        <div class="container">
-            <div class="hero-content">
-                <!-- 3D Carousel for Images Only -->
-                <div class="carousel-container">
-                    <div class="carousel" id="featuresCarousel">
-                        <!-- Carousel items will be dynamically positioned by JavaScript -->
-                    </div>
-                    <div class="carousel-indicators" id="carouselIndicators">
-                        <!-- Indicators will be dynamically generated by JavaScript -->
-                    </div>
-                </div>
-                
-                <!-- Text Content Below Carousel -->
-                <div class="hero-text">
-                    <h1 class="dream-wedding-text">DREAM WEDDING</h1>
-                    <p class="please-contact-text"></p>
-                    <p class="tagline-text"></p>
-                    
-                    <!-- Wedding Event Types -->
-                    <div class="wedding-events">
-                        <div class="event-type">
-                            <div class="event-icon">
-                                <i class="fas fa-ring"></i>
-                            </div>     
-                            <h3>Traditional</h3>
-                            <p>Classic Ceremonies</p>
-                        </div>
-                        <div class="event-type">
-                            <div class="event-icon">
-                                <i class="fas fa-umbrella-beach"></i>
-                            </div>
-                            <h3>Beach</h3>
-                            <p>Seaside Celebrations</p>
-                        </div>
-                        <div class="event-type">
-                            <div class="event-icon">
-                                <i class="fas fa-mountain"></i>
-                            </div>
-                            <h3>Destination</h3>
-                            <p>Exotic Locations</p>
-                        </div>
-                        <div class="event-type">
-                            <div class="event-icon">
-                                <i class="fas fa-glass-cheers"></i>
-                            </div>
-                            <h3>Luxury</h3>
-                            <p>Premium Experiences</p>
-                        </div>
-                    </div>
-                    
-                    <a href="#contact" class="plan-wedding-btn">
-                        <i class=""></i>
-                        PLEASE CONTACT
-                    </a>
-                </div>
-            </div>
-        </div>
-    </section>
-
-   <!-- Services Section with Background Videos -->
-   <section class="services" id="services">
-    <div class="container">
-        <div class="section-title">
-            <h2>Our Wedding Services</h2>
-            <p>Comprehensive services to make your special day perfect</p>
-        </div>
-        <div class="services-grid">
-            <div class="service-card">
-                <video class="service-video-bg" autoplay muted loop playsinline>
-                    <source src="cataring.mp4" type="video/mp4">
-                </video>
-                <div class="service-icon">
-                    <i class=""></i>
-                </div>
-                <h3>Catering Services</h3>
-                <p>Exquisite culinary experiences with custom menus tailored to your taste and preferences.</p>
-            </div>
-            <div class="service-card">
-                <video class="service-video-bg" autoplay muted loop playsinline>
-                    <source src="event.mp4" type="video/mp4">
-                </video>
-                <div class="service-icon">
-                    <i class=""></i>
-                </div>
-                <h3>Event Management</h3>
-                <p>Complete wedding planning and coordination to ensure a seamless and stress-free experience.</p>
-            </div>
-            <div class="service-card">
-                <video class="service-video-bg" autoplay muted loop playsinline>
-                    <source src="food.mp4" type="video/mp4">
-                </video>
-                <div class="service-icon">
-                    <i class=""></i>
-                </div>
-                <h3>Food and Tea</h3>
-                <p>Premium catering services including traditional tea ceremonies and gourmet food stations.</p>
-            </div>
-            <div class="service-card">
-                <video class="service-video-bg" autoplay muted loop playsinline>
-                    <source src="photography.mp4" type="video/mp4">
-                </video>
-                <div class="service-icon">
-                    <i class=""></i>
-                </div>
-                <h3>Photography & Videography</h3>
-                <p>Capture every precious moment with our professional photography and cinematic videography.</p>
-            </div>
-            <div class="service-card">
-                <video class="service-video-bg" autoplay muted loop playsinline>
-                    <source src="https://media.istockphoto.com/id/1224104034/video/indian-or-hindu-traditional-ceremony-venue-decoration.mp4?s=mp4-640x640-is&k=20&c=sfHfbgXQkfysy_h0NQ9L8fHfAdvBvROGqvpgp2uib6Y=" type="video/mp4">
-                </video>
-                <div class="service-icon">
-                    <i class=""></i>
-                </div>
-                <h3>Stage Design</h3>
-                <p>Breathtaking stage designs and decorations that transform your venue into a magical space.</p>
-            </div>
-            <div class="service-card">
-                <video class="service-video-bg" autoplay muted loop playsinline>
-                    <source src="light.mp4" type="video/mp4">
-                </video>
-                <div class="service-icon">
-                    <i class=""></i>
-                </div>
-                <h3>Light & Sound</h3>
-                <p>Professional audio-visual equipment and lighting to create the perfect ambiance.</p>
-            </div>
-        </div>
+    <div class="high-risk-warning" id="highRiskWarning">
+      <strong>⚠ HIGH-RISK WEBSITE DETECTED</strong><br>
+      <span id="warningMessage"></span>
+      <div class="warning-buttons">
+        <button class="proceed-btn" id="proceedBtn">I Understand - Proceed Anyway</button>
+        <button class="cancel-btn" id="cancelBtn">Cancel Scan</button>
+      </div>
     </div>
-</section>
 
-    <!-- Gallery Section -->
-    <section class="gallery" id="gallery">
-        <div class="container">
-            <div class="section-title">
-                <h2>Wedding Gallery</h2>
-                <p>Browse through our recent wedding celebrations</p>
-            </div>
-            <div class="gallery-grid">
-                <!-- Card 1 - Traditional Weddings -->
-                <div class="gallery-card">
-                    <div class="gallery-carousel">
-                        <div class="carousel-slides" id="carousel1">
-                            <div class="carousel-slide">
-                                <img src="https://images.unsplash.com/photo-1519225421980-715cb0215aed?ixlib=rb-4.0.3&auto=format&fit=crop&w=1350&q=80" alt="Traditional Wedding 1">
-                            </div>
-                            <div class="carousel-slide">
-                                <img src="https://images.unsplash.com/photo-1465495976277-4387d4b0e4a6?ixlib=rb-4.0.3&auto=format&fit=crop&w=1350&q=80" alt="Traditional Wedding 2">
-                            </div>
-                            <div class="carousel-slide">
-                                <img src="https://images.unsplash.com/photo-1551244072-5b4aa7a1d6c9?ixlib=rb-4.0.3&auto=format&fit=crop&w=1350&q=80" alt="Traditional Wedding 3">
-                            </div>
-                            <div class="carousel-slide">
-                                <img src="https://images.unsplash.com/photo-1583939003579-730e3918a45a?ixlib=rb-4.0.3&auto=format&fit=crop&w=1350&q=80" alt="Traditional Wedding 4">
-                            </div>
-                            <div class="carousel-slide">
-                                <img src="https://images.unsplash.com/photo-1511795409834-ef04bbd61622?ixlib=rb-4.0.3&auto=format&fit=crop&w=1350&q=80" alt="Traditional Wedding 5">
-                            </div>
-                        </div>
-                        <div class="carousel-controls">
-                            <button class="carousel-btn prev" onclick="moveSlide('carousel1', -1)">
-                                <i class="fas fa-chevron-left"></i>
-                            </button>
-                            <button class="carousel-btn next" onclick="moveSlide('carousel1', 1)">
-                                <i class="fas fa-chevron-right"></i>
-                            </button>
-                        </div>
-                        <div class="carousel-indicators" id="indicators1">
-                            <span class="indicator active" onclick="showSlide('carousel1', 0)"></span>
-                            <span class="indicator" onclick="showSlide('carousel1', 1)"></span>
-                            <span class="indicator" onclick="showSlide('carousel1', 2)"></span>
-                            <span class="indicator" onclick="showSlide('carousel1', 3)"></span>
-                            <span class="indicator" onclick="showSlide('carousel1', 4)"></span>
-                        </div>
-                    </div>
-                    <div class="gallery-overlay">
-                        <h3>Traditional Weddings</h3>
-                        <p>Elegant ceremonies with timeless traditions</p>
-                    </div>
-                </div>
-
-                <!-- Card 2 - Beach Weddings -->
-                <div class="gallery-card">
-                    <div class="gallery-carousel">
-                        <div class="carousel-slides" id="carousel2">
-                            <div class="carousel-slide">
-                                <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?ixlib=rb-4.0.3&auto=format&fit=crop&w=1350&q=80" alt="Beach Wedding 1">
-                            </div>
-                            <div class="carousel-slide">
-                                <img src="https://images.unsplash.com/photo-1465495976277-4387d4b0e4a6?ixlib=rb-4.0.3&auto=format&fit=crop&w=1350&q=80" alt="Beach Wedding 2">
-                            </div>
-                            <div class="carousel-slide">
-                                <img src="https://images.unsplash.com/photo-1511795409834-ef04bbd61622?ixlib=rb-4.0.3&auto=format&fit=crop&w=1350&q=80" alt="Beach Wedding 3">
-                            </div>
-                            <div class="carousel-slide">
-                                <img src="https://images.unsplash.com/photo-1519225421980-715cb0215aed?ixlib=rb-4.0.3&auto=format&fit=crop&w=1350&q=80" alt="Beach Wedding 4">
-                            </div>
-                            <div class="carousel-slide">
-                                <img src="https://images.unsplash.com/photo-1551244072-5b4aa7a1d6c9?ixlib=rb-4.0.3&auto=format&fit=crop&w=1350&q=80" alt="Beach Wedding 5">
-                            </div>
-                        </div>
-                        <div class="carousel-controls">
-                            <button class="carousel-btn prev" onclick="moveSlide('carousel2', -1)">
-                                <i class="fas fa-chevron-left"></i>
-                            </button>
-                            <button class="carousel-btn next" onclick="moveSlide('carousel2', 1)">
-                                <i class="fas fa-chevron-right"></i>
-                            </button>
-                        </div>
-                        <div class="carousel-indicators" id="indicators2">
-                            <span class="indicator active" onclick="showSlide('carousel2', 0)"></span>
-                            <span class="indicator" onclick="showSlide('carousel2', 1)"></span>
-                            <span class="indicator" onclick="showSlide('carousel2', 2)"></span>
-                            <span class="indicator" onclick="showSlide('carousel2', 3)"></span>
-                            <span class="indicator" onclick="showSlide('carousel2', 4)"></span>
-                        </div>
-                    </div>
-                    <div class="gallery-overlay">
-                        <h3>Beach Weddings</h3>
-                        <p>Romantic ceremonies by the sea</p>
-                    </div>
-                </div>
-
-                <!-- Card 3 - Destination Weddings -->
-                <div class="gallery-card">
-                    <div class="gallery-carousel">
-                        <div class="carousel-slides" id="carousel3">
-                            <div class="carousel-slide">
-                                <img src="https://images.unsplash.com/photo-1465495976277-4387d4b0e4a6?ixlib=rb-4.0.3&auto=format&fit=crop&w=1350&q=80" alt="Destination Wedding 1">
-                            </div>
-                            <div class="carousel-slide">
-                                <img src="https://images.unsplash.com/photo-1519225421980-715cb0215aed?ixlib=rb-4.0.3&auto=format&fit=crop&w=1350&q=80" alt="Destination Wedding 2">
-                            </div>
-                            <div class="carousel-slide">
-                                <img src="https://images.unsplash.com/photo-1551244072-5b4aa7a1d6c9?ixlib=rb-4.0.3&auto=format&fit=crop&w=1350&q=80" alt="Destination Wedding 3">
-                            </div>
-                            <div class="carousel-slide">
-                                <img src="https://images.unsplash.com/photo-1583939003579-730e3918a45a?ixlib=rb-4.0.3&auto=format&fit=crop&w=1350&q=80" alt="Destination Wedding 4">
-                            </div>
-                            <div class="carousel-slide">
-                                <img src="https://images.unsplash.com/photo-1511795409834-ef04bbd61622?ixlib=rb-4.0.3&auto=format&fit=crop&w=1350&q=80" alt="Destination Wedding 5">
-                            </div>
-                        </div>
-                        <div class="carousel-controls">
-                            <button class="carousel-btn prev" onclick="moveSlide('carousel3', -1)">
-                                <i class="fas fa-chevron-left"></i>
-                            </button>
-                            <button class="carousel-btn next" onclick="moveSlide('carousel3', 1)">
-                                <i class="fas fa-chevron-right"></i>
-                            </button>
-                        </div>
-                        <div class="carousel-indicators" id="indicators3">
-                            <span class="indicator active" onclick="showSlide('carousel3', 0)"></span>
-                            <span class="indicator" onclick="showSlide('carousel3', 1)"></span>
-                            <span class="indicator" onclick="showSlide('carousel3', 2)"></span>
-                            <span class="indicator" onclick="showSlide('carousel3', 3)"></span>
-                            <span class="indicator" onclick="showSlide('carousel3', 4)"></span>
-                        </div>
-                    </div>
-                    <div class="gallery-overlay">
-                        <h3>Destination Weddings</h3>
-                        <p>Exotic locations for unforgettable celebrations</p>
-                    </div>
-                </div>
-
-                <!-- Card 4 - Luxury Weddings -->
-                <div class="gallery-card">
-                    <div class="gallery-carousel">
-                        <div class="carousel-slides" id="carousel4">
-                            <div class="carousel-slide">
-                                <img src="https://images.unsplash.com/photo-1583939003579-730e3918a45a?ixlib=rb-4.0.3&auto=format&fit=crop&w=1350&q=80" alt="Luxury Wedding 1">
-                            </div>
-                            <div class="carousel-slide">
-                                <img src="https://images.unsplash.com/photo-1511795409834-ef04bbd61622?ixlib=rb-4.0.3&auto=format&fit=crop&w=1350&q=80" alt="Luxury Wedding 2">
-                            </div>
-                            <div class="carousel-slide">
-                                <img src="https://images.unsplash.com/photo-1519225421980-715cb0215aed?ixlib=rb-4.0.3&auto=format&fit=crop&w=1350&q=80" alt="Luxury Wedding 3">
-                            </div>
-                            <div class="carousel-slide">
-                                <img src="https://images.unsplash.com/photo-1465495976277-4387d4b0e4a6?ixlib=rb-4.0.3&auto=format&fit=crop&w=1350&q=80" alt="Luxury Wedding 4">
-                            </div>
-                            <div class="carousel-slide">
-                                <img src="https://images.unsplash.com/photo-1551244072-5b4aa7a1d6c9?ixlib=rb-4.0.3&auto=format&fit=crop&w=1350&q=80" alt="Luxury Wedding 5">
-                            </div>
-                        </div>
-                        <div class="carousel-controls">
-                            <button class="carousel-btn prev" onclick="moveSlide('carousel4', -1)">
-                                <i class="fas fa-chevron-left"></i>
-                            </button>
-                            <button class="carousel-btn next" onclick="moveSlide('carousel4', 1)">
-                                <i class="fas fa-chevron-right"></i>
-                            </button>
-                        </div>
-                        <div class="carousel-indicators" id="indicators4">
-                            <span class="indicator active" onclick="showSlide('carousel4', 0)"></span>
-                            <span class="indicator" onclick="showSlide('carousel4', 1)"></span>
-                            <span class="indicator" onclick="showSlide('carousel4', 2)"></span>
-                            <span class="indicator" onclick="showSlide('carousel4', 3)"></span>
-                            <span class="indicator" onclick="showSlide('carousel4', 4)"></span>
-                        </div>
-                    </div>
-                    <div class="gallery-overlay">
-                        <h3>Luxury Weddings</h3>
-                        <p>Premium experiences with exquisite details</p>
-                    </div>
-                </div>
-            </div>
+    <!-- 3D FUTURISTIC SCANNING CARD -->
+    <div class="scan-3d-wrapper">
+      <div class="cyber-scan-card" id="tiltCard">
+        <div class="card-title">⟁ TARGET ACQUISITION</div>
+        <div class="input-group">
+          <div class="url-input-row">
+            <input type="url" id="urlInput" class="cyber-input" placeholder="https://example.com" autocomplete="off" spellcheck="false" inputmode="url" enterkeyhint="go">
+            <button id="scanBtn" class="cyber-button" disabled>INITIATE SCAN</button>
+          </div>
         </div>
+        <div class="status-area" id="statusArea"></div>
+      </div>
+    </div>
+
+    <section class="scanning-section" id="scanningSection">
+      <h2>Security Analysis in Progress</h2>
+      <div class="hacking-animation" id="hackingAnimation"></div>
+      <div class="progress-container">
+        <div class="progress-bar"><div class="progress" id="progressBar"></div></div>
+        <div class="progress-text" id="progressText">Initializing scanner...</div>
+      </div>
     </section>
 
-    <!-- About Section -->
-    <section class="about" id="about">
-        <div class="container">
-            <div class="section-title">
-                <h2>About Dream Wedding</h2>
-                <p>Creating magical moments that last a lifetime</p>
-            </div>
-            <div class="about-content">
-                <div class="about-text">
-                    <h2>Your Perfect Wedding Day</h2>
-                    <p>At Dream Wedding, we specialize in creating unforgettable wedding experiences tailored to your unique vision. With years of expertise in wedding planning and coordination, we handle every detail so you can focus on enjoying your special day.</p>
-                    <p>From intimate ceremonies to grand celebrations, our team ensures flawless execution and attention to every detail.</p>
-                    <ul class="service-list">
-                        <li><i class="fas fa-check-circle"></i> Complete wedding planning and coordination</li>
-                        <li><i class="fas fa-check-circle"></i> Venue selection and decoration</li>
-                        <li><i class="fas fa-check-circle"></i> Catering and food services</li>
-                        <li><i class="fas fa-check-circle"></i> Photography and videography</li>
-                    </ul>
-                </div>
-                <div class="about-image">
-                    <img src="https://images.unsplash.com/photo-1511795409834-ef04bbd61622?ixlib=rb-4.0.3&auto=format&fit=crop&w=1350&q=80" alt="Wedding Planning Team">
-                </div>
-            </div>
-        </div>
+    <section class="results-section" id="resultsSection">
+      <div class="results-header">
+        <h2>Security Analysis Results</h2>
+        <div id="scanDate"></div>
+      </div>
+      
+      <div class="vulnerability-score">
+        <h3>Security Score</h3>
+        <div class="score-circle" id="scoreCircle"><div class="score-value" id="scoreValue">0%</div></div>
+        <p id="scoreDescription">Based on security analysis</p>
+      </div>
+      
+      <h3>Security Findings</h3>
+      <div class="vulnerability-list" id="vulnerabilityList"></div>
+      
+      <button class="restart-btn cyber-button" id="restartBtn">Analyze Another Website</button>
     </section>
 
-    <!-- Contact Section -->
-    <section class="contact" id="contact">
-        <div class="container">
-            <div class="contact-container">
-                <div class="contact-info">
-                    <h2>Plan Your Dream Wedding</h2>
-                    <p>Contact us today to start planning the wedding of your dreams. Let's create something magical together.</p>
-                    <ul class="contact-details">
-                        <li>
-                            <i class="fas fa-user"></i>
-                            <div>
-                                <strong>Your Wedding Specialist</strong><br>
-                                Professional Wedding Planner
-                            </div>
-                        </li>
-                        <li>
-                            <i class="fas fa-phone"></i>
-                            <div>
-                                <strong>Phone Number</strong><br>
-                                +1 (555) 123-4567
-                            </div>
-                        </li>
-                        <li>
-                            <i class="fas fa-envelope"></i>
-                            <div>
-                                <strong>Email Address</strong><br>
-                                info@dreamwedding.com
-                            </div>
-                        </li>
-                    </ul>
-                    <div class="social-links">
-                        <a href="https://wa.me/15551234567?text=Hi%20Dream%20Wedding%2C%20I%20would%20like%20to%20inquire%20about%20your%20wedding%20services" class="social-link" target="_blank">
-                            <i class="fab fa-whatsapp"></i>
-                        </a>
-                        <a href="https://www.instagram.com/dreamwedding" class="social-link" target="_blank">
-                            <i class="fab fa-instagram"></i>
-                        </a>
-                        <a href="https://www.facebook.com/dreamwedding" class="social-link" target="_blank">
-                            <i class="fab fa-facebook-f"></i>
-                        </a>
-                    </div>
-                </div>
-                <div class="contact-form">
-                    <h3>Wedding Inquiry Form</h3>
-                    <form id="weddingForm">
-                        <div class="form-group">
-                            <label for="name">Couple's Names</label>
-                            <input type="text" id="name" class="form-control" placeholder="Enter your names" required>
-                        </div>
-                        <div class="form-group">
-                            <label for="contact-email">Email Address</label>
-                            <input type="email" id="contact-email" class="form-control" placeholder="Enter your email" required>
-                        </div>
-                        <div class="form-group">
-                            <label for="wedding-date">Proposed Wedding Date</label>
-                            <input type="date" id="wedding-date" class="form-control">
-                        </div>
-                        <div class="form-group">
-                            <label for="guest-count">Estimated Guest Count</label>
-                            <input type="number" id="guest-count" class="form-control" placeholder="Number of guests">
-                        </div>
-                        <div class="form-group">
-                            <label for="message">Wedding Vision & Details</label>
-                            <textarea id="message" class="form-control" placeholder="Tell us about your dream wedding..." required></textarea>
-                        </div>
-                        <button type="submit" class="submit-button">
-                            <i class="fas fa-paper-plane"></i>
-                            Send Wedding Inquiry
-                        </button>
-                    </form>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Footer -->
     <footer>
-        <div class="container">
-            <div class="footer-content">
-                <div class="footer-column">
-                    <h3>Contact Info</h3>
-                    <ul class="footer-links">
-                        <li><i class="fas fa-phone"></i> +1 (555) 123-4567</li>
-                        <li><i class="fas fa-envelope"></i> info@krispevent.com</li>
-                        <li><i class="fas fa-clock"></i> All time contact</li>
-                    </ul>
-                </div>
-               
-            </div>
-            <div class="copyright">
-                <p>&copy; 2025 krisp event. All Rights Reserved.</p>
-            </div>
-        </div>
+      <p>CyberScan Pro &copy; 2050 | 3D Cyber Interface | Optimized for all devices</p>
     </footer>
+  </div>
 
-    <script>
-        // 3D Carousel Data with Images Only
-        const carouselData = [
-            {
-                image: 'https://www.google.com/url?sa=i&url=https%3A%2F%2Fwww.vogue.in%2Fgallery%2Fthis-couples-haute-couture-inspired-wedding-in-california-was-an-ode-to-the-brides-love-for-fashion&psig=AOvVaw2BJAHvWIKBFKT0YWpSKOO5&ust=1763559231694000&source=images&cd=vfe&opi=89978449&ved=0CBIQjRxqFwoTCOj6m6Xo-5ADFQAAAAAdAAAAABAK'
-            },
-            {
-                image: 'https://images.unsplash.com/photo-1465495976277-4387d4b0e4a6?ixlib=rb-4.0.3&auto=format&fit=crop&w=1350&q=80'
-            },
-            {
-                image: 'https://images.unsplash.com/photo-1551244072-5b4aa7a1d6c9?ixlib=rb-4.0.3&auto=format&fit=crop&w=1350&q=80'
-            },
-            {
-                image: 'https://images.unsplash.com/photo-1583939003579-730e3918a45a?ixlib=rb-4.0.3&auto=format&fit=crop&w=1350&q=80'
-            },
-            {
-                image: 'https://images.unsplash.com/photo-1511795409834-ef04bbd61622?ixlib=rb-4.0.3&auto=format&fit=crop&w=1350&q=80'
-            }
-        ];
+  <script>
+    (function(){
+      'use strict';
 
-        // 3D Carousel functionality
-        class Carousel3D {
-            constructor(container, data) {
-                this.container = container;
-                this.carousel = container.querySelector('.carousel');
-                this.indicatorsContainer = container.querySelector('.carousel-indicators');
-                this.data = data;
-                this.currentIndex = 0;
-                this.totalItems = data.length;
-                this.autoRotateInterval = null;
-                this.rotationSpeed = 2000; // 2 second rotation
-                
-                this.init();
+      // Device detection for optimizations
+      const isMobile = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
+      const isTouch = ('ontouchstart' in window) || (navigator.maxTouchPoints > 0);
+      
+      // Performance optimization: Throttle tilt on mobile
+      let tiltEnabled = !isMobile;
+      let rafId = null;
+
+      // Backend ping simulation with mobile-optimized timeout
+      async function backendPingUrl(url) {
+        try {
+          const parsed = new URL(url);
+          const hostname = parsed.hostname;
+          
+          const controller = new AbortController();
+          const timeoutId = setTimeout(() => controller.abort(), isMobile ? 4000 : 3000); // Longer timeout on mobile
+          
+          const testUrl = `${parsed.protocol}//${hostname}/favicon.ico`;
+          try {
+            await fetch(testUrl, { 
+              method: 'HEAD', 
+              mode: 'no-cors', 
+              signal: controller.signal,
+              cache: 'no-cache'
+            });
+            clearTimeout(timeoutId);
+            return { valid: true };
+          } catch (fetchError) {
+            try {
+              const fallbackController = new AbortController();
+              const fbTimeout = setTimeout(() => fallbackController.abort(), isMobile ? 3500 : 2500);
+              await fetch(`${parsed.protocol}//${hostname}/`, { 
+                method: 'HEAD', 
+                mode: 'no-cors', 
+                signal: fallbackController.signal,
+                cache: 'no-cache'
+              });
+              clearTimeout(fbTimeout);
+              return { valid: true };
+            } catch (e) {
+              return { valid: false };
             }
-            
-            init() {
-                this.createCarouselItems();
-                this.createIndicators();
-                this.setupEventListeners();
-                this.updateDimensions();
-                this.updateCarousel();
-                this.startAutoRotation();
-                
-                // Update dimensions on window resize
-                window.addEventListener('resize', () => {
-                    this.updateDimensions();
-                    this.updateCarousel();
-                });
-            }
-            
-            createCarouselItems() {
-                this.data.forEach((item, index) => {
-                    const carouselItem = document.createElement('div');
-                    carouselItem.className = 'carousel-item';
-                    carouselItem.innerHTML = `
-                        <img src="${item.image}" alt="Wedding Image ${index + 1}" class="carousel-image">
-                    `;
-                    this.carousel.appendChild(carouselItem);
-                });
-            }
-            
-            createIndicators() {
-                this.data.forEach((_, index) => {
-                    const indicator = document.createElement('span');
-                    indicator.className = 'indicator';
-                    if (index === 0) indicator.classList.add('active');
-                    indicator.addEventListener('click', () => {
-                        this.currentIndex = index;
-                        this.updateCarousel();
-                        this.resetAutoRotation();
-                    });
-                    this.indicatorsContainer.appendChild(indicator);
-                });
-            }
-            
-            setupEventListeners() {
-                // Pause auto-rotation on hover
-                this.container.addEventListener('mouseenter', () => {
-                    this.stopAutoRotation();
-                });
-                
-                this.container.addEventListener('mouseleave', () => {
-                    this.startAutoRotation();
-                });
-                
-                // Add click navigation to carousel items
-                this.carousel.addEventListener('click', (e) => {
-                    if (e.target.closest('.carousel-item')) {
-                        const items = Array.from(this.carousel.querySelectorAll('.carousel-item'));
-                        const clickedIndex = items.indexOf(e.target.closest('.carousel-item'));
-                        if (clickedIndex !== -1) {
-                            this.currentIndex = clickedIndex;
-                            this.updateCarousel();
-                            this.resetAutoRotation();
-                        }
-                    }
-                });
-            }
-            
-            // Update dimensions based on screen size
-            updateDimensions() {
-                const containerWidth = this.container.offsetWidth;
-                let itemWidth, itemHeight, zDistance, xDistance;
-                
-                if (containerWidth < 576) {
-                    // Mobile phones
-                    itemWidth = 200;
-                    itemHeight = 300;
-                    zDistance = 200;
-                    xDistance = 300;
-                } else if (containerWidth < 768) {
-                    // Tablets
-                    itemWidth = 250;
-                    itemHeight = 350;
-                    zDistance = 250;
-                    xDistance = 350;
-                } else if (containerWidth < 992) {
-                    // Small desktops
-                    itemWidth = 300;
-                    itemHeight = 400;
-                    zDistance = 300;
-                    xDistance = 400;
-                } else {
-                    // Large screens
-                    itemWidth = 350;
-                    itemHeight = 450;
-                    zDistance = 300;
-                    xDistance = 450;
-                }
-                
-                // Apply dimensions to carousel items
-                const items = this.carousel.querySelectorAll('.carousel-item');
-                items.forEach(item => {
-                    item.style.width = `${itemWidth}px`;
-                    item.style.height = `${itemHeight}px`;
-                });
-                
-                // Store for calculations
-                this.itemWidth = itemWidth;
-                this.itemHeight = itemHeight;
-                this.zDistance = zDistance;
-                this.xDistance = xDistance;
-            }
-            
-            updateCarousel() {
-                const items = this.carousel.querySelectorAll('.carousel-item');
-                const indicators = this.indicatorsContainer.querySelectorAll('.indicator');
-                const angleStep = 360 / this.totalItems;
-                
-                items.forEach((item, index) => {
-                    const angle = angleStep * index;
-                    const z = this.zDistance;
-                    const activeAngle = angleStep * this.currentIndex;
-                    
-                    // Calculate position for 3D effect
-                    const x = Math.sin((angle * Math.PI) / 180) * this.xDistance;
-                    const zPos = Math.cos((angle * Math.PI) / 180) * z;
-                    const rotationY = -angle + activeAngle;
-                    
-                    item.style.transform = `
-                        translateX(${x}px) 
-                        translateZ(${zPos}px) 
-                        rotateY(${rotationY}deg)
-                        scale(${index === this.currentIndex ? 1.15 : 0.85})
-                    `;
-                    item.style.opacity = index === this.currentIndex ? '1' : '0.7';
-                    
-                    // Update active class
-                    if (index === this.currentIndex) {
-                        item.classList.add('active');
-                    } else {
-                        item.classList.remove('active');
-                    }
-                });
-                
-                // Update indicators
-                indicators.forEach((indicator, index) => {
-                    if (index === this.currentIndex) {
-                        indicator.classList.add('active');
-                    } else {
-                        indicator.classList.remove('active');
-                    }
-                });
-            }
-            
-            nextSlide() {
-                this.currentIndex = (this.currentIndex + 1) % this.totalItems;
-                this.updateCarousel();
-            }
-            
-            prevSlide() {
-                this.currentIndex = (this.currentIndex - 1 + this.totalItems) % this.totalItems;
-                this.updateCarousel();
-            }
-            
-            startAutoRotation() {
-                this.autoRotateInterval = setInterval(() => {
-                    this.nextSlide();
-                }, this.rotationSpeed); // Use the rotation speed property
-            }
-            
-            stopAutoRotation() {
-                if (this.autoRotateInterval) {
-                    clearInterval(this.autoRotateInterval);
-                    this.autoRotateInterval = null;
-                }
-            }
-            
-            resetAutoRotation() {
-                this.stopAutoRotation();
-                this.startAutoRotation();
-            }
+          }
+        } catch (e) {
+          return { valid: false };
         }
+      }
 
-        // Initialize the 3D Carousel when DOM is loaded
-        document.addEventListener('DOMContentLoaded', function() {
-            const carouselContainer = document.querySelector('.carousel-container');
-            const carousel3D = new Carousel3D(carouselContainer, carouselData);
-            
-            // Other existing functionality
-            // Floating header scroll effect
-            window.addEventListener('scroll', function() {
-                const header = document.getElementById('floatingHeader');
-                const headerButtons = document.getElementById('headerButtons');
-                
-                if (window.scrollY > 50) {
-                    header.classList.add('scrolled');
-                    headerButtons.classList.add('scrolled');
-                } else {
-                    header.classList.remove('scrolled');
-                    headerButtons.classList.remove('scrolled');
-                }
-            });
+      // DOM elements
+      const elements = {
+        urlInput: document.getElementById('urlInput'),
+        scanBtn: document.getElementById('scanBtn'),
+        statusArea: document.getElementById('statusArea'),
+        tiltCard: document.getElementById('tiltCard'),
+        highRiskWarning: document.getElementById('highRiskWarning'),
+        warningMessage: document.getElementById('warningMessage'),
+        proceedBtn: document.getElementById('proceedBtn'),
+        cancelBtn: document.getElementById('cancelBtn'),
+        scanningSection: document.getElementById('scanningSection'),
+        resultsSection: document.getElementById('resultsSection'),
+        progressBar: document.getElementById('progressBar'),
+        progressText: document.getElementById('progressText'),
+        hackingAnimation: document.getElementById('hackingAnimation'),
+        scoreCircle: document.getElementById('scoreCircle'),
+        scoreValue: document.getElementById('scoreValue'),
+        scoreDescription: document.getElementById('scoreDescription'),
+        vulnerabilityList: document.getElementById('vulnerabilityList'),
+        scanDate: document.getElementById('scanDate'),
+        restartBtn: document.getElementById('restartBtn')
+      };
 
-            // Mobile menu toggle
-            const mobileMenuBtn = document.getElementById('mobileMenuBtn');
-            const navLinks = document.getElementById('navLinks');
-            
-            mobileMenuBtn.addEventListener('click', () => {
-                navLinks.classList.toggle('active');
-            });
+      const HIGH_RISK_WEBSITES = [
+        'google.com','youtube.com','facebook.com','twitter.com','instagram.com','linkedin.com',
+        'apple.com','microsoft.com','amazon.com','netflix.com','whatsapp.com','tiktok.com',
+        'reddit.com','discord.com','zoom.us','paypal.com','yahoo.com','bing.com','wikipedia.org',
+        'office.com','adobe.com','spotify.com','twitch.tv','pinterest.com','tumblr.com',
+        'ebay.com','wordpress.com','cloudflare.com','github.com','stackoverflow.com',
+        'gov.uk','whitehouse.gov','fbi.gov','cia.gov','nsa.gov'
+      ];
 
-            // Close mobile menu when clicking on a link
-            document.querySelectorAll('.nav-links a').forEach(link => {
-                link.addEventListener('click', () => {
-                    navLinks.classList.remove('active');
-                });
-            });
+      let currentUrl = '';
+      let isValidated = false;
+      let scanEnabled = false;
 
-            // Smooth scrolling for navigation links
-            document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-                anchor.addEventListener('click', function (e) {
-                    e.preventDefault();
-                    
-                    const targetId = this.getAttribute('href');
-                    if(targetId === '#') return;
-                    
-                    const targetElement = document.querySelector(targetId);
-                    if(targetElement) {
-                        window.scrollTo({
-                            top: targetElement.offsetTop - 100,
-                            behavior: 'smooth'
-                        });
-                    }
-                });
-            });
-
-            // Contact form submission
-            document.getElementById('weddingForm').addEventListener('submit', function(e) {
-                e.preventDefault();
-                alert('Thank you for your wedding inquiry! We will contact you soon to discuss your dream wedding.');
-                this.reset();
-            });
-
-            // Gallery carousel functionality
-            const carouselStates = {
-                'carousel1': 0,
-                'carousel2': 0,
-                'carousel3': 0,
-                'carousel4': 0
-            };
-
-            function moveSlide(carouselId, direction) {
-                const carousel = document.getElementById(carouselId);
-                const indicators = document.getElementById('indicators' + carouselId.slice(-1));
-                const totalSlides = 5;
-                
-                carouselStates[carouselId] += direction;
-                
-                if (carouselStates[carouselId] >= totalSlides) {
-                    carouselStates[carouselId] = 0;
-                } else if (carouselStates[carouselId] < 0) {
-                    carouselStates[carouselId] = totalSlides - 1;
-                }
-                
-                carousel.style.transform = `translateX(-${carouselStates[carouselId] * 20}%)`;
-                
-                // Update indicators
-                const indicatorElements = indicators.querySelectorAll('.indicator');
-                indicatorElements.forEach((indicator, index) => {
-                    if (index === carouselStates[carouselId]) {
-                        indicator.classList.add('active');
-                    } else {
-                        indicator.classList.remove('active');
-                    }
-                });
-            }
-
-            function showSlide(carouselId, slideIndex) {
-                const carousel = document.getElementById(carouselId);
-                const indicators = document.getElementById('indicators' + carouselId.slice(-1));
-                
-                carouselStates[carouselId] = slideIndex;
-                carousel.style.transform = `translateX(-${slideIndex * 20}%)`;
-                
-                // Update indicators
-                const indicatorElements = indicators.querySelectorAll('.indicator');
-                indicatorElements.forEach((indicator, index) => {
-                    if (index === slideIndex) {
-                        indicator.classList.add('active');
-                    } else {
-                        indicator.classList.remove('active');
-                    }
-                });
-            }
-
-            // Auto-rotate gallery carousels
-            function autoRotateCarousels() {
-                Object.keys(carouselStates).forEach(carouselId => {
-                    moveSlide(carouselId, 1);
-                });
-            }
-
-            // Set up auto rotation every 5 seconds
-            setInterval(autoRotateCarousels, 3000);
-
-            console.log('Dream Wedding website loaded successfully!');
+      // Optimized tilt effect with RAF
+      function handleMouseMove(e) {
+        if (!tiltEnabled || isMobile) return;
+        
+        if (rafId) cancelAnimationFrame(rafId);
+        
+        rafId = requestAnimationFrame(() => {
+          const rect = elements.tiltCard.getBoundingClientRect();
+          const x = e.clientX - rect.left;
+          const y = e.clientY - rect.top;
+          const centerX = rect.width / 2;
+          const centerY = rect.height / 2;
+          const rotateY = ((x - centerX) / centerX) * 8;
+          const rotateX = ((y - centerY) / centerY) * -6;
+          elements.tiltCard.style.transform = `perspective(1200px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) translateZ(10px)`;
         });
-    </script>
+      }
+
+      function resetTilt() {
+        if (rafId) {
+          cancelAnimationFrame(rafId);
+          rafId = null;
+        }
+        elements.tiltCard.style.transform = `perspective(1200px) rotateX(0deg) rotateY(0deg) translateZ(0)`;
+      }
+
+      if (!isMobile) {
+        elements.tiltCard.addEventListener('mousemove', handleMouseMove);
+        elements.tiltCard.addEventListener('mouseleave', resetTilt);
+      }
+
+      // Status UI updates
+      function setStatusUI(type, message = '') {
+        const area = elements.statusArea;
+        const messages = {
+          checking: `<div class="status-badge"><div class="spinner"></div><span>Pinging target & validating...</span><div class="pulse-dot"></div></div>`,
+          valid: `<div class="status-badge"><span class="valid-indicator">✓ CONNECTION ESTABLISHED</span><span>${message || 'Domain reachable'}</span></div>`,
+          invalid: `<div class="status-badge"><span class="invalid-indicator">✗ UNREACHABLE</span><span>${message || 'Host not responding'}</span></div>`,
+          'error-shake': `<div class="status-badge"><span class="invalid-indicator">⚠ INVALID URL</span><span>${message}</span></div>`
+        };
+        area.innerHTML = messages[type] || '';
+      }
+
+      function resetValidationState() {
+        isValidated = false;
+        scanEnabled = false;
+        elements.scanBtn.disabled = true;
+        elements.scanBtn.classList.remove('active-glow');
+        elements.urlInput.classList.remove('valid-glow', 'error-glow');
+      }
+
+      function isValidHttpUrl(str) {
+        try {
+          const u = new URL(str);
+          return u.protocol === 'http:' || u.protocol === 'https:';
+        } catch { return false; }
+      }
+
+      function isHighRisk(url) {
+        try {
+          const domain = new URL(url).hostname.toLowerCase();
+          return HIGH_RISK_WEBSITES.some(d => domain.includes(d) || domain.endsWith('.'+d));
+        } catch { return false; }
+      }
+
+      async function performPingValidation(url) {
+        resetValidationState();
+        setStatusUI('checking');
+        elements.urlInput.classList.remove('error-glow', 'valid-glow');
+        
+        if (!isValidHttpUrl(url)) {
+          setStatusUI('error-shake', 'Invalid URL format (use http/https)');
+          elements.urlInput.classList.add('error-glow');
+          return false;
+        }
+        
+        try {
+          const response = await backendPingUrl(url);
+          if (response.valid) {
+            setStatusUI('valid', 'Ping success · target live');
+            elements.urlInput.classList.add('valid-glow');
+            isValidated = true;
+            scanEnabled = true;
+            elements.scanBtn.disabled = false;
+            elements.scanBtn.classList.add('active-glow');
+            return true;
+          } else {
+            setStatusUI('invalid', 'Host unreachable / timeout');
+            elements.urlInput.classList.add('error-glow');
+            return false;
+          }
+        } catch (e) {
+          setStatusUI('invalid', 'Network error');
+          elements.urlInput.classList.add('error-glow');
+          return false;
+        }
+      }
+
+      // Debounced input with mobile optimization
+      let debounceTimer;
+      elements.urlInput.addEventListener('input', (e) => {
+        const val = e.target.value.trim();
+        clearTimeout(debounceTimer);
+        resetValidationState();
+        setStatusUI('', '');
+        elements.urlInput.classList.remove('valid-glow','error-glow');
+        if (val === '') return;
+        
+        const delay = isMobile ? 800 : 600; // Longer delay on mobile
+        debounceTimer = setTimeout(async () => {
+          if (!isValidHttpUrl(val)) {
+            setStatusUI('error-shake', 'Invalid URL format');
+            elements.urlInput.classList.add('error-glow');
+            return;
+          }
+          await performPingValidation(val);
+        }, delay);
+      });
+
+      // Scan button handler
+      elements.scanBtn.addEventListener('click', async (e) => {
+        e.preventDefault();
+        const url = elements.urlInput.value.trim();
+        currentUrl = url;
+        
+        if (!scanEnabled || !isValidated) {
+          const success = await performPingValidation(url);
+          if (!success) return;
+        }
+        
+        if (isHighRisk(url)) {
+          elements.warningMessage.textContent = `Scanning ${new URL(url).hostname} may violate terms.`;
+          elements.highRiskWarning.style.display = 'block';
+          return;
+        }
+        startFullScan(url);
+      });
+
+      elements.proceedBtn.addEventListener('click', () => {
+        elements.highRiskWarning.style.display = 'none';
+        startFullScan(currentUrl);
+      });
+      
+      elements.cancelBtn.addEventListener('click', () => {
+        elements.highRiskWarning.style.display = 'none';
+        resetValidationState();
+        setStatusUI('', '');
+      });
+
+      function startFullScan(url) {
+        elements.scanningSection.style.display = 'block';
+        elements.resultsSection.style.display = 'none';
+        
+        const anim = elements.hackingAnimation;
+        anim.innerHTML = '';
+        for(let i=0;i<5;i++){ 
+          let line=document.createElement('div'); 
+          line.className='code-line'; 
+          line.style.animationDelay=`${i*0.4}s`; 
+          anim.appendChild(line);
+        }
+        for(let i=0;i<(isMobile ? 15 : 30);i++){ 
+          let b=document.createElement('div'); 
+          b.className='binary-code'; 
+          b.textContent=Math.random()>0.5?'1':'0'; 
+          b.style.left=Math.random()*100+'%'; 
+          b.style.animationDelay=Math.random()*5+'s'; 
+          b.style.animationDuration=3+Math.random()*5+'s'; 
+          anim.appendChild(b);
+        }
+        
+        let progress = 0;
+        const tests = ['XSS Testing','SQL Injection','CSRF','Security Headers'];
+        (async function progressSim(){
+          for(let t of tests){
+            progress+=25;
+            elements.progressBar.style.width=progress+'%';
+            elements.progressText.textContent = `${t}: analyzing...`;
+            await new Promise(r=>setTimeout(r, isMobile ? 600 : 800));
+          }
+          elements.progressText.textContent='Analysis complete';
+          elements.scanningSection.style.display='none';
+          showResults(new URL(url).hostname);
+        })();
+      }
+
+      function showResults(domain){
+        elements.resultsSection.style.display='block';
+        elements.scanDate.textContent = new Date().toLocaleDateString();
+        const score = Math.floor(60+Math.random()*35);
+        elements.scoreValue.textContent = score+'%';
+        elements.scoreCircle.style.background = `conic-gradient(#0cf 0% ${score}%, #000 ${score}% 100%)`;
+        elements.scoreDescription.textContent = score>=90?'Excellent':(score>=70?'Good':'Moderate');
+        
+        const vulns = [
+          {title:'Security Headers',severity:'medium',desc:`Missing headers on ${domain}`},
+          {title:'XSS Protection',severity:'high',desc:'Potential reflected XSS'},
+          {title:'Info Leak',severity:'low',desc:'Server signature visible'}
+        ];
+        
+        elements.vulnerabilityList.innerHTML='';
+        vulns.forEach(v=>{
+          const item=document.createElement('div');
+          item.className=`vulnerability-item ${v.severity}`;
+          item.innerHTML=`<div class="vulnerability-title"><span>${v.title}</span><span class="severity ${v.severity}">${v.severity.toUpperCase()}</span></div><div class="vulnerability-desc">${v.desc}</div>`;
+          elements.vulnerabilityList.appendChild(item);
+        });
+      }
+
+      elements.restartBtn.addEventListener('click', ()=>{
+        elements.resultsSection.style.display='none';
+        elements.scanningSection.style.display='none';
+        elements.urlInput.value='';
+        resetValidationState();
+        setStatusUI('', '');
+        elements.urlInput.classList.remove('valid-glow','error-glow');
+      });
+
+      elements.urlInput.addEventListener('keypress', (e)=>{
+        if(e.key==='Enter') {
+          e.preventDefault();
+          elements.scanBtn.click();
+        }
+      });
+
+      // Handle orientation changes
+      window.addEventListener('orientationchange', () => {
+        setTimeout(() => {
+          if (!isMobile) resetTilt();
+        }, 100);
+      });
+
+      // Clean up
+      window.addEventListener('beforeunload', () => {
+        if (rafId) cancelAnimationFrame(rafId);
+      });
+
+      console.log('🚀 CyberScan Pro · Mobile & Desktop Optimized · Backend endpoint: POST /api/ping-url');
+    })();
+  </script>
+  
+  <!-- Node.js backend snippet for reference -->
+  <!--
+  const express = require('express');
+  const app = express(); 
+  app.use(express.json());
+  
+  app.post('/api/ping-url', async (req, res) => {
+    const { url } = req.body;
+    try {
+      const parsed = new URL(url);
+      const options = { method: 'HEAD', timeout: 3000 };
+      const requester = parsed.protocol === 'https:' ? require('https') : require('http');
+      const req = requester.request(parsed, options, (response) => {
+        res.json({ valid: true });
+      });
+      req.on('error', () => res.json({ valid: false }));
+      req.on('timeout', () => { req.destroy(); res.json({ valid: false }); });
+      req.end();
+    } catch(e) { 
+      res.json({ valid: false }); 
+    }
+  });
+  
+  app.listen(3000, () => console.log('Ping service running on :3000'));
+  -->
 </body>
 </html>
