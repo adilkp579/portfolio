@@ -2,15 +2,18 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=yes, viewport-fit=cover">
+  <meta name="theme-color" content="#03060b">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
   <title>CyberScan Pro · 3D Ping & Validate</title>
   <style>
-    /* —— RESET & BASE (only modified/added for 3D cyber section) —— */
+    /* —— OPTIMIZED RESET & BASE —— */
     * {
       margin: 0;
       padding: 0;
       box-sizing: border-box;
-      font-family: 'Segoe UI', 'Inter', system-ui, sans-serif;
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Inter', system-ui, sans-serif;
     }
 
     body {
@@ -19,9 +22,12 @@
       min-height: 100vh;
       position: relative;
       overflow-x: hidden;
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+      text-rendering: optimizeLegibility;
     }
 
-    /* deep cyber grid + glow */
+    /* Performance optimized backgrounds */
     .hacking-bg {
       position: fixed;
       top: 0; left: 0; width: 100%; height: 100%;
@@ -31,6 +37,7 @@
         radial-gradient(circle at 20% 30%, rgba(0, 255, 255, 0.15) 0%, transparent 40%),
         radial-gradient(circle at 80% 60%, #003344 0%, transparent 50%),
         repeating-linear-gradient(45deg, #0a1a2a 0px, #0a1a2a 2px, #0b1b2f 2px, #0b1b2f 8px);
+      pointer-events: none;
     }
 
     .grid-overlay {
@@ -41,21 +48,99 @@
         linear-gradient(90deg, rgba(0, 255, 255, 0.08) 1px, transparent 1px);
       background-size: 40px 40px;
       z-index: -1;
+      pointer-events: none;
     }
 
-    /* container keeps everything else unchanged */
+    /* Responsive container */
     .container {
-      max-width: 1300px;
+      max-width: min(1300px, 95vw);
       margin: 0 auto;
-      padding: 2rem;
+      padding: clamp(1rem, 5vw, 2rem);
       position: relative;
       z-index: 5;
+      width: 100%;
     }
 
-    /* ———— 3D FUTURISTIC SCAN CARD (only the section) ———— */
+    /* Mobile-first header */
+    header {
+      text-align: center;
+      margin-bottom: clamp(1.5rem, 4vw, 3rem);
+      padding: clamp(0.5rem, 2vw, 1rem);
+      border-bottom: 1px solid #00aaff33;
+    }
+
+    h1 {
+      font-size: clamp(1.8rem, 8vw, 2.5rem);
+      margin-bottom: 0.5rem;
+      text-shadow: 0 0 10px #00aaff;
+      word-break: break-word;
+    }
+
+    .tagline {
+      font-size: clamp(0.9rem, 3vw, 1.2rem);
+      color: #cccccc;
+    }
+
+    /* Security warnings - responsive */
+    .security-warning {
+      background: linear-gradient(135deg, #ff4444dd, #ff6b6bdd);
+      color: white;
+      padding: clamp(0.8rem, 2vw, 1rem);
+      margin-bottom: clamp(1rem, 3vw, 2rem);
+      border-radius: clamp(8px, 2vw, 10px);
+      text-align: center;
+      border: 1px solid #ff0000;
+      font-size: clamp(0.85rem, 2.5vw, 1rem);
+      backdrop-filter: blur(10px);
+    }
+
+    .high-risk-warning {
+      background: linear-gradient(135deg, #ff8800dd, #ffaa44dd);
+      color: white;
+      padding: clamp(0.8rem, 2vw, 1rem);
+      margin-bottom: 1rem;
+      border-radius: clamp(8px, 2vw, 10px);
+      text-align: center;
+      border: 1px solid #ffaa00;
+      display: none;
+      backdrop-filter: blur(10px);
+      font-size: clamp(0.85rem, 2.5vw, 1rem);
+    }
+
+    .warning-buttons {
+      display: flex;
+      gap: clamp(0.5rem, 2vw, 1rem);
+      justify-content: center;
+      margin-top: 1rem;
+      flex-wrap: wrap;
+    }
+
+    .proceed-btn, .cancel-btn {
+      padding: clamp(0.6rem, 2vw, 1rem) clamp(1.2rem, 3vw, 2rem);
+      font-size: clamp(0.85rem, 2.5vw, 1rem);
+      border-radius: clamp(6px, 1.5vw, 8px);
+      cursor: pointer;
+      border: none;
+      font-weight: bold;
+      transition: all 0.2s;
+      touch-action: manipulation;
+    }
+
+    .proceed-btn {
+      background: linear-gradient(135deg, #ff8800, #ffaa44);
+      border: 1px solid #ffaa00;
+    }
+
+    .cancel-btn {
+      background: linear-gradient(135deg, #666, #888);
+      border: 1px solid #999;
+    }
+
+    /* —— 3D CARD OPTIMIZED —— */
     .scan-3d-wrapper {
       perspective: 1200px;
-      margin: 2rem 0 3rem;
+      margin: clamp(1rem, 3vw, 2rem) 0 clamp(2rem, 5vw, 3rem);
+      width: 100%;
     }
 
     .cyber-scan-card {
@@ -63,22 +148,34 @@
       backdrop-filter: blur(16px) saturate(180%);
       -webkit-backdrop-filter: blur(16px) saturate(180%);
       border: 1.5px solid rgba(0, 255, 255, 0.25);
-      border-radius: 42px;
-      padding: 2.5rem 2.8rem;
+      border-radius: clamp(24px, 5vw, 42px);
+      padding: clamp(1.5rem, 4vw, 2.5rem) clamp(1.2rem, 3vw, 2.8rem);
       box-shadow: 0 30px 50px rgba(0, 0, 0, 0.7), 0 0 0 1px rgba(0, 255, 255, 0.1) inset, 0 0 30px rgba(0, 230, 250, 0.2);
       transition: box-shadow 0.3s, transform 0.05s linear;
       transform-style: preserve-3d;
       will-change: transform;
       position: relative;
       overflow: hidden;
+      width: 100%;
     }
 
-    /* neon edge glow */
+    /* Disable tilt on mobile for better performance */
+    @media (max-width: 768px) {
+      .cyber-scan-card {
+        transform: none !important;
+        transition: none;
+      }
+      
+      .cyber-scan-card:hover {
+        transform: none !important;
+      }
+    }
+
     .cyber-scan-card::after {
       content: '';
       position: absolute;
       inset: -2px;
-      border-radius: 44px;
+      border-radius: clamp(26px, 5.2vw, 44px);
       padding: 2px;
       background: linear-gradient(145deg, #0cf, #0af, #004466);
       mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
@@ -90,7 +187,7 @@
     }
 
     .card-title {
-      font-size: 2.2rem;
+      font-size: clamp(1.5rem, 6vw, 2.2rem);
       font-weight: 600;
       letter-spacing: 2px;
       text-transform: uppercase;
@@ -98,37 +195,42 @@
       -webkit-background-clip: text;
       background-clip: text;
       color: transparent;
-      margin-bottom: 1.8rem;
+      margin-bottom: clamp(1.2rem, 3vw, 1.8rem);
       text-shadow: 0 0 20px #0cf, 0 0 40px #0af;
       transform: translateZ(25px);
+      word-break: break-word;
     }
 
     .input-group {
       display: flex;
       flex-direction: column;
-      gap: 1.2rem;
+      gap: clamp(0.8rem, 2vw, 1.2rem);
       transform: translateZ(15px);
     }
 
     .url-input-row {
       display: flex;
-      gap: 1rem;
+      gap: clamp(0.5rem, 2vw, 1rem);
       align-items: center;
       flex-wrap: wrap;
     }
 
     .cyber-input {
-      flex: 1 1 280px;
+      flex: 1 1 200px;
+      min-width: 200px;
       background: rgba(0, 20, 35, 0.8);
       border: 1.5px solid #0cf3;
-      border-radius: 60px;
-      padding: 1rem 1.8rem;
-      font-size: 1.2rem;
+      border-radius: clamp(30px, 8vw, 60px);
+      padding: clamp(0.8rem, 2.5vw, 1rem) clamp(1.2rem, 3vw, 1.8rem);
+      font-size: clamp(1rem, 3vw, 1.2rem);
       color: #b4f4ff;
       backdrop-filter: blur(5px);
       box-shadow: 0 4px 12px #00000055, 0 0 8px #0cf3 inset;
       transition: all 0.25s;
       letter-spacing: 0.5px;
+      width: 100%;
+      -webkit-appearance: none;
+      appearance: none;
     }
 
     .cyber-input:focus {
@@ -149,16 +251,16 @@
       box-shadow: 0 0 25px #0f0, 0 0 6px #0f0 inset;
     }
 
-    /* BUTTON — futuristic neon */
+    /* Button optimization */
     .cyber-button {
       background: rgba(0, 40, 60, 0.7);
       border: 1.5px solid #0cf;
-      border-radius: 60px;
-      padding: 1rem 2.5rem;
+      border-radius: clamp(30px, 8vw, 60px);
+      padding: clamp(0.8rem, 2.5vw, 1rem) clamp(1.5rem, 4vw, 2.5rem);
       font-weight: bold;
-      font-size: 1.2rem;
+      font-size: clamp(1rem, 3vw, 1.2rem);
       text-transform: uppercase;
-      letter-spacing: 3px;
+      letter-spacing: clamp(2px, 1vw, 3px);
       color: #0cf;
       backdrop-filter: blur(8px);
       box-shadow: 0 0 12px #0cf3, 0 4px 12px #000;
@@ -168,6 +270,17 @@
       transform: translateZ(20px);
       position: relative;
       overflow: hidden;
+      white-space: nowrap;
+      touch-action: manipulation;
+      -webkit-tap-highlight-color: transparent;
+      flex-shrink: 0;
+    }
+
+    @media (max-width: 480px) {
+      .cyber-button {
+        white-space: normal;
+        width: 100%;
+      }
     }
 
     .cyber-button::before {
@@ -200,9 +313,9 @@
       background: #003322cc;
     }
 
-    /* status indicators */
+    /* Status area responsive */
     .status-area {
-      margin-top: 2rem;
+      margin-top: clamp(1.2rem, 3vw, 2rem);
       min-height: 60px;
       transform: translateZ(10px);
     }
@@ -210,23 +323,26 @@
     .ping-status {
       display: flex;
       align-items: center;
-      gap: 16px;
+      gap: clamp(8px, 2vw, 16px);
       flex-wrap: wrap;
     }
 
     .status-badge {
       display: flex;
       align-items: center;
-      gap: 12px;
-      padding: 10px 20px;
+      gap: clamp(6px, 2vw, 12px);
+      padding: clamp(8px, 2vw, 10px) clamp(12px, 3vw, 20px);
       background: #031a24cc;
-      border-radius: 40px;
+      border-radius: clamp(20px, 5vw, 40px);
       border: 1px solid #0cf6;
       backdrop-filter: blur(8px);
+      font-size: clamp(0.85rem, 2.5vw, 1rem);
+      flex-wrap: wrap;
     }
 
     .spinner {
-      width: 24px; height: 24px;
+      width: clamp(18px, 4vw, 24px);
+      height: clamp(18px, 4vw, 24px);
       border: 3px solid #0cf3;
       border-top-color: #0cf;
       border-radius: 50%;
@@ -234,7 +350,8 @@
     }
 
     .pulse-dot {
-      width: 16px; height: 16px;
+      width: clamp(12px, 3vw, 16px);
+      height: clamp(12px, 3vw, 16px);
       border-radius: 50%;
       background: #0cf;
       box-shadow: 0 0 20px #0cf;
@@ -256,11 +373,165 @@
     .error-message {
       color: #ff7b8c;
       margin-top: 12px;
-      font-size: 1.1rem;
+      font-size: clamp(0.9rem, 2.5vw, 1.1rem);
     }
 
+    /* Scanning section responsive */
+    .scanning-section {
+      display: none;
+      text-align: center;
+      padding: clamp(1.5rem, 4vw, 3rem);
+      background-color: rgba(5, 10, 15, 0.9);
+      border-radius: clamp(8px, 2vw, 10px);
+      box-shadow: 0 0 20px rgba(0, 170, 255, 0.2);
+      border: 1px solid #003366;
+      margin: clamp(1rem, 3vw, 2rem) 0;
+    }
+
+    .hacking-animation {
+      margin: clamp(1rem, 3vw, 2rem) auto;
+      width: min(300px, 90%);
+      height: min(200px, 40vw);
+      position: relative;
+      overflow: hidden;
+      border: 1px solid #00aaff;
+      border-radius: 10px;
+      background-color: #000;
+    }
+
+    .progress-container {
+      margin: clamp(1rem, 3vw, 2rem) 0;
+    }
+
+    .progress-bar {
+      height: clamp(15px, 3vw, 20px);
+      background-color: #000;
+      border-radius: 10px;
+      overflow: hidden;
+      margin-bottom: 1rem;
+      border: 1px solid #00aaff;
+    }
+
+    .progress {
+      height: 100%;
+      background: linear-gradient(90deg, #003366, #0066aa);
+      width: 0%;
+      transition: width 0.5s;
+    }
+
+    .progress-text {
+      font-size: clamp(1rem, 3vw, 1.2rem);
+    }
+
+    /* Results section responsive */
+    .results-section {
+      display: none;
+      background-color: rgba(5, 10, 15, 0.9);
+      padding: clamp(1.2rem, 3vw, 2rem);
+      border-radius: clamp(8px, 2vw, 10px);
+      box-shadow: 0 0 20px rgba(0, 170, 255, 0.2);
+      margin-top: clamp(1rem, 3vw, 2rem);
+      border: 1px solid #003366;
+    }
+
+    .results-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: clamp(1.2rem, 3vw, 2rem);
+      padding-bottom: 1rem;
+      border-bottom: 1px solid #00aaff;
+      flex-wrap: wrap;
+      gap: 1rem;
+    }
+
+    .vulnerability-score {
+      text-align: center;
+      padding: clamp(0.8rem, 2vw, 1rem);
+      background-color: #000;
+      border-radius: 10px;
+      margin-bottom: clamp(1.2rem, 3vw, 2rem);
+      border: 1px solid #003366;
+    }
+
+    .score-circle {
+      width: min(150px, 40vw);
+      height: min(150px, 40vw);
+      margin: 0 auto;
+      border-radius: 50%;
+      background: conic-gradient(#00aaff 0%, #000 0%);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      position: relative;
+      box-shadow: 0 0 20px rgba(0, 170, 255, 0.5);
+      border: 2px solid #00aaff;
+    }
+
+    .score-value {
+      font-size: clamp(1.8rem, 6vw, 2.5rem);
+      font-weight: bold;
+    }
+
+    .vulnerability-list {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(min(300px, 100%), 1fr));
+      gap: clamp(0.8rem, 2vw, 1.5rem);
+    }
+
+    .vulnerability-item {
+      background-color: #000;
+      padding: clamp(1rem, 2.5vw, 1.5rem);
+      border-radius: 10px;
+      border-left: 5px solid #ff4444;
+      border: 1px solid #003366;
+    }
+
+    .vulnerability-title {
+      font-size: clamp(1rem, 3vw, 1.2rem);
+      margin-bottom: 0.5rem;
+      display: flex;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 0.5rem;
+    }
+
+    .severity {
+      padding: 0.2rem 0.5rem;
+      border-radius: 5px;
+      font-size: clamp(0.7rem, 2vw, 0.8rem);
+      font-weight: bold;
+    }
+
+    .vulnerability-desc {
+      color: #cccccc;
+      font-size: clamp(0.8rem, 2.2vw, 0.9rem);
+      line-height: 1.5;
+    }
+
+    .restart-btn {
+      display: block;
+      margin: clamp(1.2rem, 3vw, 2rem) auto 0;
+      padding: clamp(0.8rem, 2.5vw, 1rem) clamp(1.5rem, 4vw, 2rem);
+      font-size: clamp(0.9rem, 2.5vw, 1rem);
+    }
+
+    footer {
+      text-align: center;
+      margin-top: clamp(2rem, 5vw, 3rem);
+      padding: clamp(0.8rem, 2vw, 1rem);
+      color: #666;
+      font-size: clamp(0.8rem, 2.2vw, 0.9rem);
+      border-top: 1px solid #222;
+    }
+
+    /* Animations */
     @keyframes spin { 100% { transform: rotate(360deg); } }
-    @keyframes pulse { 0% { opacity: 0.6; transform: scale(1); } 50% { opacity: 1; transform: scale(1.3); } 100% { opacity: 0.6; transform: scale(1); } }
+    @keyframes pulse { 
+      0% { opacity: 0.6; transform: scale(1); } 
+      50% { opacity: 1; transform: scale(1.3); } 
+      100% { opacity: 0.6; transform: scale(1); } 
+    }
     @keyframes shake {
       0%,100% { transform: translateX(0); }
       20% { transform: translateX(-10px); }
@@ -269,15 +540,59 @@
       80% { transform: translateX(5px); }
     }
 
-    /* responsive */
-    @media (max-width: 600px) {
-      .cyber-scan-card { padding: 1.5rem; }
-      .url-input-row { flex-direction: column; }
+    /* Touch device optimizations */
+    @media (hover: none) and (pointer: coarse) {
+      .cyber-button:hover::before {
+        left: -100%;
+      }
+      
+      .cyber-button:active {
+        transform: scale(0.98);
+      }
+      
+      .cyber-scan-card {
+        backdrop-filter: blur(12px);
+      }
     }
 
-    /* keep rest of original design untouched */
-    .security-warning, .high-risk-warning, .scanning-section, .results-section, footer {
-      /* leave as is */
+    /* High contrast / accessibility */
+    @media (prefers-reduced-motion: reduce) {
+      * {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+      }
+      
+      .cyber-scan-card {
+        transform: none !important;
+      }
+    }
+
+    /* Landscape orientation optimization */
+    @media (orientation: landscape) and (max-height: 600px) {
+      .container {
+        padding: 0.5rem;
+      }
+      
+      .cyber-scan-card {
+        padding: 1rem 1.5rem;
+      }
+      
+      .card-title {
+        margin-bottom: 0.8rem;
+      }
+      
+      .status-area {
+        margin-top: 0.8rem;
+        min-height: 40px;
+      }
+    }
+
+    /* High DPI screen optimization */
+    @media (-webkit-min-device-pixel-ratio: 2), (min-resolution: 192dpi) {
+      .cyber-input, .cyber-button {
+        -webkit-font-smoothing: antialiased;
+      }
     }
   </style>
 </head>
@@ -288,14 +603,13 @@
   <div class="container">
     <header>
       <h1>CyberScan Pro</h1>
-      <p class="tagline">Security Testing · </p>
+      <p class="tagline">Security Testing · 3D Ping Validation</p>
     </header>
 
     <div class="security-warning">
       <strong>SECURITY NOTICE:</strong> Real vulnerability scanning requires proper authorization.
     </div>
 
-    <!-- HIGH RISK WARNING (unchanged logic) -->
     <div class="high-risk-warning" id="highRiskWarning">
       <strong>⚠ HIGH-RISK WEBSITE DETECTED</strong><br>
       <span id="warningMessage"></span>
@@ -305,23 +619,20 @@
       </div>
     </div>
 
-    <!-- ========== 3D FUTURISTIC SCANNING CARD (refactored section) ========= -->
+    <!-- 3D FUTURISTIC SCANNING CARD -->
     <div class="scan-3d-wrapper">
       <div class="cyber-scan-card" id="tiltCard">
         <div class="card-title">⟁ TARGET ACQUISITION</div>
         <div class="input-group">
           <div class="url-input-row">
-            <input type="url" id="urlInput" class="cyber-input" placeholder="https://example.com" autocomplete="off" spellcheck="false">
+            <input type="url" id="urlInput" class="cyber-input" placeholder="https://example.com" autocomplete="off" spellcheck="false" inputmode="url" enterkeyhint="go">
             <button id="scanBtn" class="cyber-button" disabled>INITIATE SCAN</button>
           </div>
         </div>
-        <div class="status-area" id="statusArea">
-          <!-- dynamic status: spinner / valid / error -->
-        </div>
+        <div class="status-area" id="statusArea"></div>
       </div>
     </div>
 
-    <!-- original scanning section, results etc remain same (will be shown after scan) -->
     <section class="scanning-section" id="scanningSection">
       <h2>Security Analysis in Progress</h2>
       <div class="hacking-animation" id="hackingAnimation"></div>
@@ -332,23 +643,25 @@
     </section>
 
     <section class="results-section" id="resultsSection">
-      <!-- exactly as original -->
       <div class="results-header">
         <h2>Security Analysis Results</h2>
         <div id="scanDate"></div>
       </div>
+      
       <div class="vulnerability-score">
         <h3>Security Score</h3>
         <div class="score-circle" id="scoreCircle"><div class="score-value" id="scoreValue">0%</div></div>
         <p id="scoreDescription">Based on security analysis</p>
       </div>
+      
       <h3>Security Findings</h3>
       <div class="vulnerability-list" id="vulnerabilityList"></div>
-      <button class="restart-btn" id="restartBtn">Analyze Another Website</button>
+      
+      <button class="restart-btn cyber-button" id="restartBtn">Analyze Another Website</button>
     </section>
 
     <footer>
-      <p>CyberScan Pro &copy; 2050 |</p>
+      <p>CyberScan Pro &copy; 2050 | 3D Cyber Interface | Optimized for all devices</p>
     </footer>
   </div>
 
@@ -356,40 +669,43 @@
     (function(){
       'use strict';
 
-      // ---------- BACKEND PING SIMULATION (Node express style) ----------
-      // This function mimics calling POST /api/ping-url
+      // Device detection for optimizations
+      const isMobile = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
+      const isTouch = ('ontouchstart' in window) || (navigator.maxTouchPoints > 0);
+      
+      // Performance optimization: Throttle tilt on mobile
+      let tiltEnabled = !isMobile;
+      let rafId = null;
+
+      // Backend ping simulation with mobile-optimized timeout
       async function backendPingUrl(url) {
         try {
           const parsed = new URL(url);
           const hostname = parsed.hostname;
           
-          // Simulate network request (3s timeout simulation)
           const controller = new AbortController();
-          const timeoutId = setTimeout(() => controller.abort(), 3000);
+          const timeoutId = setTimeout(() => controller.abort(), isMobile ? 4000 : 3000); // Longer timeout on mobile
           
-          // For demo, we use a HEAD request via fetch with no-cors? Actually we want real reachability.
-          // But for same-origin restrictions, we emulate using a known test or image ping.
-          // We'll do a real fetch but may be limited by CORS — we use a proxy-like approach:
-          // In a real backend, Node would do a DNS lookup + HTTP HEAD.
-          // Here we simulate reachability with a public CORS-friendly endpoint (like a favicon check)
-          // BUT we need to make it realistic: we'll use a fetch with mode 'no-cors' to avoid CORS but still get network error if unreachable.
-          
-          const testUrl = `${parsed.protocol}//${hostname}/favicon.ico`; // quick lightweight
+          const testUrl = `${parsed.protocol}//${hostname}/favicon.ico`;
           try {
             await fetch(testUrl, { 
               method: 'HEAD', 
               mode: 'no-cors', 
-              signal: controller.signal 
+              signal: controller.signal,
+              cache: 'no-cache'
             });
             clearTimeout(timeoutId);
-            // no-cors means opaque response, but we can consider success if no network error
             return { valid: true };
           } catch (fetchError) {
-            // If it fails, try root with no-cors
             try {
               const fallbackController = new AbortController();
-              const fbTimeout = setTimeout(() => fallbackController.abort(), 2500);
-              await fetch(`${parsed.protocol}//${hostname}/`, { method: 'HEAD', mode: 'no-cors', signal: fallbackController.signal });
+              const fbTimeout = setTimeout(() => fallbackController.abort(), isMobile ? 3500 : 2500);
+              await fetch(`${parsed.protocol}//${hostname}/`, { 
+                method: 'HEAD', 
+                mode: 'no-cors', 
+                signal: fallbackController.signal,
+                cache: 'no-cache'
+              });
               clearTimeout(fbTimeout);
               return { valid: true };
             } catch (e) {
@@ -401,7 +717,7 @@
         }
       }
 
-      // ---------- UI STATE & 3D TILT ----------
+      // DOM elements
       const elements = {
         urlInput: document.getElementById('urlInput'),
         scanBtn: document.getElementById('scanBtn'),
@@ -424,47 +740,60 @@
         restartBtn: document.getElementById('restartBtn')
       };
 
-      // high-risk list (same)
       const HIGH_RISK_WEBSITES = [
-        'google.com','youtube.com','facebook.com','twitter.com','instagram.com','linkedin.com','apple.com','microsoft.com','amazon.com','netflix.com','whatsapp.com','tiktok.com','reddit.com','discord.com','zoom.us','paypal.com','yahoo.com','bing.com','wikipedia.org','office.com','adobe.com','spotify.com','twitch.tv','pinterest.com','tumblr.com','ebay.com','wordpress.com','cloudflare.com','github.com','stackoverflow.com','gov.uk','whitehouse.gov','fbi.gov','cia.gov','nsa.gov'
+        'google.com','youtube.com','facebook.com','twitter.com','instagram.com','linkedin.com',
+        'apple.com','microsoft.com','amazon.com','netflix.com','whatsapp.com','tiktok.com',
+        'reddit.com','discord.com','zoom.us','paypal.com','yahoo.com','bing.com','wikipedia.org',
+        'office.com','adobe.com','spotify.com','twitch.tv','pinterest.com','tumblr.com',
+        'ebay.com','wordpress.com','cloudflare.com','github.com','stackoverflow.com',
+        'gov.uk','whitehouse.gov','fbi.gov','cia.gov','nsa.gov'
       ];
 
       let currentUrl = '';
       let isValidated = false;
       let scanEnabled = false;
 
-      // TILT EFFECT (3D card)
-      const card = elements.tiltCard;
+      // Optimized tilt effect with RAF
       function handleMouseMove(e) {
-        const rect = card.getBoundingClientRect();
-        const x = e.clientX - rect.left;
-        const y = e.clientY - rect.top;
-        const centerX = rect.width / 2;
-        const centerY = rect.height / 2;
-        const rotateY = ((x - centerX) / centerX) * 8; // max ±8deg
-        const rotateX = ((y - centerY) / centerY) * -6;
-        card.style.transform = `perspective(1200px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) translateZ(10px)`;
+        if (!tiltEnabled || isMobile) return;
+        
+        if (rafId) cancelAnimationFrame(rafId);
+        
+        rafId = requestAnimationFrame(() => {
+          const rect = elements.tiltCard.getBoundingClientRect();
+          const x = e.clientX - rect.left;
+          const y = e.clientY - rect.top;
+          const centerX = rect.width / 2;
+          const centerY = rect.height / 2;
+          const rotateY = ((x - centerX) / centerX) * 8;
+          const rotateX = ((y - centerY) / centerY) * -6;
+          elements.tiltCard.style.transform = `perspective(1200px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) translateZ(10px)`;
+        });
       }
-      function resetTilt() {
-        card.style.transform = `perspective(1200px) rotateX(0deg) rotateY(0deg) translateZ(0)`;
-      }
-      card.addEventListener('mousemove', handleMouseMove);
-      card.addEventListener('mouseleave', resetTilt);
 
-      // Helper: update status UI
+      function resetTilt() {
+        if (rafId) {
+          cancelAnimationFrame(rafId);
+          rafId = null;
+        }
+        elements.tiltCard.style.transform = `perspective(1200px) rotateX(0deg) rotateY(0deg) translateZ(0)`;
+      }
+
+      if (!isMobile) {
+        elements.tiltCard.addEventListener('mousemove', handleMouseMove);
+        elements.tiltCard.addEventListener('mouseleave', resetTilt);
+      }
+
+      // Status UI updates
       function setStatusUI(type, message = '') {
         const area = elements.statusArea;
-        if (type === 'checking') {
-          area.innerHTML = `<div class="status-badge"><div class="spinner"></div><span>Pinging target & validating...</span><div class="pulse-dot"></div></div>`;
-        } else if (type === 'valid') {
-          area.innerHTML = `<div class="status-badge"><span class="valid-indicator">✓ CONNECTION ESTABLISHED</span><span>${message || 'Domain reachable'}</span></div>`;
-        } else if (type === 'invalid') {
-          area.innerHTML = `<div class="status-badge"><span class="invalid-indicator">✗ UNREACHABLE</span><span>${message || 'Host not responding'}</span></div>`;
-        } else if (type === 'error-shake') {
-          area.innerHTML = `<div class="status-badge"><span class="invalid-indicator">⚠ INVALID URL</span><span>${message}</span></div>`;
-        } else {
-          area.innerHTML = ''; 
-        }
+        const messages = {
+          checking: `<div class="status-badge"><div class="spinner"></div><span>Pinging target & validating...</span><div class="pulse-dot"></div></div>`,
+          valid: `<div class="status-badge"><span class="valid-indicator">✓ CONNECTION ESTABLISHED</span><span>${message || 'Domain reachable'}</span></div>`,
+          invalid: `<div class="status-badge"><span class="invalid-indicator">✗ UNREACHABLE</span><span>${message || 'Host not responding'}</span></div>`,
+          'error-shake': `<div class="status-badge"><span class="invalid-indicator">⚠ INVALID URL</span><span>${message}</span></div>`
+        };
+        area.innerHTML = messages[type] || '';
       }
 
       function resetValidationState() {
@@ -475,7 +804,6 @@
         elements.urlInput.classList.remove('valid-glow', 'error-glow');
       }
 
-      // URL validation (client)
       function isValidHttpUrl(str) {
         try {
           const u = new URL(str);
@@ -490,20 +818,17 @@
         } catch { return false; }
       }
 
-      // Main validation flow
       async function performPingValidation(url) {
         resetValidationState();
         setStatusUI('checking');
         elements.urlInput.classList.remove('error-glow', 'valid-glow');
         
-        // First basic format
         if (!isValidHttpUrl(url)) {
           setStatusUI('error-shake', 'Invalid URL format (use http/https)');
           elements.urlInput.classList.add('error-glow');
           return false;
         }
         
-        // Backend ping simulation
         try {
           const response = await backendPingUrl(url);
           if (response.valid) {
@@ -526,7 +851,7 @@
         }
       }
 
-      // Debounced validation on input
+      // Debounced input with mobile optimization
       let debounceTimer;
       elements.urlInput.addEventListener('input', (e) => {
         const val = e.target.value.trim();
@@ -536,29 +861,28 @@
         elements.urlInput.classList.remove('valid-glow','error-glow');
         if (val === '') return;
         
+        const delay = isMobile ? 800 : 600; // Longer delay on mobile
         debounceTimer = setTimeout(async () => {
           if (!isValidHttpUrl(val)) {
             setStatusUI('error-shake', 'Invalid URL format');
             elements.urlInput.classList.add('error-glow');
             return;
           }
-          // Auto ping on input (optional, but we keep to enable only on explicit action? We'll do auto but we can also call on scan click)
-          // However we want "Start Scan" only after successful ping. So we call performPingValidation here.
           await performPingValidation(val);
-        }, 600);
+        }, delay);
       });
 
-      // SCAN BUTTON
-      elements.scanBtn.addEventListener('click', async () => {
+      // Scan button handler
+      elements.scanBtn.addEventListener('click', async (e) => {
+        e.preventDefault();
         const url = elements.urlInput.value.trim();
         currentUrl = url;
+        
         if (!scanEnabled || !isValidated) {
-          // re-run validation
           const success = await performPingValidation(url);
           if (!success) return;
         }
         
-        // high risk check
         if (isHighRisk(url)) {
           elements.warningMessage.textContent = `Scanning ${new URL(url).hostname} may violate terms.`;
           elements.highRiskWarning.style.display = 'block';
@@ -567,26 +891,38 @@
         startFullScan(url);
       });
 
-      // Proceed / Cancel high risk
       elements.proceedBtn.addEventListener('click', () => {
         elements.highRiskWarning.style.display = 'none';
         startFullScan(currentUrl);
       });
+      
       elements.cancelBtn.addEventListener('click', () => {
         elements.highRiskWarning.style.display = 'none';
         resetValidationState();
         setStatusUI('', '');
       });
 
-      // Scan simulation (original style)
       function startFullScan(url) {
         elements.scanningSection.style.display = 'block';
         elements.resultsSection.style.display = 'none';
-        // create hacking anim (same as original)
+        
         const anim = elements.hackingAnimation;
         anim.innerHTML = '';
-        for(let i=0;i<5;i++){ let line=document.createElement('div'); line.className='code-line'; line.style.animationDelay=`${i*0.4}s`; anim.appendChild(line);}
-        for(let i=0;i<30;i++){ let b=document.createElement('div'); b.className='binary-code'; b.textContent=Math.random()>0.5?'1':'0'; b.style.left=Math.random()*100+'%'; b.style.animationDelay=Math.random()*5+'s'; b.style.animationDuration=3+Math.random()*5+'s'; anim.appendChild(b);}
+        for(let i=0;i<5;i++){ 
+          let line=document.createElement('div'); 
+          line.className='code-line'; 
+          line.style.animationDelay=`${i*0.4}s`; 
+          anim.appendChild(line);
+        }
+        for(let i=0;i<(isMobile ? 15 : 30);i++){ 
+          let b=document.createElement('div'); 
+          b.className='binary-code'; 
+          b.textContent=Math.random()>0.5?'1':'0'; 
+          b.style.left=Math.random()*100+'%'; 
+          b.style.animationDelay=Math.random()*5+'s'; 
+          b.style.animationDuration=3+Math.random()*5+'s'; 
+          anim.appendChild(b);
+        }
         
         let progress = 0;
         const tests = ['XSS Testing','SQL Injection','CSRF','Security Headers'];
@@ -595,7 +931,7 @@
             progress+=25;
             elements.progressBar.style.width=progress+'%';
             elements.progressText.textContent = `${t}: analyzing...`;
-            await new Promise(r=>setTimeout(r,800));
+            await new Promise(r=>setTimeout(r, isMobile ? 600 : 800));
           }
           elements.progressText.textContent='Analysis complete';
           elements.scanningSection.style.display='none';
@@ -610,11 +946,13 @@
         elements.scoreValue.textContent = score+'%';
         elements.scoreCircle.style.background = `conic-gradient(#0cf 0% ${score}%, #000 ${score}% 100%)`;
         elements.scoreDescription.textContent = score>=90?'Excellent':(score>=70?'Good':'Moderate');
+        
         const vulns = [
           {title:'Security Headers',severity:'medium',desc:`Missing headers on ${domain}`},
           {title:'XSS Protection',severity:'high',desc:'Potential reflected XSS'},
           {title:'Info Leak',severity:'low',desc:'Server signature visible'}
         ];
+        
         elements.vulnerabilityList.innerHTML='';
         vulns.forEach(v=>{
           const item=document.createElement('div');
@@ -633,33 +971,53 @@
         elements.urlInput.classList.remove('valid-glow','error-glow');
       });
 
-      // enter key
       elements.urlInput.addEventListener('keypress', (e)=>{
-        if(e.key==='Enter') elements.scanBtn.click();
+        if(e.key==='Enter') {
+          e.preventDefault();
+          elements.scanBtn.click();
+        }
       });
 
-      // expose backend endpoint example comment (Node.js)
-      console.log('Backend endpoint example: POST /api/ping-url { url } → perform DNS/HTTP HEAD with 3s timeout, return {valid:true/false}');
+      // Handle orientation changes
+      window.addEventListener('orientationchange', () => {
+        setTimeout(() => {
+          if (!isMobile) resetTilt();
+        }, 100);
+      });
+
+      // Clean up
+      window.addEventListener('beforeunload', () => {
+        if (rafId) cancelAnimationFrame(rafId);
+      });
+
+      console.log('🚀 CyberScan Pro · Mobile & Desktop Optimized · Backend endpoint: POST /api/ping-url');
     })();
   </script>
-  <!-- Node.js backend snippet (reference) 
+  
+  <!-- Node.js backend snippet for reference -->
+  <!--
   const express = require('express');
-  const app = express(); app.use(express.json());
-  const dns = require('dns'); const https = require('https'); const http = require('http');
+  const app = express(); 
+  app.use(express.json());
+  
   app.post('/api/ping-url', async (req, res) => {
     const { url } = req.body;
     try {
       const parsed = new URL(url);
       const options = { method: 'HEAD', timeout: 3000 };
-      const requester = parsed.protocol === 'https:' ? https : http;
+      const requester = parsed.protocol === 'https:' ? require('https') : require('http');
       const req = requester.request(parsed, options, (response) => {
         res.json({ valid: true });
       });
       req.on('error', () => res.json({ valid: false }));
       req.on('timeout', () => { req.destroy(); res.json({ valid: false }); });
       req.end();
-    } catch(e){ res.json({ valid: false }); }
+    } catch(e) { 
+      res.json({ valid: false }); 
+    }
   });
+  
+  app.listen(3000, () => console.log('Ping service running on :3000'));
   -->
 </body>
 </html>
